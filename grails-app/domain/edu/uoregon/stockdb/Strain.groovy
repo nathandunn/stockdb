@@ -9,13 +9,16 @@ class Strain {
             stockLocations: StockLocation
     ]
 
-    Genus genus
-    Phylum phylum
 
     Origin origin
     String sequence
 
     // JSON
     String values
+
+
+    String name
+    Genus genus
+    Phylum phylum
 
 }

@@ -10,5 +10,5 @@ class HostFacility {
     ]
 
     String name
-    String location
+//    String location
 }
