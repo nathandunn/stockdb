@@ -1,0 +1,102 @@
+package edu.uoregon.stockdb
+
+import org.springframework.dao.DataIntegrityViolationException
+
+class PhylumController {
+
+    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+
+    def index() {
+        redirect(action: "list", params: params)
+    }
+
+    def list(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        [phylumInstanceList: Phylum.list(params), phylumInstanceTotal: Phylum.count()]
+    }
+
+    def create() {
+        [phylumInstance: new Phylum(params)]
+    }
+
+    def save() {
+        def phylumInstance = new Phylum(params)
+        if (!phylumInstance.save(flush: true)) {
+            render(view: "create", model: [phylumInstance: phylumInstance])
+            return
+        }
+
+        flash.message = message(code: 'default.created.message', args: [message(code: 'phylum.label', default: 'Phylum'), phylumInstance.id])
+        redirect(action: "show", id: phylumInstance.id)
+    }
+
+    def show(Long id) {
+        def phylumInstance = Phylum.get(id)
+        if (!phylumInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'phylum.label', default: 'Phylum'), id])
+            redirect(action: "list")
+            return
+        }
+
+        [phylumInstance: phylumInstance]
+    }
+
+    def edit(Long id) {
+        def phylumInstance = Phylum.get(id)
+        if (!phylumInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'phylum.label', default: 'Phylum'), id])
+            redirect(action: "list")
+            return
+        }
+
+        [phylumInstance: phylumInstance]
+    }
+
+    def update(Long id, Long version) {
+        def phylumInstance = Phylum.get(id)
+        if (!phylumInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'phylum.label', default: 'Phylum'), id])
+            redirect(action: "list")
+            return
+        }
+
+        if (version != null) {
+            if (phylumInstance.version > version) {
+                phylumInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+                          [message(code: 'phylum.label', default: 'Phylum')] as Object[],
+                          "Another user has updated this Phylum while you were editing")
+                render(view: "edit", model: [phylumInstance: phylumInstance])
+                return
+            }
+        }
+
+        phylumInstance.properties = params
+
+        if (!phylumInstance.save(flush: true)) {
+            render(view: "edit", model: [phylumInstance: phylumInstance])
+            return
+        }
+
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'phylum.label', default: 'Phylum'), phylumInstance.id])
+        redirect(action: "show", id: phylumInstance.id)
+    }
+
+    def delete(Long id) {
+        def phylumInstance = Phylum.get(id)
+        if (!phylumInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'phylum.label', default: 'Phylum'), id])
+            redirect(action: "list")
+            return
+        }
+
+        try {
+            phylumInstance.delete(flush: true)
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'phylum.label', default: 'Phylum'), id])
+            redirect(action: "list")
+        }
+        catch (DataIntegrityViolationException e) {
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'phylum.label', default: 'Phylum'), id])
+            redirect(action: "show", id: id)
+        }
+    }
+}
