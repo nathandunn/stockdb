@@ -15,6 +15,7 @@ class Strain {
     Origin origin
     String sequence
 
-    PropertyValue arbitraryData
+    // JSON
+    String values
 
 }

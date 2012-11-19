@@ -20,5 +20,6 @@ class Origin {
     Long age
     String partOfFish
 
-    PropertyValue arbitraryData
+    // JSON
+    String values
 }
