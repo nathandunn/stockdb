@@ -23,11 +23,20 @@
 			</g:if>
 			<ol class="property-list strain">
 			
-				<g:if test="${strainInstance?.arbitraryData}">
+				<g:if test="${strainInstance?.sequence}">
 				<li class="fieldcontain">
-					<span id="arbitraryData-label" class="property-label"><g:message code="strain.arbitraryData.label" default="Arbitrary Data" /></span>
+					<span id="sequence-label" class="property-label"><g:message code="strain.sequence.label" default="Sequence" /></span>
 					
-						<span class="property-value" aria-labelledby="arbitraryData-label"><g:fieldValue bean="${strainInstance}" field="arbitraryData"/></span>
+						<span class="property-value" aria-labelledby="sequence-label"><g:fieldValue bean="${strainInstance}" field="sequence"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${strainInstance?.values}">
+				<li class="fieldcontain">
+					<span id="values-label" class="property-label"><g:message code="strain.values.label" default="Values" /></span>
+					
+						<span class="property-value" aria-labelledby="values-label"><g:fieldValue bean="${strainInstance}" field="values"/></span>
 					
 				</li>
 				</g:if>
@@ -37,6 +46,15 @@
 					<span id="genus-label" class="property-label"><g:message code="strain.genus.label" default="Genus" /></span>
 					
 						<span class="property-value" aria-labelledby="genus-label"><g:link controller="genus" action="show" id="${strainInstance?.genus?.id}">${strainInstance?.genus?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${strainInstance?.name}">
+				<li class="fieldcontain">
+					<span id="name-label" class="property-label"><g:message code="strain.name.label" default="Name" /></span>
+					
+						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${strainInstance}" field="name"/></span>
 					
 				</li>
 				</g:if>
@@ -59,21 +77,12 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${strainInstance?.sequence}">
+				<g:if test="${strainInstance?.stocks}">
 				<li class="fieldcontain">
-					<span id="sequence-label" class="property-label"><g:message code="strain.sequence.label" default="Sequence" /></span>
+					<span id="stocks-label" class="property-label"><g:message code="strain.stocks.label" default="Stocks" /></span>
 					
-						<span class="property-value" aria-labelledby="sequence-label"><g:fieldValue bean="${strainInstance}" field="sequence"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${strainInstance?.stockLocations}">
-				<li class="fieldcontain">
-					<span id="stockLocations-label" class="property-label"><g:message code="strain.stockLocations.label" default="Stock Locations" /></span>
-					
-						<g:each in="${strainInstance.stockLocations}" var="s">
-						<span class="property-value" aria-labelledby="stockLocations-label"><g:link controller="stockLocation" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></span>
+						<g:each in="${strainInstance.stocks}" var="s">
+						<span class="property-value" aria-labelledby="stocks-label"><g:link controller="stock" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>

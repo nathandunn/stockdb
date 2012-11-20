@@ -24,15 +24,17 @@
 				<thead>
 					<tr>
 					
-						<g:sortableColumn property="arbitraryData" title="${message(code: 'strain.arbitraryData.label', default: 'Arbitrary Data')}" />
+						<g:sortableColumn property="sequence" title="${message(code: 'strain.sequence.label', default: 'Sequence')}" />
+					
+						<g:sortableColumn property="values" title="${message(code: 'strain.values.label', default: 'Values')}" />
 					
 						<th><g:message code="strain.genus.label" default="Genus" /></th>
+					
+						<g:sortableColumn property="name" title="${message(code: 'strain.name.label', default: 'Name')}" />
 					
 						<th><g:message code="strain.origin.label" default="Origin" /></th>
 					
 						<th><g:message code="strain.phylum.label" default="Phylum" /></th>
-					
-						<g:sortableColumn property="sequence" title="${message(code: 'strain.sequence.label', default: 'Sequence')}" />
 					
 					</tr>
 				</thead>
@@ -40,15 +42,17 @@
 				<g:each in="${strainInstanceList}" status="i" var="strainInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${strainInstance.id}">${fieldValue(bean: strainInstance, field: "arbitraryData")}</g:link></td>
+						<td><g:link action="show" id="${strainInstance.id}">${fieldValue(bean: strainInstance, field: "sequence")}</g:link></td>
+					
+						<td>${fieldValue(bean: strainInstance, field: "values")}</td>
 					
 						<td>${fieldValue(bean: strainInstance, field: "genus")}</td>
+					
+						<td>${fieldValue(bean: strainInstance, field: "name")}</td>
 					
 						<td>${fieldValue(bean: strainInstance, field: "origin")}</td>
 					
 						<td>${fieldValue(bean: strainInstance, field: "phylum")}</td>
-					
-						<td>${fieldValue(bean: strainInstance, field: "sequence")}</td>
 					
 					</tr>
 				</g:each>

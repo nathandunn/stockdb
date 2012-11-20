@@ -8,4 +8,5 @@ class Stock {
     String value
 
     Location location
+    Strain strain
 }

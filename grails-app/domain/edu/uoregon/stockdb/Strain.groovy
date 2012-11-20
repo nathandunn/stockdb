@@ -3,6 +3,8 @@ package edu.uoregon.stockdb
 class Strain {
 
     static constraints = {
+        sequence nullable: true
+        values nullable: true
     }
 
     static hasMany = [
@@ -10,7 +12,12 @@ class Strain {
     ]
 
 
-    Origin origin
+    // will be one or the other .. . .
+    Strain parentStrain
+    // more like a capture
+    HostOrigin origin
+
+
     String sequence
 
     // JSON
@@ -18,7 +25,15 @@ class Strain {
 
 
     String name
+    String formAlias
+
+
+    // properties
+    double motility
+
     Genus genus
     Phylum phylum
 
+    User isolatedBy
+    Date isolatedWhen
 }

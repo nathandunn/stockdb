@@ -3,9 +3,13 @@ package edu.uoregon.stockdb
 /**
  * The host animal of the strain
  */
-class Origin {
+class HostOrigin {
 
     static constraints = {
+        values nullable: true
+        age nullable: true
+        partOfFish nullable: true
+        hostFacility nullable: true
     }
 
     static hasMany = [
