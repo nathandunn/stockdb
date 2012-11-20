@@ -28,13 +28,13 @@
 					
 						<g:sortableColumn property="values" title="${message(code: 'strain.values.label', default: 'Values')}" />
 					
+						<g:sortableColumn property="formAlias" title="${message(code: 'strain.formAlias.label', default: 'Form Alias')}" />
+					
 						<th><g:message code="strain.genus.label" default="Genus" /></th>
 					
-						<g:sortableColumn property="name" title="${message(code: 'strain.name.label', default: 'Name')}" />
+						<th><g:message code="strain.isolatedBy.label" default="Isolated By" /></th>
 					
-						<th><g:message code="strain.origin.label" default="Origin" /></th>
-					
-						<th><g:message code="strain.phylum.label" default="Phylum" /></th>
+						<g:sortableColumn property="isolatedWhen" title="${message(code: 'strain.isolatedWhen.label', default: 'Isolated When')}" />
 					
 					</tr>
 				</thead>
@@ -46,13 +46,13 @@
 					
 						<td>${fieldValue(bean: strainInstance, field: "values")}</td>
 					
+						<td>${fieldValue(bean: strainInstance, field: "formAlias")}</td>
+					
 						<td>${fieldValue(bean: strainInstance, field: "genus")}</td>
 					
-						<td>${fieldValue(bean: strainInstance, field: "name")}</td>
+						<td>${fieldValue(bean: strainInstance, field: "isolatedBy")}</td>
 					
-						<td>${fieldValue(bean: strainInstance, field: "origin")}</td>
-					
-						<td>${fieldValue(bean: strainInstance, field: "phylum")}</td>
+						<td><g:formatDate date="${strainInstance.isolatedWhen}" /></td>
 					
 					</tr>
 				</g:each>

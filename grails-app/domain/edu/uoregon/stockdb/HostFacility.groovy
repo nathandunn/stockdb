@@ -6,7 +6,7 @@ class HostFacility {
     }
 
     static hasMany = [
-            origins: Origin
+            origins: HostOrigin
     ]
 
     String name

@@ -23,15 +23,6 @@
 			</g:if>
 			<ol class="property-list hostFacility">
 			
-				<g:if test="${hostFacilityInstance?.location}">
-				<li class="fieldcontain">
-					<span id="location-label" class="property-label"><g:message code="hostFacility.location.label" default="Location" /></span>
-					
-						<span class="property-value" aria-labelledby="location-label"><g:fieldValue bean="${hostFacilityInstance}" field="location"/></span>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${hostFacilityInstance?.name}">
 				<li class="fieldcontain">
 					<span id="name-label" class="property-label"><g:message code="hostFacility.name.label" default="Name" /></span>
@@ -46,7 +37,7 @@
 					<span id="origins-label" class="property-label"><g:message code="hostFacility.origins.label" default="Origins" /></span>
 					
 						<g:each in="${hostFacilityInstance.origins}" var="o">
-						<span class="property-value" aria-labelledby="origins-label"><g:link controller="origin" action="show" id="${o.id}">${o?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="origins-label"><g:link controller="hostOrigin" action="show" id="${o.id}">${o?.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>

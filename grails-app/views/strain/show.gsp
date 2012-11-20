@@ -41,11 +41,47 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${strainInstance?.formAlias}">
+				<li class="fieldcontain">
+					<span id="formAlias-label" class="property-label"><g:message code="strain.formAlias.label" default="Form Alias" /></span>
+					
+						<span class="property-value" aria-labelledby="formAlias-label"><g:fieldValue bean="${strainInstance}" field="formAlias"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${strainInstance?.genus}">
 				<li class="fieldcontain">
 					<span id="genus-label" class="property-label"><g:message code="strain.genus.label" default="Genus" /></span>
 					
 						<span class="property-value" aria-labelledby="genus-label"><g:link controller="genus" action="show" id="${strainInstance?.genus?.id}">${strainInstance?.genus?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${strainInstance?.isolatedBy}">
+				<li class="fieldcontain">
+					<span id="isolatedBy-label" class="property-label"><g:message code="strain.isolatedBy.label" default="Isolated By" /></span>
+					
+						<span class="property-value" aria-labelledby="isolatedBy-label"><g:link controller="user" action="show" id="${strainInstance?.isolatedBy?.id}">${strainInstance?.isolatedBy?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${strainInstance?.isolatedWhen}">
+				<li class="fieldcontain">
+					<span id="isolatedWhen-label" class="property-label"><g:message code="strain.isolatedWhen.label" default="Isolated When" /></span>
+					
+						<span class="property-value" aria-labelledby="isolatedWhen-label"><g:formatDate date="${strainInstance?.isolatedWhen}" /></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${strainInstance?.motility}">
+				<li class="fieldcontain">
+					<span id="motility-label" class="property-label"><g:message code="strain.motility.label" default="Motility" /></span>
+					
+						<span class="property-value" aria-labelledby="motility-label"><g:fieldValue bean="${strainInstance}" field="motility"/></span>
 					
 				</li>
 				</g:if>
@@ -63,7 +99,16 @@
 				<li class="fieldcontain">
 					<span id="origin-label" class="property-label"><g:message code="strain.origin.label" default="Origin" /></span>
 					
-						<span class="property-value" aria-labelledby="origin-label"><g:link controller="origin" action="show" id="${strainInstance?.origin?.id}">${strainInstance?.origin?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="origin-label"><g:link controller="hostOrigin" action="show" id="${strainInstance?.origin?.id}">${strainInstance?.origin?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${strainInstance?.parentStrain}">
+				<li class="fieldcontain">
+					<span id="parentStrain-label" class="property-label"><g:message code="strain.parentStrain.label" default="Parent Strain" /></span>
+					
+						<span class="property-value" aria-labelledby="parentStrain-label"><g:link controller="strain" action="show" id="${strainInstance?.parentStrain?.id}">${strainInstance?.parentStrain?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>

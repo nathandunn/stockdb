@@ -2,14 +2,6 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: hostFacilityInstance, field: 'location', 'error')} ">
-	<label for="location">
-		<g:message code="hostFacility.location.label" default="Location" />
-		
-	</label>
-	<g:textField name="location" value="${hostFacilityInstance?.location}"/>
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: hostFacilityInstance, field: 'name', 'error')} ">
 	<label for="name">
 		<g:message code="hostFacility.name.label" default="Name" />
@@ -26,10 +18,10 @@
 	
 <ul class="one-to-many">
 <g:each in="${hostFacilityInstance?.origins?}" var="o">
-    <li><g:link controller="origin" action="show" id="${o.id}">${o?.encodeAsHTML()}</g:link></li>
+    <li><g:link controller="hostOrigin" action="show" id="${o.id}">${o?.encodeAsHTML()}</g:link></li>
 </g:each>
 <li class="add">
-<g:link controller="origin" action="create" params="['hostFacility.id': hostFacilityInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'origin.label', default: 'Origin')])}</g:link>
+<g:link controller="hostOrigin" action="create" params="['hostFacility.id': hostFacilityInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'hostOrigin.label', default: 'HostOrigin')])}</g:link>
 </li>
 </ul>
 
