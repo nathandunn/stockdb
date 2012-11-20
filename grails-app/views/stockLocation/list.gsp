@@ -1,5 +1,5 @@
 
-<%@ page import="edu.uoregon.stockdb.StockLocation" %>
+<%@ page import="edu.uoregon.stockdb.Stock" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -34,9 +34,9 @@
 				<g:each in="${stockLocationInstanceList}" status="i" var="stockLocationInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${stockLocationInstance.id}">${fieldValue(bean: stockLocationInstance, field: "locationDetail")}</g:link></td>
+						<td><g:link action="show" id="${stockLocationInstance.id}">${fieldValue(bean: stockLocationInstance, field: "notes")}</g:link></td>
 					
-						<td>${fieldValue(bean: stockLocationInstance, field: "locationGeneral")}</td>
+						<td>${fieldValue(bean: stockLocationInstance, field: "name")}</td>
 					
 					</tr>
 				</g:each>

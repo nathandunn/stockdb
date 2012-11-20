@@ -19,6 +19,7 @@ class Origin {
 
     Long age
     String partOfFish
+    String name
 
     // JSON
     String values

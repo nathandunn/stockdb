@@ -1,5 +1,5 @@
 
-<%@ page import="edu.uoregon.stockdb.StockLocation" %>
+<%@ page import="edu.uoregon.stockdb.Stock" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -23,20 +23,20 @@
 			</g:if>
 			<ol class="property-list stockLocation">
 			
-				<g:if test="${stockLocationInstance?.locationDetail}">
+				<g:if test="${stockLocationInstance?.notes}">
 				<li class="fieldcontain">
 					<span id="locationDetail-label" class="property-label"><g:message code="stockLocation.locationDetail.label" default="Location Detail" /></span>
 					
-						<span class="property-value" aria-labelledby="locationDetail-label"><g:fieldValue bean="${stockLocationInstance}" field="locationDetail"/></span>
+						<span class="property-value" aria-labelledby="locationDetail-label"><g:fieldValue bean="${stockLocationInstance}" field="notes"/></span>
 					
 				</li>
 				</g:if>
 			
-				<g:if test="${stockLocationInstance?.locationGeneral}">
+				<g:if test="${stockLocationInstance?.name}">
 				<li class="fieldcontain">
 					<span id="locationGeneral-label" class="property-label"><g:message code="stockLocation.locationGeneral.label" default="Location General" /></span>
 					
-						<span class="property-value" aria-labelledby="locationGeneral-label"><g:fieldValue bean="${stockLocationInstance}" field="locationGeneral"/></span>
+						<span class="property-value" aria-labelledby="locationGeneral-label"><g:fieldValue bean="${stockLocationInstance}" field="name"/></span>
 					
 				</li>
 				</g:if>

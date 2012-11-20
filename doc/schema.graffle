@@ -14,7 +14,7 @@
 	<key>BackgroundGraphic</key>
 	<dict>
 		<key>Bounds</key>
-		<string>{{0, 0}, {576, 733}}</string>
+		<string>{{0, 0}, {575.99998474121094, 733}}</string>
 		<key>Class</key>
 		<string>SolidGraphic</string>
 		<key>ID</key>
@@ -57,14 +57,78 @@
 			<key>Head</key>
 			<dict>
 				<key>ID</key>
+				<integer>23</integer>
+			</dict>
+			<key>ID</key>
+			<integer>24</integer>
+			<key>Points</key>
+			<array>
+				<string>{312.99998532101813, 158.50961636702817}</string>
+				<string>{355, 157.5}</string>
+				<string>{333.00929373666492, 132.8729517558541}</string>
+			</array>
+			<key>Style</key>
+			<dict>
+				<key>stroke</key>
+				<dict>
+					<key>HeadArrow</key>
+					<string>0</string>
+					<key>Legacy</key>
+					<true/>
+					<key>LineType</key>
+					<integer>1</integer>
+					<key>TailArrow</key>
+					<string>CrowsFeet</string>
+				</dict>
+			</dict>
+			<key>Tail</key>
+			<dict>
+				<key>ID</key>
+				<integer>13</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>Bounds</key>
+			<string>{{255.99606323242188, 98.5}, {123.00012969970703, 34}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>23</integer>
+			<key>Shape</key>
+			<string>Rectangle</string>
+			<key>Style</key>
+			<dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
+
+\f0\b\fs24 \cf0 General Location}</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Class</key>
+			<string>LineGraphic</string>
+			<key>Head</key>
+			<dict>
+				<key>ID</key>
 				<integer>19</integer>
 			</dict>
 			<key>ID</key>
 			<integer>22</integer>
 			<key>Points</key>
 			<array>
-				<string>{118.08046096615431, 253.99727891654445}</string>
-				<string>{121.90457042956078, 290.50206314084198}</string>
+				<string>{117.98848559494775, 253.99737579326012}</string>
+				<string>{121.74339080262986, 290.50249815049597}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -98,8 +162,8 @@
 			<integer>20</integer>
 			<key>Points</key>
 			<array>
-				<string>{201.57802416857191, 258.62689360377965}</string>
-				<string>{151.11297946536959, 290.73493000122244}</string>
+				<string>{201.57762318363268, 258.53599660819168}</string>
+				<string>{150.80559100120752, 290.73277102737643}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -161,8 +225,8 @@
 			<integer>18</integer>
 			<key>Points</key>
 			<array>
-				<string>{243.66746651269875, 88.333793847672993}</string>
-				<string>{156.37237653727362, 166.60738153610922}</string>
+				<string>{243.66781537959747, 88.333797223970805}</string>
+				<string>{156.3723839552288, 166.60911891158725}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -186,7 +250,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{208, 143.5}, {123.00012969970703, 34}}</string>
+			<string>{{189.5, 143}, {123.00012969970703, 34}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -227,7 +291,7 @@
 			<integer>12</integer>
 			<key>Points</key>
 			<array>
-				<string>{214.81538699375761, 177.64961953889025}</string>
+				<string>{208.98169491282422, 177.18931626629012}</string>
 				<string>{185, 187}</string>
 				<string>{156.48439166487975, 194.3269333527812}</string>
 			</array>
@@ -263,8 +327,8 @@
 			<integer>10</integer>
 			<key>Points</key>
 			<array>
-				<string>{264.10807704440293, 290.52221977090267}</string>
-				<string>{255.76375161027681, 263.47460866007168}</string>
+				<string>{263.97547753151656, 290.52325262336859}</string>
+				<string>{255.42557893534482, 263.47607019546865}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -358,8 +422,8 @@ Part of Fish\
 			<integer>7</integer>
 			<key>Points</key>
 			<array>
-				<string>{156.49082363622298, 214.00660029664496}</string>
-				<string>{201.50851053323245, 222.81186021413782}</string>
+				<string>{156.49099217533282, 213.92700927957713}</string>
+				<string>{201.50884634909241, 222.64988241481035}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -428,8 +492,8 @@ Part of Fish\
 			<integer>5</integer>
 			<key>Points</key>
 			<array>
-				<string>{145.19144262104857, 88.48209880180984}</string>
-				<string>{126.34192373144366, 157.01792093830412}</string>
+				<string>{145.1905210114389, 88.48209229792856}</string>
+				<string>{126.33738348030768, 157.0179093518899}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -586,7 +650,7 @@ Sequence &lt;Values&gt;}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2012-11-19 22:09:11 +0000</string>
+	<string>2012-11-20 00:29:14 +0000</string>
 	<key>Modifier</key>
 	<string>Nathan Dunn</string>
 	<key>NotesVisible</key>
@@ -617,7 +681,7 @@ Sequence &lt;Values&gt;}</string>
 		<key>NSPaperSize</key>
 		<array>
 			<string>size</string>
-			<string>{612, 792}</string>
+			<string>{611.99998474121094, 792}</string>
 		</array>
 		<key>NSPrintReverseOrientation</key>
 		<array>
@@ -667,7 +731,7 @@ Sequence &lt;Values&gt;}</string>
 			</dict>
 		</array>
 		<key>Frame</key>
-		<string>{{-1581, 257}, {710, 872}}</string>
+		<string>{{363, 6}, {710, 872}}</string>
 		<key>ListView</key>
 		<true/>
 		<key>OutlineWidth</key>

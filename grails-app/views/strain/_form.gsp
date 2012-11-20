@@ -1,4 +1,4 @@
-<%@ page import="edu.uoregon.stockdb.Strain" %>
+<%@ page import="edu.uoregon.stockdb.Stock; edu.uoregon.stockdb.Strain" %>
 
 
 
@@ -47,6 +47,6 @@
 		<g:message code="strain.stockLocations.label" default="Stock Locations" />
 		
 	</label>
-	<g:select name="stockLocations" from="${edu.uoregon.stockdb.StockLocation.list()}" multiple="multiple" optionKey="id" size="5" value="${strainInstance?.stockLocations*.id}" class="many-to-many"/>
+	<g:select name="stockLocations" from="${Stock.list()}" multiple="multiple" optionKey="id" size="5" value="${strainInstance?.stockLocations*.id}" class="many-to-many"/>
 </div>
 

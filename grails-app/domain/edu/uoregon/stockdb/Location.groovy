@@ -1,6 +1,6 @@
 package edu.uoregon.stockdb
 
-class Strain {
+class Location {
 
     static constraints = {
     }
@@ -9,16 +9,5 @@ class Strain {
             stocks: Stock
     ]
 
-
-    Origin origin
-    String sequence
-
-    // JSON
-    String values
-
-
     String name
-    Genus genus
-    Phylum phylum
-
 }

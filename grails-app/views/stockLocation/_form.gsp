@@ -1,4 +1,4 @@
-<%@ page import="edu.uoregon.stockdb.StockLocation" %>
+<%@ page import="edu.uoregon.stockdb.Stock" %>
 
 
 

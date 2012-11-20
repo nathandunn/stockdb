@@ -12,15 +12,15 @@ class StockLocationController {
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        [stockLocationInstanceList: StockLocation.list(params), stockLocationInstanceTotal: StockLocation.count()]
+        [stockLocationInstanceList: Stock.list(params), stockLocationInstanceTotal: Stock.count()]
     }
 
     def create() {
-        [stockLocationInstance: new StockLocation(params)]
+        [stockLocationInstance: new Stock(params)]
     }
 
     def save() {
-        def stockLocationInstance = new StockLocation(params)
+        def stockLocationInstance = new Stock(params)
         if (!stockLocationInstance.save(flush: true)) {
             render(view: "create", model: [stockLocationInstance: stockLocationInstance])
             return
@@ -53,7 +53,7 @@ class StockLocationController {
     }
 
     def update(Long id, Long version) {
-        def stockLocationInstance = StockLocation.get(id)
+        def stockLocationInstance = Stock.get(id)
         if (!stockLocationInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'stockLocation.label', default: 'StockLocation'), id])
             redirect(action: "list")

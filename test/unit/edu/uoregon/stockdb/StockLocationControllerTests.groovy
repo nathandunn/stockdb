@@ -57,7 +57,7 @@ class StockLocationControllerTests {
         assert response.redirectedUrl == '/stockLocation/list'
 
         populateValidParams(params)
-        def stockLocation = new StockLocation(params)
+        def stockLocation = new Stock(params)
 
         assert stockLocation.save() != null
 
@@ -75,7 +75,7 @@ class StockLocationControllerTests {
         assert response.redirectedUrl == '/stockLocation/list'
 
         populateValidParams(params)
-        def stockLocation = new StockLocation(params)
+        def stockLocation = new Stock(params)
 
         assert stockLocation.save() != null
 
@@ -95,7 +95,7 @@ class StockLocationControllerTests {
         response.reset()
 
         populateValidParams(params)
-        def stockLocation = new StockLocation(params)
+        def stockLocation = new Stock(params)
 
         assert stockLocation.save() != null
 
@@ -142,13 +142,13 @@ class StockLocationControllerTests {
         def stockLocation = new StockLocation(params)
 
         assert stockLocation.save() != null
-        assert StockLocation.count() == 1
+        assert Stock.count() == 1
 
         params.id = stockLocation.id
 
         controller.delete()
 
-        assert StockLocation.count() == 0
+        assert Stock.count() == 0
         assert StockLocation.get(stockLocation.id) == null
         assert response.redirectedUrl == '/stockLocation/list'
     }
