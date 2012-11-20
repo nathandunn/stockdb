@@ -30,8 +30,8 @@ class StubData {
             Genus pseudomonas = new Genus([name: "Pseudomonas", phylum: fusobacteria]).save()
             Genus shewanella = new Genus([name: "Shewanella", phylum: fusobacteria]).save()
 
-            Origin unknownOrigin = Origin.findByName("unknown") ?: new Origin([name: "unknown",genus: plesiomans,phylum: proteobacteria]).save(failOnError: true)
-            Origin zebrafishWtOrigin = Origin.findByName("Larval Zebrafish (WT) Intestine") ?: new Origin([name: "Larval Zebrafish (WT) Intestine",genus: plesiomans,phylum: proteobacteria]).save()
+            HostOrigin unknownOrigin = HostOrigin.findByName("unknown") ?: new HostOrigin([name: "unknown",genus: plesiomans,phylum: proteobacteria]).save(failOnError: true)
+            HostOrigin zebrafishWtOrigin = HostOrigin.findByName("Larval Zebrafish (WT) Intestine") ?: new HostOrigin([name: "Larval Zebrafish (WT) Intestine",genus: plesiomans,phylum: proteobacteria]).save()
 
             Strain s1 = new Strain([name: "ZWU0023",
                     genus: Genus.findByName("Plesiomonas")

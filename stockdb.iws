@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b98be98c-c145-4e38-8612-a7a905fbb9e8" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/grails-app/controllers/edu/uoregon/stockdb/OriginController.groovy" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/HostFacility.groovy" afterPath="$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/HostFacility.groovy" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/Stock.groovy" afterPath="$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/Stock.groovy" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/Strain.groovy" afterPath="$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/Strain.groovy" />
@@ -82,19 +83,19 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="StubData.groovy" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="StubData.groovy" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/groovy/edu/uoregon/stockdb/StubData.groovy">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="30" column="90" selection-start="1536" selection-end="1536" vertical-scroll-proportion="0.0">
+                <state line="32" column="82" selection-start="1621" selection-end="1621" vertical-scroll-proportion="0.5230126">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Strain.groovy" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="Strain.groovy" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/Strain.groovy">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="32" column="0" selection-start="442" selection-end="442" vertical-scroll-proportion="0.7239819">
+                <state line="33" column="10" selection-start="453" selection-end="453" vertical-scroll-proportion="-11.0">
                   <folding />
                 </state>
               </provider>
@@ -119,10 +120,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="HostFacility.groovy" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="HostFacility.groovy" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/HostFacility.groovy">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="4" column="25" selection-start="76" selection-end="76" vertical-scroll-proportion="0.09049774">
+                <state line="4" column="25" selection-start="76" selection-end="76" vertical-scroll-proportion="0.08759124">
                   <folding />
                 </state>
               </provider>
@@ -187,11 +188,11 @@
         <option value="$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/GeneralLocation.groovy" />
         <option value="$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/Location.groovy" />
         <option value="$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/Origin.groovy" />
-        <option value="$PROJECT_DIR$/src/groovy/edu/uoregon/stockdb/StubData.groovy" />
         <option value="$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/HostOrigin.groovy" />
         <option value="$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/Stock.groovy" />
         <option value="$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/Strain.groovy" />
         <option value="$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/HostFacility.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/edu/uoregon/stockdb/StubData.groovy" />
       </list>
     </option>
   </component>
@@ -506,7 +507,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1436" height="878" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -517,7 +518,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Grails View" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3294964" sideWeight="0.67107004" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Grails View" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294964" sideWeight="0.67107004" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -638,13 +639,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/groovy/edu/uoregon/stockdb/StubData.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="90" selection-start="1536" selection-end="1536" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/HostOrigin.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="14" selection-start="358" selection-end="358" vertical-scroll-proportion="-6.3333335">
@@ -665,9 +659,9 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/Strain.groovy">
+    <entry file="file://$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/HostFacility.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="24" selection-start="188" selection-end="188" vertical-scroll-proportion="-3.3333333">
+        <state line="4" column="25" selection-start="76" selection-end="76" vertical-scroll-proportion="0.08759124">
           <folding />
         </state>
       </provider>
@@ -675,14 +669,21 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/HostFacility.groovy">
+    <entry file="file://$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/Strain.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="25" selection-start="76" selection-end="76" vertical-scroll-proportion="0.09049774">
+        <state line="33" column="10" selection-start="453" selection-end="453" vertical-scroll-proportion="-11.0">
           <folding />
         </state>
       </provider>
       <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/edu/uoregon/stockdb/StubData.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="82" selection-start="1621" selection-end="1621" vertical-scroll-proportion="0.5230126">
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>
