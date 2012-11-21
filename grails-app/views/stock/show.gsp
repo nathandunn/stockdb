@@ -27,7 +27,7 @@
 				<li class="fieldcontain">
 					<span id="location-label" class="property-label"><g:message code="stock.location.label" default="Location" /></span>
 					
-						<span class="property-value" aria-labelledby="location-label"><g:link controller="location" action="show" id="${stockInstance?.location?.id}">${stockInstance?.location?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="location-label"><g:link controller="location" action="show" id="${stockInstance?.location?.id}">${stockInstance?.location?.name}</g:link></span>
 					
 				</li>
 				</g:if>
@@ -36,7 +36,7 @@
 				<li class="fieldcontain">
 					<span id="strain-label" class="property-label"><g:message code="stock.strain.label" default="Strain" /></span>
 					
-						<span class="property-value" aria-labelledby="strain-label"><g:link controller="strain" action="show" id="${stockInstance?.strain?.id}">${stockInstance?.strain?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="strain-label"><g:link controller="strain" action="show" id="${stockInstance?.strain?.id}">${stockInstance?.strain?.name}</g:link></span>
 					
 				</li>
 				</g:if>

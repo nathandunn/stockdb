@@ -3,8 +3,11 @@ package edu.uoregon.stockdb
 class Strain {
 
     static constraints = {
-        sequence nullable: true
+        sequence nullable: true, url: true
         values nullable: true
+        formAlias nullable: true
+        isolatedBy nullable: true
+        isolatedWhen nullable: true
     }
 
     static hasMany = [

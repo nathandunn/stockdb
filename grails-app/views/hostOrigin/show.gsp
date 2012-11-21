@@ -54,45 +54,46 @@
 				<li class="fieldcontain">
 					<span id="hostFacility-label" class="property-label"><g:message code="hostOrigin.hostFacility.label" default="Host Facility" /></span>
 					
-						<span class="property-value" aria-labelledby="hostFacility-label"><g:link controller="hostFacility" action="show" id="${hostOriginInstance?.hostFacility?.id}">${hostOriginInstance?.hostFacility?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="hostFacility-label"><g:link controller="hostFacility" action="show" id="${hostOriginInstance?.hostFacility?.id}">${hostOriginInstance?.hostFacility?.id}</g:link></span>
 					
 				</li>
 				</g:if>
-			
+
+                <g:if test="${hostOriginInstance?.name}">
+                    <li class="fieldcontain">
+                        <span id="name-label" class="property-label"><g:message code="hostOrigin.name.label" default="Name" /></span>
+
+                        <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${hostOriginInstance}" field="name"/></span>
+
+                    </li>
+                </g:if>
+
 				<g:if test="${hostOriginInstance?.genus}">
 				<li class="fieldcontain">
 					<span id="genus-label" class="property-label"><g:message code="hostOrigin.genus.label" default="Genus" /></span>
 					
-						<span class="property-value" aria-labelledby="genus-label"><g:link controller="genus" action="show" id="${hostOriginInstance?.genus?.id}">${hostOriginInstance?.genus?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="genus-label"><g:link controller="genus" action="show" id="${hostOriginInstance?.genus?.id}">${hostOriginInstance?.genus?.name}</g:link></span>
 					
 				</li>
 				</g:if>
-			
-				<g:if test="${hostOriginInstance?.name}">
-				<li class="fieldcontain">
-					<span id="name-label" class="property-label"><g:message code="hostOrigin.name.label" default="Name" /></span>
-					
-						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${hostOriginInstance}" field="name"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${hostOriginInstance?.phenotypes}">
+
+                <g:if test="${hostOriginInstance?.phylum}">
+                    <li class="fieldcontain">
+                        <span id="phylum-label" class="property-label"><g:message code="hostOrigin.phylum.label" default="Phylum" /></span>
+
+                        <span class="property-value" aria-labelledby="phylum-label"><g:link controller="phylum" action="show" id="${hostOriginInstance?.phylum?.id}">${hostOriginInstance?.phylum?.name}</g:link></span>
+
+                    </li>
+                </g:if>
+
+
+                <g:if test="${hostOriginInstance?.phenotypes}">
 				<li class="fieldcontain">
 					<span id="phenotypes-label" class="property-label"><g:message code="hostOrigin.phenotypes.label" default="Phenotypes" /></span>
 					
 						<g:each in="${hostOriginInstance.phenotypes}" var="p">
-						<span class="property-value" aria-labelledby="phenotypes-label"><g:link controller="phenotype" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="phenotypes-label"><g:link controller="phenotype" action="show" id="${p.id}">${p?.id}</g:link></span>
 						</g:each>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${hostOriginInstance?.phylum}">
-				<li class="fieldcontain">
-					<span id="phylum-label" class="property-label"><g:message code="hostOrigin.phylum.label" default="Phylum" /></span>
-					
-						<span class="property-value" aria-labelledby="phylum-label"><g:link controller="phylum" action="show" id="${hostOriginInstance?.phylum?.id}">${hostOriginInstance?.phylum?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>
@@ -102,7 +103,7 @@
 					<span id="strains-label" class="property-label"><g:message code="hostOrigin.strains.label" default="Strains" /></span>
 					
 						<g:each in="${hostOriginInstance.strains}" var="s">
-						<span class="property-value" aria-labelledby="strains-label"><g:link controller="strain" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="strains-label"><g:link controller="strain" action="show" id="${s.id}">${s?.id}</g:link></span>
 						</g:each>
 					
 				</li>

@@ -36,9 +36,13 @@
 				<g:each in="${stockInstanceList}" status="i" var="stockInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${stockInstance.id}">${fieldValue(bean: stockInstance, field: "location")}</g:link></td>
+						<td><g:link action="show" id="${stockInstance.id}">${stockInstance?.location?.name}</g:link></td>
 					
-						<td>${fieldValue(bean: stockInstance, field: "strain")}</td>
+						<td>
+                            <g:link action="show" id="${stockInstance?.strain?.id}">
+                                ${stockInstance?.strain?.name}
+                            </g:link>
+						</td>
 					
 						<td>${fieldValue(bean: stockInstance, field: "value")}</td>
 					
