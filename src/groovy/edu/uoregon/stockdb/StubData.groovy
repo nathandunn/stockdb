@@ -1,6 +1,7 @@
 package edu.uoregon.stockdb
 
 import au.com.bytecode.opencsv.CSVReader
+import org.apache.log4j.Logger
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,13 +12,30 @@ import au.com.bytecode.opencsv.CSVReader
  */
 class StubData {
 
-    static stubData() {
+    private static final log = Logger.getLogger(this)
 
-        if(Strain.count>0) return
+    def stubData() {
+
+        File f2 = new File(".")
+        log.error "current file location: " +f2.absolutePath
 
 
-        File file = new File("doc/database1.csv")
-        if (!file.exists()) {
+        if (Strain.count > 0) return
+
+
+
+        // stub crap for demo, not for use with a real database
+
+        def servletContext = org.codehaus.groovy.grails.web.context.ServletContextHolder.servletContext
+        def file = servletContext.getResourceAsStream("/WEB-INF/database1.csv")
+//        def file = servletContext.getResourceAsStream("database1.csv")
+//        if ((new File("web-app")).exists()) {
+//            file = new File("web-app/WEB-INF/database1.csv")
+//        }
+//        else {
+//            file = new File("./database1.csv")
+//        }
+        if (!file) {
             throw new RuntimeException("File does not exist: " + file)
         }
 
@@ -27,7 +45,6 @@ class StubData {
 //            String phylum = tokens[3]
             Genus genus = tokens[1] ? Genus.findOrSaveByName(tokens[1]) : null
             Phylum phylum = tokens[3] ? Phylum.findOrSaveByName(tokens[3]) : null
-
 
 //            String hostFacility = tokens[8]
             HostFacility hostFacility = tokens[8] ? HostFacility.findOrSaveByName(tokens[8]) : null
@@ -49,7 +66,7 @@ class StubData {
 
                 // we only want to record these if a valid Strain
 
-                if(genus && phylum){
+                if (genus && phylum) {
                     genus.phylum = phylum
                     phylum.addToGenuses(genus)
                     strain.genus = genus
