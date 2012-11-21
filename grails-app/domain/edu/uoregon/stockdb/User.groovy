@@ -4,4 +4,6 @@ class User {
 
     static constraints = {
     }
+    String firstname
+    String lastname
 }

@@ -52,9 +52,9 @@
 			
 				<g:if test="${strainInstance?.formerCloneAlias}">
 				<li class="fieldcontain">
-					<span id="formAlias-label" class="property-label"><g:message code="strain.formAlias.label" default="Form Alias" /></span>
+					<span id="formerCloneAlias-label" class="property-label"><g:message code="strain.formerCloneAlias.label" default="Form Alias" /></span>
 					
-						<span class="property-value" aria-labelledby="formAlias-label"><g:fieldValue bean="${strainInstance}" field="formerCloneAlias"/></span>
+						<span class="property-value" aria-labelledby="formerCloneAlias-label"><g:fieldValue bean="${strainInstance}" field="formerCloneAlias"/></span>
 					
 				</li>
 				</g:if>

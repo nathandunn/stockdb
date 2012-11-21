@@ -2,12 +2,12 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'sequence', 'error')} ">
-    <label for="sequence">
-        <g:message code="strain.sequence.label" default="Sequence"/>
+<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'sequenceUrl', 'error')} ">
+    <label for="sequenceUrl">
+        <g:message code="strain.sequenceUrl.label" default="Sequence URL"/>
 
     </label>
-    <g:textField name="sequence" value="${strainInstance?.sequence}"/>
+    <g:textField name="sequenceUrl" value="${strainInstance?.sequenceUrl}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'values', 'error')} ">
@@ -18,12 +18,12 @@
     <g:textField name="values" value="${strainInstance?.values}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'formAlias', 'error')} ">
-    <label for="formAlias">
-        <g:message code="strain.formAlias.label" default="Form Alias"/>
+<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'formerCloneAlias', 'error')} ">
+    <label for="formerCloneAlias">
+        <g:message code="strain.formerCloneAlias.label" default="Form Alias"/>
 
     </label>
-    <g:textField name="formAlias" value="${strainInstance?.formAlias}"/>
+    <g:textField name="formerCloneAlias" value="${strainInstance?.formerCloneAlias}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'genus', 'error')} required">

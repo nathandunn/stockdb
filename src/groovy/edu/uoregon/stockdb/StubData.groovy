@@ -13,6 +13,9 @@ class StubData {
 
     static stubData() {
 
+        if(Strain.count>0) return
+
+
         File file = new File("doc/database1.csv")
         if (!file.exists()) {
             throw new RuntimeException("File does not exist: " + file)

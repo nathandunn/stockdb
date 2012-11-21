@@ -29,7 +29,7 @@
 					
 						%{--<g:sortableColumn property="values" title="${message(code: 'strain.values.label', default: 'Values')}" />--}%
 					
-						%{--<g:sortableColumn property="formAlias" title="${message(code: 'strain.formAlias.label', default: 'Form Alias')}" />--}%
+						%{--<g:sortableColumn property="formerCloneAlias" title="${message(code: 'strain.formerCloneAlias.label', default: 'Form Alias')}" />--}%
 					
 						<th><g:message code="strain.genus.label" default="Genus" /></th>
 					
@@ -48,7 +48,7 @@
 					
 						%{--<td>${fieldValue(bean: strainInstance, field: "values")}</td>--}%
 					
-						%{--<td>${fieldValue(bean: strainInstance, field: "formAlias")}</td>--}%
+						%{--<td>${fieldValue(bean: strainInstance, field: "formerCloneAlias")}</td>--}%
 					
 						<td>
                             <g:link action="show" id="${strainInstance?.genus?.id}">
