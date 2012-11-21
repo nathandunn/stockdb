@@ -60,7 +60,9 @@ grails.exceptionresolver.params.exclude = ['password']
 grails.hibernate.cache.queries = false
 
 grails.gorm.failOnError=true
-
+grails.gorm.default.constraints = {
+    '*'(nullable: true)
+}
 environments {
     development {
         grails.logging.jul.usebridge = true

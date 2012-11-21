@@ -32,11 +32,11 @@
                     </li>
                 </g:if>
 
-				<g:if test="${strainInstance?.sequence}">
+				<g:if test="${strainInstance?.sequenceUrl}">
 				<li class="fieldcontain">
 					<span id="sequence-label" class="property-label"><g:message code="strain.sequence.label" default="Sequence" /></span>
 					
-						<span class="property-value" aria-labelledby="sequence-label"><g:fieldValue bean="${strainInstance}" field="sequence"/></span>
+						<span class="property-value" aria-labelledby="sequence-label"><g:fieldValue bean="${strainInstance}" field="sequenceUrl"/></span>
 					
 				</li>
 				</g:if>
@@ -50,11 +50,11 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${strainInstance?.formAlias}">
+				<g:if test="${strainInstance?.formerCloneAlias}">
 				<li class="fieldcontain">
 					<span id="formAlias-label" class="property-label"><g:message code="strain.formAlias.label" default="Form Alias" /></span>
 					
-						<span class="property-value" aria-labelledby="formAlias-label"><g:fieldValue bean="${strainInstance}" field="formAlias"/></span>
+						<span class="property-value" aria-labelledby="formAlias-label"><g:fieldValue bean="${strainInstance}" field="formerCloneAlias"/></span>
 					
 				</li>
 				</g:if>

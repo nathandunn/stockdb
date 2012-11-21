@@ -28,7 +28,7 @@
         <thead>
         <tr>
 
-            <g:sortableColumn property="values" title="${message(code: 'hostOrigin.values.label', default: 'Values')}"/>
+            <g:sortableColumn property="id" title="${message(code: 'hostOrigin.values.label', default: 'ID')}"/>
 
             <g:sortableColumn property="age" title="${message(code: 'hostOrigin.age.label', default: 'Age')}"/>
 
@@ -36,10 +36,6 @@
                               title="${message(code: 'hostOrigin.partOfFish.label', default: 'Part Of Fish')}"/>
 
             <th><g:message code="hostOrigin.hostFacility.label" default="Host Facility"/></th>
-
-            %{--<th><g:message code="hostOrigin.genus.label" default="Genus"/></th>--}%
-            <g:sortableColumn property="genus"
-                              title="${message(code: 'hostOrigin.partOfFish.label', default: 'Genus')}"/>
 
             <g:sortableColumn property="name" title="${message(code: 'hostOrigin.name.label', default: 'Name')}"/>
 
@@ -50,21 +46,19 @@
             <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
                 <td><g:link action="show"
-                            id="${hostOriginInstance.id}">${fieldValue(bean: hostOriginInstance, field: "values")}</g:link></td>
+                            id="${hostOriginInstance.id}">${fieldValue(bean: hostOriginInstance, field: "id")}</g:link></td>
 
                 <td>${fieldValue(bean: hostOriginInstance, field: "age")}</td>
 
                 <td>${fieldValue(bean: hostOriginInstance, field: "partOfFish")}</td>
 
-                <td>${fieldValue(bean: hostOriginInstance, field: "hostFacility")}</td>
-
                 <td>
-                    <g:if test="${hostOriginInstance.genus}">
-                        <g:link action="show" id="${hostOriginInstance?.genus?.id}">
-                            ${hostOriginInstance?.genus?.name}
-                        </g:link>
-                    </g:if>
+                    %{--${fieldValue(bean: hostOriginInstance, field: "hostFacility")}--}%
+                    <g:link action="show" id="${hostOriginInstance.id}">
+                        ${hostOriginInstance.name}
+                    </g:link>
                 </td>
+
 
                 <td>
                     %{--${fieldValue(bean: hostOriginInstance, field: "name")}--}%

@@ -54,7 +54,7 @@
 				<li class="fieldcontain">
 					<span id="hostFacility-label" class="property-label"><g:message code="hostOrigin.hostFacility.label" default="Host Facility" /></span>
 					
-						<span class="property-value" aria-labelledby="hostFacility-label"><g:link controller="hostFacility" action="show" id="${hostOriginInstance?.hostFacility?.id}">${hostOriginInstance?.hostFacility?.id}</g:link></span>
+						<span class="property-value" aria-labelledby="hostFacility-label"><g:link controller="hostFacility" action="show" id="${hostOriginInstance?.hostFacility?.id}">${hostOriginInstance?.hostFacility?.name}</g:link></span>
 					
 				</li>
 				</g:if>
@@ -92,7 +92,7 @@
 					<span id="phenotypes-label" class="property-label"><g:message code="hostOrigin.phenotypes.label" default="Phenotypes" /></span>
 					
 						<g:each in="${hostOriginInstance.phenotypes}" var="p">
-						<span class="property-value" aria-labelledby="phenotypes-label"><g:link controller="phenotype" action="show" id="${p.id}">${p?.id}</g:link></span>
+						<span class="property-value" aria-labelledby="phenotypes-label"><g:link controller="phenotype" action="show" id="${p.id}">${p?.name}</g:link></span>
 						</g:each>
 					
 				</li>
@@ -103,7 +103,7 @@
 					<span id="strains-label" class="property-label"><g:message code="hostOrigin.strains.label" default="Strains" /></span>
 					
 						<g:each in="${hostOriginInstance.strains}" var="s">
-						<span class="property-value" aria-labelledby="strains-label"><g:link controller="strain" action="show" id="${s.id}">${s?.id}</g:link></span>
+						<span class="property-value" aria-labelledby="strains-label"><g:link controller="strain" action="show" id="${s.id}">${s?.name}</g:link></span>
 						</g:each>
 					
 				</li>

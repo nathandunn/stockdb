@@ -3,9 +3,9 @@ package edu.uoregon.stockdb
 class Strain {
 
     static constraints = {
-        sequence nullable: true, url: true
+        sequenceUrl nullable: true, url: true
         values nullable: true
-        formAlias nullable: true
+        formerCloneAlias nullable: true
         isolatedBy nullable: true
         isolatedWhen nullable: true
     }
@@ -21,18 +21,19 @@ class Strain {
     HostOrigin origin
 
 
-    String sequence
+    String sequenceUrl
 
     // JSON
     String values
 
 
     String name
-    String formAlias
+    String formerCloneAlias
 
 
     // properties
-    double motility
+    String motility
+    String notes
 
     Genus genus
     Phylum phylum

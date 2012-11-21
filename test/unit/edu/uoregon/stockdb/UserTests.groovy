@@ -11,7 +11,8 @@ import org.junit.*
 @TestFor(User)
 class UserTests {
 
-    void testSomething() {
-       fail "Implement me"
+    @Test
+    void databaseCsv() {
+        StubData.stubData()
     }
 }

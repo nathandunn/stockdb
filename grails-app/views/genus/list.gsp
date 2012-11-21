@@ -36,7 +36,12 @@
 					
 						<td><g:link action="show" id="${genusInstance.id}">${fieldValue(bean: genusInstance, field: "name")}</g:link></td>
 					
-						<td>${fieldValue(bean: genusInstance, field: "phylum")}</td>
+						<td>
+                            %{--${fieldValue(bean: genusInstance, field: "phylum")}--}%
+                            <g:link action="show" id="${genusInstance?.phylum?.id}">
+                                ${genusInstance?.phylum?.name}
+                            </g:link>
+                        </td>
 					
 					</tr>
 				</g:each>
