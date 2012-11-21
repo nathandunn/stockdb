@@ -31,7 +31,7 @@
 					
 				</li>
 				</g:if>
-			
+
 				<g:if test="${stockInstance?.strain}">
 				<li class="fieldcontain">
 					<span id="strain-label" class="property-label"><g:message code="stock.strain.label" default="Strain" /></span>
@@ -41,11 +41,11 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${stockInstance?.value}">
+				<g:if test="${stockInstance?.name}">
 				<li class="fieldcontain">
-					<span id="value-label" class="property-label"><g:message code="stock.value.label" default="Value" /></span>
+					<span id="value-label" class="property-label"><g:message code="stock.name.label" default="Name" /></span>
 					
-						<span class="property-value" aria-labelledby="value-label"><g:fieldValue bean="${stockInstance}" field="value"/></span>
+						<span class="property-value" aria-labelledby="value-label"><g:fieldValue bean="${stockInstance}" field="name"/></span>
 					
 				</li>
 				</g:if>

@@ -129,7 +129,7 @@
 					<span id="stocks-label" class="property-label"><g:message code="strain.stocks.label" default="Stocks" /></span>
 					
 						<g:each in="${strainInstance.stocks}" var="s">
-						<span class="property-value" aria-labelledby="stocks-label"><g:link controller="stock" action="show" id="${s.id}">${s?.location?.name}</g:link></span>
+						<span class="property-value" aria-labelledby="stocks-label"><g:link controller="stock" action="show" id="${s.id}">${s?.name}</g:link></span>
 						</g:each>
 					
 				</li>

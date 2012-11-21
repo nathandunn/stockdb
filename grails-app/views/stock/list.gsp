@@ -36,10 +36,10 @@
 				<g:each in="${stockInstanceList}" status="i" var="stockInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${stockInstance.id}">${stockInstance?.location?.name}</g:link></td>
+						<td><g:link action="show" id="${stockInstance.id}">${stockInstance?.name}</g:link></td>
 					
 						<td>
-                            <g:link action="show" id="${stockInstance?.strain?.id}">
+                            <g:link action="show" id="${stockInstance?.strain?.id}" controller="strain">
                                 ${stockInstance?.strain?.name}
                             </g:link>
 						</td>

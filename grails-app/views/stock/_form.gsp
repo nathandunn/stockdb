@@ -22,11 +22,11 @@
     />
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: stockInstance, field: 'value', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: stockInstance, field: 'name', 'error')} ">
 	<label for="value">
-		<g:message code="stock.value.label" default="Value" />
+		<g:message code="stock.name.label" default="Name" />
 		
 	</label>
-	<g:textField name="value" value="${stockInstance?.value}"/>
+	<g:textField name="name" value="${stockInstance?.name}"/>
 </div>
 
