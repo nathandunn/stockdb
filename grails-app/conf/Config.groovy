@@ -77,9 +77,19 @@ environments {
 log4j = {
     // Example of changing the log pattern for the default console appender:
     //
+    String logDirectory = "${System.getProperty('catalina.base') ?: '.'}/logs"
+
+//    appenders {
+//        console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
+//        rollingFile  name:'custom', file:'stockdb.log', maxFileSize:2048
+//    }
+
     appenders {
-        console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-        rollingFile  name:'custom', file:'stockdb.log', maxFileSize:2048
+        console name: "stdout", layout: pattern(conversionPattern: "%d{yyyy-MMM-dd HH:mm:ss,SSS} [%t] %c %x%n %-5p %m%n")
+        rollingFile  name:'custom', file:"${logDirectory}/stockdb.log", maxFileSize:2048
+//        file name: "errors", file: "${logDirectory}/stockdb.log", layout: pattern(conversionPattern: "%d{yyyy-MMM-dd HH:mm:ss,SSS} [%t] %c %x%n %-5p %m%n")
+//        appender new org.apache.log4j.DailyRollingFileAppender(name:"roll", datePattern: "'.'yyyy-MM-dd", file:"pps-rolling.log", layout: pattern(conversionPattern: "%d{yyyy-MMM-dd HH:mm:ss,SSS} [%t] %c %x%n %-5p %m%n"))
+
     }
 
     error  'org.codehaus.groovy.grails.web.servlet',        // controllers
