@@ -54,6 +54,8 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="Stockdb-grailsPlugins" />
+    <orderEntry type="library" name="grails-2.1.0" level="application" />
+    <orderEntry type="library" name="grails-2.2.0" level="application" />
   </component>
 </module>
 
