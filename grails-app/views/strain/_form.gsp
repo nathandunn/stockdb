@@ -1,4 +1,4 @@
-<%@ page import="edu.uoregon.stockdb.Strain" %>
+<%@ page import="edu.uoregon.stockdb.Researcher; edu.uoregon.stockdb.Strain" %>
 
 
 
@@ -41,7 +41,7 @@
         <g:message code="strain.isolatedBy.label" default="Isolated By"/>
         <span class="required-indicator">*</span>
     </label>
-    <g:select id="isolatedBy" name="isolatedBy.id" from="${edu.uoregon.stockdb.User.list()}" optionKey="id" required=""
+    <g:select id="isolatedBy" name="isolatedBy.id" from="${Researcher.list()}" optionKey="id" required=""
               value="${strainInstance?.isolatedBy?.id}" class="many-to-one"/>
 </div>
 

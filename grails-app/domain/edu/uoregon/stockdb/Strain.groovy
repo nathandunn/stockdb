@@ -38,6 +38,6 @@ class Strain {
     Genus genus
     Phylum phylum
 
-    User isolatedBy
+    Researcher isolatedBy
     Date isolatedWhen
 }

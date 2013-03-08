@@ -1,6 +1,6 @@
 package edu.uoregon.stockdb
 
-class User {
+class Researcher {
 
     static constraints = {
     }

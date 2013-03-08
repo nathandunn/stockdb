@@ -6,7 +6,7 @@ import org.junit.*
 import grails.test.mixin.*
 
 @TestFor(UserController)
-@Mock(User)
+@Mock(Researcher)
 class UserControllerTests {
 
     def populateValidParams(params) {
@@ -47,7 +47,7 @@ class UserControllerTests {
 
         assert response.redirectedUrl == '/user/show/1'
         assert controller.flash.message != null
-        assert User.count() == 1
+        assert Researcher.count() == 1
     }
 
     void testShow() {
@@ -57,7 +57,7 @@ class UserControllerTests {
         assert response.redirectedUrl == '/user/list'
 
         populateValidParams(params)
-        def user = new User(params)
+        def user = new Researcher(params)
 
         assert user.save() != null
 
@@ -75,7 +75,7 @@ class UserControllerTests {
         assert response.redirectedUrl == '/user/list'
 
         populateValidParams(params)
-        def user = new User(params)
+        def user = new Researcher(params)
 
         assert user.save() != null
 
@@ -95,7 +95,7 @@ class UserControllerTests {
         response.reset()
 
         populateValidParams(params)
-        def user = new User(params)
+        def user = new Researcher(params)
 
         assert user.save() != null
 
@@ -139,17 +139,17 @@ class UserControllerTests {
         response.reset()
 
         populateValidParams(params)
-        def user = new User(params)
+        def user = new Researcher(params)
 
         assert user.save() != null
-        assert User.count() == 1
+        assert Researcher.count() == 1
 
         params.id = user.id
 
         controller.delete()
 
-        assert User.count() == 0
-        assert User.get(user.id) == null
+        assert Researcher.count() == 0
+        assert Researcher.get(user.id) == null
         assert response.redirectedUrl == '/user/list'
     }
 }

@@ -12,15 +12,15 @@ class UserController {
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        [userInstanceList: User.list(params), userInstanceTotal: User.count()]
+        [userInstanceList: Researcher.list(params), userInstanceTotal: Researcher.count()]
     }
 
     def create() {
-        [userInstance: new User(params)]
+        [userInstance: new Researcher(params)]
     }
 
     def save() {
-        def userInstance = new User(params)
+        def userInstance = new Researcher(params)
         if (!userInstance.save(flush: true)) {
             render(view: "create", model: [userInstance: userInstance])
             return
@@ -31,7 +31,7 @@ class UserController {
     }
 
     def show(Long id) {
-        def userInstance = User.get(id)
+        def userInstance = Researcher.get(id)
         if (!userInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), id])
             redirect(action: "list")
@@ -42,7 +42,7 @@ class UserController {
     }
 
     def edit(Long id) {
-        def userInstance = User.get(id)
+        def userInstance = Researcher.get(id)
         if (!userInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), id])
             redirect(action: "list")
@@ -53,7 +53,7 @@ class UserController {
     }
 
     def update(Long id, Long version) {
-        def userInstance = User.get(id)
+        def userInstance = Researcher.get(id)
         if (!userInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), id])
             redirect(action: "list")
@@ -82,7 +82,7 @@ class UserController {
     }
 
     def delete(Long id) {
-        def userInstance = User.get(id)
+        def userInstance = Researcher.get(id)
         if (!userInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), id])
             redirect(action: "list")
