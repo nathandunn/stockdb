@@ -16,12 +16,7 @@ class StubData {
 
     def stubData() {
 
-        File f2 = new File(".")
-        log.error "current file location: " +f2.absolutePath
-
-
         if (Strain.count > 0) return
-
 
 
         // stub crap for demo, not for use with a real database

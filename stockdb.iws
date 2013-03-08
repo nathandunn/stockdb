@@ -2,22 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b98be98c-c145-4e38-8612-a7a905fbb9e8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/conf/BuildConfig.groovy" afterPath="$PROJECT_DIR$/grails-app/conf/BuildConfig.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/conf/DataSource.groovy" afterPath="$PROJECT_DIR$/grails-app/conf/DataSource.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Stockdb-grailsPlugins.iml" afterPath="$PROJECT_DIR$/Stockdb-grailsPlugins.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Stockdb.iml" afterPath="$PROJECT_DIR$/Stockdb.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/Strain.groovy" afterPath="$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/Strain.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/controllers/edu/uoregon/stockdb/UserController.groovy" afterPath="$PROJECT_DIR$/grails-app/controllers/edu/uoregon/stockdb/UserController.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/unit/edu/uoregon/stockdb/UserControllerTests.groovy" afterPath="$PROJECT_DIR$/test/unit/edu/uoregon/stockdb/UserControllerTests.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/unit/edu/uoregon/stockdb/UserTests.groovy" afterPath="$PROJECT_DIR$/test/unit/edu/uoregon/stockdb/UserTests.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/strain/_form.gsp" afterPath="$PROJECT_DIR$/grails-app/views/strain/_form.gsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/user/_form.gsp" afterPath="$PROJECT_DIR$/grails-app/views/user/_form.gsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/user/create.gsp" afterPath="$PROJECT_DIR$/grails-app/views/user/create.gsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/user/edit.gsp" afterPath="$PROJECT_DIR$/grails-app/views/user/edit.gsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/user/list.gsp" afterPath="$PROJECT_DIR$/grails-app/views/user/list.gsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/user/show.gsp" afterPath="$PROJECT_DIR$/grails-app/views/user/show.gsp" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/grails-app/views/user/list.gsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/grails-app/views/user/create.gsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/grails-app/controllers/edu/uoregon/stockdb/UserController.groovy" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/grails-app/views/user/_form.gsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/grails-app/views/user/edit.gsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/grails-app/views/user/show.gsp" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/groovy/edu/uoregon/stockdb/StubData.groovy" afterPath="$PROJECT_DIR$/src/groovy/edu/uoregon/stockdb/StubData.groovy" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stockdb.iws" afterPath="$PROJECT_DIR$/stockdb.iws" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/User.groovy" afterPath="$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/Researcher.groovy" />
     </list>
     <ignored path="stockdb.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -118,10 +110,10 @@
     <splitter split-orientation="horizontal" split-proportion="0.51496476">
       <split-first>
         <leaf>
-          <file leaf-file-name="StubData.groovy" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="StubData.groovy" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/groovy/edu/uoregon/stockdb/StubData.groovy">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="53" column="43" selection-start="1796" selection-end="1796" vertical-scroll-proportion="0.0">
+                <state line="27" column="50" selection-start="815" selection-end="815" vertical-scroll-proportion="0.3537736">
                   <folding />
                 </state>
               </provider>
@@ -163,10 +155,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="show.gsp" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="show.gsp" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/grails-app/views/strain/show.gsp">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="79" column="22" selection-start="3613" selection-end="3613" vertical-scroll-proportion="0.33546326">
+                <state line="73" column="0" selection-start="3341" selection-end="3341" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -203,15 +195,6 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="_form.gsp" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/grails-app/views/hostOrigin/_form.gsp">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="68" column="67" selection-start="2818" selection-end="2818" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="create.gsp" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/grails-app/views/hostFacility/create.gsp">
               <provider selected="true" editor-type-id="text-editor">
@@ -225,15 +208,6 @@
             <entry file="file://$PROJECT_DIR$/grails-app/views/hostOrigin/list.gsp">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="51" column="28" selection-start="2234" selection-end="2234" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="_form.gsp" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/grails-app/views/user/_form.gsp">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="12" column="67" selection-start="390" selection-end="390" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -259,13 +233,22 @@
           </file>
           <file leaf-file-name="Researcher.groovy" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/Researcher.groovy">
+              <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
+                <state />
+              </provider>
               <provider selected="true" editor-type-id="text-editor">
-                <state line="2" column="6" selection-start="35" selection-end="35" vertical-scroll-proportion="0.047169812">
+                <state line="3" column="0" selection-start="48" selection-end="48" vertical-scroll-proportion="0.11627907">
                   <folding />
                 </state>
               </provider>
-              <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
-                <state />
+            </entry>
+          </file>
+          <file leaf-file-name="BootStrap.groovy" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/grails-app/conf/BootStrap.groovy">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="6" column="26" selection-start="118" selection-end="118" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
               </provider>
             </entry>
           </file>
@@ -319,11 +302,11 @@
         <option value="$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/User.groovy" />
         <option value="$PROJECT_DIR$/grails-app/conf/BootStrap.groovy" />
         <option value="$PROJECT_DIR$/grails-app/conf/Config.groovy" />
-        <option value="$PROJECT_DIR$/src/groovy/edu/uoregon/stockdb/StubData.groovy" />
         <option value="$PROJECT_DIR$/grails-app/views/index.gsp" />
         <option value="$PROJECT_DIR$/grails-app/conf/DataSource.groovy" />
         <option value="$PROJECT_DIR$/grails-app/conf/BuildConfig.groovy" />
         <option value="$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/Researcher.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/edu/uoregon/stockdb/StubData.groovy" />
       </list>
     </option>
   </component>
@@ -364,15 +347,15 @@
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
+    <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="MemberChooser.showClasses" value="true" />
     <property name="FullScreen" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="dynamic.classpath" value="false" />
+    <property name="GoToClass.includeJavaFiles" value="false" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -514,17 +497,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1436" height="878" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3276316" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Grails View" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17769784" sideWeight="0.6728232" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Grails View" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17769784" sideWeight="0.6723684" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -535,13 +519,12 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2110951" sideWeight="0.9954442" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32717678" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32717678" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32893" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -602,9 +585,51 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/grails-app/views/user/_form.gsp">
+    <entry file="file://$PROJECT_DIR$/grails-app/views/strain/list.gsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="67" selection-start="390" selection-end="390" vertical-scroll-proportion="0.0">
+        <state line="31" column="56" selection-start="1413" selection-end="1413" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/strain/show.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="73" column="0" selection-start="3341" selection-end="3341" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/edu/uoregon/stockdb/LocationController.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="8" selection-start="2009" selection-end="2009" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/location/show.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="0" selection-start="1489" selection-end="1489" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/stock/show.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="179" selection-start="1483" selection-end="1483" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/hostFacility/create.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="43" selection-start="1425" selection-end="1425" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/hostOrigin/list.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="28" selection-start="2234" selection-end="2234" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -612,6 +637,13 @@
     <entry file="file://$PROJECT_DIR$/grails-app/views/stock/_form.gsp">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="0" selection-start="502" selection-end="502" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/conf/Config.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="86" column="0" selection-start="3394" selection-end="3394" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -637,78 +669,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/groovy/edu/uoregon/stockdb/StubData.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="43" selection-start="1796" selection-end="1796" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.grails/2.1.1/projects/stockdb/plugins/csv-0.3.1/CsvGrailsPlugin.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="128" column="23" selection-start="5362" selection-end="5362" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/index.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="43" selection-start="2035" selection-end="2035" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/strain/_form.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="67" selection-start="685" selection-end="685" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/conf/DataSource.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="12" selection-start="1008" selection-end="1008" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/conf/BootStrap.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="162" selection-end="162" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/conf/BuildConfig.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="40" selection-start="1411" selection-end="1411" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/conf/Config.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="0" selection-start="3394" selection-end="3394" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/hostFacility/_form.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="11" selection-start="517" selection-end="517" vertical-scroll-proportion="0.0">
+        <state line="6" column="26" selection-start="118" selection-end="118" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/Researcher.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="6" selection-start="35" selection-end="35" vertical-scroll-proportion="0.047169812">
-          <folding />
-        </state>
-      </provider>
       <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/strain/show.gsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="22" selection-start="3613" selection-end="3613" vertical-scroll-proportion="0.33546326">
+        <state line="3" column="0" selection-start="48" selection-end="48" vertical-scroll-proportion="0.11627907">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/edu/uoregon/stockdb/StubData.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="50" selection-start="815" selection-end="815" vertical-scroll-proportion="0.3537736">
           <folding />
         </state>
       </provider>
