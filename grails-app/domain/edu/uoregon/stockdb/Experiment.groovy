@@ -6,8 +6,11 @@ class Experiment {
     }
 
     static hasMany = [
-            researchers:Researcher
-            ,strains:Strain
+            strains:Strain
             ,phenotypes:Phenotype
     ]
+
+    Researcher researcher
+    Date whenPerformed
+    String note
 }

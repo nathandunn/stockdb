@@ -1,11 +1,15 @@
 package edu.uoregon.stockdb
 
-class Genotype {
+/**
+ * Host Genotype
+ */
+class ZebrafishGenotype {
 
     static constraints = {
     }
 
     String name
+    String zfinId
 //    String note
 
 }

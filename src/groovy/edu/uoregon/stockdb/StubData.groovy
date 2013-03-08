@@ -44,7 +44,7 @@ class StubData {
 //            String hostFacility = tokens[8]
             HostFacility hostFacility = tokens[8] ? HostFacility.findOrSaveByName(tokens[8]) : null
 
-            HostOrigin hostOrigin = tokens[7] ? HostOrigin.findOrSaveByName(tokens[7]) : null
+            Origin hostOrigin = tokens[7] ? Origin.findOrSaveByName(tokens[7]) : null
 
             Location location = tokens[9] ? Location.findOrSaveByName(tokens[9]) : null
             Stock stock = tokens[2] ? Stock.findOrSaveByName(tokens[2]) : null

@@ -1,5 +1,5 @@
 
-<%@ page import="edu.uoregon.stockdb.HostOrigin" %>
+<%@ page import="edu.uoregon.stockdb.Origin" %>
 <!DOCTYPE html>
 <html>
 	<head>

@@ -1,4 +1,4 @@
-<%@ page import="edu.uoregon.stockdb.HostOrigin" %>
+<%@ page import="edu.uoregon.stockdb.MeasuredValue; edu.uoregon.stockdb.Origin" %>
 
 
 
@@ -59,7 +59,7 @@
         <g:message code="hostOrigin.phenotypes.label" default="Phenotypes"/>
 
     </label>
-    <g:select name="phenotypes" from="${edu.uoregon.stockdb.Phenotype.list()}" multiple="multiple" optionKey="id"
+    <g:select name="phenotypes" from="${MeasuredValue.list()}" multiple="multiple" optionKey="id"
               size="5" value="${hostOriginInstance?.phenotypes*.id}" class="many-to-many"
               optionValue="name"/>
 </div>

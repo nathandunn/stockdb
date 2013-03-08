@@ -1,10 +1,10 @@
 package edu.uoregon.stockdb
 
-class Phenotype {
+/**
+ * Not entirely important
+ */
+class Lab {
 
     static constraints = {
     }
-
-    String url
-    String name
 }

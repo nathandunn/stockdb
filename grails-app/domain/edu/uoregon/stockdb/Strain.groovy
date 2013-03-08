@@ -6,19 +6,20 @@ class Strain {
         sequenceUrl nullable: true, url: true
         values nullable: true
         formerCloneAlias nullable: true
-        isolatedBy nullable: true
-        isolatedWhen nullable: true
     }
 
     static hasMany = [
             stocks: Stock
+            ,experiments: Experiment
     ]
 
 
     // will be one or the other .. . .
     Strain parentStrain
     // more like a capture
-    HostOrigin origin
+    Origin origin
+
+    HostFacility hostFacility
 
 
     String sequenceUrl
@@ -38,8 +39,6 @@ class Strain {
     Genus genus
     Phylum phylum
 
-    Experiment isolation
-
-    Researcher isolatedBy
-    Date isolatedWhen
+//    Experiment isolation
+    Isolate isolate
 }

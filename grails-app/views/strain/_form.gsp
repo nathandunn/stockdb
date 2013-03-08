@@ -1,4 +1,4 @@
-<%@ page import="edu.uoregon.stockdb.Researcher; edu.uoregon.stockdb.Strain" %>
+<%@ page import="edu.uoregon.stockdb.Origin; edu.uoregon.stockdb.Researcher; edu.uoregon.stockdb.Strain" %>
 
 
 
@@ -74,7 +74,7 @@
         <g:message code="strain.origin.label" default="Origin"/>
         <span class="required-indicator">*</span>
     </label>
-    <g:select id="origin" name="origin.id" from="${edu.uoregon.stockdb.HostOrigin.list()}" optionKey="id" required=""
+    <g:select id="origin" name="origin.id" from="${Origin.list()}" optionKey="id" required=""
               value="${strainInstance?.origin?.id}" class="many-to-one"
               optionValue="name"/>
 </div>

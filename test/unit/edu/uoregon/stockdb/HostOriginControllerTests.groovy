@@ -6,7 +6,7 @@ import org.junit.*
 import grails.test.mixin.*
 
 @TestFor(HostOriginController)
-@Mock(HostOrigin)
+@Mock(Origin)
 class HostOriginControllerTests {
 
     def populateValidParams(params) {
@@ -47,7 +47,7 @@ class HostOriginControllerTests {
 
         assert response.redirectedUrl == '/hostOrigin/show/1'
         assert controller.flash.message != null
-        assert HostOrigin.count() == 1
+        assert Origin.count() == 1
     }
 
     void testShow() {
@@ -57,7 +57,7 @@ class HostOriginControllerTests {
         assert response.redirectedUrl == '/hostOrigin/list'
 
         populateValidParams(params)
-        def hostOrigin = new HostOrigin(params)
+        def hostOrigin = new Origin(params)
 
         assert hostOrigin.save() != null
 
@@ -75,7 +75,7 @@ class HostOriginControllerTests {
         assert response.redirectedUrl == '/hostOrigin/list'
 
         populateValidParams(params)
-        def hostOrigin = new HostOrigin(params)
+        def hostOrigin = new Origin(params)
 
         assert hostOrigin.save() != null
 
@@ -95,7 +95,7 @@ class HostOriginControllerTests {
         response.reset()
 
         populateValidParams(params)
-        def hostOrigin = new HostOrigin(params)
+        def hostOrigin = new Origin(params)
 
         assert hostOrigin.save() != null
 
@@ -139,17 +139,17 @@ class HostOriginControllerTests {
         response.reset()
 
         populateValidParams(params)
-        def hostOrigin = new HostOrigin(params)
+        def hostOrigin = new Origin(params)
 
         assert hostOrigin.save() != null
-        assert HostOrigin.count() == 1
+        assert Origin.count() == 1
 
         params.id = hostOrigin.id
 
         controller.delete()
 
-        assert HostOrigin.count() == 0
-        assert HostOrigin.get(hostOrigin.id) == null
+        assert Origin.count() == 0
+        assert Origin.get(hostOrigin.id) == null
         assert response.redirectedUrl == '/hostOrigin/list'
     }
 }
