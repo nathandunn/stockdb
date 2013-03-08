@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b98be98c-c145-4e38-8612-a7a905fbb9e8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/Researcher.groovy" afterPath="$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/Researcher.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/controllers/edu/uoregon/stockdb/StrainController.groovy" afterPath="$PROJECT_DIR$/grails-app/controllers/edu/uoregon/stockdb/StrainController.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/researcher/list.gsp" afterPath="$PROJECT_DIR$/grails-app/views/researcher/list.gsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/researcher/show.gsp" afterPath="$PROJECT_DIR$/grails-app/views/researcher/show.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Stockdb-grailsPlugins.iml" afterPath="$PROJECT_DIR$/Stockdb-grailsPlugins.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application.properties" afterPath="$PROJECT_DIR$/application.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stockdb.iws" afterPath="$PROJECT_DIR$/stockdb.iws" />
     </list>
     <ignored path="stockdb.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,11 +42,11 @@
     <file path="$PROJECT_DIR$/../sticklebackdb/web-app/WEB-INF/applicationContext.xml" changelist="b98be98c-c145-4e38-8612-a7a905fbb9e8" time="1357338592791" ignored="false" />
     <file path="$PROJECT_DIR$/../htseq-grails/application.properties" changelist="b98be98c-c145-4e38-8612-a7a905fbb9e8" time="1357338592791" ignored="false" />
     <file path="$PROJECT_DIR$/../htseq-grails/web-app/WEB-INF/applicationContext.xml" changelist="b98be98c-c145-4e38-8612-a7a905fbb9e8" time="1357338592791" ignored="false" />
-    <file path="$PROJECT_DIR$/web-app/WEB-INF/applicationContext.xml" changelist="b98be98c-c145-4e38-8612-a7a905fbb9e8" time="1362700836769" ignored="false" />
     <file path="$PROJECT_DIR$/../sticklebackdb/grails-app/conf/DataSource.groovy" changelist="b98be98c-c145-4e38-8612-a7a905fbb9e8" time="1362701441620" ignored="false" />
     <file path="$PROJECT_DIR$/../sticklebackdb/grails-app/conf/BuildConfig.groovy" changelist="b98be98c-c145-4e38-8612-a7a905fbb9e8" time="1362701658042" ignored="false" />
     <file path="/StrainController.groovy" changelist="b98be98c-c145-4e38-8612-a7a905fbb9e8" time="1362703690078" ignored="false" />
     <file path="/Researcher.groovy" changelist="b98be98c-c145-4e38-8612-a7a905fbb9e8" time="1362703240406" ignored="false" />
+    <file path="$PROJECT_DIR$/web-app/WEB-INF/applicationContext.xml" changelist="b98be98c-c145-4e38-8612-a7a905fbb9e8" time="1362764715004" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +119,7 @@
           <file leaf-file-name="StrainController.groovy" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/grails-app/controllers/edu/uoregon/stockdb/StrainController.groovy">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="30" column="53" selection-start="871" selection-end="871" vertical-scroll-proportion="0.7518797">
+                <state line="63" column="56" selection-start="1879" selection-end="1879" vertical-scroll-proportion="0.68456376">
                   <folding />
                 </state>
               </provider>
@@ -240,11 +239,8 @@
           </file>
           <file leaf-file-name="Researcher.groovy" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/Researcher.groovy">
-              <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
-                <state />
-              </provider>
               <provider selected="true" editor-type-id="text-editor">
-                <state line="10" column="16" selection-start="221" selection-end="221" vertical-scroll-proportion="-3.0">
+                <state line="10" column="16" selection-start="221" selection-end="221" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -252,11 +248,8 @@
           </file>
           <file leaf-file-name="Strain.groovy" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/Strain.groovy">
-              <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
-                <state />
-              </provider>
               <provider selected="true" editor-type-id="text-editor">
-                <state line="27" column="0" selection-start="490" selection-end="490" vertical-scroll-proportion="0.76623374">
+                <state line="25" column="0" selection-start="460" selection-end="460" vertical-scroll-proportion="0.49472296">
                   <folding />
                 </state>
               </provider>
@@ -332,8 +325,8 @@
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
-    <option name="width" value="1436" />
-    <option name="height" value="878" />
+    <option name="width" value="1947" />
+    <option name="height" value="1197" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -366,15 +359,15 @@
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="FullScreen" value="false" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/stockdb.ipr" />
     <property name="MemberChooser.showClasses" value="true" />
+    <property name="FullScreen" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="GoToClass.includeJavaFiles" value="false" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -515,19 +508,22 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1436" height="878" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="22" width="1947" height="1197" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32849604" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Grails View" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17769784" sideWeight="0.67150396" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Console" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22891566" sideWeight="0.99789584" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Grails View" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12993161" sideWeight="0.7710843" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -537,13 +533,11 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2110951" sideWeight="0.9954442" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32717678" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32849604" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -696,28 +690,28 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/Researcher.groovy">
-      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="16" selection-start="221" selection-end="221" vertical-scroll-proportion="-3.0">
+        <state line="10" column="16" selection-start="221" selection-end="221" vertical-scroll-proportion="0.0">
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/domain/edu/uoregon/stockdb/Strain.groovy">
-      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="490" selection-end="490" vertical-scroll-proportion="0.76623374">
+        <state line="25" column="0" selection-start="460" selection-end="460" vertical-scroll-proportion="0.49472296">
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/controllers/edu/uoregon/stockdb/StrainController.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="53" selection-start="871" selection-end="871" vertical-scroll-proportion="0.7518797">
+        <state line="63" column="56" selection-start="1879" selection-end="1879" vertical-scroll-proportion="0.68456376">
           <folding />
         </state>
       </provider>
