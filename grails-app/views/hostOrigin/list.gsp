@@ -56,7 +56,7 @@
 
                 <td>${fieldValue(bean: hostOriginInstance, field: "age")}</td>
 
-                <td>${fieldValue(bean: hostOriginInstance, field: "partOfFish")}</td>
+                <td>${fieldValue(bean: hostOriginInstance, field: "anatomy")}</td>
 
 
 

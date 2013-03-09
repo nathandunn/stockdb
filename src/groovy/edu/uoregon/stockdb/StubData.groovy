@@ -1,7 +1,6 @@
 package edu.uoregon.stockdb
 
 import au.com.bytecode.opencsv.CSVReader
-import groovy.transform.CompileStatic
 import org.apache.log4j.Logger
 
 /**
@@ -19,7 +18,6 @@ class StubData {
     def stubData() {
 
         if (Strain.count > 0) return
-
 
         // stub crap for demo, not for use with a real database
 
@@ -40,26 +38,58 @@ class StubData {
         CSVReader csvReader = file.toCsvReader(skipLines: 1, 'charset': 'UTF-8')
         csvReader.eachLine { tokens ->
 //            String phylum = tokens[3]
+            Strain strain = tokens[0] ? Strain.findOrSaveByName(tokens[0]) : null
             Genus genus = tokens[1] ? Genus.findOrSaveByName(tokens[1]) : null
+            Stock stock = tokens[2] ? Stock.findOrSaveByName(tokens[2]) : null
             Phylum phylum = tokens[3] ? Phylum.findOrSaveByName(tokens[3]) : null
+
+            // 4 ignore
+            // 5 ignore
+            // 6 ignore
+
+            String originString = tokens[7]
+            Origin origin
+            if (originString) {
+                String originSpecies = "Zebrafish" // for now
+                if (originString.indexOf(originSpecies) > 0) {
+                    String stage = originString.substring(0, originString?.indexOf(originSpecies))?.trim()
+                    Integer startParens = originString.indexOf("(")
+                    Integer endParens = originString.indexOf(")")
+                    if (startParens > 0 && endParens > 0) {
+//                        println "startParens ${startParens} endParens ${endParens}"
+                        String genotypeString = originString.substring(startParens + 1, endParens)
+                        String anatomy = originString.substring(endParens)
+
+                        ZebrafishGenotype zebrafishGenotype = ZebrafishGenotype.findOrSaveByName(genotypeString)
+                        origin = Origin.findOrSaveByGenotypeAndAnatomyAndStage(zebrafishGenotype, anatomy, stage)
+                    }
+                }
+            }
 
 //            String hostFacility = tokens[8]
             HostFacility hostFacility = tokens[8] ? HostFacility.findOrSaveByName(tokens[8]) : null
 
-            Origin hostOrigin = tokens[7] ? Origin.findOrSaveByName(tokens[7]) : null
 
             Location location = tokens[9] ? Location.findOrSaveByName(tokens[9]) : null
-            Stock stock = tokens[2] ? Stock.findOrSaveByName(tokens[2]) : null
 
-            Strain strain = tokens[0] ? Strain.findOrSaveByName(tokens[0]) : null
             if (strain) {
-                strain.genoUrl = tokens[11]?.startsWith("http") ? tokens[11] : null
+                Genome genome = new Genome()
+                genome.url = tokens[11]?.startsWith("http") ? tokens[11] : null
+                genome.save()
+
+                strain.genome = genome
+
+                Isolate isolate = new Isolate()
                 if (tokens[16]) {
-                    strain.isolatedWhen = Date.parse("d/M/yyyy", tokens[16])
+                    isolate.isolatedWhen = Date.parse("d/M/yyyy", tokens[16])
+                    isolate.save()
+//                    isolate.isolatedBy = Researcher // 17
+                    strain.isolate = isolate
                 }
-                strain.formerCloneAlias = tokens[17]
-                strain.motility = tokens[18]
-                strain.notes = tokens[23]
+
+                strain.formerCloneAlias = tokens[18]
+//                strain.motility = tokens[19] // will be a measured value
+                strain.notes = tokens[24]
 
                 // we only want to record these if a valid Strain
 
@@ -69,10 +99,10 @@ class StubData {
                     strain.genus = genus
                     strain.phylum = phylum
                 }
-                if (hostOrigin && hostFacility) {
-                    hostOrigin.hostFacility = hostFacility
-                    hostFacility.addToOrigins(hostOrigin)
-                    strain.origin = hostOrigin
+                if (origin && hostFacility) {
+                    origin.hostFacility = hostFacility
+                    hostFacility.addToOrigins(origin)
+                    strain.origin = origin
                 }
 
                 if (stock && location) {

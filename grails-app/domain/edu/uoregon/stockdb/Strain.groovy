@@ -3,7 +3,6 @@ package edu.uoregon.stockdb
 class Strain {
 
     static constraints = {
-        genoUrl nullable: true, url: true
         values nullable: true
         formerCloneAlias nullable: true
     }
@@ -25,11 +24,7 @@ class Strain {
     HostFacility hostFacility
     StrainGenotype strainGenotype
 
-
-    String genoUrl
-    Integer genomeSize
-    Integer genomeQuality
-    Integer genomeNote
+    Genome genome
 
     // JSON
     String values

@@ -9,7 +9,7 @@ class Origin {
     static constraints = {
         stage nullable: true
         days nullable: true
-        partOfFish nullable: true
+        anatomy nullable: true
         hostFacility nullable: true
     }
 
@@ -23,11 +23,10 @@ class Origin {
     HostFacility hostFacility
 
     ZebrafishGenotype genotype
-    String zfinGenotype
 
     String stage // stage . . . typically larval . . zfin correlate
     Long days //
-    String partOfFish  // zfin anatomy
+    String anatomy  // zfin anatomy
 
 //    String name
     String notes

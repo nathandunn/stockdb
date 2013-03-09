@@ -41,11 +41,11 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${hostOriginInstance?.partOfFish}">
+				<g:if test="${hostOriginInstance?.anatomy}">
 				<li class="fieldcontain">
 					<span id="partOfFish-label" class="property-label"><g:message code="hostOrigin.partOfFish.label" default="Part Of Fish" /></span>
 					
-						<span class="property-value" aria-labelledby="partOfFish-label"><g:fieldValue bean="${hostOriginInstance}" field="partOfFish"/></span>
+						<span class="property-value" aria-labelledby="partOfFish-label"><g:fieldValue bean="${hostOriginInstance}" field="anatomy"/></span>
 					
 				</li>
 				</g:if>
