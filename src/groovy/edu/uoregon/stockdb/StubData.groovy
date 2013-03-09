@@ -1,6 +1,7 @@
 package edu.uoregon.stockdb
 
 import au.com.bytecode.opencsv.CSVReader
+import groovy.transform.CompileStatic
 import org.apache.log4j.Logger
 
 /**
@@ -10,6 +11,7 @@ import org.apache.log4j.Logger
  * Time: 2:34 PM
  * To change this template use File | Settings | File Templates.
  */
+//@CompileStatic
 class StubData {
 
     private static final log = Logger.getLogger(this)
@@ -51,7 +53,7 @@ class StubData {
 
             Strain strain = tokens[0] ? Strain.findOrSaveByName(tokens[0]) : null
             if (strain) {
-                strain.sequenceUrl = tokens[11]?.startsWith("http") ? tokens[11] : null
+                strain.genoUrl = tokens[11]?.startsWith("http") ? tokens[11] : null
                 if (tokens[16]) {
                     strain.isolatedWhen = Date.parse("d/M/yyyy", tokens[16])
                 }

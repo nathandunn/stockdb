@@ -32,11 +32,11 @@
                     </li>
                 </g:if>
 
-				<g:if test="${strainInstance?.sequenceUrl}">
+				<g:if test="${strainInstance?.genoUrl}">
 				<li class="fieldcontain">
 					<span id="sequence-label" class="property-label"><g:message code="strain.sequence.label" default="Sequence" /></span>
 					
-						<span class="property-value" aria-labelledby="sequence-label"><g:fieldValue bean="${strainInstance}" field="sequenceUrl"/></span>
+						<span class="property-value" aria-labelledby="sequence-label"><g:fieldValue bean="${strainInstance}" field="genoUrl"/></span>
 					
 				</li>
 				</g:if>

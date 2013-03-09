@@ -10,6 +10,7 @@ class Experiment {
             ,phenotypes:Phenotype
     ]
 
+
     Researcher researcher
     Date whenPerformed
     String note

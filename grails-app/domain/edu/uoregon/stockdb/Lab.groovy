@@ -7,4 +7,8 @@ class Lab {
 
     static constraints = {
     }
+
+    static hasMany = [
+            researchers: Researcher
+    ]
 }

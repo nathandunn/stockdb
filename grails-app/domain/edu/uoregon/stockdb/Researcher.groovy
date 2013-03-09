@@ -10,4 +10,7 @@ class Researcher {
     String email
     String firstName
     String lastName
+
+    Lab lab
+
 }

@@ -44,7 +44,7 @@
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
                         <td><g:link action="show" id="${strainInstance.id}">${fieldValue(bean: strainInstance, field: "name")}</g:link></td>
-						<td><g:link action="show" id="${strainInstance.id}">${fieldValue(bean: strainInstance, field: "sequenceUrl")}</g:link></td>
+						<td><g:link action="show" id="${strainInstance.id}">${fieldValue(bean: strainInstance, field: "genoUrl")}</g:link></td>
 					
 						%{--<td>${fieldValue(bean: strainInstance, field: "values")}</td>--}%
 					

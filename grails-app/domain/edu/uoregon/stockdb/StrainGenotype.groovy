@@ -8,6 +8,10 @@ class StrainGenotype {
     static constraints = {
     }
 
+    static hasMany = [
+            strains: Strain
+    ]
+
     String name
 
     String note
