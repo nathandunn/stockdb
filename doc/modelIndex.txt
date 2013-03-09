@@ -1,0 +1,27 @@
+A - Strain Index
+B - Genus
+C - Stock  (composed of strain, location, and box #)
+    D - Phylum
+    E - ? <- Ignore for now
+    F - ? <- Ignore for now
+    G - ? <- Ignore for now
+    H - Origin: <stage> <species> (<genotype>) <host anatomy> notes 
+    I - Host Facility
+    J - Location <- This should be included in C (I think that's what you have indicated)
+    K - Isolate: <oxygen condition>; <temperature>; <media>; notes
+    L - Strain (RAST sequence URL) <- I think the best way to deal with the genomes is to have a genome group which is a attached to each strain that includes <RAST sequence URL> <Genome Size> <Genome Quality> <genome note> and <Experiment (which would include the researcher that assembled the genome) >. I guess this would be a property of strain anyway so this would be redundant?
+    M - Strain (genome Size)
+    N - Strain (genome quality)
+    O - Strain (genome note)
+    P - Strain (date created)
+    Q - Isolation (isolatedWhen)
+    R - Isolation (isolatedBy) or (Researcher)
+    S - Strain (formerCloneAlias) 
+    T - Strain (motility) <- Would be a Measured Value, but can ignore for now
+    U - ? <- Would be a Measured Value, but can ignore for now
+    V - ? <- Would be a Measured Value, but can ignore for now
+    W - ? <- Would be a Measured Value, but can ignore for now
+    X - ? <- Would be a Measured Value, but can ignore for now
+    Y - Strain (note)
+    Z - ? <- Would be a Measured Value, but can ignore for now
+    AA - ? <- I'm not sure what this is so just ignore it
