@@ -1,4 +1,4 @@
-<%@ page import="edu.uoregon.stockdb.Strain" %>
+<%@ page import="edu.uoregon.stockdb.HostOrigin; edu.uoregon.stockdb.Strain" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +8,6 @@
 </head>
 
 <body>
-<a href="#list-strain" class="skip" tabindex="-1"><g:message code="default.link.skip.label"
-                                                             default="Skip to content&hellip;"/></a>
 
 <div class="nav" role="navigation">
     <ul>
@@ -17,6 +15,56 @@
         <li><g:link class="create" action="create"><g:message code="default.new.label"
                                                               args="[entityName]"/></g:link></li>
     </ul>
+</div>
+
+<div class="list-filter">
+    <h3>Filter</h3>
+    <g:form>
+        <table>
+            <tr>
+                <td>
+                    <strong>Genus / Phylum</strong>
+                </td>
+                <td>
+                    <g:select name="genus" from="${edu.uoregon.stockdb.Genus.listOrderByName()}"
+                              optionValue="displayName"
+                        noSelection="[null:'- None -']"
+                    />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Host Genus / Phylum ??????</strong>
+                </td>
+                <td>
+                    <g:select name="host.genus" from="${edu.uoregon.stockdb.Genus.listOrderByName()}"
+                              noSelection="[null:'- None -']"
+                              optionValue="displayName"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Host Anatomy???</strong>
+                </td>
+                <td>
+                    <g:select name="host.anatomy" from="${edu.uoregon.stockdb.HostOrigin.executeQuery('select ho.anatomy from HostOrigin ho where ho.anatomy != null group by ho.anatomy')}"
+                              noSelection="[null:'- None -']"
+                    />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Host Anatomy</strong>
+                </td>
+                <td>
+                    <g:select name="host.stage" from="${edu.uoregon.stockdb.HostOrigin.executeQuery('select ho.stage from HostOrigin ho where ho.stage != null group by ho.stage')}"
+                              noSelection="[null:'- None -']"
+                    />
+                </td>
+            </tr>
+        </table>
+    </g:form>
+
 </div>
 
 <div id="list-strain" class="content scaffold-list" role="main">

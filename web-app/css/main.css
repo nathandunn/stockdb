@@ -594,3 +594,9 @@ a.skip {
 	position: absolute;
 	left: -9999px;
 }
+
+.list-filter{
+   padding: 10px;
+    margin: 10px;
+}
+

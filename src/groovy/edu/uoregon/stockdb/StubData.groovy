@@ -22,7 +22,7 @@ class StubData {
         if (Strain.count > 0) return 0
 
         Phylum rerio = Phylum.findOrSaveByName("Chordata")
-        Genus danio = Genus.findOrSaveByNameAndPhylum("Danio",rerio)
+        Genus danio = Genus.findOrSaveByNameAndPhylum("Danio", rerio)
 
         // stub crap for demo, not for use with a real database
 
@@ -45,12 +45,37 @@ class StubData {
         csvReader.eachLine { tokens ->
             println "row ${rowIndex} - ${tokens[0]}"
             Strain strain = tokens[0] ? Strain.findOrSaveByIndex(tokens[0]) : null
-            if(!strain) return Strain.count
-            Genus genus = tokens[1] ? Genus.findOrSaveByName(tokens[1]) : null
+            if (!strain) return Strain.count
 
             String physicalLocation = tokens[2]
 //            Stock stock =  ? Stock.findOrSaveByPhysicalLocation(tokens[2]) : null
-            Phylum phylum = tokens[3] ? Phylum.findOrSaveByName(tokens[3]) : null
+
+            Phylum phylum = Phylum.findByName(tokens[3].trim())
+            if (phylum == null) {
+                phylum = new Phylum(name: tokens[3]).save(flush: true)
+            }
+            Genus genus = Genus.findByNameAndPhylum(tokens[1].trim(), phylum)
+            if(genus == null){
+                genus = new Genus(name:tokens[1].trim(),phylum: phylum).save(flush: true)
+            }
+//            Phylum phylum = tokens[3] ? Phylum.findOrSaveByName(tokens[3].trim()) : null
+
+//            Genus genus = tokens[1] ? Genus.findOrSaveByNameAndPhylum(tokens[1].trim(), phylum) : null
+            strain.genus = genus
+
+//            if(!genus.phylum){
+//                genus.phylum = phylum
+//                phylum.addToGenuses(genus)
+//                strain.genus = genus
+//                phylum.save()
+//                genus.save()
+//            }
+
+//            if (genus && phylum && !genus.phylum) {
+//                genus.phylum = phylum
+//                phylum.addToGenuses(genus)
+//                strain.genus = genus
+//            }
 
             // 4 ignore
             // 5 ignore
@@ -66,16 +91,16 @@ class StubData {
                     Integer endParens = originString.indexOf(")")
                     if (startParens > 0 && endParens > 0) {
 //                        println "startParens ${startParens} endParens ${endParens}"
-                        String genotypeString = originString.substring(startParens + 1, endParens+1)
-                        String anatomy = originString.substring(endParens+1)?.trim()
+                        String genotypeString = originString.substring(startParens + 1, endParens + 1)
+                        String anatomy = originString.substring(endParens + 1)?.trim()
 
                         ZebrafishGenotype zebrafishGenotype = ZebrafishGenotype.findOrSaveByName(genotypeString)
                         hostOrigin = HostOrigin.findOrSaveByGenotypeAndAnatomyAndStage(zebrafishGenotype, anatomy, stage)
                         hostOrigin.genus = danio
                         hostOrigin.anatomyUrl = "http://zfin.org/action/ontology/term-detail/ZDB-TERM-100331-1295"
                     }
-                        // just age and species
-                    else{
+                    // just age and species
+                    else {
                         hostOrigin = HostOrigin.findOrSaveByGenotypeAndAnatomyAndStage(null, null, stage)
                         hostOrigin.genus = danio
                     }
@@ -91,29 +116,29 @@ class StubData {
 
 
             Isolate isolate
-            if(isolateData.length>2){
+            if (isolateData.length > 2) {
                 String oxygenCondition = isolateData[0]?.trim()
                 Float temperature
                 try {
-                    temperature = Float.parseFloat(isolateData[1]?.trim()?.replaceAll("C",""))
+                    temperature = Float.parseFloat(isolateData[1]?.trim()?.replaceAll("C", ""))
                 } catch (e) {
-                    println (e)
+                    println(e)
                     temperature = Float.MIN_VALUE
                 }
                 String media = isolateData[2]?.trim()
                 String notes = ""
-                if(isolateData.length>3){
-                    notes = isolateData[3..isolateData.length-1]?.join("")
+                if (isolateData.length > 3) {
+                    notes = isolateData[3..isolateData.length - 1]?.join("")
                 }
-                isolate = Isolate.findOrSaveByOxygenConditionAndTemperatureAndMediaAndNotes(oxygenCondition,temperature,media,notes)
+                isolate = Isolate.findOrSaveByOxygenConditionAndTemperatureAndMediaAndNotes(oxygenCondition, temperature, media, notes)
                 strain.isolate = isolate
             }
 
 //            if (strain) {
             Genome genome = new Genome()
             genome.url = tokens[11]?.startsWith("http") ? tokens[11] : null
-            genome.size = tokens[12] ? Float.parseFloat(tokens[12]): null
-            genome.quality = tokens[13] ? Float.parseFloat(tokens[13]): null
+            genome.size = tokens[12] ? Float.parseFloat(tokens[12]) : null
+            genome.quality = tokens[13] ? Float.parseFloat(tokens[13]) : null
             genome.note = tokens[14] ?: null
             genome.save()
 
@@ -122,11 +147,11 @@ class StubData {
             strain.dateEntered = tokens[15] ? Date.parse("d/M/yyyy", tokens[15]) : null
 
             if (tokens[16]) {
-                if(isolate){
+                if (isolate) {
                     isolate.isolatedWhen = Date.parse("d/M/yyyy", tokens[16])
                     String[] isolatedByString = tokens[17]?.split(" ")
-                    if(isolatedByString.size()==2 ){
-                        Researcher researcher = Researcher.findOrSaveByFirstNameAndLastName(isolatedByString[0],isolatedByString[1])
+                    if (isolatedByString.size() == 2) {
+                        Researcher researcher = Researcher.findOrSaveByFirstNameAndLastName(isolatedByString[0], isolatedByString[1])
                         isolate.isolatedBy = researcher
                     }
                     isolate.save()
@@ -137,39 +162,34 @@ class StubData {
 
             // for now we will assume that every strain entry is its own experiment
             Experiment experiment = new Experiment()
-            if(isolate){
+            if (isolate) {
                 experiment.researcher = isolate.isolatedBy
                 experiment.whenPerformed = isolate.isolatedWhen
             }
             experiment.save()
 
-            if(!measuredValueService){
+            if (!measuredValueService) {
                 measuredValueService = new MeasuredValueService()
             }
 
             // a measured value
-            measuredValueService.addMeasuredValueToExperimentIfNotNull("Motility",tokens[19],experiment)
+            measuredValueService.addMeasuredValueToExperimentIfNotNull("Motility", tokens[19], experiment)
             // 20 measured value // nothing here . . . would be speed
             // 21 measured value
-            measuredValueService.addMeasuredValueToExperimentIfNotNull("Hemolytic Activity",tokens[21],experiment)
+            measuredValueService.addMeasuredValueToExperimentIfNotNull("Hemolytic Activity", tokens[21], experiment)
             // 22 measured value
-            measuredValueService.addMeasuredValueToExperimentIfNotNull("Antibiotic Resistance",tokens[22],experiment)
+            measuredValueService.addMeasuredValueToExperimentIfNotNull("Antibiotic Resistance", tokens[22], experiment)
             // 23 measured value
-            measuredValueService.addMeasuredValueToExperimentIfNotNull("Doubling Time",tokens[23],experiment,MeasuredValueTypeEnum.FLOAT_TYPE)
+            measuredValueService.addMeasuredValueToExperimentIfNotNull("Doubling Time", tokens[23], experiment, MeasuredValueTypeEnum.FLOAT_TYPE)
             // 24 measured value
 
             strain.notes = tokens[24]
 
             // 25 measured value
-            measuredValueService.addMeasuredValueToExperimentIfNotNull("Biofilm (adherence to glass)",tokens[25],experiment)
+            measuredValueService.addMeasuredValueToExperimentIfNotNull("Biofilm (adherence to glass)", tokens[25], experiment)
 
             // we only want to record these if a valid Strain
 
-            if (genus && phylum) {
-                genus.phylum = phylum
-                phylum.addToGenuses(genus)
-                strain.genus = genus
-            }
             if (hostOrigin && hostFacility) {
                 hostOrigin.hostFacility = hostFacility
                 hostFacility.addToOrigins(hostOrigin)
@@ -201,24 +221,24 @@ class StubData {
     }
 
     def stubUsers() {
-        if(Researcher.count()>0) return
+        if (Researcher.count() > 0) return
 
         new Researcher(
                 firstName: "Adam"
-                ,lastName: "Burns"
-                ,email: "aburns2@uoregon.edu"
-        ) .save()
+                , lastName: "Burns"
+                , email: "aburns2@uoregon.edu"
+        ).save()
 
         new Researcher(
                 firstName: "Travis"
-                ,lastName: "Carney"
-                ,email: "tcarney@uoregon.edu"
-        ) .save()
+                , lastName: "Carney"
+                , email: "tcarney@uoregon.edu"
+        ).save()
 
         new Researcher(
                 firstName: "Robert"
-                ,lastName: "Steury"
-                ,email: "steury@uoregon.edu"
-        ) .save()
+                , lastName: "Steury"
+                , email: "steury@uoregon.edu"
+        ).save()
     }
 }

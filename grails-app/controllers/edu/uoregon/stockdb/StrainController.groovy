@@ -12,6 +12,9 @@ class StrainController {
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
+        Set<String> anatomy = HostOrigin.findAll().each {
+            return it.anatomy
+        }
         [strainInstanceList: Strain.list(params), strainInstanceTotal: Strain.count()]
     }
 
