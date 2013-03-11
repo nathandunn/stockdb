@@ -23,12 +23,23 @@
         <table>
             <tr>
                 <td>
-                    <strong>Genus / Phylum</strong>
+                    <strong>Genus</strong>
                 </td>
                 <td>
                     <g:select name="genus" from="${edu.uoregon.stockdb.Genus.listOrderByName()}"
-                              optionValue="displayName"
+                              optionValue="name"
                         noSelection="[null:'- None -']"
+                    />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Phylum</strong>
+                </td>
+                <td>
+                    <g:select name="phylum" from="${edu.uoregon.stockdb.Phylum.listOrderByName()}"
+                              optionValue="name"
+                              noSelection="[null:'- None -']"
                     />
                 </td>
             </tr>
@@ -78,7 +89,9 @@
 
             <g:sortableColumn property="index" title="${message(code: 'strain.index.label', default: 'Index')}"/>
 
-            <th>Genus / Phylum</th>
+            %{--<th>Genus / Phylum</th>--}%
+            <g:sortableColumn property="genus" title="${message(code: 'strain.genus.label', default: 'Genus')}"/>
+            <g:sortableColumn property="genus.phylum" title="${message(code: 'strain.phylum.label', default: 'Phylum')}"/>
 
             <th>Host</th>
             %{--<th>Host Anatomy</th>--}%
@@ -101,7 +114,8 @@
                     <g:showId instance="${strainInstance}" label="${strainInstance.index}"/>
                 </td>
 
-                <td><i>${strainInstance.genus.displayName}</i></td>
+                <td><i>${strainInstance.genus.name}</i></td>
+                <td><i>${strainInstance.genus.phylum.name}</i></td>
 
                 <td>${strainInstance?.hostOrigin?.genus?.displayName}</td>
 
