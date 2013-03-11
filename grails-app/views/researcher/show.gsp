@@ -23,20 +23,38 @@
 			</g:if>
 			<ol class="property-list researcher">
 			
+				<g:if test="${researcherInstance?.email}">
+				<li class="fieldcontain">
+					<span id="email-label" class="property-label"><g:message code="researcher.email.label" default="Email" /></span>
+					
+						<span class="property-value" aria-labelledby="email-label"><g:fieldValue bean="${researcherInstance}" field="email"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${researcherInstance?.firstName}">
 				<li class="fieldcontain">
-					<span id="firstname-label" class="property-label"><g:message code="researcher.firstname.label" default="Firstname" /></span>
+					<span id="firstName-label" class="property-label"><g:message code="researcher.firstName.label" default="First Name" /></span>
 					
-						<span class="property-value" aria-labelledby="firstname-label"><g:fieldValue bean="${researcherInstance}" field="firstName"/></span>
+						<span class="property-value" aria-labelledby="firstName-label"><g:fieldValue bean="${researcherInstance}" field="firstName"/></span>
 					
 				</li>
 				</g:if>
 			
 				<g:if test="${researcherInstance?.lastName}">
 				<li class="fieldcontain">
-					<span id="lastname-label" class="property-label"><g:message code="researcher.lastname.label" default="Lastname" /></span>
+					<span id="lastName-label" class="property-label"><g:message code="researcher.lastName.label" default="Last Name" /></span>
 					
-						<span class="property-value" aria-labelledby="lastname-label"><g:fieldValue bean="${researcherInstance}" field="lastName"/></span>
+						<span class="property-value" aria-labelledby="lastName-label"><g:fieldValue bean="${researcherInstance}" field="lastName"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${researcherInstance?.lab}">
+				<li class="fieldcontain">
+					<span id="lab-label" class="property-label"><g:message code="researcher.lab.label" default="Lab" /></span>
+					
+						<span class="property-value" aria-labelledby="lab-label"><g:link controller="lab" action="show" id="${researcherInstance?.lab?.id}">${researcherInstance?.lab?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>

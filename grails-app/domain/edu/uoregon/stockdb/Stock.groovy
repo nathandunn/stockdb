@@ -1,15 +1,20 @@
 package edu.uoregon.stockdb
 
+/**
+ * This is the physical location of the Strain
+ */
 class Stock {
 
     static constraints = {
         strain nullable:  true
-        value nullable:  true
+//        value nullable:  true
+//        physicalLocation nullable: false
+//        generalLocation nullable: false
     }
 
-    String name
-    String value
+    String physicalLocation
+//    String value
 
-    Location location
+    Location generalLocation
     Strain strain
 }

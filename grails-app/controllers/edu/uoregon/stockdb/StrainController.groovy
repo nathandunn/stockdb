@@ -15,23 +15,6 @@ class StrainController {
         [strainInstanceList: Strain.list(params), strainInstanceTotal: Strain.count()]
     }
 
-    /**
-     * Default is to search all
-     */
-    def search(){
-        def arbitraryKey = params.arbitraryValue
-
-        def stockName= params.stockName
-        def parentStrainName = params.parentStrainName
-        def name = params.name
-        def motility = params.motility
-        def notes = params.notes
-        def genus = params.genus
-        def phylum= params.phylum
-        def formerCloneAlias = params.formerCloneAlias
-
-    }
-
     def create() {
         [strainInstance: new Strain(params)]
     }

@@ -2,10 +2,12 @@ import edu.uoregon.stockdb.StubData
 
 class BootStrap {
 
+    StubData stubData = new StubData()
+
     def init = { servletContext ->
 
-        new StubData().stubData()
-
+        stubData.stubUsers()
+        stubData.stubData()
 
     }
     def destroy = {

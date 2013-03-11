@@ -36,7 +36,7 @@
 				<li class="fieldcontain">
 					<span id="phylum-label" class="property-label"><g:message code="genus.phylum.label" default="Phylum" /></span>
 					
-						<span class="property-value" aria-labelledby="phylum-label"><g:link controller="phylum" action="show" id="${genusInstance?.phylum?.id}">${genusInstance?.phylum?.name}</g:link></span>
+						<span class="property-value" aria-labelledby="phylum-label"><g:link controller="phylum" action="show" id="${genusInstance?.phylum?.id}">${genusInstance?.phylum?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>

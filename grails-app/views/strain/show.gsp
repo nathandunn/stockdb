@@ -22,39 +22,41 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list strain">
-
-                <g:if test="${strainInstance?.name}">
-                    <li class="fieldcontain">
-                        <span id="name-label" class="property-label"><g:message code="strain.name.label" default="Name" /></span>
-
-                        <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${strainInstance}" field="name"/></span>
-
-                    </li>
-                </g:if>
-
-				<g:if test="${strainInstance?.genoUrl}">
-				<li class="fieldcontain">
-					<span id="sequence-label" class="property-label"><g:message code="strain.sequence.label" default="Sequence" /></span>
-					
-						<span class="property-value" aria-labelledby="sequence-label"><g:fieldValue bean="${strainInstance}" field="genoUrl"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${strainInstance?.values}">
-				<li class="fieldcontain">
-					<span id="values-label" class="property-label"><g:message code="strain.values.label" default="Values" /></span>
-					
-						<span class="property-value" aria-labelledby="values-label"><g:fieldValue bean="${strainInstance}" field="values"/></span>
-					
-				</li>
-				</g:if>
 			
 				<g:if test="${strainInstance?.formerCloneAlias}">
 				<li class="fieldcontain">
-					<span id="formerCloneAlias-label" class="property-label"><g:message code="strain.formerCloneAlias.label" default="Form Alias" /></span>
+					<span id="formerCloneAlias-label" class="property-label"><g:message code="strain.formerCloneAlias.label" default="Former Clone Alias" /></span>
 					
 						<span class="property-value" aria-labelledby="formerCloneAlias-label"><g:fieldValue bean="${strainInstance}" field="formerCloneAlias"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${strainInstance?.dateEntered}">
+				<li class="fieldcontain">
+					<span id="dateEntered-label" class="property-label"><g:message code="strain.dateEntered.label" default="Date Entered" /></span>
+					
+						<span class="property-value" aria-labelledby="dateEntered-label"><g:formatDate date="${strainInstance?.dateEntered}" /></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${strainInstance?.experiments}">
+				<li class="fieldcontain">
+					<span id="experiments-label" class="property-label"><g:message code="strain.experiments.label" default="Experiments" /></span>
+					
+						<g:each in="${strainInstance.experiments}" var="e">
+						<span class="property-value" aria-labelledby="experiments-label"><g:link controller="experiment" action="show" id="${e.id}">${e?.encodeAsHTML()}</g:link></span>
+						</g:each>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${strainInstance?.genome}">
+				<li class="fieldcontain">
+					<span id="genome-label" class="property-label"><g:message code="strain.genome.label" default="Genome" /></span>
+					
+						<span class="property-value" aria-labelledby="genome-label"><g:link controller="genome" action="show" id="${strainInstance?.genome?.id}">${strainInstance?.genome?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>
@@ -63,34 +65,16 @@
 				<li class="fieldcontain">
 					<span id="genus-label" class="property-label"><g:message code="strain.genus.label" default="Genus" /></span>
 					
-						<span class="property-value" aria-labelledby="genus-label"><g:link controller="genus" action="show" id="${strainInstance?.genus?.id}">${strainInstance?.genus?.name}</g:link></span>
-					
-				</li>
-				</g:if>
-
-                <g:if test="${strainInstance?.phylum}">
-                    <li class="fieldcontain">
-                        <span id="phylum-label" class="property-label"><g:message code="strain.phylum.label" default="Phylum" /></span>
-
-                        <span class="property-value" aria-labelledby="phylum-label"><g:link controller="phylum" action="show" id="${strainInstance?.phylum?.id}">${strainInstance?.phylum?.name}</g:link></span>
-
-                    </li>
-                </g:if>
-
-				<g:if test="${strainInstance?.isolatedBy}">
-				<li class="fieldcontain">
-					<span id="isolatedBy-label" class="property-label"><g:message code="strain.isolatedBy.label" default="Isolated By" /></span>
-					
-						<span class="property-value" aria-labelledby="isolatedBy-label"><g:link controller="user" action="show" id="${strainInstance?.isolatedBy?.id}">${strainInstance?.isolatedBy?.name}</g:link></span>
+						<span class="property-value" aria-labelledby="genus-label"><g:link controller="genus" action="show" id="${strainInstance?.genus?.id}">${strainInstance?.genus?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>
 			
-				<g:if test="${strainInstance?.isolatedWhen}">
+				<g:if test="${strainInstance?.isolate}">
 				<li class="fieldcontain">
-					<span id="isolatedWhen-label" class="property-label"><g:message code="strain.isolatedWhen.label" default="Isolated When" /></span>
+					<span id="isolate-label" class="property-label"><g:message code="strain.isolate.label" default="Isolate" /></span>
 					
-						<span class="property-value" aria-labelledby="isolatedWhen-label"><g:formatDate date="${strainInstance?.isolatedWhen}" /></span>
+						<span class="property-value" aria-labelledby="isolate-label"><g:link controller="isolate" action="show" id="${strainInstance?.isolate?.id}">${strainInstance?.isolate?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>
@@ -104,12 +88,29 @@
 				</li>
 				</g:if>
 			
-
+				<g:if test="${strainInstance?.name}">
+				<li class="fieldcontain">
+					<span id="name-label" class="property-label"><g:message code="strain.name.label" default="Name" /></span>
+					
+						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${strainInstance}" field="name"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${strainInstance?.notes}">
+				<li class="fieldcontain">
+					<span id="notes-label" class="property-label"><g:message code="strain.notes.label" default="Notes" /></span>
+					
+						<span class="property-value" aria-labelledby="notes-label"><g:fieldValue bean="${strainInstance}" field="notes"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${strainInstance?.origin}">
 				<li class="fieldcontain">
 					<span id="origin-label" class="property-label"><g:message code="strain.origin.label" default="Origin" /></span>
 					
-						<span class="property-value" aria-labelledby="origin-label"><g:link controller="hostOrigin" action="show" id="${strainInstance?.origin?.id}">${strainInstance?.origin?.name}</g:link></span>
+						<span class="property-value" aria-labelledby="origin-label"><g:link controller="hostOrigin" action="show" id="${strainInstance?.origin?.id}">${strainInstance?.origin?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>
@@ -118,19 +119,36 @@
 				<li class="fieldcontain">
 					<span id="parentStrain-label" class="property-label"><g:message code="strain.parentStrain.label" default="Parent Strain" /></span>
 					
-						<span class="property-value" aria-labelledby="parentStrain-label"><g:link controller="strain" action="show" id="${strainInstance?.parentStrain?.id}">${strainInstance?.parentStrain?.name}</g:link></span>
+						<span class="property-value" aria-labelledby="parentStrain-label"><g:link controller="strain" action="show" id="${strainInstance?.parentStrain?.id}">${strainInstance?.parentStrain?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>
 			
-
+				<g:if test="${strainInstance?.phylum}">
+				<li class="fieldcontain">
+					<span id="phylum-label" class="property-label"><g:message code="strain.phylum.label" default="Phylum" /></span>
+					
+						<span class="property-value" aria-labelledby="phylum-label"><g:link controller="phylum" action="show" id="${strainInstance?.phylum?.id}">${strainInstance?.phylum?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${strainInstance?.stocks}">
 				<li class="fieldcontain">
 					<span id="stocks-label" class="property-label"><g:message code="strain.stocks.label" default="Stocks" /></span>
 					
 						<g:each in="${strainInstance.stocks}" var="s">
-						<span class="property-value" aria-labelledby="stocks-label"><g:link controller="stock" action="show" id="${s.id}">${s?.name}</g:link></span>
+						<span class="property-value" aria-labelledby="stocks-label"><g:link controller="stock" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></span>
 						</g:each>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${strainInstance?.strainGenotype}">
+				<li class="fieldcontain">
+					<span id="strainGenotype-label" class="property-label"><g:message code="strain.strainGenotype.label" default="Strain Genotype" /></span>
+					
+						<span class="property-value" aria-labelledby="strainGenotype-label"><g:link controller="strainGenotype" action="show" id="${strainInstance?.strainGenotype?.id}">${strainInstance?.strainGenotype?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>

@@ -15,9 +15,11 @@ class StubData {
 
     private static final log = Logger.getLogger(this)
 
+    MeasuredValueService measuredValueService
+
     def stubData() {
 
-        if (Strain.count > 0) return
+        if (Strain.count > 0) return 0
 
         // stub crap for demo, not for use with a real database
 
@@ -34,13 +36,17 @@ class StubData {
             throw new RuntimeException("File does not exist: " + file)
         }
 
-//        file.eachCsvLine([skipLines:1,'charset':'UTF-8']) { tokens ->
         CSVReader csvReader = file.toCsvReader(skipLines: 1, 'charset': 'UTF-8')
+
+        int rowIndex = 1
         csvReader.eachLine { tokens ->
-//            String phylum = tokens[3]
+            println "row ${rowIndex} - ${tokens[0]}"
             Strain strain = tokens[0] ? Strain.findOrSaveByName(tokens[0]) : null
+            if(!strain) return Strain.count
             Genus genus = tokens[1] ? Genus.findOrSaveByName(tokens[1]) : null
-            Stock stock = tokens[2] ? Stock.findOrSaveByName(tokens[2]) : null
+
+            String physicalLocation = tokens[2]
+//            Stock stock =  ? Stock.findOrSaveByPhysicalLocation(tokens[2]) : null
             Phylum phylum = tokens[3] ? Phylum.findOrSaveByName(tokens[3]) : null
 
             // 4 ignore
@@ -48,7 +54,7 @@ class StubData {
             // 6 ignore
 
             String originString = tokens[7]
-            Origin origin
+            HostOrigin origin
             if (originString) {
                 String originSpecies = "Zebrafish" // for now
                 if (originString.indexOf(originSpecies) > 0) {
@@ -61,7 +67,7 @@ class StubData {
                         String anatomy = originString.substring(endParens)
 
                         ZebrafishGenotype zebrafishGenotype = ZebrafishGenotype.findOrSaveByName(genotypeString)
-                        origin = Origin.findOrSaveByGenotypeAndAnatomyAndStage(zebrafishGenotype, anatomy, stage)
+                        origin = HostOrigin.findOrSaveByGenotypeAndAnatomyAndStage(zebrafishGenotype, anatomy, stage)
                     }
                 }
             }
@@ -69,48 +75,108 @@ class StubData {
 //            String hostFacility = tokens[8]
             HostFacility hostFacility = tokens[8] ? HostFacility.findOrSaveByName(tokens[8]) : null
 
+            Location generalLocation = tokens[9] ? Location.findOrSaveByName(tokens[9]) : null
 
-            Location location = tokens[9] ? Location.findOrSaveByName(tokens[9]) : null
+            String[] isolateData = tokens[10]?.split(";")
 
-            if (strain) {
-                Genome genome = new Genome()
-                genome.url = tokens[11]?.startsWith("http") ? tokens[11] : null
-                genome.save()
 
-                strain.genome = genome
+            Isolate isolate
+            if(isolateData.length>2){
+                String oxygenCondition = isolateData[0]?.trim()
+                Float temperature
+                try {
+                    temperature = Float.parseFloat(isolateData[1]?.trim()?.replaceAll("C",""))
+                } catch (e) {
+                    println (e)
+                    temperature = Float.MIN_VALUE
+                }
+                String media = isolateData[2]?.trim()
+                String notes = ""
+                if(isolateData.length>3){
+                    notes = isolateData[3..isolateData.length-1]?.join("")
+                }
+                isolate = Isolate.findOrSaveByOxygenConditionAndTemperatureAndMediaAndNotes(oxygenCondition,temperature,media,notes)
+                strain.isolate = isolate
+            }
 
-                Isolate isolate = new Isolate()
-                if (tokens[16]) {
+//            if (strain) {
+            Genome genome = new Genome()
+            genome.url = tokens[11]?.startsWith("http") ? tokens[11] : null
+            genome.size = tokens[12] ? Float.parseFloat(tokens[12]): null
+            genome.quality = tokens[13] ? Float.parseFloat(tokens[13]): null
+            genome.note = tokens[14] ?: null
+            genome.save()
+
+            strain.genome = genome
+
+            strain.dateEntered = tokens[15] ? Date.parse("d/M/yyyy", tokens[15]) : null
+
+            if (tokens[16]) {
+                if(isolate){
                     isolate.isolatedWhen = Date.parse("d/M/yyyy", tokens[16])
+                    String[] isolatedByString = tokens[17]?.split(" ")
+                    if(isolatedByString.size()==2 ){
+                        Researcher researcher = Researcher.findOrSaveByFirstNameAndLastName(isolatedByString[0],isolatedByString[1])
+                        isolate.isolatedBy = researcher
+                    }
                     isolate.save()
-//                    isolate.isolatedBy = Researcher // 17
-                    strain.isolate = isolate
-                }
-
-                strain.formerCloneAlias = tokens[18]
-//                strain.motility = tokens[19] // will be a measured value
-                strain.notes = tokens[24]
-
-                // we only want to record these if a valid Strain
-
-                if (genus && phylum) {
-                    genus.phylum = phylum
-                    phylum.addToGenuses(genus)
-                    strain.genus = genus
-                    strain.phylum = phylum
-                }
-                if (origin && hostFacility) {
-                    origin.hostFacility = hostFacility
-                    hostFacility.addToOrigins(origin)
-                    strain.origin = origin
-                }
-
-                if (stock && location) {
-                    stock.location = location
-                    location.addToStocks(stock)
-                    strain.addToStocks(stock)
                 }
             }
+
+            strain.formerCloneAlias = tokens[18]
+
+            // for now we will assume that every strain entry is its own experiment
+            Experiment experiment = new Experiment()
+            if(isolate){
+                experiment.researcher = isolate.isolatedBy
+                experiment.whenPerformed = isolate.isolatedWhen
+            }
+            experiment.save()
+
+            if(!measuredValueService){
+                measuredValueService = new MeasuredValueService()
+            }
+
+            // a measured value
+            measuredValueService.addMeasuredValueToExperimentIfNotNull("Motility",tokens[19],experiment)
+            // 20 measured value // nothing here . . . would be speed
+            // 21 measured value
+            measuredValueService.addMeasuredValueToExperimentIfNotNull("Hemolytic Activity",tokens[21],experiment)
+            // 22 measured value
+            measuredValueService.addMeasuredValueToExperimentIfNotNull("Antibiotic Resistance",tokens[22],experiment)
+            // 23 measured value
+            measuredValueService.addMeasuredValueToExperimentIfNotNull("Doubling Time",tokens[23],experiment,MeasuredValueTypeEnum.FLOAT_TYPE)
+            // 24 measured value
+
+            strain.notes = tokens[24]
+
+            // 25 measured value
+            measuredValueService.addMeasuredValueToExperimentIfNotNull("Biofilm (adherence to glass)",tokens[25],experiment)
+
+            // we only want to record these if a valid Strain
+
+            if (genus && phylum) {
+                genus.phylum = phylum
+                phylum.addToGenuses(genus)
+                strain.genus = genus
+                strain.phylum = phylum
+            }
+            if (origin && hostFacility) {
+                origin.hostFacility = hostFacility
+                hostFacility.addToOrigins(origin)
+                strain.origin = origin
+            }
+
+            Stock stock = new Stock()
+            stock.strain = strain
+            stock.physicalLocation = physicalLocation
+            stock.save()
+            if (stock && generalLocation) {
+                stock.generalLocation = generalLocation
+                generalLocation.addToStocks(stock)
+                strain.addToStocks(stock)
+            }
+//            }
 
 //            String strainName = tokens[0]
 //            String sequenceUrl = tokens[11]
@@ -118,55 +184,32 @@ class StubData {
 //            String formerCloneAlias = tokens[17]
 //            String motility = tokens[18]
 //            String notes = tokens[23]
-        }
 
-//        if (!HostFacility.count) {
-//            new HostFacility([name: "Washington University"]).save()
-//            new HostFacility([name: "University of Oregon"]).save()
-//        }
-//        Location guilleminFreezer = Location.findByName("Guillemin -80 C Freezer") ?: new Location([name: "Guillemin -80 C Freezer"]).save(failOnError: true)
-//
-//        Phylum proteobacteria = Phylum.findByName("Proteobacteria (gamma)") ?: new Phylum([name: "Proteobacteria (gamma)"]).save()
-//        Phylum frimicutes = Phylum.findByName("Firmicutes") ?: new Phylum([name: "Firmicutes"]).save()
-//        Phylum tenerictues = Phylum.findByName("Tenericutes (Mollicutes)") ?: new Phylum([name: "Tenericutes (Mollicutes)"]).save()
-//        Phylum bacteroidetes = Phylum.findByName("Bacteroidetes") ?: new Phylum([name: "Bacteroidetes"]).save()
-//        Phylum fusobacteria = Phylum.findByName("Fusobacteria") ?: new Phylum([name: "Fusobacteria"]).save()
-//
-//
-//        if (!Genus.count) {
-//            Genus plesiomans = new Genus([name: "Plesiomonas", phylum: fusobacteria]).save()
-//            Genus aeromonas = new Genus([name: "Aeromonas", phylum: fusobacteria]).save()
-//            Genus pseudomonas = new Genus([name: "Pseudomonas", phylum: fusobacteria]).save()
-//            Genus shewanella = new Genus([name: "Shewanella", phylum: fusobacteria]).save()
-//
-//            HostOrigin unknownOrigin = HostOrigin.findByName("unknown") ?: new HostOrigin([name: "unknown",genus: plesiomans,phylum: proteobacteria]).save(failOnError: true)
-//            HostOrigin zebrafishWtOrigin = HostOrigin.findByName("Larval Zebrafish (WT) Intestine") ?: new HostOrigin([name: "Larval Zebrafish (WT) Intestine",genus: plesiomans,phylum: proteobacteria]).save()
-//
-//            Stock stock1 = new Stock([name: "Box 1-D", location: guilleminFreezer]).save()
-//            Stock stock2 = new Stock([name: "Box 2-D", location: guilleminFreezer]).save()
-//            guilleminFreezer.addToStocks(stock1)
-//            guilleminFreezer.addToStocks(stock2)
-//
-//            Strain s1 = new Strain([name: "ZWU0023",
-//                    genus: Genus.findByName("Plesiomonas")
-//                    , phylum: proteobacteria
-//                    , origin: unknownOrigin
-//                    , stock: stock1
-//            ]).save(failOnError: true,flush: true,insert: true)
-//            Strain s2 = new Strain([name: "ZOR0001",
-//                    genus: Genus.findByName("Aeromonas")
-//                    , phylum: proteobacteria
-//                    , origin: unknownOrigin
-//                    , stock: stock2
-//            ]).save()
-//
-//            stock1.strain = s1
-//            stock2.strain = s2
-//            stock1.save()
-//            stock2.save()
-//        }
+            ++rowIndex
+        }
 
 
     }
 
+    def stubUsers() {
+        if(Researcher.count()>0) return
+
+        new Researcher(
+                firstName: "Adam"
+                ,lastName: "Burns"
+                ,email: "aburns2@uoregon.edu"
+        ) .save()
+
+        new Researcher(
+                firstName: "Travis"
+                ,lastName: "Carney"
+                ,email: "tcarney@uoregon.edu"
+        ) .save()
+
+        new Researcher(
+                firstName: "Robert"
+                ,lastName: "Steury"
+                ,email: "steury@uoregon.edu"
+        ) .save()
+    }
 }

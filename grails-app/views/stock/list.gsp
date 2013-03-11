@@ -24,11 +24,11 @@
 				<thead>
 					<tr>
 					
-						<th><g:message code="stock.location.label" default="Location" /></th>
-					
 						<th><g:message code="stock.strain.label" default="Strain" /></th>
 					
-						<g:sortableColumn property="value" title="${message(code: 'stock.value.label', default: 'Value')}" />
+						<th><g:message code="stock.generalLocation.label" default="General Location" /></th>
+					
+						<g:sortableColumn property="physicalLocation" title="${message(code: 'stock.physicalLocation.label', default: 'Physical Location')}" />
 					
 					</tr>
 				</thead>
@@ -36,15 +36,11 @@
 				<g:each in="${stockInstanceList}" status="i" var="stockInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${stockInstance.id}">${stockInstance?.name}</g:link></td>
+						<td><g:link action="show" id="${stockInstance.id}">${fieldValue(bean: stockInstance, field: "strain")}</g:link></td>
 					
-						<td>
-                            <g:link action="show" id="${stockInstance?.strain?.id}" controller="strain">
-                                ${stockInstance?.strain?.name}
-                            </g:link>
-						</td>
+						<td>${fieldValue(bean: stockInstance, field: "generalLocation")}</td>
 					
-						<td>${fieldValue(bean: stockInstance, field: "value")}</td>
+						<td>${fieldValue(bean: stockInstance, field: "physicalLocation")}</td>
 					
 					</tr>
 				</g:each>

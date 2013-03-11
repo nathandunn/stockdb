@@ -10,11 +10,11 @@
 	<g:textField name="name" value="${genusInstance?.name}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: genusInstance, field: 'phylum', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: genusInstance, field: 'phylum', 'error')} ">
 	<label for="phylum">
 		<g:message code="genus.phylum.label" default="Phylum" />
-		<span class="required-indicator">*</span>
+		
 	</label>
-	<g:select id="phylum" name="phylum.id" from="${edu.uoregon.stockdb.Phylum.list()}" optionKey="id" required="" value="${genusInstance?.phylum?.id}" class="many-to-one" optionValue="name"/>
+	<g:select id="phylum" name="phylum.id" from="${edu.uoregon.stockdb.Phylum.list()}" optionKey="id" value="${genusInstance?.phylum?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
 

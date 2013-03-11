@@ -3,7 +3,8 @@ package edu.uoregon.stockdb
 class Researcher {
 
     static constraints = {
-        email nullable:false,email: true
+//        email nullable:false,email: true
+        email email: true
         firstName nullable:false
         lastName nullable:false
     }

@@ -12,15 +12,15 @@ class HostOriginController {
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        [hostOriginInstanceList: Origin.list(params), hostOriginInstanceTotal: Origin.count()]
+        [hostOriginInstanceList: HostOrigin.list(params), hostOriginInstanceTotal: HostOrigin.count()]
     }
 
     def create() {
-        [hostOriginInstance: new Origin(params)]
+        [hostOriginInstance: new HostOrigin(params)]
     }
 
     def save() {
-        def hostOriginInstance = new Origin(params)
+        def hostOriginInstance = new HostOrigin(params)
         if (!hostOriginInstance.save(flush: true)) {
             render(view: "create", model: [hostOriginInstance: hostOriginInstance])
             return
@@ -31,7 +31,7 @@ class HostOriginController {
     }
 
     def show(Long id) {
-        def hostOriginInstance = Origin.get(id)
+        def hostOriginInstance = HostOrigin.get(id)
         if (!hostOriginInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'hostOrigin.label', default: 'HostOrigin'), id])
             redirect(action: "list")
@@ -42,7 +42,7 @@ class HostOriginController {
     }
 
     def edit(Long id) {
-        def hostOriginInstance = Origin.get(id)
+        def hostOriginInstance = HostOrigin.get(id)
         if (!hostOriginInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'hostOrigin.label', default: 'HostOrigin'), id])
             redirect(action: "list")
@@ -53,7 +53,7 @@ class HostOriginController {
     }
 
     def update(Long id, Long version) {
-        def hostOriginInstance = Origin.get(id)
+        def hostOriginInstance = HostOrigin.get(id)
         if (!hostOriginInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'hostOrigin.label', default: 'HostOrigin'), id])
             redirect(action: "list")
@@ -82,7 +82,7 @@ class HostOriginController {
     }
 
     def delete(Long id) {
-        def hostOriginInstance = Origin.get(id)
+        def hostOriginInstance = HostOrigin.get(id)
         if (!hostOriginInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'hostOrigin.label', default: 'HostOrigin'), id])
             redirect(action: "list")

@@ -23,42 +23,36 @@
 			<table>
 				<thead>
 					<tr>
-
-                        <g:sortableColumn property="name" title="${message(code: 'strain.name.label', default: 'Name')}" />
-						<g:sortableColumn property="sequence" title="${message(code: 'strain.sequence.label', default: 'Sequence')}" />
 					
-						%{--<g:sortableColumn property="values" title="${message(code: 'strain.values.label', default: 'Values')}" />--}%
+						<g:sortableColumn property="formerCloneAlias" title="${message(code: 'strain.formerCloneAlias.label', default: 'Former Clone Alias')}" />
 					
-						%{--<g:sortableColumn property="formerCloneAlias" title="${message(code: 'strain.formerCloneAlias.label', default: 'Form Alias')}" />--}%
+						<g:sortableColumn property="dateEntered" title="${message(code: 'strain.dateEntered.label', default: 'Date Entered')}" />
+					
+						<th><g:message code="strain.genome.label" default="Genome" /></th>
 					
 						<th><g:message code="strain.genus.label" default="Genus" /></th>
 					
-						%{--<th><g:message code="strain.isolatedBy.label" default="Isolated By" /></th>--}%
+						<th><g:message code="strain.isolate.label" default="Isolate" /></th>
 					
-						%{--<g:sortableColumn property="isolatedWhen" title="${message(code: 'strain.isolatedWhen.label', default: 'Isolated When')}" />--}%
+						<g:sortableColumn property="motility" title="${message(code: 'strain.motility.label', default: 'Motility')}" />
 					
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${strainInstanceList}" status="i" var="strainInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-
-                        <td><g:link action="show" id="${strainInstance.id}">${fieldValue(bean: strainInstance, field: "name")}</g:link></td>
-						<td><g:link action="show" id="${strainInstance.id}">${fieldValue(bean: strainInstance, field: "genome.url")}</g:link></td>
 					
-						%{--<td>${fieldValue(bean: strainInstance, field: "values")}</td>--}%
+						<td><g:link action="show" id="${strainInstance.id}">${fieldValue(bean: strainInstance, field: "formerCloneAlias")}</g:link></td>
 					
-						%{--<td>${fieldValue(bean: strainInstance, field: "formerCloneAlias")}</td>--}%
+						<td><g:formatDate date="${strainInstance.dateEntered}" /></td>
 					
-						<td>
-                            <g:link action="show" id="${strainInstance?.genus?.id}">
-                                ${strainInstance.genus.name}
-                            </g:link>
-                        </td>
+						<td>${fieldValue(bean: strainInstance, field: "genome")}</td>
 					
-						%{--<td>${fieldValue(bean: strainInstance, field: "isolatedBy")}</td>--}%
+						<td>${fieldValue(bean: strainInstance, field: "genus")}</td>
 					
-						%{--<td><g:formatDate date="${strainInstance.isolatedWhen}" /></td>--}%
+						<td>${fieldValue(bean: strainInstance, field: "isolate")}</td>
+					
+						<td>${fieldValue(bean: strainInstance, field: "motility")}</td>
 					
 					</tr>
 				</g:each>

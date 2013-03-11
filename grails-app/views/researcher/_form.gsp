@@ -2,19 +2,35 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: researcherInstance, field: 'firstname', 'error')} ">
-	<label for="firstname">
-		<g:message code="researcher.firstname.label" default="Firstname" />
+<div class="fieldcontain ${hasErrors(bean: researcherInstance, field: 'email', 'error')} ">
+	<label for="email">
+		<g:message code="researcher.email.label" default="Email" />
 		
 	</label>
-	<g:textField name="firstname" value="${researcherInstance?.firstname}"/>
+	<g:field type="email" name="email" value="${researcherInstance?.email}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: researcherInstance, field: 'lastname', 'error')} ">
-	<label for="lastname">
-		<g:message code="researcher.lastname.label" default="Lastname" />
+<div class="fieldcontain ${hasErrors(bean: researcherInstance, field: 'firstName', 'error')} ">
+	<label for="firstName">
+		<g:message code="researcher.firstName.label" default="First Name" />
 		
 	</label>
-	<g:textField name="lastname" value="${researcherInstance?.lastname}"/>
+	<g:textField name="firstName" value="${researcherInstance?.firstName}"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: researcherInstance, field: 'lastName', 'error')} ">
+	<label for="lastName">
+		<g:message code="researcher.lastName.label" default="Last Name" />
+		
+	</label>
+	<g:textField name="lastName" value="${researcherInstance?.lastName}"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: researcherInstance, field: 'lab', 'error')} ">
+	<label for="lab">
+		<g:message code="researcher.lab.label" default="Lab" />
+		
+	</label>
+	<g:select id="lab" name="lab.id" from="${edu.uoregon.stockdb.Lab.list()}" optionKey="id" value="${researcherInstance?.lab?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
 

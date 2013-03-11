@@ -28,7 +28,7 @@
 					<span id="genuses-label" class="property-label"><g:message code="phylum.genuses.label" default="Genuses" /></span>
 					
 						<g:each in="${phylumInstance.genuses}" var="g">
-						<span class="property-value" aria-labelledby="genuses-label"><g:link controller="genus" action="show" id="${g.id}">${g?.name}</g:link></span>
+						<span class="property-value" aria-labelledby="genuses-label"><g:link controller="genus" action="show" id="${g.id}">${g?.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>

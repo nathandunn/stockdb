@@ -18,10 +18,10 @@
 	
 <ul class="one-to-many">
 <g:each in="${hostFacilityInstance?.origins?}" var="o">
-    <li><g:link controller="hostOrigin" action="show" id="${o.id}">${o?.name}</g:link></li>
+    <li><g:link controller="origin" action="show" id="${o.id}">${o?.encodeAsHTML()}</g:link></li>
 </g:each>
 <li class="add">
-<g:link controller="hostOrigin" action="create" params="['hostFacility.id': hostFacilityInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'hostOrigin.label', default: 'HostOrigin')])}</g:link>
+<g:link controller="origin" action="create" params="['hostFacility.id': hostFacilityInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'origin.label', default: 'Origin')])}</g:link>
 </li>
 </ul>
 

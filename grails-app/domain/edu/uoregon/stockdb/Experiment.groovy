@@ -8,6 +8,7 @@ class Experiment {
     static hasMany = [
             strains:Strain
             ,phenotypes:Phenotype
+            ,measuredValues: MeasuredValue
     ]
 
 

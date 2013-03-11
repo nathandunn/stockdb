@@ -11,7 +11,7 @@ class Genome {
     ]
 
     String url
-    Integer size
-    Integer quality
-    Integer note
+    Float size
+    Float quality
+    String note
 }

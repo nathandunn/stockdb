@@ -4,7 +4,7 @@ package edu.uoregon.stockdb
  * The Host animal of the strain
  * TODO: age species (<genotype>) anatomy
  */
-class Origin {
+class HostOrigin {
 
     static constraints = {
         stage nullable: true

@@ -37,7 +37,7 @@
 					<span id="stocks-label" class="property-label"><g:message code="location.stocks.label" default="Stocks" /></span>
 					
 						<g:each in="${locationInstance.stocks}" var="s">
-						<span class="property-value" aria-labelledby="stocks-label"><g:link controller="stock" action="show" id="${s.id}">${s?.name}</g:link></span>
+						<span class="property-value" aria-labelledby="stocks-label"><g:link controller="stock" action="show" id="${s.id}">${s?.physicalLocation}</g:link></span>
 						</g:each>
 					
 				</li>

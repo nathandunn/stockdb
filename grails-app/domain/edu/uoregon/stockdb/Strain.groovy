@@ -3,7 +3,7 @@ package edu.uoregon.stockdb
 class Strain {
 
     static constraints = {
-        values nullable: true
+//        values nullable: true
         formerCloneAlias nullable: true
     }
 
@@ -19,15 +19,16 @@ class Strain {
     // will be one or the other .. . .
     Strain parentStrain
     // more like a capture
-    Origin origin
+    HostOrigin origin
+    Date dateEntered
 
-    HostFacility hostFacility
+//    HostFacility hostFacility
     StrainGenotype strainGenotype
 
     Genome genome
 
-    // JSON
-    String values
+//    // JSON
+//    String values
 
 
     String name
