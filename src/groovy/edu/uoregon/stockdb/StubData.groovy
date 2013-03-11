@@ -43,9 +43,11 @@ class StubData {
 
         int rowIndex = 1
         csvReader.eachLine { tokens ->
+            if (!tokens[0]) return Strain.count
+
             println "row ${rowIndex} - ${tokens[0]}"
-            Strain strain = tokens[0] ? Strain.findOrSaveByIndex(tokens[0]) : null
-            if (!strain) return Strain.count
+
+            Strain strain = new Strain(index: tokens[0])
 
             String physicalLocation = tokens[2]
 //            Stock stock =  ? Stock.findOrSaveByPhysicalLocation(tokens[2]) : null
@@ -62,6 +64,7 @@ class StubData {
 
 //            Genus genus = tokens[1] ? Genus.findOrSaveByNameAndPhylum(tokens[1].trim(), phylum) : null
             strain.genus = genus
+            strain.save()
 
 //            if(!genus.phylum){
 //                genus.phylum = phylum

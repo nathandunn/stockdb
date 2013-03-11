@@ -6,6 +6,7 @@ class Strain {
 //        values nullable: true
         formerCloneAlias nullable: true
         index nullable: false, unique: true
+        genus nullable: false
     }
 
     static hasMany = [
