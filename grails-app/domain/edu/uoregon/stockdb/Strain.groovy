@@ -5,6 +5,7 @@ class Strain {
     static constraints = {
 //        values nullable: true
         formerCloneAlias nullable: true
+        index nullable: false, unique: true
     }
 
     static hasMany = [
@@ -16,10 +17,15 @@ class Strain {
             Experiment
     ]
 
+    String index
+
+    Genus genus
+//    Phylum phylum // implied by the genus
+    HostOrigin hostOrigin
+
     // will be one or the other .. . .
     Strain parentStrain
     // more like a capture
-    HostOrigin origin
     Date dateEntered
 
 //    HostFacility hostFacility
@@ -27,21 +33,10 @@ class Strain {
 
     Genome genome
 
-//    // JSON
-//    String values
-
-
-    String name
     String formerCloneAlias
 
+    Isolate isolate
 
-    // properties
-    String motility
     String notes
 
-    Genus genus
-    Phylum phylum
-
-//    Experiment isolation
-    Isolate isolate
 }

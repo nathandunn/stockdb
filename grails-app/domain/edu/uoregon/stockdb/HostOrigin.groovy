@@ -8,7 +8,6 @@ class HostOrigin {
 
     static constraints = {
         stage nullable: true
-        days nullable: true
         anatomy nullable: true
         hostFacility nullable: true
     }
@@ -19,15 +18,25 @@ class HostOrigin {
     ]
 
     Genus genus
-    Phylum phylum
+//    Phylum phylum
     HostFacility hostFacility
 
     ZebrafishGenotype genotype
 
     String stage // stage . . . typically larval . . zfin correlate
-    Long days //
+//    Long days //
     String anatomy  // zfin anatomy
+    String anatomyUrl  // zfin anatomy
 
 //    String name
     String notes
+
+
+    Integer getDpf(){
+        int index = stage?.indexOf("dfp")
+        if(index>0){
+            return Integer.parseInt(stage.substring(0,index-1))
+        }
+        return -1
+    }
 }

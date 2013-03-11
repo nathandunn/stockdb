@@ -70,6 +70,24 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${strainInstance?.hostOrigin}">
+				<li class="fieldcontain">
+					<span id="hostOrigin-label" class="property-label"><g:message code="strain.hostOrigin.label" default="Host Origin" /></span>
+					
+						<span class="property-value" aria-labelledby="hostOrigin-label"><g:link controller="hostOrigin" action="show" id="${strainInstance?.hostOrigin?.id}">${strainInstance?.hostOrigin?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${strainInstance?.index}">
+				<li class="fieldcontain">
+					<span id="index-label" class="property-label"><g:message code="strain.index.label" default="Index" /></span>
+					
+						<span class="property-value" aria-labelledby="index-label"><g:fieldValue bean="${strainInstance}" field="index"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${strainInstance?.isolate}">
 				<li class="fieldcontain">
 					<span id="isolate-label" class="property-label"><g:message code="strain.isolate.label" default="Isolate" /></span>
@@ -79,38 +97,11 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${strainInstance?.motility}">
-				<li class="fieldcontain">
-					<span id="motility-label" class="property-label"><g:message code="strain.motility.label" default="Motility" /></span>
-					
-						<span class="property-value" aria-labelledby="motility-label"><g:fieldValue bean="${strainInstance}" field="motility"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${strainInstance?.name}">
-				<li class="fieldcontain">
-					<span id="name-label" class="property-label"><g:message code="strain.name.label" default="Name" /></span>
-					
-						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${strainInstance}" field="name"/></span>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${strainInstance?.notes}">
 				<li class="fieldcontain">
 					<span id="notes-label" class="property-label"><g:message code="strain.notes.label" default="Notes" /></span>
 					
 						<span class="property-value" aria-labelledby="notes-label"><g:fieldValue bean="${strainInstance}" field="notes"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${strainInstance?.origin}">
-				<li class="fieldcontain">
-					<span id="origin-label" class="property-label"><g:message code="strain.origin.label" default="Origin" /></span>
-					
-						<span class="property-value" aria-labelledby="origin-label"><g:link controller="hostOrigin" action="show" id="${strainInstance?.origin?.id}">${strainInstance?.origin?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>

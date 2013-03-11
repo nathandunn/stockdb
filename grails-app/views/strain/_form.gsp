@@ -42,6 +42,22 @@
 	<g:select id="genus" name="genus.id" from="${edu.uoregon.stockdb.Genus.list()}" optionKey="id" value="${strainInstance?.genus?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'hostOrigin', 'error')} ">
+	<label for="hostOrigin">
+		<g:message code="strain.hostOrigin.label" default="Host Origin" />
+		
+	</label>
+	<g:select id="hostOrigin" name="hostOrigin.id" from="${edu.uoregon.stockdb.HostOrigin.list()}" optionKey="id" value="${strainInstance?.hostOrigin?.id}" class="many-to-one" noSelection="['null': '']"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'index', 'error')} ">
+	<label for="index">
+		<g:message code="strain.index.label" default="Index" />
+		
+	</label>
+	<g:textField name="index" value="${strainInstance?.index}"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'isolate', 'error')} ">
 	<label for="isolate">
 		<g:message code="strain.isolate.label" default="Isolate" />
@@ -50,36 +66,12 @@
 	<g:select id="isolate" name="isolate.id" from="${edu.uoregon.stockdb.Isolate.list()}" optionKey="id" value="${strainInstance?.isolate?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'motility', 'error')} ">
-	<label for="motility">
-		<g:message code="strain.motility.label" default="Motility" />
-		
-	</label>
-	<g:textField name="motility" value="${strainInstance?.motility}"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'name', 'error')} ">
-	<label for="name">
-		<g:message code="strain.name.label" default="Name" />
-		
-	</label>
-	<g:textField name="name" value="${strainInstance?.name}"/>
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'notes', 'error')} ">
 	<label for="notes">
 		<g:message code="strain.notes.label" default="Notes" />
 		
 	</label>
 	<g:textField name="notes" value="${strainInstance?.notes}"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'origin', 'error')} ">
-	<label for="origin">
-		<g:message code="strain.origin.label" default="Origin" />
-		
-	</label>
-	<g:select id="origin" name="origin.id" from="${edu.uoregon.stockdb.HostOrigin.list()}" optionKey="id" value="${strainInstance?.origin?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'parentStrain', 'error')} required">

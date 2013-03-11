@@ -8,4 +8,8 @@ class Genus {
     Phylum phylum
 
     String name
+
+    String getDisplayName(){
+        return phylum.name + " " + name
+    }
 }

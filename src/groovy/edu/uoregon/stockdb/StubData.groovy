@@ -21,6 +21,9 @@ class StubData {
 
         if (Strain.count > 0) return 0
 
+        Phylum rerio = Phylum.findOrSaveByName("Chordata")
+        Genus danio = Genus.findOrSaveByNameAndPhylum("Danio",rerio)
+
         // stub crap for demo, not for use with a real database
 
         def servletContext = org.codehaus.groovy.grails.web.context.ServletContextHolder.servletContext
@@ -41,7 +44,7 @@ class StubData {
         int rowIndex = 1
         csvReader.eachLine { tokens ->
             println "row ${rowIndex} - ${tokens[0]}"
-            Strain strain = tokens[0] ? Strain.findOrSaveByName(tokens[0]) : null
+            Strain strain = tokens[0] ? Strain.findOrSaveByIndex(tokens[0]) : null
             if(!strain) return Strain.count
             Genus genus = tokens[1] ? Genus.findOrSaveByName(tokens[1]) : null
 
@@ -54,7 +57,7 @@ class StubData {
             // 6 ignore
 
             String originString = tokens[7]
-            HostOrigin origin
+            HostOrigin hostOrigin
             if (originString) {
                 String originSpecies = "Zebrafish" // for now
                 if (originString.indexOf(originSpecies) > 0) {
@@ -63,11 +66,18 @@ class StubData {
                     Integer endParens = originString.indexOf(")")
                     if (startParens > 0 && endParens > 0) {
 //                        println "startParens ${startParens} endParens ${endParens}"
-                        String genotypeString = originString.substring(startParens + 1, endParens)
-                        String anatomy = originString.substring(endParens)
+                        String genotypeString = originString.substring(startParens + 1, endParens+1)
+                        String anatomy = originString.substring(endParens+1)?.trim()
 
                         ZebrafishGenotype zebrafishGenotype = ZebrafishGenotype.findOrSaveByName(genotypeString)
-                        origin = HostOrigin.findOrSaveByGenotypeAndAnatomyAndStage(zebrafishGenotype, anatomy, stage)
+                        hostOrigin = HostOrigin.findOrSaveByGenotypeAndAnatomyAndStage(zebrafishGenotype, anatomy, stage)
+                        hostOrigin.genus = danio
+                        hostOrigin.anatomyUrl = "http://zfin.org/action/ontology/term-detail/ZDB-TERM-100331-1295"
+                    }
+                        // just age and species
+                    else{
+                        hostOrigin = HostOrigin.findOrSaveByGenotypeAndAnatomyAndStage(null, null, stage)
+                        hostOrigin.genus = danio
                     }
                 }
             }
@@ -159,12 +169,11 @@ class StubData {
                 genus.phylum = phylum
                 phylum.addToGenuses(genus)
                 strain.genus = genus
-                strain.phylum = phylum
             }
-            if (origin && hostFacility) {
-                origin.hostFacility = hostFacility
-                hostFacility.addToOrigins(origin)
-                strain.origin = origin
+            if (hostOrigin && hostFacility) {
+                hostOrigin.hostFacility = hostFacility
+                hostFacility.addToOrigins(hostOrigin)
+                strain.hostOrigin = hostOrigin
             }
 
             Stock stock = new Stock()
