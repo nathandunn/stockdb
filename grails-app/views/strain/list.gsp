@@ -120,8 +120,12 @@
                 <td>${strainInstance?.hostOrigin?.genus?.displayName}</td>
 
                 <td>
+                    <g:link action="show" controller="hostOrigin" id="${strainInstance?.hostOrigin?.id}">
+                       ${strainInstance?.hostOrigin?.anatomy}
+                    </g:link>
+
                     <g:if test="${strainInstance?.hostOrigin?.anatomy}">
-                        <a href="${strainInstance?.hostOrigin?.anatomyUrl}">${strainInstance?.hostOrigin?.anatomy}</a>
+                        <a href="${strainInstance?.hostOrigin?.anatomyUrl}">[Reference]</a>
                     </g:if>
                 </td>
 

@@ -32,15 +32,7 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${hostOriginInstance?.days}">
-				<li class="fieldcontain">
-					<span id="days-label" class="property-label"><g:message code="hostOrigin.days.label" default="Days" /></span>
-					
-						<span class="property-value" aria-labelledby="days-label"><g:fieldValue bean="${hostOriginInstance}" field="days"/></span>
-					
-				</li>
-				</g:if>
-			
+
 				<g:if test="${hostOriginInstance?.anatomy}">
 				<li class="fieldcontain">
 					<span id="anatomy-label" class="property-label"><g:message code="hostOrigin.anatomy.label" default="Anatomy" /></span>
@@ -93,15 +85,6 @@
 						<g:each in="${hostOriginInstance.phenotypes}" var="p">
 						<span class="property-value" aria-labelledby="phenotypes-label"><g:link controller="phenotype" action="show" id="${p.id}">${p?.name}</g:link></span>
 						</g:each>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${hostOriginInstance?.phylum}">
-				<li class="fieldcontain">
-					<span id="phylum-label" class="property-label"><g:message code="hostOrigin.phylum.label" default="Phylum" /></span>
-					
-						<span class="property-value" aria-labelledby="phylum-label"><g:link controller="phylum" action="show" id="${hostOriginInstance?.phylum?.id}">${hostOriginInstance?.phylum?.name}</g:link></span>
 					
 				</li>
 				</g:if>

@@ -4,11 +4,6 @@ import au.com.bytecode.opencsv.CSVReader
 import org.apache.log4j.Logger
 
 /**
- * Created with IntelliJ IDEA.
- * User: NathanDunn
- * Date: 11/19/12
- * Time: 2:34 PM
- * To change this template use File | Settings | File Templates.
  */
 //@CompileStatic
 class StubData {
@@ -94,7 +89,7 @@ class StubData {
                     Integer endParens = originString.indexOf(")")
                     if (startParens > 0 && endParens > 0) {
 //                        println "startParens ${startParens} endParens ${endParens}"
-                        String genotypeString = originString.substring(startParens + 1, endParens + 1)
+                        String genotypeString = originString.substring(startParens + 1, endParens )
                         String anatomy = originString.substring(endParens + 1)?.trim()
 
                         ZebrafishGenotype zebrafishGenotype = ZebrafishGenotype.findOrSaveByName(genotypeString)
