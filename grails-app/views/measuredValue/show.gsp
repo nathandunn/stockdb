@@ -45,7 +45,7 @@
 				<li class="fieldcontain">
 					<span id="experiment-label" class="property-label"><g:message code="measuredValue.experiment.label" default="Experiment" /></span>
 					
-						<span class="property-value" aria-labelledby="experiment-label"><g:link controller="experiment" action="show" id="${measuredValueInstance?.experiment?.id}">${measuredValueInstance?.experiment?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="experiment-label"><g:link controller="experiment" action="show" id="${measuredValueInstance?.experiment?.id}">${measuredValueInstance?.experiment?.name}</g:link></span>
 					
 				</li>
 				</g:if>
@@ -54,7 +54,7 @@
 				<li class="fieldcontain">
 					<span id="phenotype-label" class="property-label"><g:message code="measuredValue.phenotype.label" default="Phenotype" /></span>
 					
-						<span class="property-value" aria-labelledby="phenotype-label"><g:link controller="phenotype" action="show" id="${measuredValueInstance?.phenotype?.id}">${measuredValueInstance?.phenotype?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="phenotype-label"><g:link controller="phenotype" action="show" id="${measuredValueInstance?.phenotype?.id}">${measuredValueInstance?.phenotype?.name}</g:link></span>
 					
 				</li>
 				</g:if>

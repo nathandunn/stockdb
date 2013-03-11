@@ -10,7 +10,7 @@
 	
 <ul class="one-to-many">
 <g:each in="${phylumInstance?.genuses?}" var="g">
-    <li><g:link controller="genus" action="show" id="${g.id}">${g?.encodeAsHTML()}</g:link></li>
+    <li><g:link controller="genus" action="show" id="${g.id}">${g?.name}</g:link></li>
 </g:each>
 <li class="add">
 <g:link controller="genus" action="create" params="['phylum.id': phylumInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'genus.label', default: 'Genus')])}</g:link>

@@ -50,12 +50,12 @@
 	<g:select id="hostOrigin" name="hostOrigin.id" from="${edu.uoregon.stockdb.HostOrigin.list()}" optionKey="id" value="${strainInstance?.hostOrigin?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'index', 'error')} ">
-	<label for="index">
-		<g:message code="strain.index.label" default="Index" />
+<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'name', 'error')} ">
+	<label for="name">
+		<g:message code="strain.name.label" default="Name" />
 		
 	</label>
-	<g:textField name="index" value="${strainInstance?.index}"/>
+	<g:textField name="name" value="${strainInstance?.name}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'isolate', 'error')} ">
@@ -98,7 +98,7 @@
 	
 <ul class="one-to-many">
 <g:each in="${strainInstance?.stocks?}" var="s">
-    <li><g:link controller="stock" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></li>
+    <li><g:link controller="stock" action="show" id="${s.id}">${s?.name}</g:link></li>
 </g:each>
 <li class="add">
 <g:link controller="stock" action="create" params="['strain.id': strainInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'stock.label', default: 'Stock')])}</g:link>

@@ -28,7 +28,7 @@
 					<span id="measuredValues-label" class="property-label"><g:message code="experiment.measuredValues.label" default="Measured Values" /></span>
 					
 						<g:each in="${experimentInstance.measuredValues}" var="m">
-						<span class="property-value" aria-labelledby="measuredValues-label"><g:link controller="measuredValue" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="measuredValues-label"><g:link controller="measuredValue" action="show" id="${m.id}">${m?.name}</g:link></span>
 						</g:each>
 					
 				</li>
@@ -48,7 +48,7 @@
 					<span id="phenotypes-label" class="property-label"><g:message code="experiment.phenotypes.label" default="Phenotypes" /></span>
 					
 						<g:each in="${experimentInstance.phenotypes}" var="p">
-						<span class="property-value" aria-labelledby="phenotypes-label"><g:link controller="phenotype" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="phenotypes-label"><g:link controller="phenotype" action="show" id="${p.id}">${p?.name}</g:link></span>
 						</g:each>
 					
 				</li>
@@ -58,7 +58,7 @@
 				<li class="fieldcontain">
 					<span id="researcher-label" class="property-label"><g:message code="experiment.researcher.label" default="Researcher" /></span>
 					
-						<span class="property-value" aria-labelledby="researcher-label"><g:link controller="researcher" action="show" id="${experimentInstance?.researcher?.id}">${experimentInstance?.researcher?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="researcher-label"><g:link controller="researcher" action="show" id="${experimentInstance?.researcher?.id}">${experimentInstance?.researcher?.name}</g:link></span>
 					
 				</li>
 				</g:if>
@@ -68,7 +68,7 @@
 					<span id="strains-label" class="property-label"><g:message code="experiment.strains.label" default="Strains" /></span>
 					
 						<g:each in="${experimentInstance.strains}" var="s">
-						<span class="property-value" aria-labelledby="strains-label"><g:link controller="strain" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="strains-label"><g:link controller="strain" action="show" id="${s.id}">${s?.name}</g:link></span>
 						</g:each>
 					
 				</li>

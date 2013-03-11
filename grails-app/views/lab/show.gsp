@@ -28,7 +28,7 @@
 					<span id="researchers-label" class="property-label"><g:message code="lab.researchers.label" default="Researchers" /></span>
 					
 						<g:each in="${labInstance.researchers}" var="r">
-						<span class="property-value" aria-labelledby="researchers-label"><g:link controller="researcher" action="show" id="${r.id}">${r?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="researchers-label"><g:link controller="researcher" action="show" id="${r.id}">${r?.name}</g:link></span>
 						</g:each>
 					
 				</li>

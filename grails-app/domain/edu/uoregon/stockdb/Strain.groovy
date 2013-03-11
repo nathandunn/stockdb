@@ -5,7 +5,7 @@ class Strain {
     static constraints = {
 //        values nullable: true
         formerCloneAlias nullable: true
-        index nullable: false, unique: true
+        name nullable: false, unique: true
         genus nullable: false
     }
 
@@ -18,7 +18,7 @@ class Strain {
             Experiment
     ]
 
-    String index
+    String name
 
     Genus genus
 //    Phylum phylum // implied by the genus

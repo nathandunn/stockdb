@@ -87,7 +87,7 @@
         <thead>
         <tr>
 
-            <g:sortableColumn property="index" title="${message(code: 'strain.index.label', default: 'Index')}"/>
+            <g:sortableColumn property="index" title="${message(code: 'strain.name.label', default: 'Index')}"/>
 
             %{--<th>Genus / Phylum</th>--}%
             <g:sortableColumn property="genus" title="${message(code: 'strain.genus.label', default: 'Genus')}"/>
@@ -111,7 +111,7 @@
 
                 %{--<td>${fieldValue(bean: strainInstance, field: "index")}</td>--}%
                 <td>
-                    <g:showId instance="${strainInstance}" label="${strainInstance.index}"/>
+                    <g:showId instance="${strainInstance}" label="${strainInstance.name}"/>
                 </td>
 
                 <td><i>${strainInstance.genus.name}</i></td>

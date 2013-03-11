@@ -27,7 +27,7 @@
 				<li class="fieldcontain">
 					<span id="isolatedBy-label" class="property-label"><g:message code="isolate.isolatedBy.label" default="Isolated By" /></span>
 					
-						<span class="property-value" aria-labelledby="isolatedBy-label"><g:link controller="researcher" action="show" id="${isolateInstance?.isolatedBy?.id}">${isolateInstance?.isolatedBy?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="isolatedBy-label"><g:link controller="researcher" action="show" id="${isolateInstance?.isolatedBy?.id}">${isolateInstance?.isolatedBy?.name}</g:link></span>
 					
 				</li>
 				</g:if>
@@ -72,7 +72,7 @@
 				<li class="fieldcontain">
 					<span id="researcher-label" class="property-label"><g:message code="isolate.researcher.label" default="Researcher" /></span>
 					
-						<span class="property-value" aria-labelledby="researcher-label"><g:link controller="researcher" action="show" id="${isolateInstance?.researcher?.id}">${isolateInstance?.researcher?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="researcher-label"><g:link controller="researcher" action="show" id="${isolateInstance?.researcher?.id}">${isolateInstance?.researcher?.name}</g:link></span>
 					
 				</li>
 				</g:if>

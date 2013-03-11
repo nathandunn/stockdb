@@ -10,7 +10,7 @@
 	
 <ul class="one-to-many">
 <g:each in="${experimentInstance?.measuredValues?}" var="m">
-    <li><g:link controller="measuredValue" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link></li>
+    <li><g:link controller="measuredValue" action="show" id="${m.id}">${m?.name}</g:link></li>
 </g:each>
 <li class="add">
 <g:link controller="measuredValue" action="create" params="['experiment.id': experimentInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'measuredValue.label', default: 'MeasuredValue')])}</g:link>

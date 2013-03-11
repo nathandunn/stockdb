@@ -54,7 +54,7 @@
 				<li class="fieldcontain">
 					<span id="lab-label" class="property-label"><g:message code="researcher.lab.label" default="Lab" /></span>
 					
-						<span class="property-value" aria-labelledby="lab-label"><g:link controller="lab" action="show" id="${researcherInstance?.lab?.id}">${researcherInstance?.lab?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="lab-label"><g:link controller="lab" action="show" id="${researcherInstance?.lab?.id}">${researcherInstance?.lab?.name}</g:link></span>
 					
 				</li>
 				</g:if>

@@ -64,7 +64,7 @@
 					<span id="strains-label" class="property-label"><g:message code="genome.strains.label" default="Strains" /></span>
 					
 						<g:each in="${genomeInstance.strains}" var="s">
-						<span class="property-value" aria-labelledby="strains-label"><g:link controller="strain" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="strains-label"><g:link controller="strain" action="show" id="${s.id}">${s?.name}</g:link></span>
 						</g:each>
 					
 				</li>

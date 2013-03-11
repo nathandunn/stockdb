@@ -22,34 +22,36 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list stock">
-			
-				<g:if test="${stockInstance?.strain}">
+
+                <g:if test="${stockInstance?.physicalLocation}">
+                    <li class="fieldcontain">
+                        <span id="physicalLocation-label" class="property-label"><g:message code="stock.physicalLocation.label" default="Physical Location" /></span>
+
+                        <span class="property-value" aria-labelledby="physicalLocation-label"><g:fieldValue bean="${stockInstance}" field="physicalLocation"/></span>
+
+                    </li>
+                </g:if>
+
+                <g:if test="${stockInstance?.generalLocation}">
+                    <li class="fieldcontain">
+                        <span id="generalLocation-label" class="property-label"><g:message code="stock.generalLocation.label" default="General Location" /></span>
+
+                        <span class="property-value" aria-labelledby="generalLocation-label"><g:link controller="location" action="show" id="${stockInstance?.generalLocation?.id}">${stockInstance?.generalLocation?.name}</g:link></span>
+
+                    </li>
+                </g:if>
+
+
+                <g:if test="${stockInstance?.strain}">
 				<li class="fieldcontain">
 					<span id="strain-label" class="property-label"><g:message code="stock.strain.label" default="Strain" /></span>
-					
-						<span class="property-value" aria-labelledby="strain-label"><g:link controller="strain" action="show" id="${stockInstance?.strain?.id}">${stockInstance?.strain?.encodeAsHTML()}</g:link></span>
-					
+
+						<span class="property-value" aria-labelledby="strain-label"><g:link controller="strain" action="show" id="${stockInstance?.strain?.id}">${stockInstance?.strain?.name}</g:link></span>
+
 				</li>
 				</g:if>
-			
-				<g:if test="${stockInstance?.generalLocation}">
-				<li class="fieldcontain">
-					<span id="generalLocation-label" class="property-label"><g:message code="stock.generalLocation.label" default="General Location" /></span>
-					
-						<span class="property-value" aria-labelledby="generalLocation-label"><g:link controller="location" action="show" id="${stockInstance?.generalLocation?.id}">${stockInstance?.generalLocation?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${stockInstance?.physicalLocation}">
-				<li class="fieldcontain">
-					<span id="physicalLocation-label" class="property-label"><g:message code="stock.physicalLocation.label" default="Physical Location" /></span>
-					
-						<span class="property-value" aria-labelledby="physicalLocation-label"><g:fieldValue bean="${stockInstance}" field="physicalLocation"/></span>
-					
-				</li>
-				</g:if>
-			
+
+
 			</ol>
 			<g:form>
 				<fieldset class="buttons">

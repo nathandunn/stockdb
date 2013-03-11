@@ -47,7 +47,7 @@ class StubData {
 
             println "row ${rowIndex} - ${tokens[0]}"
 
-            Strain strain = new Strain(index: tokens[0])
+            Strain strain = new Strain(name: tokens[0])
 
             String physicalLocation = tokens[2]
 //            Stock stock =  ? Stock.findOrSaveByPhysicalLocation(tokens[2]) : null

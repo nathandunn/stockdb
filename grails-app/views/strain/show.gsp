@@ -27,13 +27,13 @@
     </g:if>
     <ol class="property-list strain">
 
-        <g:if test="${strainInstance?.index}">
+        <g:if test="${strainInstance?.name}">
             <li class="fieldcontain">
-                <span id="index-label" class="property-label"><g:message code="strain.index.label"
+                <span id="index-label" class="property-label"><g:message code="strain.name.label"
                                                                          default="Index"/></span>
 
                 <span class="property-value" aria-labelledby="index-label"><g:fieldValue bean="${strainInstance}"
-                                                                                         field="index"/></span>
+                                                                                         field="name"/></span>
 
             </li>
         </g:if>
@@ -73,7 +73,7 @@
                 <g:each in="${strainInstance.experiments}" var="e">
                     <span class="property-value" aria-labelledby="experiments-label"><g:link controller="experiment"
                                                                                              action="show"
-                                                                                             id="${e.id}">${e?.encodeAsHTML()}</g:link></span>
+                                                                                             id="${e.id}">${e?.name}</g:link></span>
                 </g:each>
 
             </li>
@@ -133,7 +133,7 @@
                         ${strainInstance.isolate.oxygenCondition}
                         ${strainInstance.isolate.media}
                         ${strainInstance.isolate.temperature} C
-                    %{--<g:link controller="isolate" action="show" id="${strainInstance?.isolate?.id}">${strainInstance?.isolate?.encodeAsHTML()}</g:link>--}%
+                    %{--<g:link controller="isolate" action="show" id="${strainInstance?.isolate?.id}">${strainInstance?.isolate?.name}</g:link>--}%
                     </g:link>
                 </span>
 
@@ -169,7 +169,7 @@
 
                 <span class="property-value" aria-labelledby="parentStrain-label"><g:link controller="strain"
                                                                                           action="show"
-                                                                                          id="${strainInstance?.parentStrain?.id}">${strainInstance?.parentStrain?.encodeAsHTML()}</g:link></span>
+                                                                                          id="${strainInstance?.parentStrain?.id}">${strainInstance?.parentStrain?.name}</g:link></span>
 
             </li>
         </g:if>
@@ -196,7 +196,7 @@
 
                 <span class="property-value" aria-labelledby="strainGenotype-label"><g:link controller="strainGenotype"
                                                                                             action="show"
-                                                                                            id="${strainInstance?.strainGenotype?.id}">${strainInstance?.strainGenotype?.encodeAsHTML()}</g:link></span>
+                                                                                            id="${strainInstance?.strainGenotype?.id}">${strainInstance?.strainGenotype?.name}</g:link></span>
 
             </li>
         </g:if>

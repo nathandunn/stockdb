@@ -18,7 +18,7 @@
 	
 <ul class="one-to-many">
 <g:each in="${locationInstance?.stocks?}" var="s">
-    <li><g:link controller="stock" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></li>
+    <li><g:link controller="stock" action="show" id="${s.id}">${s?.name}</g:link></li>
 </g:each>
 <li class="add">
 <g:link controller="stock" action="create" params="['location.id': locationInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'stock.label', default: 'Stock')])}</g:link>
