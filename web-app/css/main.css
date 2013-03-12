@@ -51,6 +51,14 @@ body {
 	background-color: #abbf78;
 }
 
+#mastLogo {
+    /*background-color:#e0ffff;*/
+    background-image: url("../images/blue.gif");
+    /*background: #5DBCD2;*/
+    /*background: #55dddd;*/
+    /*background: #b0eecc;*/
+}
+
 /* replace with .no-boxshadow body if you have modernizr available */
 .ie6 body,
 .ie7 body,
