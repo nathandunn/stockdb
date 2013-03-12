@@ -65,7 +65,7 @@
             </tr>
             <tr>
                 <td>
-                    <strong>Host Anatomy</strong>
+                    <strong>Host Stage</strong>
                 </td>
                 <td>
                     <g:select name="host.stage" from="${edu.uoregon.stockdb.HostOrigin.executeQuery('select ho.stage from HostOrigin ho where ho.stage != null group by ho.stage')}"
