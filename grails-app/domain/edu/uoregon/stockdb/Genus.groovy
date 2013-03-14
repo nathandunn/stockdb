@@ -11,6 +11,11 @@ class Genus {
             species:Species
     ]
 
+    static hasOne = [
+            phylum: Phylum
+    ]
+
+
     Phylum phylum
 
     String name
