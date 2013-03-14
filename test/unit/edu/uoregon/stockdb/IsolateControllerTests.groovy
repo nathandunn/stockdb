@@ -1,12 +1,9 @@
 package edu.uoregon.stockdb
 
-
-
-import org.junit.*
 import grails.test.mixin.*
 
 @TestFor(IsolateController)
-@Mock(Isolate)
+@Mock(IsolateCondition)
 class IsolateControllerTests {
 
     def populateValidParams(params) {
@@ -47,7 +44,7 @@ class IsolateControllerTests {
 
         assert response.redirectedUrl == '/isolate/show/1'
         assert controller.flash.message != null
-        assert Isolate.count() == 1
+        assert IsolateCondition.count() == 1
     }
 
     void testShow() {
@@ -57,7 +54,7 @@ class IsolateControllerTests {
         assert response.redirectedUrl == '/isolate/list'
 
         populateValidParams(params)
-        def isolate = new Isolate(params)
+        def isolate = new IsolateCondition(params)
 
         assert isolate.save() != null
 
@@ -75,7 +72,7 @@ class IsolateControllerTests {
         assert response.redirectedUrl == '/isolate/list'
 
         populateValidParams(params)
-        def isolate = new Isolate(params)
+        def isolate = new IsolateCondition(params)
 
         assert isolate.save() != null
 
@@ -95,7 +92,7 @@ class IsolateControllerTests {
         response.reset()
 
         populateValidParams(params)
-        def isolate = new Isolate(params)
+        def isolate = new IsolateCondition(params)
 
         assert isolate.save() != null
 
@@ -139,17 +136,17 @@ class IsolateControllerTests {
         response.reset()
 
         populateValidParams(params)
-        def isolate = new Isolate(params)
+        def isolate = new IsolateCondition(params)
 
         assert isolate.save() != null
-        assert Isolate.count() == 1
+        assert IsolateCondition.count() == 1
 
         params.id = isolate.id
 
         controller.delete()
 
-        assert Isolate.count() == 0
-        assert Isolate.get(isolate.id) == null
+        assert IsolateCondition.count() == 0
+        assert IsolateCondition.get(isolate.id) == null
         assert response.redirectedUrl == '/isolate/list'
     }
 }

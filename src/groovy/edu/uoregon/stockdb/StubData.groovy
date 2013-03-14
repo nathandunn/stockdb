@@ -10,8 +10,6 @@ class StubData {
 
     private static final log = Logger.getLogger(this)
 
-    MeasuredValueService measuredValueService
-
     def stubData() {
 
         if (Strain.count > 0) return 0
@@ -113,7 +111,7 @@ class StubData {
             String[] isolateData = tokens[10]?.split(";")
 
 
-            Isolate isolate
+            IsolateCondition isolate
             if (isolateData.length > 2) {
                 String oxygenCondition = isolateData[0]?.trim()
                 Float temperature
@@ -128,7 +126,7 @@ class StubData {
                 if (isolateData.length > 3) {
                     notes = isolateData[3..isolateData.length - 1]?.join("")
                 }
-                isolate = Isolate.findOrSaveByOxygenConditionAndTemperatureAndMediaAndNotes(oxygenCondition, temperature, media, notes)
+                isolate = IsolateCondition.findOrSaveByOxygenConditionAndTemperatureAndMediaAndNotes(oxygenCondition, temperature, media, notes)
                 strain.isolate = isolate
             }
 
@@ -166,25 +164,7 @@ class StubData {
             }
             experiment.save()
 
-            if (!measuredValueService) {
-                measuredValueService = new MeasuredValueService()
-            }
-
-            // a measured value
-            measuredValueService.addMeasuredValueToExperimentIfNotNull("Motility", tokens[19], experiment)
-            // 20 measured value // nothing here . . . would be speed
-            // 21 measured value
-            measuredValueService.addMeasuredValueToExperimentIfNotNull("Hemolytic Activity", tokens[21], experiment)
-            // 22 measured value
-            measuredValueService.addMeasuredValueToExperimentIfNotNull("Antibiotic Resistance", tokens[22], experiment)
-            // 23 measured value
-            measuredValueService.addMeasuredValueToExperimentIfNotNull("Doubling Time", tokens[23], experiment, MeasuredValueTypeEnum.FLOAT_TYPE)
-            // 24 measured value
-
             strain.notes = tokens[24]
-
-            // 25 measured value
-            measuredValueService.addMeasuredValueToExperimentIfNotNull("Biofilm (adherence to glass)", tokens[25], experiment)
 
             // we only want to record these if a valid Strain
 

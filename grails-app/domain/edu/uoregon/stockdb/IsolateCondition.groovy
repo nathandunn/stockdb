@@ -1,6 +1,6 @@
 package edu.uoregon.stockdb
 
-class Isolate {
+class IsolateCondition {
 
     static constraints = {
     }

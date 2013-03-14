@@ -28,8 +28,7 @@
                 <td>
                     <g:select name="genus" from="${edu.uoregon.stockdb.Genus.listOrderByName()}"
                               optionValue="name"
-                        noSelection="[null:'- None -']"
-                    />
+                              noSelection="[null: '- None -']"/>
                 </td>
             </tr>
             <tr>
@@ -39,8 +38,7 @@
                 <td>
                     <g:select name="phylum" from="${edu.uoregon.stockdb.Phylum.listOrderByName()}"
                               optionValue="name"
-                              noSelection="[null:'- None -']"
-                    />
+                              noSelection="[null: '- None -']"/>
                 </td>
             </tr>
             <tr>
@@ -49,7 +47,7 @@
                 </td>
                 <td>
                     <g:select name="host.genus" from="${edu.uoregon.stockdb.Genus.listOrderByName()}"
-                              noSelection="[null:'- None -']"
+                              noSelection="[null: '- None -']"
                               optionValue="displayName"/>
                 </td>
             </tr>
@@ -58,9 +56,9 @@
                     <strong>Host Anatomy???</strong>
                 </td>
                 <td>
-                    <g:select name="host.anatomy" from="${edu.uoregon.stockdb.HostOrigin.executeQuery('select ho.anatomy from HostOrigin ho where ho.anatomy != null group by ho.anatomy')}"
-                              noSelection="[null:'- None -']"
-                    />
+                    <g:select name="host.anatomy"
+                              from="${edu.uoregon.stockdb.HostOrigin.executeQuery('select ho.anatomy from HostOrigin ho where ho.anatomy != null group by ho.anatomy')}"
+                              noSelection="[null: '- None -']"/>
                 </td>
             </tr>
             <tr>
@@ -68,9 +66,9 @@
                     <strong>Host Stage</strong>
                 </td>
                 <td>
-                    <g:select name="host.stage" from="${edu.uoregon.stockdb.HostOrigin.executeQuery('select ho.stage from HostOrigin ho where ho.stage != null group by ho.stage')}"
-                              noSelection="[null:'- None -']"
-                    />
+                    <g:select name="host.stage"
+                              from="${edu.uoregon.stockdb.HostOrigin.executeQuery('select ho.stage from HostOrigin ho where ho.stage != null group by ho.stage')}"
+                              noSelection="[null: '- None -']"/>
                 </td>
             </tr>
         </table>
@@ -91,7 +89,8 @@
 
             %{--<th>Genus / Phylum</th>--}%
             <g:sortableColumn property="genus" title="${message(code: 'strain.genus.label', default: 'Genus')}"/>
-            <g:sortableColumn property="genus.phylum" title="${message(code: 'strain.phylum.label', default: 'Phylum')}"/>
+            <g:sortableColumn property="genus.phylum"
+                              title="${message(code: 'strain.phylum.label', default: 'Phylum')}"/>
 
             <th>Host</th>
             %{--<th>Host Anatomy</th>--}%
@@ -100,8 +99,7 @@
 
             <g:sortableColumn property="hostOrigin.stage"
                               title="${message(code: 'hostOrigin.stage.label', default: 'Host Stage')}"/>
-            <g:sortableColumn property="formerCloneAlias"
-                              title="${message(code: 'strain.formerCloneAlias.label', default: 'Former Clone Alias')}"/>
+            <th>Genome</th>
 
         </tr>
         </thead>
@@ -121,7 +119,7 @@
 
                 <td>
                     <g:link action="show" controller="hostOrigin" id="${strainInstance?.hostOrigin?.id}">
-                       ${strainInstance?.hostOrigin?.anatomy}
+                        ${strainInstance?.hostOrigin?.anatomy}
                     </g:link>
 
                     <g:if test="${strainInstance?.hostOrigin?.anatomy}">
@@ -135,8 +133,12 @@
                     </g:if>
                 </td>
 
-
-                <td>${strainInstance.formerCloneAlias}</td>
+                <td>
+                    <g:if test="${strainInstance.genome}">
+                        <g:link action="show" id="${strainInstance.genome.id}" controller="genome">Detail</g:link>
+                        <a href="${strainInstance.genome.url}">Sequence</a>
+                    </g:if>
+                </td>
 
             </tr>
         </g:each>

@@ -12,15 +12,15 @@ class IsolateController {
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        [isolateInstanceList: Isolate.list(params), isolateInstanceTotal: Isolate.count()]
+        [isolateInstanceList: IsolateCondition.list(params), isolateInstanceTotal: IsolateCondition.count()]
     }
 
     def create() {
-        [isolateInstance: new Isolate(params)]
+        [isolateInstance: new IsolateCondition(params)]
     }
 
     def save() {
-        def isolateInstance = new Isolate(params)
+        def isolateInstance = new IsolateCondition(params)
         if (!isolateInstance.save(flush: true)) {
             render(view: "create", model: [isolateInstance: isolateInstance])
             return
@@ -31,7 +31,7 @@ class IsolateController {
     }
 
     def show(Long id) {
-        def isolateInstance = Isolate.get(id)
+        def isolateInstance = IsolateCondition.get(id)
         if (!isolateInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'isolate.label', default: 'Isolate'), id])
             redirect(action: "list")
@@ -42,7 +42,7 @@ class IsolateController {
     }
 
     def edit(Long id) {
-        def isolateInstance = Isolate.get(id)
+        def isolateInstance = IsolateCondition.get(id)
         if (!isolateInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'isolate.label', default: 'Isolate'), id])
             redirect(action: "list")
@@ -53,7 +53,7 @@ class IsolateController {
     }
 
     def update(Long id, Long version) {
-        def isolateInstance = Isolate.get(id)
+        def isolateInstance = IsolateCondition.get(id)
         if (!isolateInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'isolate.label', default: 'Isolate'), id])
             redirect(action: "list")
@@ -82,7 +82,7 @@ class IsolateController {
     }
 
     def delete(Long id) {
-        def isolateInstance = Isolate.get(id)
+        def isolateInstance = IsolateCondition.get(id)
         if (!isolateInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'isolate.label', default: 'Isolate'), id])
             redirect(action: "list")

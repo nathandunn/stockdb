@@ -1,4 +1,4 @@
-<%@ page import="edu.uoregon.stockdb.Strain" %>
+<%@ page import="edu.uoregon.stockdb.IsolateCondition; edu.uoregon.stockdb.IsolateConditions; edu.uoregon.stockdb.Strain" %>
 
 
 
@@ -63,7 +63,7 @@
 		<g:message code="strain.isolate.label" default="Isolate" />
 		
 	</label>
-	<g:select id="isolate" name="isolate.id" from="${edu.uoregon.stockdb.Isolate.list()}" optionKey="id" value="${strainInstance?.isolate?.id}" class="many-to-one" noSelection="['null': '']"/>
+	<g:select id="isolate" name="isolate.id" from="${IsolateCondition.list()}" optionKey="id" value="${strainInstance?.isolate?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'notes', 'error')} ">

@@ -1,5 +1,5 @@
 
-<%@ page import="edu.uoregon.stockdb.Isolate" %>
+<%@ page import="edu.uoregon.stockdb.IsolateCondition" %>
 <!DOCTYPE html>
 <html>
 	<head>

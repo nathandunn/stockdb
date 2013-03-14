@@ -36,7 +36,7 @@ class Strain {
 
     String formerCloneAlias
 
-    Isolate isolate
+    IsolateCondition isolate
 
     String notes
 
