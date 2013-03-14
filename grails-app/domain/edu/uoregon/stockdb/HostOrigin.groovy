@@ -6,6 +6,8 @@ package edu.uoregon.stockdb
  */
 class HostOrigin {
 
+    public static Integer UNKNOWN_STAGE = -3
+
     static constraints = {
         stage nullable: true
         anatomy nullable: true
@@ -17,26 +19,41 @@ class HostOrigin {
             strains: Strain
     ]
 
-    Genus genus
+    Species species
 //    Phylum phylum
     HostFacility hostFacility
 
     ZebrafishGenotype genotype
 
     String stage // stage . . . typically larval . . zfin correlate
-//    Long days //
+    Integer daysPastFertilization//
     String anatomy  // zfin anatomy
     String anatomyUrl  // zfin anatomy
 
 //    String name
     String notes
 
-
-    Integer getDpf(){
-        int index = stage?.indexOf("dfp")
-        if(index>0){
-            return Integer.parseInt(stage.substring(0,index-1))
+    void setStage(String stage) {
+        if (stage.length() == 0) {
+            this.stage = null
+            return
         }
-        return -1
+
+        this.stage = stage
+
+        int index = stage?.indexOf("dpf")
+        if (index > 0) {
+            String stageSubString = stage.substring(0, index )
+            daysPastFertilization = Integer.parseInt(stageSubString)
+        } else if (stage == "Larval") {
+            daysPastFertilization = 0
+        } else if (stage.length() == 0) {
+            daysPastFertilization = UNKNOWN_STAGE
+        } else if (stage == "Adult") {
+            daysPastFertilization = 90
+        } else {
+            daysPastFertilization = 360
+        }
     }
+
 }

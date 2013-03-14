@@ -14,8 +14,9 @@ class StubData {
 
         if (Strain.count > 0) return 0
 
-        Phylum rerio = Phylum.findOrSaveByName("Chordata")
-        Genus danio = Genus.findOrSaveByNameAndPhylum("Danio", rerio)
+        Phylum chordata = Phylum.findOrSaveByName("Chordata")
+        Genus danio = Genus.findOrSaveByNameAndPhylum("Danio", chordata)
+        Species rerio = Species.findOrSaveByNameAndCommonNameAndGenus("Rerio","Zebrafish",danio)
 
         // stub crap for demo, not for use with a real database
 
@@ -80,9 +81,8 @@ class StubData {
             String originString = tokens[7]
             HostOrigin hostOrigin
             if (originString) {
-                String originSpecies = "Zebrafish" // for now
-                if (originString.indexOf(originSpecies) > 0) {
-                    String stage = originString.substring(0, originString?.indexOf(originSpecies))?.trim()
+                if (originString.indexOf(rerio.commonName) > 0) {
+                    String stage = originString.substring(0, originString?.indexOf(rerio.commonName))?.trim()
                     Integer startParens = originString.indexOf("(")
                     Integer endParens = originString.indexOf(")")
                     if (startParens > 0 && endParens > 0) {
@@ -92,13 +92,13 @@ class StubData {
 
                         ZebrafishGenotype zebrafishGenotype = ZebrafishGenotype.findOrSaveByName(genotypeString)
                         hostOrigin = HostOrigin.findOrSaveByGenotypeAndAnatomyAndStage(zebrafishGenotype, anatomy, stage)
-                        hostOrigin.genus = danio
+                        hostOrigin.species= rerio
                         hostOrigin.anatomyUrl = "http://zfin.org/action/ontology/term-detail/ZDB-TERM-100331-1295"
                     }
                     // just age and species
                     else {
                         hostOrigin = HostOrigin.findOrSaveByGenotypeAndAnatomyAndStage(null, null, stage)
-                        hostOrigin.genus = danio
+                        hostOrigin.species = rerio
                     }
                 }
             }

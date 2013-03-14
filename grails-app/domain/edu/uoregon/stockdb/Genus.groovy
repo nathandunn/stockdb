@@ -7,9 +7,14 @@ class Genus {
         phylum nullable: false
     }
 
+    static hasMany = [
+            species:Species
+    ]
+
     Phylum phylum
 
     String name
+    Boolean host
 
     String getDisplayName(){
         return phylum.name + " " + name

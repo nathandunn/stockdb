@@ -43,31 +43,22 @@
             </tr>
             <tr>
                 <td>
-                    <strong>Host Genus / Phylum ??????</strong>
+                    <strong>Host Species</strong>
                 </td>
                 <td>
-                    <g:select name="host.genus" from="${edu.uoregon.stockdb.Genus.listOrderByName()}"
+                    <g:select name="host.species" from="${edu.uoregon.stockdb.Species.all}"
                               noSelection="[null: '- None -']"
-                              optionValue="displayName"/>
+                              optionValue="name"
+                    />
                 </td>
             </tr>
             <tr>
                 <td>
-                    <strong>Host Anatomy???</strong>
+                    <strong>Host Anatomy</strong>
                 </td>
                 <td>
                     <g:select name="host.anatomy"
                               from="${edu.uoregon.stockdb.HostOrigin.executeQuery('select ho.anatomy from HostOrigin ho where ho.anatomy != null group by ho.anatomy')}"
-                              noSelection="[null: '- None -']"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <strong>Host Stage</strong>
-                </td>
-                <td>
-                    <g:select name="host.stage"
-                              from="${edu.uoregon.stockdb.HostOrigin.executeQuery('select ho.stage from HostOrigin ho where ho.stage != null group by ho.stage')}"
                               noSelection="[null: '- None -']"/>
                 </td>
             </tr>
@@ -85,20 +76,24 @@
         <thead>
         <tr>
 
-            <g:sortableColumn property="index" title="${message(code: 'strain.name.label', default: 'Index')}"/>
+            <g:sortableColumn property="name" title="${message(code: 'strain.name.label', default: 'Index')}"/>
 
             %{--<th>Genus / Phylum</th>--}%
             <g:sortableColumn property="genus" title="${message(code: 'strain.genus.label', default: 'Genus')}"/>
             <g:sortableColumn property="genus.phylum"
                               title="${message(code: 'strain.phylum.label', default: 'Phylum')}"/>
 
-            <th>Host</th>
+            %{--<th>Host</th>--}%
+            <g:sortableColumn property="hostOrigin.species.commonName"
+                              title="${message(code: 'hostOrigin.anatomy.label', default: 'Host')}"/>
             %{--<th>Host Anatomy</th>--}%
             <g:sortableColumn property="hostOrigin.anatomy"
                               title="${message(code: 'hostOrigin.anatomy.label', default: 'Host Anatomy')}"/>
 
-            <g:sortableColumn property="hostOrigin.stage"
-                              title="${message(code: 'hostOrigin.stage.label', default: 'Host Stage')}"/>
+            %{--<g:sortableColumn property="hostOrigin.stage"--}%
+                              %{--title="${message(code: 'hostOrigin.stage.label', default: 'Host Stage')}"/>--}%
+            <g:sortableColumn property="hostOrigin.daysPastFertilization"
+                              title="${message(code: 'hostOrigin.stage.label', default: 'Host Age (DPF)')}"/>
             <th>Genome</th>
 
         </tr>
@@ -115,7 +110,11 @@
                 <td><i>${strainInstance.genus.name}</i></td>
                 <td><i>${strainInstance.genus.phylum.name}</i></td>
 
-                <td>${strainInstance?.hostOrigin?.genus?.displayName}</td>
+                <td>
+                    <g:link action="show" id="${strainInstance?.hostOrigin?.id}" controller="hostOrigin">
+                        ${strainInstance?.hostOrigin?.species?.commonName}
+                    </g:link>
+                </td>
 
                 <td>
                     <g:link action="show" controller="hostOrigin" id="${strainInstance?.hostOrigin?.id}">
@@ -128,9 +127,15 @@
                 </td>
 
                 <td>
-                    <g:if test="${strainInstance?.hostOrigin?.stage}">
-                        <a href='http://zfin.org/zf_info/zfbook/stages/index.html'>${strainInstance.hostOrigin.stage}</a>
+                    <g:if test="${strainInstance.hostOrigin?.stage=='Adult'}">
+                        Adult
                     </g:if>
+                    <g:elseif test="${strainInstance.hostOrigin?.daysPastFertilization>=0 && strainInstance.hostOrigin?.daysPastFertilization < 360}">
+                        ${strainInstance.hostOrigin?.daysPastFertilization}
+                    </g:elseif>
+                    <g:else>
+                        One Year
+                    </g:else>
                 </td>
 
                 <td>
