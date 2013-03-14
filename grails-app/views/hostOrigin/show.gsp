@@ -60,11 +60,11 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${hostOriginInstance?.genus}">
+				<g:if test="${hostOriginInstance?.species}">
 				<li class="fieldcontain">
-					<span id="genus-label" class="property-label"><g:message code="hostOrigin.genus.label" default="Genus" /></span>
+					<span id="species-label" class="property-label"><g:message code="hostOrigin.species.label" default="Species" /></span>
 					
-						<span class="property-value" aria-labelledby="genus-label"><g:link controller="genus" action="show" id="${hostOriginInstance?.genus?.id}">${hostOriginInstance?.genus?.name}</g:link></span>
+						<span class="property-value" aria-labelledby="species-label"><g:link controller="species" action="show" id="${hostOriginInstance?.species?.id}">${hostOriginInstance?.species?.name}</g:link></span>
 					
 				</li>
 				</g:if>

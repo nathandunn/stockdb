@@ -106,16 +106,20 @@
 
                 <span class="property-value" aria-labelledby="hostOrigin-label">
                     <g:link controller="hostOrigin" action="show" id="${strainInstance?.hostOrigin?.id}">
-                        <g:if test="${strainInstance?.hostOrigin?.anatomy}">
-                            <a href="${strainInstance?.hostOrigin?.anatomyUrl}">${strainInstance?.hostOrigin?.anatomy}</a>
+                        ${strainInstance.hostOrigin.species.commonName}
+                        (${strainInstance.hostOrigin.genotype.name})
+                        <g:if test="${strainInstance.hostOrigin.daysPastFertilization>=0}">
+                            ${strainInstance.hostOrigin.daysPastFertilization} DPF
                         </g:if>
-                        ${strainInstance.hostOrigin.genus.displayName}
-                        ${strainInstance.hostOrigin.stage}
-                        <g:link action="show" controller="hostFacility"
-                                id="${strainInstance.hostOrigin.hostFacility.id}">
-                            ${strainInstance.hostOrigin.hostFacility.name}
-                        </g:link>
+                        <g:else>
+                            ${strainInstance.hostOrigin.stage}
+                        </g:else>
                     </g:link>
+
+                    &nbsp;
+                    <g:if test="${strainInstance?.hostOrigin?.anatomy}">
+                        <a href="${strainInstance?.hostOrigin?.anatomyUrl}">${strainInstance?.hostOrigin?.anatomy}</a>
+                    </g:if>
                 </span>
 
             </li>
@@ -124,7 +128,7 @@
         <g:if test="${strainInstance?.isolate}">
             <li class="fieldcontain">
                 <span id="isolate-label" class="property-label"><g:message code="strain.isolate.label"
-                                                                           default="Isolate"/></span>
+                                                                           default="Isolate Conditions"/></span>
 
                 <span class="property-value" aria-labelledby="isolate-label">
                     <g:link controller="isolate" action="show" id="${strainInstance?.isolate?.id}">
