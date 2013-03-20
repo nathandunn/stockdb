@@ -57,7 +57,10 @@
 				<li class="fieldcontain">
 					<span id="size-label" class="property-label"><g:message code="genome.size.label" default="Size" /></span>
 					
-						<span class="property-value" aria-labelledby="size-label"><g:fieldValue bean="${genomeInstance}" field="size"/></span>
+						<span class="property-value" aria-labelledby="size-label">
+                            %{--<g:fieldValue bean="${genomeInstance}" field="size"/>--}%
+                            <g:formatNumber number="${genomeInstance.size}"/>
+                        </span>
 					
 				</li>
 				</g:if>

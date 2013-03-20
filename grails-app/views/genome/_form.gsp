@@ -7,7 +7,7 @@
 		<g:message code="genome.url.label" default="Url" />
 		
 	</label>
-	<g:field type="url" name="url" value="${genomeInstance?.url}"/>
+	<g:field type="url" name="url" value="${genomeInstance?.url}" size="80"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: genomeInstance, field: 'note', 'error')} ">
@@ -15,7 +15,7 @@
 		<g:message code="genome.note.label" default="Note" />
 		
 	</label>
-	<g:textField name="note" value="${genomeInstance?.note}"/>
+	<g:textField name="note" value="${genomeInstance?.note}" size="80"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: genomeInstance, field: 'quality', 'error')} ">
@@ -23,7 +23,7 @@
 		<g:message code="genome.quality.label" default="Quality" />
 		
 	</label>
-	<g:field name="quality" value="${fieldValue(bean: genomeInstance, field: 'quality')}"/>
+	<g:field type="number" name="quality" value="${fieldValue(bean: genomeInstance, field: 'quality')}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: genomeInstance, field: 'size', 'error')} ">
