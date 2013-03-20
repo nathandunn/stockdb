@@ -23,4 +23,8 @@ class Genome {
             return id
         }
     }
+
+    boolean hasValues() {
+        return (url || size || quality ||  note)
+    }
 }

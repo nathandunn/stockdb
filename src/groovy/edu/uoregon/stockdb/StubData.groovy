@@ -137,9 +137,11 @@ class StubData {
             genome.size = tokens[12] ? Float.parseFloat(tokens[12]) : null
             genome.quality = tokens[13] ? Float.parseFloat(tokens[13]) : null
             genome.note = tokens[14] ?: null
-            genome.save(flush: true)
+            if(genome.hasValues()){
+                genome.save(flush: true)
+                strain.genome = genome
+            }
 
-            strain.genome = genome
 
             strain.dateEntered = tokens[15] ? Date.parse("d/M/yyyy", tokens[15]) : null
 

@@ -23,22 +23,25 @@
 			<table>
 				<thead>
 					<tr>
-					
-						<g:sortableColumn property="url" title="${message(code: 'genome.url.label', default: 'Url')}" />
-					
+                        <g:sortableColumn property="id" title="${message(code: 'genome.id.label', default: 'ID')}" />
+
+						%{--<g:sortableColumn property="url" title="${message(code: 'genome.url.label', default: 'Sequence')}" />--}%
+                        <th>Sequence</th>
+
 						<g:sortableColumn property="note" title="${message(code: 'genome.note.label', default: 'Note')}" />
-					
+
 						<g:sortableColumn property="quality" title="${message(code: 'genome.quality.label', default: 'Quality')}" />
-					
+
 						<g:sortableColumn property="size" title="${message(code: 'genome.size.label', default: 'Size')}" />
-					
+
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${genomeInstanceList}" status="i" var="genomeInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
-						<td><g:link action="show" id="${genomeInstance.id}">${fieldValue(bean: genomeInstance, field: "url")}</g:link></td>
+
+                        <td><g:link action="show" id="${genomeInstance.id}">${fieldValue(bean: genomeInstance, field: "id")}</g:link></td>
+						<td><g:link url="${genomeInstance.url}">Sequence</g:link></td>
 					
 						<td>${fieldValue(bean: genomeInstance, field: "note")}</td>
 					

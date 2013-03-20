@@ -26,7 +26,7 @@ class GenomeController {
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'genome.label', default: 'Genome'), genomeInstance.id])
+        flash.message = message(code: 'default.created.message', args: [message(code: 'genome.label', default: 'Genome'), genomeInstance.display])
         redirect(action: "show", id: genomeInstance.id)
     }
 
@@ -63,8 +63,8 @@ class GenomeController {
         if (version != null) {
             if (genomeInstance.version > version) {
                 genomeInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'genome.label', default: 'Genome')] as Object[],
-                          "Another user has updated this Genome while you were editing")
+                        [message(code: 'genome.label', default: 'Genome')] as Object[],
+                        "Another user has updated this Genome while you were editing")
                 render(view: "edit", model: [genomeInstance: genomeInstance])
                 return
             }
@@ -77,7 +77,7 @@ class GenomeController {
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'genome.label', default: 'Genome'), genomeInstance.id])
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'genome.label', default: 'Genome'), genomeInstance.display])
         redirect(action: "show", id: genomeInstance.id)
     }
 
@@ -90,8 +90,15 @@ class GenomeController {
         }
 
         try {
+            genomeInstance.strains.each { it ->
+                it.genome = null
+                it.save(flush: true)
+            }
+            genomeInstance.strains = null
+            genomeInstance.save(flush: true)
+
             genomeInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'genome.label', default: 'Genome'), id])
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'genome.label', default: 'Genome'), genomeInstance.display])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
