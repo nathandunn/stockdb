@@ -26,6 +26,16 @@ class GenomeController {
             return
         }
 
+        if (params.addstrainid && params.addstrainid != 'null') {
+            Strain strain = Strain.get(params.addstrainid)
+            genomeInstance.addToStrains(strain)
+            strain.genome = genomeInstance
+            if (!strain.save(flush: true)) {
+                render(view: "edit", model: [genomeInstance: genomeInstance])
+                return
+            }
+        }
+
         flash.message = message(code: 'default.created.message', args: [message(code: 'genome.label', default: 'Genome'), genomeInstance.display])
         redirect(action: "show", id: genomeInstance.id)
     }
@@ -70,6 +80,17 @@ class GenomeController {
             }
         }
 
+
+        if (params.addstrainid && params.addstrainid != 'null') {
+            Strain strain = Strain.get(params.addstrainid)
+            genomeInstance.addToStrains(strain)
+            strain.genome = genomeInstance
+            if (!strain.save(flush: true)) {
+                render(view: "edit", model: [genomeInstance: genomeInstance])
+                return
+            }
+        }
+
         genomeInstance.properties = params
 
         if (!genomeInstance.save(flush: true)) {
@@ -105,5 +126,34 @@ class GenomeController {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'genome.label', default: 'Genome'), id])
             redirect(action: "show", id: id)
         }
+    }
+
+    def removeGenomeFromStrain() {
+        def genomeId = params.genomeId
+        def strainId = params.strainId
+        def genomeInstance = Genome.get(genomeId)
+        if (!genomeInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'genome.label', default: 'Genome'), genomeId])
+            redirect(action: "edit", id: strainId, controller: "strain")
+            return
+        }
+
+        def strainInstance = Strain.get(strainId)
+        if (!genomeInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'strain.label', default: 'Strain'), strainId])
+            redirect(action: "edit", id: strainId, controller: "strain")
+            return
+        }
+
+        strainInstance.genome = null
+
+//        genomeInstance.strain = null
+//        strainInstance.removeFromGenomes(genomeInstance)
+//        genomeInstance.save(flush: true)
+        strainInstance.save(flush: true)
+
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'strain.label', default: 'Genome'), genomeInstance.display])
+        redirect(action: "show", id: genomeId, controller: "genome")
+
     }
 }

@@ -186,7 +186,6 @@ class StrainController {
             }
         }
 
-        println "params [${params}]"
         strainInstance.properties = params
 
         if (params.addstockid && params.addstockid != 'null') {
@@ -221,9 +220,6 @@ class StrainController {
                 stock.strain = null
                 stock.save(flush: true)
             }
-//            strainInstance.stocks.remove(strainInstance)
-//            strainInstance.experiments.remove(strainInstance)
-//            strainInstance.experiments = null
             strainInstance.stocks = null
             strainInstance.save(flush: true)
 
@@ -264,4 +260,5 @@ class StrainController {
         redirect(action: "show", id: strainId, controller: "strain")
 
     }
+
 }
