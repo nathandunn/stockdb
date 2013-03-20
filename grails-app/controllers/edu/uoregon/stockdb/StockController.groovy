@@ -99,4 +99,5 @@ class StockController {
             redirect(action: "show", id: id)
         }
     }
+
 }

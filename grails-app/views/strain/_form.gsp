@@ -69,13 +69,6 @@
 </div>
 
 
-<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'notes', 'error')} ">
-    <label for="notes">
-        <g:message code="strain.notes.label" default="Notes"/>
-
-    </label>
-    <g:textField name="notes" value="${strainInstance?.notes}"/>
-</div>
 
 <div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'parentStrain', 'error')}">
     <label for="parentStrain">
@@ -90,21 +83,37 @@
 <div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'stocks', 'error')} ">
     <label for="stocks">
         <g:message code="strain.stocks.label" default="Stocks"/>
-        <span class="required-indicator">*</span>
+        %{--<span class="required-indicator">*</span>--}%
     </label>
 
-    <g:select id="parentStrain" name="parentStrain.id" from="${edu.uoregon.stockdb.Strain.list()}" optionKey="id"
-              required="" value="${strainInstance?.parentStrain?.id}" optionValue="name" class="many-to-one"
+    <g:select id="stock" name="addstockid" from="${edu.uoregon.stockdb.Stock.list()}" optionKey="id"
+              required="" value="${strainInstance?.parentStrain?.id}" optionValue="display" class="many-to-one"
               noSelection="['null': '- Add Existing Stock -']"/>
+    <g:link controller="stock" action="create"
+            params="['strain.id': strainInstance?.id]">Create Stock</g:link>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'stocks', 'error')} ">
+    <label for="stocks">
+        <g:message code="strain.stocks.label" default="Current Stocks"/>
+        %{--<span class="required-indicator">*</span>--}%
+    </label>
+
+    <g:if test="${strainInstance.stocks}">
     <ul class="one-to-many">
         <g:each in="${strainInstance?.stocks ?}" var="s">
-            <li><g:link controller="stock" action="show" id="${s.id}">${s?.display}</g:link></li>
+            <li>
+                <g:link controller="stock" action="show" id="${s.id}">${s?.display}</g:link>
+                <g:link controller="strain" action="removeStockFromStrain" params="[stockId:s.id,strainId:strainInstance.id]">[remove]</g:link>
+            </li>
         </g:each>
         <li class="add">
-            <g:link controller="stock" action="create"
-                    params="['strain.id': strainInstance?.id]">Create Stock</g:link>
         </li>
     </ul>
+        </g:if>
+    <g:else>
+        None
+    </g:else>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'strainGenotype', 'error')} ">
@@ -114,7 +123,16 @@
     </label>
     <g:select id="strainGenotype" name="strainGenotype.id" from="${edu.uoregon.stockdb.StrainGenotype.list()}"
               optionKey="id" value="${strainInstance?.strainGenotype?.id}" class="many-to-one"
+        optionValue="name"
               noSelection="['null': '- Choose Existing -']"/>
     <g:link controller="strainGenotype" action="create">Create Strain Genotype</g:link>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'notes', 'error')} ">
+    <label for="notes">
+        <g:message code="strain.notes.label" default="Notes"/>
+
+    </label>
+    <g:textArea name="notes" value="${strainInstance?.notes}" rows="3" cols="100"/>
 </div>
 

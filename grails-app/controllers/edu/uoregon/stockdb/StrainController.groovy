@@ -1,6 +1,6 @@
 package edu.uoregon.stockdb
 
-import org.grails.datastore.mapping.query.api.Criteria
+import grails.gorm.DetachedCriteria
 import org.springframework.dao.DataIntegrityViolationException
 
 class StrainController {
@@ -23,8 +23,9 @@ class StrainController {
 
         Map<String, String> strainFilters = (Map<String, String>) request.session.getAttribute(STRAIN_FILTER)
 
-        Criteria criteria = Strain.createCriteria()
-        def results = criteria.list(params) {
+//        Criteria criteria = Strain.createCriteria()
+
+        def criteria = new DetachedCriteria(Strain).build {
             for (def filter in strainFilters?.keySet()) {
                 if (filter == GENUS_FILTER) {
                     eq("genus.id", Long.valueOf(strainFilters.get(filter)))
@@ -35,23 +36,24 @@ class StrainController {
                     List<Genus> genusList = Genus.findAllByPhylum(phylum)
 //                    join "phylum"
 //                    eq("phylum.id", Long.valueOf(strainFilters.get(Phylum.class.canonicalName)))
-                    inList("genus",genusList)
+                    inList("genus", genusList)
                 }
                 if (filter == HOST_SPECIES_FILTER) {
                     Species species = Species.findById(Long.valueOf(strainFilters.get(filter)))
                     List<HostOrigin> hostOriginList = HostOrigin.findAllBySpecies(species)
 
-                    inList("hostOrigin",hostOriginList)
+                    inList("hostOrigin", hostOriginList)
                 }
                 if (filter == HOST_ANATOMY_FILTER) {
                     List<HostOrigin> hostOriginList = HostOrigin.findAllByAnatomy(strainFilters.get(filter))
-                    inList("hostOrigin",hostOriginList)
+                    inList("hostOrigin", hostOriginList)
                 }
 
             }
         }
 
-        [strainInstanceList: results, strainInstanceTotal: results.size(),strainFilters:strainFilters]
+
+        [strainInstanceList: criteria.list(params), strainInstanceTotal: criteria.list().size(), strainFilters: strainFilters]
     }
 
     def addFilter() {
@@ -63,10 +65,9 @@ class StrainController {
         if (!strainFilter) {
             strainFilter = new HashMap<String, String>()
         }
-        if(filterValue && !filterValue.contains("null")){
+        if (filterValue && !filterValue.contains("null")) {
             strainFilter[filterName] = filterValue
-        }
-        else{
+        } else {
             strainFilter.remove(filterName)
         }
         request.session.setAttribute(STRAIN_FILTER, strainFilter)
@@ -128,14 +129,25 @@ class StrainController {
             }
         }
 
+        println "params [${params}]"
         strainInstance.properties = params
+
+        if (params.addstockid && params.addstockid != 'null') {
+            Stock stock = Stock.get(params.addstockid)
+            strainInstance.addToStocks(stock)
+            stock.strain = strainInstance
+            if (!stock.save(flush: true)) {
+                render(view: "edit", model: [strainInstance: strainInstance])
+                return
+            }
+        }
 
         if (!strainInstance.save(flush: true)) {
             render(view: "edit", model: [strainInstance: strainInstance])
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'strain.label', default: 'Strain'), strainInstance.id])
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'strain.label', default: 'Strain'), strainInstance.name])
         redirect(action: "show", id: strainInstance.id)
     }
 
@@ -148,13 +160,51 @@ class StrainController {
         }
 
         try {
+            strainInstance.stocks.each { stock ->
+                stock.strain = null
+                stock.save(flush: true)
+            }
+//            strainInstance.stocks.remove(strainInstance)
+//            strainInstance.experiments.remove(strainInstance)
+//            strainInstance.experiments = null
+            strainInstance.stocks = null
+            strainInstance.save(flush: true)
+
+
             strainInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'strain.label', default: 'Strain'), id])
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'strain.label', default: 'Strain'), strainInstance.name])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'strain.label', default: 'Strain'), id])
             redirect(action: "show", id: id)
         }
+    }
+
+    def removeStockFromStrain() {
+        def stockId = params.stockId
+        def strainId = params.strainId
+        def stockInstance = Stock.get(stockId)
+        if (!stockInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'stock.label', default: 'Stock'), stockId])
+            redirect(action: "edit", id: strainId, controller: "strain")
+            return
+        }
+
+        def strainInstance = Strain.get(strainId)
+        if (!stockInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'strain.label', default: 'Strain'), strainId])
+            redirect(action: "edit", id: strainId, controller: "strain")
+            return
+        }
+
+        stockInstance.strain = null
+        strainInstance.removeFromStocks(stockInstance)
+        stockInstance.save(flush: true)
+        strainInstance.save(flush: true)
+
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'strain.label', default: 'Strain'), strainInstance.name])
+        redirect(action: "show", id: strainId, controller: "strain")
+
     }
 }

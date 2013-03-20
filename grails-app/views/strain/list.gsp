@@ -119,24 +119,26 @@
         <thead>
         <tr>
 
-            <g:sortableColumn property="name" title="${message(code: 'strain.name.label', default: 'Index')}"/>
+            <g:sortableColumn property="name" defaultOrder="asc" title="${message(code: 'strain.name.label', default: 'Index')}"/>
 
             %{--<th>Genus / Phylum</th>--}%
             <g:sortableColumn property="genus" title="${message(code: 'strain.genus.label', default: 'Genus')}"/>
-            <g:sortableColumn property="genus.phylum"
-                              title="${message(code: 'strain.phylum.label', default: 'Phylum')}"/>
+            %{--<g:sortableColumn property="genus.phylum.name"--}%
+                              %{--title="${message(code: 'strain.phylum.label', default: 'Phylum')}"/>--}%
+            <th>Phylum</th>
 
-            %{--<th>Host</th>--}%
-            <g:sortableColumn property="hostOrigin.species.commonName"
-                              title="${message(code: 'hostOrigin.anatomy.label', default: 'Host')}"/>
-            %{--<th>Host Anatomy</th>--}%
-            <g:sortableColumn property="hostOrigin.anatomy"
-                              title="${message(code: 'hostOrigin.anatomy.label', default: 'Host Anatomy')}"/>
+            <th>Host</th>
+            %{--<g:sortableColumn property="hostOrigin.species.commonName"--}%
+                              %{--title="${message(code: 'hostOrigin.anatomy.label', default: 'Host')}"/>--}%
+            <th>Host Anatomy</th>
+            %{--<g:sortableColumn property="hostOrigin.anatomy"--}%
+                              %{--title="${message(code: 'hostOrigin.anatomy.label', default: 'Host Anatomy')}"/>--}%
 
             %{--<g:sortableColumn property="hostOrigin.stage"--}%
             %{--title="${message(code: 'hostOrigin.stage.label', default: 'Host Stage')}"/>--}%
-            <g:sortableColumn property="hostOrigin.daysPastFertilization"
-                              title="${message(code: 'hostOrigin.stage.label', default: 'Host Age (DPF)')}"/>
+            <th>Host Age (DPF)</th>
+            %{--<g:sortableColumn property="hostOrigin.daysPastFertilization"--}%
+                              %{--title="${message(code: 'hostOrigin.stage.label', default: 'Host Age (DPF)')}"/>--}%
             <th>Genome</th>
 
         </tr>

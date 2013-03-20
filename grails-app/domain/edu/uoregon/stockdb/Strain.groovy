@@ -41,4 +41,8 @@ class Strain {
 
     String notes
 
+    String getPhylumSort(){
+        return genus.phylum.name
+    }
+
 }

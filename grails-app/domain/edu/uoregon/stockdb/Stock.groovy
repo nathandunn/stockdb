@@ -19,6 +19,6 @@ class Stock {
     Strain strain
 
     def getDisplay() {
-        return generalLocation.name + " " + physicalLocation;  //To change body of created methods use File | Settings | File Templates.
+        return (generalLocation?.name ?:"") + " " + physicalLocation;  //To change body of created methods use File | Settings | File Templates.
     }
 }

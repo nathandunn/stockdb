@@ -21,7 +21,4 @@ class Genus {
     String name
     Boolean host
 
-    String getDisplayName(){
-        return phylum.name + " " + name
-    }
 }
