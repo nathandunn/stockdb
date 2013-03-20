@@ -26,7 +26,7 @@ class StockController {
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'stock.label', default: 'Stock'), stockInstance.id])
+        flash.message = message(code: 'default.created.message', args: [message(code: 'stock.label', default: 'Stock'), stockInstance.display])
         redirect(action: "show", id: stockInstance.id)
     }
 
@@ -77,7 +77,7 @@ class StockController {
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'stock.label', default: 'Stock'), stockInstance.id])
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'stock.label', default: 'Stock'), stockInstance.display])
         redirect(action: "show", id: stockInstance.id)
     }
 
@@ -91,7 +91,7 @@ class StockController {
 
         try {
             stockInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'stock.label', default: 'Stock'), id])
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'stock.label', default: 'Stock'), stockInstance.display])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
