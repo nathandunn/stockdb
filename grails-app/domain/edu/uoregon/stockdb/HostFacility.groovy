@@ -6,6 +6,7 @@ package edu.uoregon.stockdb
 class HostFacility {
 
     static constraints = {
+        name nullable: false,unique: true
     }
 
     static hasMany = [

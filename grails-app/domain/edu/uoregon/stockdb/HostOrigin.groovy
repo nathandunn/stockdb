@@ -23,7 +23,7 @@ class HostOrigin {
 //    Phylum phylum
     HostFacility hostFacility
 
-    ZebrafishGenotype genotype
+    HostGenotype genotype
 
     String stage // stage . . . typically larval . . zfin correlate
     Integer daysPastFertilization//

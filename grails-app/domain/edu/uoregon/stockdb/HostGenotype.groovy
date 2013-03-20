@@ -3,7 +3,7 @@ package edu.uoregon.stockdb
 /**
  * Host Genotype
  */
-class ZebrafishGenotype {
+class HostGenotype {
 
     static constraints = {
     }

@@ -90,8 +90,8 @@ class StubData {
                         String genotypeString = originString.substring(startParens + 1, endParens )
                         String anatomy = originString.substring(endParens + 1)?.trim()
 
-                        ZebrafishGenotype zebrafishGenotype = ZebrafishGenotype.findOrSaveByName(genotypeString)
-                        hostOrigin = HostOrigin.findOrSaveByGenotypeAndAnatomyAndStage(zebrafishGenotype, anatomy, stage)
+                        HostGenotype hostGenotype = HostGenotype.findOrSaveByName(genotypeString)
+                        hostOrigin = HostOrigin.findOrSaveByGenotypeAndAnatomyAndStage(hostGenotype, anatomy, stage)
                         hostOrigin.species= rerio
                         hostOrigin.anatomyUrl = "http://zfin.org/action/ontology/term-detail/ZDB-TERM-100331-1295"
                     }
@@ -104,7 +104,8 @@ class StubData {
             }
 
 //            String hostFacility = tokens[8]
-            HostFacility hostFacility = tokens[8] ? HostFacility.findOrSaveByName(tokens[8]) : null
+
+            HostFacility hostFacility = tokens[8] ? HostFacility.findOrSaveByName(tokens[8]?.trim()) : null
 
             Location generalLocation = tokens[9] ? Location.findOrSaveByName(tokens[9]) : null
 
@@ -136,7 +137,7 @@ class StubData {
             genome.size = tokens[12] ? Float.parseFloat(tokens[12]) : null
             genome.quality = tokens[13] ? Float.parseFloat(tokens[13]) : null
             genome.note = tokens[14] ?: null
-            genome.save()
+            genome.save(flush: true)
 
             strain.genome = genome
 

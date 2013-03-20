@@ -26,7 +26,7 @@
 					
 						<g:sortableColumn property="stage" title="${message(code: 'hostOrigin.stage.label', default: 'Stage')}" />
 					
-						<g:sortableColumn property="days" title="${message(code: 'hostOrigin.days.label', default: 'Days')}" />
+						<g:sortableColumn property="daysPastFertilization" title="${message(code: 'hostOrigin.days.label', default: 'Days Past<br/> Fertilization')}" />
 					
 						<g:sortableColumn property="anatomy" title="${message(code: 'hostOrigin.anatomy.label', default: 'Anatomy')}" />
 					
@@ -34,7 +34,7 @@
 					
 						<th><g:message code="hostOrigin.genotype.label" default="Genotype" /></th>
 					
-						<th><g:message code="hostOrigin.genus.label" default="Genus" /></th>
+						%{--<th><g:message code="hostOrigin.genus.label" default="Genus" /></th>--}%
 					
 					</tr>
 				</thead>
@@ -44,16 +44,32 @@
 					
 						<td><g:link action="show" id="${hostOriginInstance.id}">${fieldValue(bean: hostOriginInstance, field: "stage")}</g:link></td>
 					
-						<td>${fieldValue(bean: hostOriginInstance, field: "days")}</td>
+						<td>${fieldValue(bean: hostOriginInstance, field: "daysPastFertilization")}</td>
 					
-						<td>${fieldValue(bean: hostOriginInstance, field: "anatomy")}</td>
+						<td>
+                            <g:if test="${hostOriginInstance.anatomyUrl && hostOriginInstance.anatomy}">
+                                <g:link url="${hostOriginInstance.anatomyUrl}">${hostOriginInstance.anatomy}</g:link>
+                            </g:if>
+                            <g:else>
+                                ${hostOriginInstance.anatomy ?:""}
+                            </g:else>
+                        </td>
 					
-						<td>${fieldValue(bean: hostOriginInstance, field: "hostFacility")}</td>
+						<td>
+                            <g:link action="show" controller="hostFacility" id="${hostOriginInstance.hostFacility?.id}">
+                                ${hostOriginInstance.hostFacility?.name}
+                            </g:link>
+                        </td>
 					
-						<td>${fieldValue(bean: hostOriginInstance, field: "genotype")}</td>
+						<td>
+                            <g:link controller="hostGenotype" action="show" id="${hostOriginInstance.genotype?.id}">
+                                ${hostOriginInstance.genotype?.name}
+                            </g:link>
+                        </td>
 					
-						<td>${fieldValue(bean: hostOriginInstance, field: "genus")}</td>
-					
+						%{--<td>${fieldValue(bean: hostOriginInstance, field: "genus")}</td>--}%
+                        %{--<td>${fieldValue(bean: hostOriginInstance, field: "species")}</td>--}%
+
 					</tr>
 				</g:each>
 				</tbody>

@@ -17,7 +17,7 @@ class Genome {
 
     String getDisplay() {
         if(quality && size && note){
-            return "${quality} ${size} ${note.size()>40 ? note.subSequence(0,40) + ' ... ' : note }"
+            return "${quality} ${size} ${note.size()>20 ? note.subSequence(0,20) + ' ... ' : note }"
         }
         else{
             return id

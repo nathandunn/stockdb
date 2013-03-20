@@ -15,6 +15,10 @@
 		<g:message code="genus.phylum.label" default="Phylum" />
 		
 	</label>
-	<g:select id="phylum" name="phylum.id" from="${edu.uoregon.stockdb.Phylum.list()}" optionKey="id" value="${genusInstance?.phylum?.id}" class="many-to-one" noSelection="['null': '']"/>
+	<g:select id="phylum" name="phylum.id" from="${edu.uoregon.stockdb.Phylum.list()}" optionKey="id" value="${genusInstance?.phylum?.id}" class="many-to-one"
+        optionValue="name"
+              noSelection="['null': '- Choose Existing -']"/>
+
+    <g:link controller="phylum" action="create">Create Phylum</g:link>
 </div>
 

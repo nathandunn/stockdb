@@ -55,7 +55,7 @@
 				<li class="fieldcontain">
 					<span id="genotype-label" class="property-label"><g:message code="hostOrigin.genotype.label" default="Genotype" /></span>
 					
-						<span class="property-value" aria-labelledby="genotype-label"><g:link controller="zebrafishGenotype" action="show" id="${hostOriginInstance?.genotype?.id}">${hostOriginInstance?.genotype?.name}</g:link></span>
+						<span class="property-value" aria-labelledby="genotype-label"><g:link controller="hostGenotype" action="show" id="${hostOriginInstance?.genotype?.id}">${hostOriginInstance?.genotype?.name}</g:link></span>
 					
 				</li>
 				</g:if>
