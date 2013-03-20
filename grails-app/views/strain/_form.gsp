@@ -98,7 +98,7 @@
               noSelection="['null': '- Add Existing Stock -']"/>
     <ul class="one-to-many">
         <g:each in="${strainInstance?.stocks ?}" var="s">
-            <li><g:link controller="stock" action="show" id="${s.id}">${s?.name}</g:link></li>
+            <li><g:link controller="stock" action="show" id="${s.id}">${s?.display}</g:link></li>
         </g:each>
         <li class="add">
             <g:link controller="stock" action="create"

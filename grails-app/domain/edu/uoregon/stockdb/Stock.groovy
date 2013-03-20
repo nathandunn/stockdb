@@ -18,7 +18,7 @@ class Stock {
     Location generalLocation
     Strain strain
 
-    def fullLocation() {
+    def getDisplay() {
         return generalLocation.name + " " + physicalLocation;  //To change body of created methods use File | Settings | File Templates.
     }
 }
