@@ -14,4 +14,10 @@ class IsolateCondition {
     Float temperature
     String media  // open
     String notes
+
+
+    String getDisplay(){
+        return "${oxygenCondition} ${media} ${temperature} C "
+    }
+
 }

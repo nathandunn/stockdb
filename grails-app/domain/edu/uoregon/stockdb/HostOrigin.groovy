@@ -33,6 +33,20 @@ class HostOrigin {
 //    String name
     String notes
 
+    String getDisplay(){
+        String returnString = "${species?.commonName} (${genotype?.name}) "
+        if (daysPastFertilization>=0){
+            returnString += daysPastFertilization + " DPF "
+        }
+        else{
+            returnString += stage + " "
+        }
+
+        returnString += anatomy ?: ""
+        return returnString
+
+    }
+
     void setStage(String stage) {
         if (stage.length() == 0) {
             this.stage = null

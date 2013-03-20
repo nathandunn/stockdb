@@ -40,7 +40,7 @@
 
         <li class="fieldcontain">
             <span id="genus-label" class="property-label"><g:message code="strain.genus.label"
-                                                                     default="Genus"/></span>
+                                                                     default="Phylum Genus"/></span>
 
             <span class="property-value" aria-labelledby="genus-label">
                 <i>

@@ -7,6 +7,7 @@ class Strain {
         formerCloneAlias nullable: true
         name nullable: false, unique: true
         genus nullable: false
+        genome nullable: true
     }
 
     static hasMany = [
