@@ -19,6 +19,7 @@ class Strain {
             Experiment
     ]
 
+
     String name
 
     Genus genus
@@ -41,8 +42,5 @@ class Strain {
 
     String notes
 
-    String getPhylumSort(){
-        return genus.phylum.name
-    }
 
 }

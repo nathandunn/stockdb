@@ -1,6 +1,6 @@
 package edu.uoregon.stockdb
 
-import grails.gorm.DetachedCriteria
+import org.grails.datastore.mapping.query.api.Criteria
 import org.springframework.dao.DataIntegrityViolationException
 
 class StrainController {
@@ -23,9 +23,39 @@ class StrainController {
 
         Map<String, String> strainFilters = (Map<String, String>) request.session.getAttribute(STRAIN_FILTER)
 
-//        Criteria criteria = Strain.createCriteria()
+        // TODO: put this in in 2.3
+        // http://jira.grails.org/browse/GRAILS-8257?page=com.atlassian.jira.plugin.system.issuetabpanels:all-tabpanel
+//        def criteria = new DetachedCriteria(Strain).build {
+//            for (def filter in strainFilters?.keySet()) {
+//                if (filter == GENUS_FILTER) {
+//                    eq("genus.id", Long.valueOf(strainFilters.get(filter)))
+//                }
+//                if (filter == PHYLUM_FILTER) {
+////                    eq "assignee.id",
+//                    Phylum phylum = Phylum.findById(Long.valueOf(strainFilters.get(filter)))
+//                    List<Genus> genusList = Genus.findAllByPhylum(phylum)
+////                    join "phylum"
+////                    eq("phylum.id", Long.valueOf(strainFilters.get(Phylum.class.canonicalName)))
+//                    inList("genus", genusList)
+//                }
+//                if (filter == HOST_SPECIES_FILTER) {
+//                    Species species = Species.findById(Long.valueOf(strainFilters.get(filter)))
+//                    List<HostOrigin> hostOriginList = HostOrigin.findAllBySpecies(species)
+//
+//                    inList("hostOrigin", hostOriginList)
+//                }
+//                if (filter == HOST_ANATOMY_FILTER) {
+//                    List<HostOrigin> hostOriginList = HostOrigin.findAllByAnatomy(strainFilters.get(filter))
+//                    inList("hostOrigin", hostOriginList)
+//                }
+//
+//            }
+//        }
+//
+//        [strainInstanceList: criteria.list(params), strainInstanceTotal: criteria.list().size(), strainFilters: strainFilters]
 
-        def criteria = new DetachedCriteria(Strain).build {
+        Criteria criteria1 = Strain.createCriteria()
+        def result1 = criteria1.list(params) {
             for (def filter in strainFilters?.keySet()) {
                 if (filter == GENUS_FILTER) {
                     eq("genus.id", Long.valueOf(strainFilters.get(filter)))
@@ -48,12 +78,39 @@ class StrainController {
                     List<HostOrigin> hostOriginList = HostOrigin.findAllByAnatomy(strainFilters.get(filter))
                     inList("hostOrigin", hostOriginList)
                 }
-
             }
         }
 
+        // NOTE: NO Params . . notice fix above with 2.3
+        Criteria criteria2 = Strain.createCriteria()
+        def result2 = criteria2.list {
+            for (def filter in strainFilters?.keySet()) {
+                if (filter == GENUS_FILTER) {
+                    eq("genus.id", Long.valueOf(strainFilters.get(filter)))
+                }
+                if (filter == PHYLUM_FILTER) {
+//                    eq "assignee.id",
+                    Phylum phylum = Phylum.findById(Long.valueOf(strainFilters.get(filter)))
+                    List<Genus> genusList = Genus.findAllByPhylum(phylum)
+//                    join "phylum"
+//                    eq("phylum.id", Long.valueOf(strainFilters.get(Phylum.class.canonicalName)))
+                    inList("genus", genusList)
+                }
+                if (filter == HOST_SPECIES_FILTER) {
+                    Species species = Species.findById(Long.valueOf(strainFilters.get(filter)))
+                    List<HostOrigin> hostOriginList = HostOrigin.findAllBySpecies(species)
 
-        [strainInstanceList: criteria.list(params), strainInstanceTotal: criteria.list().size(), strainFilters: strainFilters]
+                    inList("hostOrigin", hostOriginList)
+                }
+                if (filter == HOST_ANATOMY_FILTER) {
+                    List<HostOrigin> hostOriginList = HostOrigin.findAllByAnatomy(strainFilters.get(filter))
+                    inList("hostOrigin", hostOriginList)
+                }
+            }
+        }
+
+        [strainInstanceList: result1, strainInstanceTotal: result2.size(), strainFilters: strainFilters]
+
     }
 
     def addFilter() {
