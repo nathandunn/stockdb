@@ -8,7 +8,6 @@
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#list-hostOrigin" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
@@ -23,15 +22,16 @@
 			<table>
 				<thead>
 					<tr>
-					
-						<g:sortableColumn property="stage" title="${message(code: 'hostOrigin.stage.label', default: 'Stage')}" />
-					
-						<g:sortableColumn property="daysPastFertilization" title="${message(code: 'hostOrigin.days.label', default: 'Days Past<br/> Fertilization')}" />
-					
+
+                        <g:sortableColumn property="id" title="${message(code: 'hostOrigin.stage.label', default: 'ID')}" />
+						<g:sortableColumn property="daysPastFertilization" title="${message(code: 'hostOrigin.stage.label', default: 'Stage')}" />
+
+
 						<g:sortableColumn property="anatomy" title="${message(code: 'hostOrigin.anatomy.label', default: 'Anatomy')}" />
 					
-						<th><g:message code="hostOrigin.hostFacility.label" default="Host Facility" /></th>
-					
+						%{--<th><g:message code="hostOrigin.hostFacility.label" default="Host Facility" /></th>--}%
+                        <g:sortableColumn property="hostFacility" title="${message(code: 'hostOrigin.hostFacility.label', default: 'Host Facility')}" />
+
 						<th><g:message code="hostOrigin.genotype.label" default="Genotype" /></th>
 					
 						%{--<th><g:message code="hostOrigin.genus.label" default="Genus" /></th>--}%
@@ -41,10 +41,17 @@
 				<tbody>
 				<g:each in="${hostOriginInstanceList}" status="i" var="hostOriginInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+
+                        <td><g:link action="show" id="${hostOriginInstance.id}">${fieldValue(bean: hostOriginInstance, field: "id")}</g:link></td>
+						<td>
+                            %{--${hostOriginInstance.stage}--}%
+                            <g:fieldValue bean="${hostOriginInstance}" field="stage"/>
+                            <g:if test="${!hostOriginInstance.stage.contains("dpf")}">
+                                (${hostOriginInstance.daysPastFertilization} DPF)
+                            </g:if>
+						</td>
 					
-						<td><g:link action="show" id="${hostOriginInstance.id}">${fieldValue(bean: hostOriginInstance, field: "stage")}</g:link></td>
-					
-						<td>${fieldValue(bean: hostOriginInstance, field: "daysPastFertilization")}</td>
+						%{--<td>${fieldValue(bean: hostOriginInstance, field: "daysPastFertilization")}</td>--}%
 					
 						<td>
                             <g:if test="${hostOriginInstance.anatomyUrl && hostOriginInstance.anatomy}">

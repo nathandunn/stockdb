@@ -26,7 +26,7 @@ class HostOriginController {
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'hostOrigin.label', default: 'HostOrigin'), hostOriginInstance.id])
+        flash.message = message(code: 'default.created.message', args: [message(code: 'hostOrigin.label', default: 'HostOrigin'), hostOriginInstance.display])
         redirect(action: "show", id: hostOriginInstance.id)
     }
 
@@ -63,8 +63,8 @@ class HostOriginController {
         if (version != null) {
             if (hostOriginInstance.version > version) {
                 hostOriginInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'hostOrigin.label', default: 'HostOrigin')] as Object[],
-                          "Another user has updated this HostOrigin while you were editing")
+                        [message(code: 'hostOrigin.label', default: 'HostOrigin')] as Object[],
+                        "Another user has updated this HostOrigin while you were editing")
                 render(view: "edit", model: [hostOriginInstance: hostOriginInstance])
                 return
             }
@@ -77,7 +77,7 @@ class HostOriginController {
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'hostOrigin.label', default: 'HostOrigin'), hostOriginInstance.id])
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'hostOrigin.label', default: 'HostOrigin'), hostOriginInstance.display])
         redirect(action: "show", id: hostOriginInstance.id)
     }
 
@@ -90,8 +90,14 @@ class HostOriginController {
         }
 
         try {
+            hostOriginInstance.strains.each { strain ->
+                strain.hostOrigin = null
+                strain.save(flush: true)
+            }
+
+
             hostOriginInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'hostOrigin.label', default: 'HostOrigin'), id])
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'hostOrigin.label', default: 'HostOrigin'), hostOriginInstance.display])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
