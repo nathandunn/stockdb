@@ -19,6 +19,10 @@ class HostOrigin {
             strains: Strain
     ]
 
+    static mapping = {
+        strains sort:"name",order: "asc"
+    }
+
     Species species
 //    Phylum phylum
     HostFacility hostFacility

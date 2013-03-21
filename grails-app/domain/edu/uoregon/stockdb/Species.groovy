@@ -11,4 +11,8 @@ class Species {
     Genus genus
     String name
     String commonName
+
+    String getDisplayName(){
+        return "${genus.name} ${name}"
+    }
 }
