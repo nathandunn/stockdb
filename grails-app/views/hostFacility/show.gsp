@@ -37,7 +37,7 @@
 					<span id="origins-label" class="property-label"><g:message code="hostFacility.origins.label" default="Origins" /></span>
 					
 						<g:each in="${hostFacilityInstance.origins}" var="o">
-						<span class="property-value" aria-labelledby="origins-label"><g:link controller="origin" action="show" id="${o.id}">${o?.display}</g:link></span>
+						<span class="property-value" aria-labelledby="origins-label"><g:link controller="hostOrigin" action="show" id="${o.id}">${o?.display}</g:link></span>
 						</g:each>
 					
 				</li>

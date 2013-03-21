@@ -26,7 +26,7 @@ class HostFacilityController {
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'hostFacility.label', default: 'HostFacility'), hostFacilityInstance.id])
+        flash.message = message(code: 'default.created.message', args: [message(code: 'hostFacility.label', default: 'HostFacility'), hostFacilityInstance.name])
         redirect(action: "show", id: hostFacilityInstance.id)
     }
 
@@ -63,8 +63,8 @@ class HostFacilityController {
         if (version != null) {
             if (hostFacilityInstance.version > version) {
                 hostFacilityInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'hostFacility.label', default: 'HostFacility')] as Object[],
-                          "Another user has updated this HostFacility while you were editing")
+                        [message(code: 'hostFacility.label', default: 'HostFacility')] as Object[],
+                        "Another user has updated this HostFacility while you were editing")
                 render(view: "edit", model: [hostFacilityInstance: hostFacilityInstance])
                 return
             }
@@ -77,7 +77,7 @@ class HostFacilityController {
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'hostFacility.label', default: 'HostFacility'), hostFacilityInstance.id])
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'hostFacility.label', default: 'HostFacility'), hostFacilityInstance.name])
         redirect(action: "show", id: hostFacilityInstance.id)
     }
 
@@ -90,8 +90,16 @@ class HostFacilityController {
         }
 
         try {
+            hostFacilityInstance.origins.each { it ->
+                it.hostFacility = null
+                it.save(flush: true)
+            }
+            hostFacilityInstance.origins = null
+            hostFacilityInstance.save(flush: true)
+
+
             hostFacilityInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'hostFacility.label', default: 'HostFacility'), id])
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'hostFacility.label', default: 'HostFacility'), hostFacilityInstance.name])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
