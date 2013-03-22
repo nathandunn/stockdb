@@ -50,7 +50,7 @@
                         <td>${fieldValue(bean: isolateInstance, field: "temperature")}</td>
 
 						<td><g:formatDate date="${isolateInstance.isolatedWhen}" type="date" style="MEDIUM"/></td>
-                        <td>${isolateInstance?.isolatedBy?.fullName()}</td>
+                        <td>${isolateInstance?.isolatedBy?.fullName}</td>
 
 					</tr>
 				</g:each>

@@ -22,25 +22,14 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list isolate">
-			
-				<g:if test="${isolateInstance?.isolatedBy}">
-				<li class="fieldcontain">
-					<span id="isolatedBy-label" class="property-label"><g:message code="isolate.isolatedBy.label" default="Isolated By" /></span>
-					
-						<span class="property-value" aria-labelledby="isolatedBy-label"><g:link controller="researcher" action="show" id="${isolateInstance?.isolatedBy?.id}">${isolateInstance?.isolatedBy?.fullName()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${isolateInstance?.isolatedWhen}">
-				<li class="fieldcontain">
-					<span id="isolatedWhen-label" class="property-label"><g:message code="isolate.isolatedWhen.label" default="Isolated When" /></span>
-					
-						<span class="property-value" aria-labelledby="isolatedWhen-label"><g:formatDate date="${isolateInstance?.isolatedWhen}" type="date" style="MEDIUM" /></span>
-					
-				</li>
-				</g:if>
-			
+
+                <li class="fieldcontain">
+                    <span id="media-label" class="property-label"><g:message code="isolate.id.label" default="ID" /></span>
+
+                    <span class="property-value" aria-labelledby="media-label"><g:fieldValue bean="${isolateInstance}" field="id"/></span>
+
+                </li>
+
 				<g:if test="${isolateInstance?.media}">
 				<li class="fieldcontain">
 					<span id="media-label" class="property-label"><g:message code="isolate.media.label" default="Media" /></span>
@@ -76,7 +65,35 @@
 					
 				</li>
 				</g:if>
-			
+
+                <g:if test="${isolateInstance?.isolatedBy}">
+                    <li class="fieldcontain">
+                        <span id="isolatedBy-label" class="property-label"><g:message code="isolate.isolatedBy.label" default="Isolated By" /></span>
+
+                        <span class="property-value" aria-labelledby="isolatedBy-label"><g:link controller="researcher" action="show" id="${isolateInstance?.isolatedBy?.id}">${isolateInstance?.isolatedBy?.fullName}</g:link></span>
+
+                    </li>
+                </g:if>
+
+                <g:if test="${isolateInstance?.isolatedWhen}">
+                    <li class="fieldcontain">
+                        <span id="isolatedWhen-label" class="property-label"><g:message code="isolate.isolatedWhen.label" default="Isolated When" /></span>
+
+                        <span class="property-value" aria-labelledby="isolatedWhen-label"><g:formatDate date="${isolateInstance?.isolatedWhen}" type="date" style="MEDIUM" /></span>
+
+                    </li>
+                </g:if>
+
+                <g:if test="${strain}">
+                    <li class="fieldcontain">
+                        <span id="isolatedWhen-label" class="property-label"><g:message code="isolate.isolatedWhen.label" default="Associated Strain" /></span>
+
+                        <span class="property-value" aria-labelledby="isolatedWhen-label">
+                           <g:link action="show" controller="strain" id="${strain.id}">${strain.name}</g:link>
+                        </span>
+
+                    </li>
+                </g:if>
 			</ol>
 			<g:form>
 				<fieldset class="buttons">

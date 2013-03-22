@@ -15,7 +15,7 @@ class IsolateCondition {
 
 
     String getDisplay(){
-        return "${oxygenCondition} ${media} ${temperature} C "
+        return "${oxygenCondition?:''} ${media?:''} ${temperature?:''} C "
     }
 
 }

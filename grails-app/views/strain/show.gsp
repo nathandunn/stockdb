@@ -132,8 +132,8 @@
 
                 <span class="property-value" aria-labelledby="isolate-label">
                     <g:link controller="isolate" action="show" id="${strainInstance?.isolate?.id}">
-                        ${strainInstance.isolate.isolatedBy?.fullName()}
-                        <g:formatDate date="${strainInstance.isolate?.isolatedWhen}" style="DATE"/>
+                        ${strainInstance.isolate.isolatedBy?.fullName}
+                        <g:formatDate date="${strainInstance.isolate?.isolatedWhen}" type="DATE" style="MEDIUM"/>
                         ${strainInstance.isolate.oxygenCondition}
                         ${strainInstance.isolate.media}
                         ${strainInstance.isolate.temperature} C

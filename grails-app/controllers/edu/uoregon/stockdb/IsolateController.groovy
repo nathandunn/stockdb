@@ -38,7 +38,10 @@ class IsolateController {
             return
         }
 
-        [isolateInstance: isolateInstance]
+        Strain strain = Strain.findByIsolate(isolateInstance)
+
+
+        [isolateInstance: isolateInstance,strain:strain]
     }
 
     def edit(Long id) {
@@ -90,6 +93,10 @@ class IsolateController {
         }
 
         try {
+            Strain strain = Strain.findByIsolate(isolateInstance)
+            strain.isolate = null
+            strain.save(flush: true)
+
             isolateInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'isolate.label', default: 'Isolate'), id])
             redirect(action: "list")

@@ -14,7 +14,7 @@ class Researcher {
 
     Lab lab
 
-    def fullName() {
+    def getFullName() {
         return firstName + " " + lastName
     }
 }
