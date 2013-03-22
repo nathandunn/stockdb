@@ -26,7 +26,7 @@ class StrainGenotypeController {
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'strainGenotype.label', default: 'StrainGenotype'), strainGenotypeInstance.id])
+        flash.message = message(code: 'default.created.message', args: [message(code: 'strainGenotype.label', default: 'StrainGenotype'), strainGenotypeInstance.name])
         redirect(action: "show", id: strainGenotypeInstance.id)
     }
 
@@ -77,7 +77,7 @@ class StrainGenotypeController {
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'strainGenotype.label', default: 'StrainGenotype'), strainGenotypeInstance.id])
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'strainGenotype.label', default: 'StrainGenotype'), strainGenotypeInstance.name])
         redirect(action: "show", id: strainGenotypeInstance.id)
     }
 
@@ -89,9 +89,15 @@ class StrainGenotypeController {
             return
         }
 
+        if(strainGenotypeInstance.strains){
+            flash.error = "Must remove ${strainGenotypeInstance.strains.size()} strains before deleting"
+            redirect(action: "show", id: id)
+            return
+        }
+
         try {
             strainGenotypeInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'strainGenotype.label', default: 'StrainGenotype'), id])
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'strainGenotype.label', default: 'StrainGenotype'), strainGenotypeInstance.name])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {

@@ -28,9 +28,9 @@
 <g:each in="${strainGenotypeInstance?.strains?}" var="s">
     <li><g:link controller="strain" action="show" id="${s.id}">${s?.name}</g:link></li>
 </g:each>
-<li class="add">
-<g:link controller="strain" action="create" params="['strainGenotype.id': strainGenotypeInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'strain.label', default: 'Strain')])}</g:link>
-</li>
+%{--<li class="add">--}%
+%{--<g:link controller="strain" action="create" params="['strainGenotype.id': strainGenotypeInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'strain.label', default: 'Strain')])}</g:link>--}%
+%{--</li>--}%
 </ul>
 
 </div>
