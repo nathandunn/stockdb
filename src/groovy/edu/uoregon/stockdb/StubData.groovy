@@ -160,12 +160,12 @@ class StubData {
             strain.formerCloneAlias = tokens[18]
 
             // for now we will assume that every strain entry is its own experiment
-            Experiment experiment = new Experiment()
-            if (isolate) {
-                experiment.researcher = isolate.isolatedBy
-                experiment.whenPerformed = isolate.isolatedWhen
-            }
-            experiment.save()
+//            Experiment experiment = new Experiment()
+//            if (isolate) {
+//                experiment.researcher = isolate.isolatedBy
+//                experiment.whenPerformed = isolate.isolatedWhen
+//            }
+//            experiment.save()
 
             strain.notes = tokens[24]
 
