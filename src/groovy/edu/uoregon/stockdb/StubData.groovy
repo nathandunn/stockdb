@@ -12,6 +12,8 @@ class StubData {
 
     def stubData() {
 
+        Lab lab = Lab.findOrSaveByName("Guillemin")
+
         if (Strain.count > 0) return 0
 
         Phylum chordata = Phylum.findOrSaveByName("Chordata")
@@ -152,6 +154,8 @@ class StubData {
                     if (isolatedByString.size() == 2) {
                         Researcher researcher = Researcher.findOrSaveByFirstNameAndLastName(isolatedByString[0], isolatedByString[1])
                         isolate.isolatedBy = researcher
+                        researcher.lab = lab
+                        researcher.save(flush: true)
                     }
                     isolate.save()
                 }

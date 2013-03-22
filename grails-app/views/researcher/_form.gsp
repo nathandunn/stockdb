@@ -31,6 +31,6 @@
 		<g:message code="researcher.lab.label" default="Lab" />
 		
 	</label>
-	<g:select id="lab" name="lab.id" from="${edu.uoregon.stockdb.Lab.list()}" optionKey="id" value="${researcherInstance?.lab?.id}" class="many-to-one" noSelection="['null': '']"/>
+	<g:select id="lab" name="lab.id" optionValue="name" from="${edu.uoregon.stockdb.Lab.list()}" optionKey="id" value="${researcherInstance?.lab?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
 

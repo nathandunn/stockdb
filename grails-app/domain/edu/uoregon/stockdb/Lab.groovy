@@ -11,4 +11,6 @@ class Lab {
     static hasMany = [
             researchers: Researcher
     ]
+
+    String name
 }

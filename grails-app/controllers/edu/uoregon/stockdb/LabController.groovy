@@ -26,7 +26,7 @@ class LabController {
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'lab.label', default: 'Lab'), labInstance.id])
+        flash.message = message(code: 'default.created.message', args: [message(code: 'lab.label', default: 'Lab'), labInstance.name])
         redirect(action: "show", id: labInstance.id)
     }
 
@@ -77,7 +77,7 @@ class LabController {
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'lab.label', default: 'Lab'), labInstance.id])
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'lab.label', default: 'Lab'), labInstance.name])
         redirect(action: "show", id: labInstance.id)
     }
 
@@ -91,7 +91,7 @@ class LabController {
 
         try {
             labInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'lab.label', default: 'Lab'), id])
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'lab.label', default: 'Lab'), labInstance.name])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {

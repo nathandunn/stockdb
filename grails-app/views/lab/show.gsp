@@ -22,13 +22,23 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list lab">
-			
+
+                <li class="fieldcontain">
+                    <span id="researchers-label" class="property-label"><g:message code="lab.name.label" default="Name" /></span>
+
+                    <span class="property-value" aria-labelledby="researchers-label">
+                        ${labInstance.name}
+                        </span>
+
+                </li>
+
 				<g:if test="${labInstance?.researchers}">
 				<li class="fieldcontain">
 					<span id="researchers-label" class="property-label"><g:message code="lab.researchers.label" default="Researchers" /></span>
 					
 						<g:each in="${labInstance.researchers}" var="r">
-						<span class="property-value" aria-labelledby="researchers-label"><g:link controller="researcher" action="show" id="${r.id}">${r?.name}</g:link></span>
+						<span class="property-value" aria-labelledby="researchers-label">
+                            <g:link controller="researcher" action="show" id="${r.id}">${r?.fullName}</g:link></span>
 						</g:each>
 					
 				</li>
