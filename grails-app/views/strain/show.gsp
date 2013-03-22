@@ -107,12 +107,12 @@
                 <span class="property-value" aria-labelledby="hostOrigin-label">
                     <g:link controller="hostOrigin" action="show" id="${strainInstance?.hostOrigin?.id}">
                         ${strainInstance.hostOrigin.species.commonName}
-                        (${strainInstance.hostOrigin.genotype.name})
+                        (${strainInstance.hostOrigin?.genotype?.name})
                         <g:if test="${strainInstance.hostOrigin.daysPastFertilization>=0}">
                             ${strainInstance.hostOrigin.daysPastFertilization} DPF
                         </g:if>
                         <g:else>
-                            ${strainInstance.hostOrigin.stage}
+                            ${strainInstance.hostOrigin?.stage}
                         </g:else>
                     </g:link>
 
