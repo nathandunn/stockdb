@@ -21,10 +21,17 @@ class HostOriginController {
 
     def save() {
         def hostOriginInstance = new HostOrigin(params)
+
+        if(params.addstrainid && params.addstrainid!='null'){
+            Strain strain = Strain.findById(params.addstrainid)
+            hostOriginInstance.addToStrains(strain)
+        }
+
         if (!hostOriginInstance.save(flush: true)) {
             render(view: "create", model: [hostOriginInstance: hostOriginInstance])
             return
         }
+
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'hostOrigin.label', default: 'HostOrigin'), hostOriginInstance.display])
         redirect(action: "show", id: hostOriginInstance.id)
@@ -72,6 +79,11 @@ class HostOriginController {
 
         hostOriginInstance.properties = params
 
+        if(params.addstrainid && params.addstrainid!='null'){
+            Strain strain = Strain.findById(params.addstrainid)
+            hostOriginInstance.addToStrains(strain)
+        }
+
         if (!hostOriginInstance.save(flush: true)) {
             render(view: "edit", model: [hostOriginInstance: hostOriginInstance])
             return
@@ -104,5 +116,31 @@ class HostOriginController {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'hostOrigin.label', default: 'HostOrigin'), id])
             redirect(action: "show", id: id)
         }
+    }
+
+    def removeStrainFromHostOrigin() {
+        def hostOriginId = params.hostOriginId
+        def strainId = params.strainId
+        def hostOriginInstance = HostOrigin.get(hostOriginId)
+        if (!hostOriginInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'hostOrigin.label', default: 'Host Origin'), hostOriginId])
+            redirect(action: "edit", id: strainId, controller: "strain")
+            return
+        }
+
+        def strainInstance = Strain.get(strainId)
+        if (!hostOriginInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'strain.label', default: 'Strain'), strainId])
+            redirect(action: "edit", id: strainId, controller: "strain")
+            return
+        }
+
+        hostOriginInstance.removeFromStrains(strainInstance)
+        strainInstance.hostOrigin = null
+        hostOriginInstance.save(flush: true)
+        strainInstance.save(flush: true)
+
+        flash.message = "Strain ${strainInstance.name} removed"
+        redirect(action: "show", id: hostOriginId, controller: "hostOrigin")
     }
 }

@@ -52,7 +52,7 @@ class HostOrigin {
     }
 
     void setStage(String stage) {
-        if (stage.length() == 0) {
+        if (!stage || stage?.length() == 0) {
             this.stage = null
             return
         }
