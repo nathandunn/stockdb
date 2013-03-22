@@ -26,7 +26,7 @@ class HostGenotypeController {
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'hostGenotype.label', default: 'HostGenotype'), hostGenotypeInstance.id])
+        flash.message = message(code: 'default.created.message', args: [message(code: 'hostGenotype.label', default: 'HostGenotype'), hostGenotypeInstance.name])
         redirect(action: "show", id: hostGenotypeInstance.id)
     }
 
@@ -38,7 +38,17 @@ class HostGenotypeController {
             return
         }
 
-        [hostGenotypeInstance: hostGenotypeInstance]
+
+
+        Map<HostOrigin,List<Strain>> hostOriginListMap = new HashMap<HostOrigin,List<Strain>>()
+        List<HostOrigin> hostOrigins = HostOrigin.findAllByGenotype(hostGenotypeInstance)
+        for(hostOrigin in hostOrigins){
+            List<Strain> strains = Strain.findAllByHostOrigin(hostOrigin)
+            hostOriginListMap.put(hostOrigin,strains)
+        }
+
+
+        [hostGenotypeInstance: hostGenotypeInstance,hostOrigins:hostOriginListMap]
     }
 
     def edit(Long id) {
@@ -77,7 +87,7 @@ class HostGenotypeController {
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'hostGenotype.label', default: 'HostGenotype'), hostGenotypeInstance.id])
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'hostGenotype.label', default: 'HostGenotype'), hostGenotypeInstance.name])
         redirect(action: "show", id: hostGenotypeInstance.id)
     }
 
@@ -90,8 +100,15 @@ class HostGenotypeController {
         }
 
         try {
+            List<HostOrigin> hostOrigins = HostOrigin.findAllByGenotype(hostGenotypeInstance)
+            if (hostOrigins){
+                flash.error = "Must move / remove ${hostOrigins.size()} Host Origins before deleting"
+                redirect(action: "show",id: hostGenotypeInstance.id)
+                return
+            }
+
             hostGenotypeInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'hostGenotype.label', default: 'HostGenotype'), id])
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'hostGenotype.label', default: 'HostGenotype'), hostGenotypeInstance.name])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {

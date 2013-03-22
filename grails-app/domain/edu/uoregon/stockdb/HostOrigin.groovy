@@ -38,12 +38,12 @@ class HostOrigin {
     String notes
 
     String getDisplay(){
-        String returnString = "${species?.commonName} (${genotype?.name}) "
+        String returnString = "${species?.commonName ?:''} (${genotype?.name ?: ''}) "
         if (daysPastFertilization>=0){
             returnString += daysPastFertilization + " DPF "
         }
         else{
-            returnString += stage + " "
+            returnString += (stage ?: '') + " "
         }
 
         returnString += anatomy ?: ""
