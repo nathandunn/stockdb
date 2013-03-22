@@ -23,37 +23,35 @@
 			<table>
 				<thead>
 					<tr>
+
+                        <g:sortableColumn property="id" title="ID" />
+                        <g:sortableColumn property="media" title="${message(code: 'isolate.media.label', default: 'Media')}" />
+
+                        <g:sortableColumn property="oxygenCondition" title="${message(code: 'isolate.oxygenCondition.label', default: 'Oxygen Condition')}" />
+                        <g:sortableColumn property="temperature" title="${message(code: 'isolate.temperature.label', default: 'Temperature (C)')}" />
+
+						%{--<th><g:message code="isolate.isolatedBy.label" default="Isolated By" /></th>--}%
 					
-						<th><g:message code="isolate.isolatedBy.label" default="Isolated By" /></th>
-					
-						<g:sortableColumn property="isolatedWhen" title="${message(code: 'isolate.isolatedWhen.label', default: 'Isolated When')}" />
-					
-						<g:sortableColumn property="media" title="${message(code: 'isolate.media.label', default: 'Media')}" />
-					
-						<g:sortableColumn property="notes" title="${message(code: 'isolate.notes.label', default: 'Notes')}" />
-					
-						<g:sortableColumn property="oxygenCondition" title="${message(code: 'isolate.oxygenCondition.label', default: 'Oxygen Condition')}" />
-					
-						<th><g:message code="isolate.researcher.label" default="Researcher" /></th>
-					
+						<g:sortableColumn property="isolatedWhen" title="${message(code: 'isolate.isolatedWhen.label', default: 'When')}" />
+
+                        <g:sortableColumn property="isolatedBy" title="${message(code: 'isolate.isolatedBy.label', default: 'By')}" />
+
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${isolateInstanceList}" status="i" var="isolateInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
-						<td><g:link action="show" id="${isolateInstance.id}">${fieldValue(bean: isolateInstance, field: "isolatedBy")}</g:link></td>
-					
-						<td><g:formatDate date="${isolateInstance.isolatedWhen}" /></td>
-					
-						<td>${fieldValue(bean: isolateInstance, field: "media")}</td>
-					
-						<td>${fieldValue(bean: isolateInstance, field: "notes")}</td>
-					
-						<td>${fieldValue(bean: isolateInstance, field: "oxygenCondition")}</td>
-					
-						<td>${fieldValue(bean: isolateInstance, field: "researcher")}</td>
-					
+
+                        <td><g:link action="show" id="${isolateInstance.id}">${fieldValue(bean: isolateInstance, field: "id")}</g:link></td>
+
+                        <td>${fieldValue(bean: isolateInstance, field: "media")}</td>
+
+                        <td>${fieldValue(bean: isolateInstance, field: "oxygenCondition")}</td>
+                        <td>${fieldValue(bean: isolateInstance, field: "temperature")}</td>
+
+						<td><g:formatDate date="${isolateInstance.isolatedWhen}" type="date" style="MEDIUM"/></td>
+                        <td>${isolateInstance?.isolatedBy?.fullName()}</td>
+
 					</tr>
 				</g:each>
 				</tbody>

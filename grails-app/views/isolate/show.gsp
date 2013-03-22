@@ -27,7 +27,7 @@
 				<li class="fieldcontain">
 					<span id="isolatedBy-label" class="property-label"><g:message code="isolate.isolatedBy.label" default="Isolated By" /></span>
 					
-						<span class="property-value" aria-labelledby="isolatedBy-label"><g:link controller="researcher" action="show" id="${isolateInstance?.isolatedBy?.id}">${isolateInstance?.isolatedBy?.name}</g:link></span>
+						<span class="property-value" aria-labelledby="isolatedBy-label"><g:link controller="researcher" action="show" id="${isolateInstance?.isolatedBy?.id}">${isolateInstance?.isolatedBy?.fullName()}</g:link></span>
 					
 				</li>
 				</g:if>
@@ -36,7 +36,7 @@
 				<li class="fieldcontain">
 					<span id="isolatedWhen-label" class="property-label"><g:message code="isolate.isolatedWhen.label" default="Isolated When" /></span>
 					
-						<span class="property-value" aria-labelledby="isolatedWhen-label"><g:formatDate date="${isolateInstance?.isolatedWhen}" /></span>
+						<span class="property-value" aria-labelledby="isolatedWhen-label"><g:formatDate date="${isolateInstance?.isolatedWhen}" type="date" style="MEDIUM" /></span>
 					
 				</li>
 				</g:if>
@@ -68,18 +68,9 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${isolateInstance?.researcher}">
-				<li class="fieldcontain">
-					<span id="researcher-label" class="property-label"><g:message code="isolate.researcher.label" default="Researcher" /></span>
-					
-						<span class="property-value" aria-labelledby="researcher-label"><g:link controller="researcher" action="show" id="${isolateInstance?.researcher?.id}">${isolateInstance?.researcher?.name}</g:link></span>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${isolateInstance?.temperature}">
 				<li class="fieldcontain">
-					<span id="temperature-label" class="property-label"><g:message code="isolate.temperature.label" default="Temperature" /></span>
+					<span id="temperature-label" class="property-label"><g:message code="isolate.temperature.label" default="Temperature (C)" /></span>
 					
 						<span class="property-value" aria-labelledby="temperature-label"><g:fieldValue bean="${isolateInstance}" field="temperature"/></span>
 					

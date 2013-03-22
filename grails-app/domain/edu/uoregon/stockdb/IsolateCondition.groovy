@@ -5,8 +5,6 @@ class IsolateCondition {
     static constraints = {
     }
 
-    Researcher researcher
-
     Researcher isolatedBy
     Date isolatedWhen
 
