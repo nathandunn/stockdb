@@ -20,6 +20,9 @@
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
+            <g:if test="${flash.error}">
+                <div class="errors" >${flash.error}</div>
+            </g:if>
 			<g:hasErrors bean="${phylumInstance}">
 			<ul class="errors" role="alert">
 				<g:eachError bean="${phylumInstance}" var="error">
@@ -35,7 +38,7 @@
 				</fieldset>
 				<fieldset class="buttons">
 					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                    <g:link action="show" id="${phylumInstance.id}">Cancel</g:link>
 				</fieldset>
 			</g:form>
 		</div>

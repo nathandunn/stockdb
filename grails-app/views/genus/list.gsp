@@ -26,8 +26,9 @@
 					
 						<g:sortableColumn property="name" title="${message(code: 'genus.name.label', default: 'Name')}" />
 					
-						<th><g:message code="genus.phylum.label" default="Phylum" /></th>
-					
+						%{--<th><g:message code="genus.phylum.label" default="Phylum" /></th>--}%
+                        <g:sortableColumn property="phylum.name" title="${message(code: 'phylum.label', default: 'Phylum')}" />
+
 					</tr>
 				</thead>
 				<tbody>
@@ -36,7 +37,9 @@
 					
 						<td><g:link action="show" id="${genusInstance.id}">${fieldValue(bean: genusInstance, field: "name")}</g:link></td>
 					
-						<td>${fieldValue(bean: genusInstance, field: "phylum")}</td>
+						<td>
+                            <g:link action="show" controller="phylum" id="${genusInstance.phylum.id}">${genusInstance.phylum.name}</g:link>
+						</td>
 					
 					</tr>
 				</g:each>

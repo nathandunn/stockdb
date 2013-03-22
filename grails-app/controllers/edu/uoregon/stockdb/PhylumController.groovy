@@ -63,14 +63,21 @@ class PhylumController {
         if (version != null) {
             if (phylumInstance.version > version) {
                 phylumInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'phylum.label', default: 'Phylum')] as Object[],
-                          "Another user has updated this Phylum while you were editing")
+                        [message(code: 'phylum.label', default: 'Phylum')] as Object[],
+                        "Another user has updated this Phylum while you were editing")
                 render(view: "edit", model: [phylumInstance: phylumInstance])
                 return
             }
         }
 
         phylumInstance.properties = params
+
+//        if (params.addgenusid && params.addgenusid!='null') {
+//            Genus genus = Genus.findById(params.addgenusid)
+//            if (genus) {
+//                phylumInstance.addToGenuses(genus)
+//            }
+//        }
 
         if (!phylumInstance.save(flush: true)) {
             render(view: "edit", model: [phylumInstance: phylumInstance])
@@ -90,6 +97,12 @@ class PhylumController {
         }
 
         try {
+            if (phylumInstance.genuses) {
+                flash.error = "You must remove ${phylumInstance.genuses.size()} associated genuses before you remove this phylum ${phylumInstance.name}"
+                redirect(action: "edit", id: id)
+                return
+            }
+
             phylumInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'phylum.label', default: 'Phylum'), phylumInstance.name])
             redirect(action: "list")
