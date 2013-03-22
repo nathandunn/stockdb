@@ -26,7 +26,7 @@ class GenusController {
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'genus.label', default: 'Genus'), genusInstance.id])
+        flash.message = message(code: 'default.created.message', args: [message(code: 'genus.label', default: 'Genus'), genusInstance.name])
         redirect(action: "show", id: genusInstance.id)
     }
 
@@ -77,7 +77,7 @@ class GenusController {
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'genus.label', default: 'Genus'), genusInstance.id])
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'genus.label', default: 'Genus'), genusInstance.name])
         redirect(action: "show", id: genusInstance.id)
     }
 
@@ -90,8 +90,14 @@ class GenusController {
         }
 
         try {
+            Phylum phylum = genusInstance.phylum
+            phylum.removeFromGenuses(genusInstance)
+//            phylum.save(flush: true)
+//            genusInstance.phylum = null
+//            genusInstance.save(flush: true)
+
             genusInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'genus.label', default: 'Genus'), id])
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'genus.label', default: 'Genus'), genusInstance.name])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {

@@ -26,7 +26,7 @@ class PhylumController {
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'phylum.label', default: 'Phylum'), phylumInstance.id])
+        flash.message = message(code: 'default.created.message', args: [message(code: 'phylum.label', default: 'Phylum'), phylumInstance.name])
         redirect(action: "show", id: phylumInstance.id)
     }
 
@@ -77,7 +77,7 @@ class PhylumController {
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'phylum.label', default: 'Phylum'), phylumInstance.id])
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'phylum.label', default: 'Phylum'), phylumInstance.name])
         redirect(action: "show", id: phylumInstance.id)
     }
 
@@ -91,7 +91,7 @@ class PhylumController {
 
         try {
             phylumInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'phylum.label', default: 'Phylum'), id])
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'phylum.label', default: 'Phylum'), phylumInstance.name])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
