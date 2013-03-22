@@ -26,7 +26,7 @@ class LocationController {
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'location.label', default: 'Location'), locationInstance.id])
+        flash.message = message(code: 'default.created.message', args: [message(code: 'location.label', default: 'Location'), locationInstance.name])
         redirect(action: "show", id: locationInstance.id)
     }
 
@@ -77,7 +77,7 @@ class LocationController {
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'location.label', default: 'Location'), locationInstance.id])
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'location.label', default: 'Location'), locationInstance.name])
         redirect(action: "show", id: locationInstance.id)
     }
 
@@ -89,9 +89,15 @@ class LocationController {
             return
         }
 
+        if(locationInstance.stocks){
+            flash.error = "Must remove / move ${locationInstance.stocks.size()} stocks before deleting"
+            redirect(action: "show",id: locationInstance.id)
+            return
+        }
+
         try {
             locationInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'location.label', default: 'Location'), id])
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'location.label', default: 'Location'), locationInstance.name])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {

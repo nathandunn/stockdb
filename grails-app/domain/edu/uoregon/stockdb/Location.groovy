@@ -9,5 +9,9 @@ class Location {
             stocks: Stock
     ]
 
+    static mapping = {
+        stocks sort:"physicalLocation",order: "asc"
+    }
+
     String name
 }
