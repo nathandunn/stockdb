@@ -6,6 +6,10 @@ class LocationController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
+    static navigation = [
+            title: 'Location', action: 'list', order: 5
+    ]
+
     def index() {
         redirect(action: "list", params: params)
     }
@@ -63,8 +67,8 @@ class LocationController {
         if (version != null) {
             if (locationInstance.version > version) {
                 locationInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'location.label', default: 'Location')] as Object[],
-                          "Another user has updated this Location while you were editing")
+                        [message(code: 'location.label', default: 'Location')] as Object[],
+                        "Another user has updated this Location while you were editing")
                 render(view: "edit", model: [locationInstance: locationInstance])
                 return
             }
@@ -89,9 +93,9 @@ class LocationController {
             return
         }
 
-        if(locationInstance.stocks){
+        if (locationInstance.stocks) {
             flash.error = "Must remove / move ${locationInstance.stocks.size()} stocks before deleting"
-            redirect(action: "show",id: locationInstance.id)
+            redirect(action: "show", id: locationInstance.id)
             return
         }
 

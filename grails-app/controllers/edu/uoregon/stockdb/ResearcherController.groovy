@@ -6,6 +6,10 @@ class ResearcherController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
+    static navigation = [
+            title: 'Researchers', action: 'list', order: 5
+    ]
+
     def index() {
         redirect(action: "list", params: params)
     }

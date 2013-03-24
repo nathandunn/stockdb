@@ -6,6 +6,10 @@ class HostGenotypeController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
+    static navigation = [
+            title:'Host Genotype',action: 'list',order:5
+    ]
+
     def index() {
         redirect(action: "list", params: params)
     }
