@@ -30,7 +30,7 @@ class ResearcherController {
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'researcher.label', default: 'Researcher'), researcherInstance.id])
+        flash.message = message(code: 'default.created.message', args: [message(code: 'researcher.label', default: 'Researcher'), researcherInstance.fullName])
         redirect(action: "show", id: researcherInstance.id)
     }
 
@@ -81,7 +81,7 @@ class ResearcherController {
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'researcher.label', default: 'Researcher'), researcherInstance.id])
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'researcher.label', default: 'Researcher'), researcherInstance.fullName])
         redirect(action: "show", id: researcherInstance.id)
     }
 
@@ -94,8 +94,25 @@ class ResearcherController {
         }
 
         try {
+            println "researcher experiments ${researcherInstance.experiments.size()}"
+            if(researcherInstance.isolateConditions){
+                flash.error = "Must remove researcher from ${researcherInstance.isolateConditions.size()} isolate conditions before removing"
+                redirect(action: "show", id: id)
+                return
+            }
+
+            if(researcherInstance.experiments){
+                flash.error = "Must remove researcher from ${researcherInstance.experiments.size()} experiments before removing"
+                redirect(action: "show", id: id)
+                return
+            }
+
+            researcherInstance.lab = null
+            researcherInstance.save(flush: true)
+
+
             researcherInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'researcher.label', default: 'Researcher'), id])
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'researcher.label', default: 'Researcher'), researcherInstance.fullName])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {

@@ -8,6 +8,12 @@ class Researcher {
         firstName nullable:false
         lastName nullable:false
     }
+
+    static hasMany = [
+            experiments:Experiment
+            ,isolateConditions:IsolateCondition
+    ]
+
     String email
     String firstName
     String lastName
