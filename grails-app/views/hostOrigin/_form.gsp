@@ -66,14 +66,6 @@
               noSelection="['null': '- Choose Existing -']"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: hostOriginInstance, field: 'notes', 'error')} ">
-    <label for="notes">
-        <g:message code="hostOrigin.notes.label" default="Notes"/>
-
-    </label>
-    <g:textField name="notes" value="${hostOriginInstance?.notes}"/>
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: hostOriginInstance, field: 'phenotypes', 'error')} ">
     <label for="phenotypes">
         <g:message code="hostOrigin.phenotypes.label" default="Phenotypes"/>
@@ -113,5 +105,14 @@
             </li>
         </g:each>
     </ul>
+
+
+    <div class="fieldcontain ${hasErrors(bean: hostOriginInstance, field: 'notes', 'error')} ">
+        <label for="notes">
+            <g:message code="hostOrigin.notes.label" default="Notes"/>
+
+        </label>
+        <g:textArea name="notes" value="${hostOriginInstance?.notes}" rows="3" cols="40"/>
+    </div>
 
 </div>

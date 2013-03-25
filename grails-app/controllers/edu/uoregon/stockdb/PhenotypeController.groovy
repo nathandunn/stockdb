@@ -93,6 +93,18 @@ class PhenotypeController {
             return
         }
 
+        if(phenotypeInstance.measuredValues){
+            flash.error = "Must disassociate ${phenotypeInstance.measuredValues.size()} measured values before removing."
+            redirect(action: "show", id: id)
+            return
+        }
+
+        if(phenotypeInstance.hostOrigins){
+            flash.error = "Must disassociate ${phenotypeInstance.hostOrigins.size()} host origins before removing."
+            redirect(action: "show", id: id)
+            return
+        }
+
         try {
             phenotypeInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'phenotype.label', default: 'Phenotype'), phenotypeInstance.name])

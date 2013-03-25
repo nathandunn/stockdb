@@ -95,16 +95,6 @@
             </li>
         </g:if>
 
-        <g:if test="${hostOriginInstance?.notes}">
-            <li class="fieldcontain">
-                <span id="notes-label" class="property-label"><g:message code="hostOrigin.notes.label"
-                                                                         default="Notes"/></span>
-
-                <span class="property-value" aria-labelledby="notes-label"><g:fieldValue bean="${hostOriginInstance}"
-                                                                                         field="notes"/></span>
-
-            </li>
-        </g:if>
 
         <g:if test="${hostOriginInstance?.phenotypes}">
             <li class="fieldcontain">
@@ -130,6 +120,17 @@
                                                                                          action="show"
                                                                                          id="${s.id}">${s?.name}</g:link></span>
                 </g:each>
+
+            </li>
+        </g:if>
+
+        <g:if test="${hostOriginInstance?.notes}">
+            <li class="fieldcontain">
+                <span id="notes-label" class="property-label"><g:message code="hostOrigin.notes.label"
+                                                                         default="Notes"/></span>
+
+                <span class="property-value" aria-labelledby="notes-label"><g:fieldValue bean="${hostOriginInstance}"
+                                                                                         field="notes"/></span>
 
             </li>
         </g:if>
