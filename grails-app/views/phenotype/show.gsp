@@ -36,7 +36,11 @@
 				<li class="fieldcontain">
 					<span id="url-label" class="property-label"><g:message code="phenotype.url.label" default="Url" /></span>
 					
-						<span class="property-value" aria-labelledby="url-label"><g:fieldValue bean="${phenotypeInstance}" field="url"/></span>
+						<span class="property-value" aria-labelledby="url-label">
+                            <g:link url="${phenotypeInstance.url}">
+                            <g:fieldValue bean="${phenotypeInstance}" field="url"/>
+                                </g:link>
+                        </span>
 					
 				</li>
 				</g:if>

@@ -30,7 +30,7 @@ class PhenotypeController {
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'phenotype.label', default: 'Phenotype'), phenotypeInstance.id])
+        flash.message = message(code: 'default.created.message', args: [message(code: 'phenotype.label', default: 'Phenotype'), phenotypeInstance.name])
         redirect(action: "show", id: phenotypeInstance.id)
     }
 
@@ -81,7 +81,7 @@ class PhenotypeController {
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'phenotype.label', default: 'Phenotype'), phenotypeInstance.id])
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'phenotype.label', default: 'Phenotype'), phenotypeInstance.name])
         redirect(action: "show", id: phenotypeInstance.id)
     }
 
@@ -95,7 +95,7 @@ class PhenotypeController {
 
         try {
             phenotypeInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'phenotype.label', default: 'Phenotype'), id])
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'phenotype.label', default: 'Phenotype'), phenotypeInstance.name])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {

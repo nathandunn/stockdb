@@ -7,7 +7,7 @@
 		<g:message code="phenotype.name.label" default="Name" />
 		
 	</label>
-	<g:textField name="name" value="${phenotypeInstance?.name}"/>
+	<g:textField name="name" value="${phenotypeInstance?.name}"  size="40"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: phenotypeInstance, field: 'url', 'error')} ">
@@ -15,6 +15,6 @@
 		<g:message code="phenotype.url.label" default="Url" />
 		
 	</label>
-	<g:textField name="url" value="${phenotypeInstance?.url}"/>
+	<g:textField name="url" value="${phenotypeInstance?.url}" size="60"/>
 </div>
 
