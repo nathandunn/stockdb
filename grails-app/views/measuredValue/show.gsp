@@ -22,7 +22,16 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list measuredValue">
-			
+
+                <g:if test="${measuredValueInstance?.id}">
+                    <li class="fieldcontain">
+                        <span id="name-label" class="property-label"><g:message code="measuredValue.id.label" default="ID" /></span>
+
+                        <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${measuredValueInstance}" field="id"/></span>
+
+                    </li>
+                </g:if>
+
 				<g:if test="${measuredValueInstance?.name}">
 				<li class="fieldcontain">
 					<span id="name-label" class="property-label"><g:message code="measuredValue.name.label" default="Name" /></span>

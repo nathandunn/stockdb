@@ -27,13 +27,13 @@
 	<g:textField name="note" value="${experimentInstance?.note}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: experimentInstance, field: 'phenotypes', 'error')} ">
-	<label for="phenotypes">
-		<g:message code="experiment.phenotypes.label" default="Phenotypes" />
-		
-	</label>
-	<g:select name="phenotypes" from="${edu.uoregon.stockdb.Phenotype.list()}" multiple="multiple" optionKey="id" size="5" value="${experimentInstance?.phenotypes*.id}" class="many-to-many"/>
-</div>
+%{--<div class="fieldcontain ${hasErrors(bean: experimentInstance, field: 'phenotypes', 'error')} ">--}%
+	%{--<label for="phenotypes">--}%
+		%{--<g:message code="experiment.phenotypes.label" default="Phenotypes" />--}%
+		%{----}%
+	%{--</label>--}%
+	%{--<g:select name="phenotypes" from="${edu.uoregon.stockdb.Phenotype.list()}" multiple="multiple" optionKey="id" size="5" value="${experimentInstance?.phenotypes*.id}" class="many-to-many"/>--}%
+%{--</div>--}%
 
 <div class="fieldcontain ${hasErrors(bean: experimentInstance, field: 'researcher', 'error')} ">
 	<label for="researcher">

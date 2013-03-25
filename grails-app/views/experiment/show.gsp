@@ -43,16 +43,16 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${experimentInstance?.phenotypes}">
-				<li class="fieldcontain">
-					<span id="phenotypes-label" class="property-label"><g:message code="experiment.phenotypes.label" default="Phenotypes" /></span>
-					
-						<g:each in="${experimentInstance.phenotypes}" var="p">
-						<span class="property-value" aria-labelledby="phenotypes-label"><g:link controller="phenotype" action="show" id="${p.id}">${p?.name}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
+				%{--<g:if test="${experimentInstance?.phenotypes}">--}%
+				%{--<li class="fieldcontain">--}%
+					%{--<span id="phenotypes-label" class="property-label"><g:message code="experiment.phenotypes.label" default="Phenotypes" /></span>--}%
+					%{----}%
+						%{--<g:each in="${experimentInstance.phenotypes}" var="p">--}%
+						%{--<span class="property-value" aria-labelledby="phenotypes-label"><g:link controller="phenotype" action="show" id="${p.id}">${p?.name}</g:link></span>--}%
+						%{--</g:each>--}%
+					%{----}%
+				%{--</li>--}%
+				%{--</g:if>--}%
 			
 				<g:if test="${experimentInstance?.researcher}">
 				<li class="fieldcontain">
