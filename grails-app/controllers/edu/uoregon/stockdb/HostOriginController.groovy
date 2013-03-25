@@ -81,7 +81,11 @@ class HostOriginController {
             }
         }
 
+
+        hostOriginInstance.phenotypes = null
+
         hostOriginInstance.properties = params
+
 
         if(params.addstrainid && params.addstrainid!='null'){
             Strain strain = Strain.findById(params.addstrainid)
