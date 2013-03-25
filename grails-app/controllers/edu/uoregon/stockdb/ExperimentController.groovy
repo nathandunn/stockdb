@@ -30,7 +30,7 @@ class ExperimentController {
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'experiment.label', default: 'Experiment'), experimentInstance.id])
+        flash.message = message(code: 'default.created.message', args: [message(code: 'experiment.label', default: 'Experiment'), experimentInstance.name])
         redirect(action: "show", id: experimentInstance.id)
     }
 
@@ -81,7 +81,7 @@ class ExperimentController {
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'experiment.label', default: 'Experiment'), experimentInstance.id])
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'experiment.label', default: 'Experiment'), experimentInstance.name])
         redirect(action: "show", id: experimentInstance.id)
     }
 
@@ -93,9 +93,21 @@ class ExperimentController {
             return
         }
 
+        if(experimentInstance.strains){
+            flash.error = "Must remove ${experimentInstance.strains.size()} strains before removing"
+            redirect(action: "edit", id: id)
+            return
+        }
+
+        if(experimentInstance.measuredValues){
+            flash.error = "Must remove ${experimentInstance.strains.size()} measured values before removing"
+            redirect(action: "edit", id: id)
+            return
+        }
+
         try {
             experimentInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'experiment.label', default: 'Experiment'), id])
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'experiment.label', default: 'Experiment'), experimentInstance.name])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {

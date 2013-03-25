@@ -24,7 +24,7 @@
 				<thead>
 					<tr>
 					
-						<g:sortableColumn property="note" title="${message(code: 'experiment.note.label', default: 'Note')}" />
+						<g:sortableColumn property="name" title="${message(code: 'experiment.note.label', default: 'Name')}" />
 					
 						<th><g:message code="experiment.researcher.label" default="Researcher" /></th>
 					
@@ -36,9 +36,9 @@
 				<g:each in="${experimentInstanceList}" status="i" var="experimentInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${experimentInstance.id}">${fieldValue(bean: experimentInstance, field: "note")}</g:link></td>
+						<td><g:link action="show" id="${experimentInstance.id}">${fieldValue(bean: experimentInstance, field: "name")}</g:link></td>
 					
-						<td>${fieldValue(bean: experimentInstance, field: "researcher")}</td>
+						<td>${experimentInstance?.researcher?.fullName}</td>
 					
 						<td><g:formatDate date="${experimentInstance.whenPerformed}" /></td>
 					
