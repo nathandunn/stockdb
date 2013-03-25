@@ -40,7 +40,7 @@
 					
 						<td>${experimentInstance?.researcher?.fullName}</td>
 					
-						<td><g:formatDate date="${experimentInstance.whenPerformed}" /></td>
+						<td><g:formatDate date="${experimentInstance.whenPerformed}" type="date" dateStyle="MEDIUM"/></td>
 					
 					</tr>
 				</g:each>

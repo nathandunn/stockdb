@@ -34,7 +34,9 @@
         <g:message code="experiment.measuredValues.label" default="Measured Values"/>
 
     </label>
-    <g:select name="measuredValues" from="${edu.uoregon.stockdb.MeasuredValue.findAllByExperimentIsNull()+experimentInstance?.measuredValues}" optionValue="name" multiple="multiple"
+    <g:select name="measuredValues"
+              from="${availableMeasuredValues}"
+              optionValue="name" multiple="multiple"
               optionKey="id" size="5" value="${experimentInstance?.measuredValues*.id}" class="many-to-many"/>
 </div>
 
