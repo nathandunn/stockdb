@@ -33,6 +33,9 @@
 <div id="menu">
     <nav:render/>
 </div>
+<div id="menu2">
+    <nav:renderSubItems/>
+</div>
 <g:layoutBody/>
 <div class="footer" role="contentinfo"></div>
 

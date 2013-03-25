@@ -10,6 +10,7 @@ class Experiment {
             ,measuredValues: MeasuredValue
     ]
 
+    String name
     Researcher researcher
     Date whenPerformed
     String note

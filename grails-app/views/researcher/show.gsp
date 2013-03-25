@@ -74,6 +74,41 @@
             </li>
         </g:if>
 
+        <g:if test="${researcherInstance?.experiments}">
+            <li class="fieldcontain">
+                <span id="experiments-label" class="property-label"><g:message code="researcher.experiments.label"
+                                                                               default="Experiments"/></span>
+
+                <span class="property-value" aria-labelledby="experiments-label">
+                    <ul>
+                        <g:each in="${researcherInstance?.experiments}" var="experiment">
+                            <li>
+                                <g:link controller="experiment" action="show"
+                                        id="${experiment.id}">${experiment.name}</g:link>
+                            </li>
+                        </g:each>
+                    </ul>
+                </span>
+            </li>
+        </g:if>
+
+        <g:if test="${researcherInstance?.isolateConditions}">
+            <li class="fieldcontain">
+                <span id="experiments-label" class="property-label"><g:message code="researcher.experiments.label"
+                                                                               default="Isolates"/></span>
+
+                <span class="property-value" aria-labelledby="isolates-label">
+                    <ul>
+                        <g:each in="${researcherInstance?.isolateConditions}" var="isolate">
+                            <li>
+                                <g:link controller="isolate" action="show"
+                                        id="${isolate.id}">${isolate.display}</g:link>
+                            </li>
+                        </g:each>
+                    </ul>
+                </span>
+            </li>
+        </g:if>
 
     </ol>
     <g:form>
