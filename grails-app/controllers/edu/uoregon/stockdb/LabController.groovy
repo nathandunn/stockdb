@@ -93,6 +93,12 @@ class LabController {
             return
         }
 
+        if (labInstance.researchers) {
+            flash.error = "Must remove ${labInstance?.researchers?.size()} researchers from lab before deleting"
+            redirect(action: "show",id: labInstance.id)
+            return
+        }
+
         try {
             labInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'lab.label', default: 'Lab'), labInstance.name])

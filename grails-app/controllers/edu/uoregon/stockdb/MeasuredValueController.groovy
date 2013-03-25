@@ -30,6 +30,12 @@ class MeasuredValueController {
             return
         }
 
+        if(measuredValueInstance.checkValid()){
+            flash.error = measuredValueInstance.checkValid()
+            render(view: "create", model: [measuredValueInstance: measuredValueInstance])
+            return
+        }
+
         flash.message = message(code: 'default.created.message', args: [message(code: 'measuredValue.label', default: 'MeasuredValue'), measuredValueInstance.id])
         redirect(action: "show", id: measuredValueInstance.id)
     }
@@ -61,6 +67,11 @@ class MeasuredValueController {
         if (!measuredValueInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'measuredValue.label', default: 'MeasuredValue'), id])
             redirect(action: "list")
+            return
+        }
+        if(measuredValueInstance.checkValid()){
+            flash.error = measuredValueInstance.checkValid()
+            render(view: "edit",id:measuredValueInstance.id, model: [measuredValueInstance: measuredValueInstance])
             return
         }
 

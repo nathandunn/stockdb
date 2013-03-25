@@ -5,6 +5,7 @@ class MeasuredValue {
     static constraints = {
         name nullable: false
         value nullable: false
+        type nullable: false
     }
 
     String name
@@ -15,4 +16,27 @@ class MeasuredValue {
     Phenotype phenotype // if exists
 
     Experiment experiment
+
+    String checkValid() {
+        switch (type){
+            case MeasuredValueTypeEnum.INTEGER_TYPE:
+                try {
+                    Integer.valueOf(value)
+                    return null
+                } catch (e) {
+                    return "${value} is not a valid integer"
+                }
+                break
+            case MeasuredValueTypeEnum.FLOAT_TYPE:
+                try {
+                    Float.valueOf(value)
+                    return null
+                } catch (e) {
+                    return "${value} is not a valid float "
+                }
+                break
+            default:
+                return null
+        }
+    }
 }
