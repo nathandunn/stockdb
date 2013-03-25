@@ -1,8 +1,8 @@
 <%@ page import="edu.uoregon.stockdb.Lab" %>
 
-<div class="fieldcontain ${hasErrors(bean: labInstance, field: 'labdBy', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: labInstance, field: 'name', 'error')} ">
     <label for="labdBy">
-        <g:message code="lab.labdBy.label" default="Isolated By" />
+        <g:message code="lab.name.label" default="Name" />
 
     </label>
     <g:textField name="name" value="${labInstance.name}" size="40"/>
