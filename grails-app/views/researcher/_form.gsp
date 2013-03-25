@@ -32,5 +32,6 @@
 		
 	</label>
 	<g:select id="lab" name="lab.id" optionValue="name" from="${edu.uoregon.stockdb.Lab.list()}" optionKey="id" value="${researcherInstance?.lab?.id}" class="many-to-one" noSelection="['null': '']"/>
+    <g:link action="create" controller="lab">Create Lab</g:link>
 </div>
 
