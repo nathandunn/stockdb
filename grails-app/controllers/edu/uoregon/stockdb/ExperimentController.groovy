@@ -42,7 +42,11 @@ class ExperimentController {
             return
         }
 
-        [experimentInstance: experimentInstance]
+//        Map<String,List<String>> values = new TreeMap<String,List<String>>()
+        Map<String,List<String>> values  = experimentInstance.createValuesMap()
+
+
+        [experimentInstance: experimentInstance,valuesMap:values]
     }
 
     def edit(Long id) {

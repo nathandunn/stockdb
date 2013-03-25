@@ -44,11 +44,30 @@
                 <span id="measuredValues-label" class="property-label"><g:message code="experiment.measuredValues.label"
                                                                                   default="Measured Values"/></span>
 
-                <g:each in="${experimentInstance.measuredValues}" var="m">
+                %{--<g:each in="${experimentInstance.measuredValues}" var="m">--}%
+                    %{--<span class="property-value" aria-labelledby="measuredValues-label">--}%
+                        %{--<g:link controller="measuredValue" action="show" id="${m.id}">${m?.name}</g:link>--}%
+                    %{--</span>--}%
+                %{--</g:each>--}%
+
+                <g:each in="${experimentInstance.createMeasuredValuesMap()}" var="m">
                     <span class="property-value" aria-labelledby="measuredValues-label">
-                        <g:link controller="measuredValue" action="show" id="${m.id}">${m?.name}</g:link>
+                        ${m.key}:
+                        <g:each in="${m.value}" var="val">
+                            <g:link controller="measuredValue" action="show" id="${val.id}">${val?.value}</g:link>
+                        </g:each>
                     </span>
                 </g:each>
+
+                %{--<g:each in="${experimentInstance.createValuesMap()}" var="map">--}%
+                    %{--<span class="property-value" aria-labelledby="measuredValues-label">--}%
+                        %{--${map.key}--}%
+                        %{--<g:each in="${map.value}" var="value">--}%
+                            %{--${value}--}%
+                        %{--</g:each>--}%
+                        %{--<g:link controller="measuredValue" action="show" id="${m.id}">${m?.name}</g:link>--}%
+                    %{--</span>--}%
+                %{--</g:each>--}%
 
             </li>
         </g:if>
