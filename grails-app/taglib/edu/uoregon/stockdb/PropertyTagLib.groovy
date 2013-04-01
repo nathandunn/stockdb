@@ -12,7 +12,7 @@ class PropertyTagLib {
         }
         def id = attrs.id
         def controller = attrs.controller
-        out << "<a href=\"" + grailsLinkGenerator.link([absolute: true, action: "show", id: id, controller: controller]) + "\">"
+        out << "<a href=\"" + grailsLinkGenerator.link([absolute: false, action: "show", id: id, controller: controller]) + "\">"
         out << attrs.label ?: formatNumber([number: id])
         out << "</a>"
     }
