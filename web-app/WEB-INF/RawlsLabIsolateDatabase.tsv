@@ -1,0 +1,73 @@
+Strain ID	Genus	Physical Location (Box Number - Location in box)	Phylum	RDP classifier [% confidence] (taxon level)	BLAST hits	"Closest Neighbor, from RAST genome"	Origin	Host Facility Origin	Stock Location	Culture Conditions	Genome Sequence	Genome Size (Mb)	Genome Quality (Contigs)	Genome Quality (N50)	Date of Entry	Date of Isolation	Isolated by	Former Clone Alias(es)	Motility	Speed (um/s)	Hemolytic Activity	Antibiotic Resistances/Sensitivities	Doubling Time (minutes)	Other Notes	
+ZWU0001	Cellulomonas		Actinobacteria					Washington University	Rawls -80C Freezer									T1E1A03							
+ZWU0002	Aeromonas		Proteobacteria					Washington University	Rawls -80C Freezer									T1E1B07							
+MWU0001	Staphylococcus		Firmicutes					Washington University	Rawls -80C Freezer									M2E1A04							
+ZWU0003	Staphylococcus		Firmicutes					Washington University	Rawls -80C Freezer									T1E1D10							
+ZWU0004	Aeromonas		Protebacteria					Washington University	Rawls -80C Freezer									T1E1H07							
+ZWU0005	Plesiomonas		Proteobacteria				unknown	Washington University	Rawls -80C Freezer									This clone recovered accidentally while trying to recover Chitinibacter clone ZF1ED01 from glycerol plate						glycerol stock made by Chad Trent (JFR: origin unknown - do not use)	
+ZWU0006	Pseudomonas		Proteobacteria				adult zebrafish intestine	Washington University	Rawls -80C Freezer		http://rast.nmpdr.org/rast.cgi?page=JobDetails&job=18508							ZF1EE07							
+MWU0002	Enterococcus		Firmicutes					Washington University	Rawls -80C Freezer									M2E1F06							
+ZWU0007	Proteus		Proteobacteria					Washington University	Rawls -80C Freezer									TSFNXAE.F12							
+MWU0003	Proteus		Proteobacteria					Washington University	Rawls -80C Freezer									M2E1G02							
+ZWU0008	Aeromonas		Proteobacteria					Washington University	Rawls -80C Freezer									T1E1A06							
+ZWU0009	Exiguobacterium		Firmicutes				adult zebrafish intestine	Washington University	Rawls -80C Freezer									ZF1EB02							
+MWU0004	Enterococcus		Firmicutes					Washington University	Rawls -80C Freezer									M2E1D03							
+ZWU0010	Aeromonas		Proteobacteria					Washington University	Rawls -80C Freezer									T1E1A07							
+ZWU0011	Carnobacterium		Firmicutes					Washington University	Rawls -80C Freezer	Aerobic; 30C on BHI								T1N1E05							
+ZWU0012	Shewanella		Proteobacteria					Washington University	Rawls -80C Freezer		http://rast.nmpdr.org/rast.cgi?page=JobDetails&job=18633							"TSFN1AE.C5, T1E1C05"							
+ZWU0013	Citrobacter		Proteobacteria					Washington University	Rawls -80C Freezer									T1E1C07							
+MWU0005	Enterococcus		Firmicutes					Washington University	Rawls -80C Freezer									M2E1D05							
+ZWU0014	Clostridium		Firmicutes					Washington University	Rawls -80C Freezer									T1N1G10							
+ZWU0015	Plesiomonas		Proteobacteria					Washington University	Rawls -80C Freezer									T1N1D03							
+ZWU0016	Aeromonas		Proteobacteria				adult zebrafish intestine	Washington University	Rawls -80C Freezer									ZF1EF05							
+ZWU0017	Pseudomonas		Proteobacteria				adult zebrafish intestine	Washington University	Rawls -80C Freezer									"ZFMB1AE.E7, ZF1EE07"						same as ZWR0006?	
+ZWU0018	Citrobacter		Proteobacteria					Washington University	Rawls -80C Freezer									T1N1F08							
+ZOR0023	Chryseobacterium		Bacteroidetes						Rawls -80C Freezer									KG3dpf.1							
+ZWU0019	Plesiomonas		Proteobacteria				unknown		Rawls -80C Freezer									This clone recovered accidentally while trying to recover Chitinibacter clone ZF1ED01 from glycerol plate						glycerol stock made by Jessica Russell (JFR: origin unknown - do not use)	
+ZNC0001	Aeromonas		Proteobacteria (gamma)		"A. jandaei, various strains; uncultured bacterial clones; A. hydrophila isolate TS IW 32; some other Aeromonas species"		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"BHI, 30C aerobic"								SWZG01.001							
+ZNC0002							6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"BHI, 30C aerobic"								SWZG01.002							
+ZNC0003	Aeromonas		Proteobacteria (gamma)		"A. jandaei, various strains; uncultured bacterial clones; A. hydrophila isolate TS IW 32; some other Aeromonas species"		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"BHI, 30C aerobic"								SWZG01.003							
+ZNC0004	Pseudomonas		Proteobacteria (gamma)		sp. DWSR58; sp BND-B4; sp BND-B3; P. otiditis		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"BHI, 30C aerobic"								SWZG01.004							
+ZNC0005	Pseudomonas		Proteobacteria (gamma)		sp. DWSR58; sp BND-B4; sp BND-B3; P. otiditis		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"BHI, 30C aerobic"								SWZG01.005							
+ZNC0006	Variovorax		Proteobacteria (beta)		"V. paradoxus strain XB3, others"		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"BHI, 30C aerobic"								SWZG01.006							
+ZNC0007	Comamonas		Proteobacteria (beta)		sp. CNB 8; uncultured bacterium clone StromG05		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"BHI, 30C aerobic"								SWZG01.007							
+ZNC0008	Delftia		Proteobacteria (beta)		sp. C-D-R2A3; uncultured beta proteobacterium clone OS2BR12		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"BHI, 30C aerobic"								SWZG01.008							
+ZNC0009	Pseudomonas		Proteobacteria (gamma)		best hit = 576/577: P. oleovorans strain HNS030; sp. PPR8; P. aeruginosa (several strains); P. pseudoalcaligenes (several strains); other species		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"BHI, 30C aerobic"								SWZG01.009							
+ZNC0010	Aeromonas		Proteobacteria (gamma)		"A. jandaei, various strains; uncultured bacterial clones; A. hydrophila isolate TS IW 32; some other Aeromonas species"		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"BHI, 30C aerobic"								SWZG01.010							
+ZNC0011	Aeromonas		Proteobacteria (gamma)		"A. jandaei, various strains; uncultured bacterial clones; A. hydrophila isolate TS IW 32; some other Aeromonas species"		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"BHI, 30C aerobic"								SWZG01.011							
+ZNC0012	Delftia		Proteobacteria (beta)		D. tsuruhatensis strain D17; sp. C-D-R2A3; others		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"LB (resistant to gentamicin75), aerobic"								SWZG01.012							
+ZNC0013	Comamonas		Proteobacteria (beta)		sp. CNB 8; uncultured bacterium clone StromG05		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"TSA, aerobic"								SWZG01.013							
+ZNC0014	Aeromonas		Proteobacteria (gamma)		"A. jandaei, various strains; uncultured bacterial clones; A. hydrophila isolate TS IW 32; some other Aeromonas species"		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"TSA, aerobic"								SWZG01.014							
+ZNC0015	Pseudomonas		Proteobacteria (gamma)		best hit = 576/577: P. oleovorans strain HNS030; sp. PPR8; P. aeruginosa (several strains); P. pseudoalcaligenes (several strains); other species		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"TSA, aerobic"								SWZG01.015							
+ZNC0016	unclassified Comamonadaceae		Proteobacteria (beta)		uncultured Mitsuaria sp. Clone cpcc4914; Mitsuaria chitosanitabida strain JC6; Roseateles depolymerans isolate TD CW2-02; a few others		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"TSA, aerobic"								SWZG01.016							
+ZNC0017	Delftia		Proteobacteria (beta)		sp. C-D-R2A3; uncultured beta proteobacterium clone OS2BR12		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"TSA, aerobic"								SWZG01.017							
+ZNC0018	Pseudomonas		Proteobacteria (gamma)		best hit = 576/577: P. oleovorans strain HNS030; sp. PPR8; P. aeruginosa (several strains); P. pseudoalcaligenes (several strains); other species		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"TSA, aerobic"								SWZG01.018							
+ZNC0019	Variovorax		Proteobacteria (beta)		"V. paradoxus strain XB3, others"		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"LB, aerobic"								SWZG01.019							
+ZNC0020	Delftia		Proteobacteria (beta)		D. tsuruhatensis strain D17; sp. C-D-R2A3; others		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"LB, aerobic"								SWZG01.020							
+ZNC0021	Delftia		Proteobacteria (beta)		D. tsuruhatensis strain D17; sp. C-D-R2A3; others		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"LB, aerobic"								SWZG01.021							
+ZNC0022	Pseudomonas		Proteobacteria (gamma)		best hit = 576/577: P. oleovorans strain HNS030; sp. PPR8; P. aeruginosa (several strains); P. pseudoalcaligenes (several strains); other species		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"LB, aerobic"								SWZG01.022							
+ZNC0023	Pseudomonas		Proteobacteria (gamma)		best hit = 576/577: P. oleovorans strain HNS030; sp. PPR8; P. aeruginosa (several strains); P. pseudoalcaligenes (several strains); other species		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"LB, aerobic"								SWZG01.023							
+ZNC0024	Pseudomonas		Proteobacteria (gamma)		best hit = 576/577: P. oleovorans strain HNS030; sp. PPR8; P. aeruginosa (several strains); P. pseudoalcaligenes (several strains); other species		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"LB, aerobic"								SWZG01.024							
+ZNC0025	Pseudomonas		Proteobacteria (gamma)		sp. DWSR58; sp BND-B4; sp BND-B3; P. otiditis		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"LB, aerobic"								SWZG01.025							
+ZNC0026	Shinella		Proteobacteria (beta)		uncultured Shinella sp. Clone cuticle_11; Rhizobium sp. NJUST18; uncultured bacterium clone JFR0701_jaa43c05; Phyllobacteriaceae bacterium (several); Rhizobium gallicum (Alphaproteobacteria) strains		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	LB								SWZG01.026							
+ZNC0027	Microbacterium		Actinobacteria		variety of Microbacterium sp.		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"BHI, 30C aerobic"								SWZG02.001							
+ZNC0028	Ensifer		Proteobacteria (alpha)		"Ensifer adhaerens, Sinorhizobium species, Mycoplana dimorpha, Rhizobium species"		6dpf zebrafish instestine	UNC	Rawls -80C Freezer	"BHI, 30C aerobic"								SWZG02.002							
+ZNC0029	Microbacterium		Actinobacteria		variety of Microbacterium sp.		6dpf zebrafish intestine	UNC	Rawls -80C Freezer	"BHI, 37 aerobic"								SWZG02.003							
+ZNC0030							6dpf zebrafish intestine	University of North Carolina	Rawls -80C Freezer	"Columbia, 37C aerobic 0rpm"								SWZG02.004							
+ZNC0031	Ensifer		Proteobacteria (alpha)		"Ensifer adhaerens, Sinorhizobium species, Mycoplana dimorpha, Rhizobium species"		6dpf zebrafish intestine	University of North Carolina	Rawls -80C Freezer	"Columbia CNA agar, 37 aerobic/Columbia (liquid) aerobic 0rpm 37C"								SWZG02.005							
+ZOR0024	Pseudomonas		Proteobacteria (gamma)		P. putida		4dpf zebrafish	Unversity of Oregon	Rawls -80C Freezer	"TSA, 30, aerobic"								KG 4dpf-15							
+ZNC0032	Bosea		Proteobacteria (alpha)		none with 100% id; 99%id = B. vestrisii str 34635 & B. eneae str 34614 & B. thiooxidans str DSM 9653; note: colony morphology very different from other Bosea isolates		6dpf zebrafish	University of North Carolina	Rawls -80C Freezer	"Columbia, BHI 37C aerobic (liquid: 0rpm)"								SWZG02.006							
+ZNC0033	Mycobacterium		Actinobacteria		"M. mucogenicum str ATCC 49650 & M. phocaicum str CIP 108542; other Mycobacterium species have <100% id, >/= 97% id"		6dpf zebrafish	University of North Carolina	Rawls lab -80C freezer	"Columbia, 37C aerobic; 4-5d"								SWZG02.007							
+ZNC0034	Microbacterium		Actinobacteria		different from other Microbacterium isolates; nothing with 100% id; all hits with >97% id are Microbacterium species		6dpf zebrafish	University of North Carolina	Rawls lab -80C freezer	"Columbia 37C aerobic, no shaking"								SWZG02.008							
+ZNC0035	Bosea		Proteobacteria (alpha)		none with 100% id; 99%id = B. vestrisii str 34635 & B. eneae str 34614 & B. thiooxidans str DSM 9653; note: colony morphology very different from other Bosea isolates		6dpf zebrafish	University of North Carolina	Rawls lab -80C freezer	"Columbia, BHI 37C aerobic (if liquid, 0rpm)"								SWZG02.009							
+	Microbacterium		Actinobacteria		M. lacus (100% id); all other Microbacterium strains less than 100% id													SWZG02.010						not growing	
+ZNC0036	Microbacterium		Actinobacteria		none with 100% id; variety of Microbacterium species		6dpf zebrafish	University of North Carolina	Rawls lab -80C freezer	"37C, aerobic, BHI/TSA/Columbia"								SWZG02.012							
+ZNC0037	Bosea		Proteobacteria (alpha)		nothing with 100% id; all 97% id or greater = Bosea species			University of North Carolina	Rawls lab -80C freezer	"Columbia 30C, aerobic (3d to grow)"								SWZG02.015							
+ZNC0038	Microbacterium		Actinobacteria		"many Microbacterium species, none with 100% id, many with >97% id"			University of North Carolina	Rawls lab -80C freezer	"Columbia/TSA, 30C, aerobic (2d to grow)"								SWZG02.016							
+ZNC0039	Bosea		Proteobacteria (alpha)		none with 100% id; 99%id = B. vestrisii str 34635 & B. eneae str 34614 & B. thiooxidans str DSM 9653			University of North Carolina	Rawls lab -80C freezer	"Columbia, 30C, aerobic (~3d to grow)"								SWZG02.017							
+ZNC0040	Microbacterium		Actinobacteria		"M. lacus (100% id); appears different from other Microbacterium strains in this collection; other Microbacterium species <100% id, >97% id"		UNC	University of North Carolina	Rawls Lab -80C Freezer	"Columbia, 30C, aerobic"								SWZG02.019							
+ZNC0041	Ensifer				"Ensifer adhaerens, Sinorhizobium species, Mycoplana dimorpha, Rhizobium species"			University of North Carolina	Rawls lab -80C									SWZG02.021							
+	Bosea				none with 100% id; 99%id = B. vestrisii str 34635 & B. eneae str 34614 & B. thiooxidans str DSM 9653													SWZG02.022						not growing	
+ZNC0042	Ensifer				"Ensifer adhaerens, Sinorhizobium species, Mycoplana dimorpha, Rhizobium species"			University of North Carolina	Rawls lab -80C									SWZG02.023							
+ZNC0043	Ensifer				"Ensifer adhaerens, Sinorhizobium species, Mycoplana dimorpha, Rhizobium species"			University of North Carolina	Rawls lab -80C									SWZG02.024							
+ZNC0044	Ensifer				"Ensifer adhaerens, Sinorhizobium species, Mycoplana dimorpha, Rhizobium species"			University of North Carolina	Rawls lab -80C									SWZG02.026							
