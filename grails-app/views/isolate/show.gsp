@@ -86,10 +86,12 @@
 
                 <g:if test="${strain}">
                     <li class="fieldcontain">
-                        <span id="isolatedWhen-label" class="property-label"><g:message code="isolate.isolatedWhen.label" default="Associated Strain" /></span>
+                        <span id="strain-label" class="property-label"><g:message code="isolate.isolatedWhen.label" default="Associated Strain" /></span>
 
                         <span class="property-value" aria-labelledby="isolatedWhen-label">
-                           <g:link action="show" controller="strain" id="${strain.id}">${strain.name}</g:link>
+                            <g:each in="${isolateInstance.strains}" var="strain">
+                                <g:link action="show" controller="strain" id="${strain.id}">${strain.name}</g:link>
+                            </g:each>
                         </span>
 
                     </li>
