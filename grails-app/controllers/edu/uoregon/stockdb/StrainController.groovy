@@ -190,7 +190,7 @@ class StrainController {
             }
         }
 
-        println "updating isolate "
+        println "updating isolate ${params}"
 
         strainInstance.properties = params
 

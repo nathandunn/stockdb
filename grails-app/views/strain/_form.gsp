@@ -61,7 +61,7 @@
         <span class="required-indicator">*</span>
 
     </label>
-    <g:select id="isolate" name="isolate.id" from="${IsolateCondition.list()}" optionKey="id"
+    <g:select id="isolateCondition" name="isolateCondition.id" from="${IsolateCondition.list()}" optionKey="id"
               value="${strainInstance?.isolateCondition?.id}"
               optionValue="display"
               class="many-to-one" noSelection="['null': '- Choose Existing -']"/>
