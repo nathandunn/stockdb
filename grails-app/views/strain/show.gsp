@@ -125,18 +125,18 @@
             </li>
         </g:if>
 
-        <g:if test="${strainInstance?.isolate}">
+        <g:if test="${strainInstance?.isolateCondition}">
             <li class="fieldcontain">
                 <span id="isolate-label" class="property-label"><g:message code="strain.isolate.label"
                                                                            default="Isolate Conditions"/></span>
 
                 <span class="property-value" aria-labelledby="isolate-label">
-                    <g:link controller="isolate" action="show" id="${strainInstance?.isolate?.id}">
-                        ${strainInstance.isolate.isolatedBy?.fullName}
-                        <g:formatDate date="${strainInstance.isolate?.isolatedWhen}" type="DATE" style="MEDIUM"/>
-                        ${strainInstance.isolate.oxygenCondition}
-                        ${strainInstance.isolate.media}
-                        ${strainInstance.isolate.temperature} C
+                    <g:link controller="isolate" action="show" id="${strainInstance?.isolateCondition?.id}">
+                        ${strainInstance.isolateCondition.isolatedBy?.fullName}
+                        <g:formatDate date="${strainInstance.isolateCondition?.isolatedWhen}" type="DATE" style="MEDIUM"/>
+                        ${strainInstance.isolateCondition.oxygenCondition}
+                        ${strainInstance.isolateCondition.media}
+                        ${strainInstance.isolateCondition.temperature} C
                     %{--<g:link controller="isolate" action="show" id="${strainInstance?.isolate?.id}">${strainInstance?.isolate?.name}</g:link>--}%
                     </g:link>
                 </span>

@@ -95,7 +95,7 @@
         <g:if test="${researcherInstance?.isolateConditions}">
             <li class="fieldcontain">
                 <span id="experiments-label" class="property-label"><g:message code="researcher.experiments.label"
-                                                                               default="Isolates"/></span>
+                                                                               default="Isolate Conditions"/></span>
 
                 <span class="property-value" aria-labelledby="isolates-label">
                     <ul>

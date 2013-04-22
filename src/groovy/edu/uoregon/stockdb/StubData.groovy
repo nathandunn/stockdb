@@ -114,7 +114,7 @@ class StubData {
             String[] isolateData = tokens[10]?.split(";")
 
 
-            IsolateCondition isolate
+            IsolateCondition isolateCondition
             if (isolateData.length > 2) {
                 String oxygenCondition = isolateData[0]?.trim()
                 Float temperature
@@ -129,8 +129,8 @@ class StubData {
                 if (isolateData.length > 3) {
                     notes = isolateData[3..isolateData.length - 1]?.join("")
                 }
-                isolate = IsolateCondition.findOrSaveByOxygenConditionAndTemperatureAndMediaAndNotes(oxygenCondition, temperature, media, notes)
-                strain.isolate = isolate
+                isolateCondition = IsolateCondition.findOrSaveByOxygenConditionAndTemperatureAndMediaAndNotes(oxygenCondition, temperature, media, notes)
+                strain.isolateCondition = isolateCondition
             }
 
 //            if (strain) {
@@ -148,16 +148,16 @@ class StubData {
             strain.dateEntered = tokens[15] ? Date.parse("d/M/yyyy", tokens[15]) : null
 
             if (tokens[16]) {
-                if (isolate) {
-                    isolate.isolatedWhen = Date.parse("d/M/yyyy", tokens[16])
+                if (isolateCondition) {
+                    isolateCondition.isolatedWhen = Date.parse("d/M/yyyy", tokens[16])
                     String[] isolatedByString = tokens[17]?.split(" ")
                     if (isolatedByString.size() == 2) {
                         Researcher researcher = Researcher.findOrSaveByFirstNameAndLastName(isolatedByString[0], isolatedByString[1])
-                        isolate.isolatedBy = researcher
+                        isolateCondition.isolatedBy = researcher
                         researcher.lab = lab
                         researcher.save(flush: true)
                     }
-                    isolate.save()
+                    isolateCondition.save()
                 }
             }
 

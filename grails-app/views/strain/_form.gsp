@@ -57,7 +57,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'isolate', 'error')} ">
     <label for="isolate">
-        <g:message code="strain.isolate.label" default="Isolate"/>
+        <g:message code="strain.isolate.label" default="Isolate Condition"/>
         <span class="required-indicator">*</span>
 
     </label>
@@ -65,7 +65,7 @@
               value="${strainInstance?.isolate?.id}"
               optionValue="display"
               class="many-to-one" noSelection="['null': '- Choose Existing -']"/>
-    <g:link controller="isolate" action="create">Create Isolate</g:link>
+    <g:link controller="isolate" action="create">Create Isolate Condition</g:link>
 </div>
 
 

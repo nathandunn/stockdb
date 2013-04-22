@@ -7,7 +7,7 @@ class IsolateController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     static navigation = [
-            title:'Isolate',action: 'list',order:2
+            title:'Isolate Conditions',action: 'list',order:2
     ]
 
     def index() {
@@ -30,19 +30,19 @@ class IsolateController {
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'isolate.label', default: 'Isolate'), isolateInstance.id])
+        flash.message = message(code: 'default.created.message', args: [message(code: 'isolate.label', default: 'Isolate Condition'), isolateInstance.id])
         redirect(action: "show", id: isolateInstance.id)
     }
 
     def show(Long id) {
         def isolateInstance = IsolateCondition.get(id)
         if (!isolateInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'isolate.label', default: 'Isolate'), id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'isolate.label', default: 'Isolate Condition'), id])
             redirect(action: "list")
             return
         }
 
-        Strain strain = Strain.findByIsolate(isolateInstance)
+        Strain strain = Strain.findByIsolateCondition(isolateInstance)
 
 
         [isolateInstance: isolateInstance,strain:strain]
@@ -51,7 +51,7 @@ class IsolateController {
     def edit(Long id) {
         def isolateInstance = IsolateCondition.get(id)
         if (!isolateInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'isolate.label', default: 'Isolate'), id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'isolate.label', default: 'Isolate Condition'), id])
             redirect(action: "list")
             return
         }
@@ -62,7 +62,7 @@ class IsolateController {
     def update(Long id, Long version) {
         def isolateInstance = IsolateCondition.get(id)
         if (!isolateInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'isolate.label', default: 'Isolate'), id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'isolate.label', default: 'Isolate Condition'), id])
             redirect(action: "list")
             return
         }
@@ -84,29 +84,29 @@ class IsolateController {
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'isolate.label', default: 'Isolate'), isolateInstance.id])
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'isolate.label', default: 'Isolate Condition'), isolateInstance.id])
         redirect(action: "show", id: isolateInstance.id)
     }
 
     def delete(Long id) {
         def isolateInstance = IsolateCondition.get(id)
         if (!isolateInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'isolate.label', default: 'Isolate'), id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'isolate.label', default: 'Isolate Condition'), id])
             redirect(action: "list")
             return
         }
 
         try {
-            Strain strain = Strain.findByIsolate(isolateInstance)
-            strain.isolate = null
+            Strain strain = Strain.findByIsolateCondition(isolateInstance)
+            strain.isolateCondition = null
             strain.save(flush: true)
 
             isolateInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'isolate.label', default: 'Isolate'), id])
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'isolate.label', default: 'Isolate Condition'), id])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
-            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'isolate.label', default: 'Isolate'), id])
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'isolate.label', default: 'Isolate Condition'), id])
             redirect(action: "show", id: id)
         }
     }
