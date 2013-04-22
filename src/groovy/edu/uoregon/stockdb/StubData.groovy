@@ -45,7 +45,6 @@ class StubData {
 
             Strain strain = new Strain(name: tokens[0])
 
-            String physicalLocation = tokens[2]
 //            Stock stock =  ? Stock.findOrSaveByPhysicalLocation(tokens[2]) : null
 
             Phylum phylum = Phylum.findByName(tokens[3].trim())
@@ -183,7 +182,22 @@ class StubData {
 
             Stock stock = new Stock()
             stock.strain = strain
-            stock.physicalLocation = physicalLocation
+
+            String physicalLocation = tokens[2]
+
+            if(physicalLocation.contains("-") && physicalLocation.startsWith("Box")){
+                println "parsing location ${physicalLocation}"
+                Integer boxNumber = physicalLocation.substring(3,physicalLocation.indexOf("-")-1).trim()=="I" ? 1 : null
+                Integer boxIndex = Integer.parseInt(physicalLocation.substring(physicalLocation.indexOf("-")+1).trim())
+                println "parsing location result ${boxNumber} - ${boxNumber}"
+
+                stock.boxIndex = boxIndex
+                stock.boxNumber = boxNumber
+            }
+            else{
+                println "bad location ${physicalLocation}"
+            }
+
             stock.save()
             if (stock && generalLocation) {
                 stock.generalLocation = generalLocation

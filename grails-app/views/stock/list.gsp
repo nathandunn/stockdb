@@ -47,7 +47,7 @@
                 %{--<td><g:link action="show" id="${stockInstance.id}">${fieldValue(bean: stockInstance, field: "strain")}</g:link></td>--}%
                 <td>
                     <g:link action="show" id="${stockInstance.id}">
-                        ${stockInstance.physicalLocation}
+                        ${stockInstance.display}
                     </g:link>
                 </td>
 

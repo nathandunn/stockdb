@@ -7,6 +7,9 @@ class Species {
         name nullable: false
     }
 
+    static hasMany = [
+            genotypes: HostGenotype
+    ]
 
     Genus genus
     String name

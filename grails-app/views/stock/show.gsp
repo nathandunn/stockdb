@@ -23,11 +23,11 @@
 			</g:if>
 			<ol class="property-list stock">
 
-                <g:if test="${stockInstance?.physicalLocation}">
+                <g:if test="${stockInstance?.boxIndex && stockInstance?.boxNumber}">
                     <li class="fieldcontain">
                         <span id="physicalLocation-label" class="property-label"><g:message code="stock.physicalLocation.label" default="Physical Location" /></span>
 
-                        <span class="property-value" aria-labelledby="physicalLocation-label"><g:fieldValue bean="${stockInstance}" field="physicalLocation"/></span>
+                        <span class="property-value" aria-labelledby="physicalLocation-label"><g:fieldValue bean="${stockInstance}" field="display"/></span>
 
                     </li>
                 </g:if>

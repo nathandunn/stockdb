@@ -55,14 +55,14 @@
     <g:textField name="formerCloneAlias" value="${strainInstance?.formerCloneAlias}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'isolate', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'isolateCondition', 'error')} ">
     <label for="isolate">
         <g:message code="strain.isolate.label" default="Isolate Condition"/>
         <span class="required-indicator">*</span>
 
     </label>
     <g:select id="isolate" name="isolate.id" from="${IsolateCondition.list()}" optionKey="id"
-              value="${strainInstance?.isolate?.id}"
+              value="${strainInstance?.isolateCondition?.id}"
               optionValue="display"
               class="many-to-one" noSelection="['null': '- Choose Existing -']"/>
     <g:link controller="isolate" action="create">Create Isolate Condition</g:link>

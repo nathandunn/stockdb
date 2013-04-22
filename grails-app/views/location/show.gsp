@@ -46,7 +46,7 @@
 
                 <g:each in="${locationInstance.stocks}" var="s">
                     <span class="property-value" aria-labelledby="stocks-label">
-                        <g:link controller="stock" action="show" id="${s.id}">${s?.physicalLocation}</g:link>
+                        <g:link controller="stock" action="show" id="${s.id}">${s?.display}</g:link>
                         -
                         <g:link controller="strain" action="show" id="${s.strain?.id}">${s?.strain?.name}</g:link>
                     </span>

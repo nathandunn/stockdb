@@ -1,14 +1,20 @@
 <%@ page import="edu.uoregon.stockdb.Stock" %>
 
 
-<div class="fieldcontain ${hasErrors(bean: stockInstance, field: 'physicalLocation', 'error')} ">
-    <label for="physicalLocation">
-        <g:message code="stock.physicalLocation.label" default="Physical Location" />
+<div class="fieldcontain ${hasErrors(bean: stockInstance, field: 'boxNumber', 'error')} ">
+    <label for="boxNumber">
+        <g:message code="stock.boxNumber.label" default="Box Number" />
 
     </label>
-    <g:textField name="physicalLocation" value="${stockInstance?.physicalLocation}"/>
+    <g:field type="number" name="boxNumber" value="${stockInstance?.boxNumber}"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: stockInstance, field: 'boxIndex', 'error')} ">
+    <label for="boxIndex">
+        <g:message code="stock.boxIndex.label" default="Box Index" />
+    </label>
+    <g:field type="number" name="boxIndex" value="${stockInstance?.boxIndex}"/>
+</div>
 
 
 <div class="fieldcontain ${hasErrors(bean: stockInstance, field: 'generalLocation', 'error')} ">

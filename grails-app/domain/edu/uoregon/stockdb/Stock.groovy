@@ -12,13 +12,28 @@ class Stock {
 //        generalLocation nullable: false
     }
 
-    String physicalLocation
+//    String physicalLocation
+
+    Integer boxNumber
+    Integer boxIndex
 //    String value
 
     Location generalLocation
+
     Strain strain
 
+    Integer getBoxValue(){
+        return boxNumber  * 10000  + boxIndex
+    }
+
     def getDisplay() {
-        return (generalLocation?.name ?:"") + " " + physicalLocation;  //To change body of created methods use File | Settings | File Templates.
+        String returnString =  (generalLocation?.name ?:"") + " "
+        if(boxNumber && boxIndex){
+            returnString += "Box "+ boxNumber + " - " + boxIndex
+        }
+        else{
+            returnString += " ? "
+        }
+        return returnString
     }
 }
