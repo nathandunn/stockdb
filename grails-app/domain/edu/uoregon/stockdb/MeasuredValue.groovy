@@ -12,13 +12,13 @@ class MeasuredValue {
     String value
     String units
 
-    MeasuredValueTypeEnum type = MeasuredValueTypeEnum.STRING_TYPE // a possible string / float
+    MeasuredValueTypeEnum type = MeasuredValueTypeEnum.TEXT// a possible string / float
 
     Experiment experiment
 
     String checkValid() {
         switch (type){
-            case MeasuredValueTypeEnum.INTEGER_TYPE:
+            case MeasuredValueTypeEnum.INTEGER:
                 try {
                     Integer.valueOf(value)
                     return null
@@ -26,7 +26,7 @@ class MeasuredValue {
                     return "${value} is not a valid integer"
                 }
                 break
-            case MeasuredValueTypeEnum.FLOAT_TYPE:
+            case MeasuredValueTypeEnum.DECIMAL:
                 try {
                     Float.valueOf(value)
                     return null
