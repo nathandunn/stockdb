@@ -31,7 +31,7 @@
 						%{--<th><g:message code="hostOrigin.hostFacility.label" default="Host Facility" /></th>--}%
                         <g:sortableColumn property="hostFacility" title="${message(code: 'hostOrigin.hostFacility.label', default: 'Host Facility')}" />
 
-						<th><g:message code="hostOrigin.genotype.label" default="Genotype" /></th>
+						<th><g:message code="hostOrigin.genotypes.label" default="Genotypes" /></th>
 					
 						%{--<th><g:message code="hostOrigin.genus.label" default="Genus" /></th>--}%
                         %{--<g:sortableColumn property="id" title="${message(code: 'hostOrigin.details.label', default: 'Details')}" />--}%
@@ -69,9 +69,11 @@
                         </td>
 					
 						<td>
-                            <g:link controller="hostGenotype" action="show" id="${hostOriginInstance.genotype?.id}">
-                                ${hostOriginInstance.genotype?.name}
-                            </g:link>
+                            <g:each in="${hostOriginInstance.genotypes}" var="genotype">
+                                <g:link controller="hostGenotype" action="show" id="${genotype.id}">
+                                    ${genotype?.name}
+                                </g:link>
+                            </g:each>
                         </td>
 
                         <td>

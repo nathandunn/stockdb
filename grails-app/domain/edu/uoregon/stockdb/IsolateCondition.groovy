@@ -5,6 +5,10 @@ class IsolateCondition {
     static constraints = {
     }
 
+    static hasMany = [
+            strains: Strain
+    ]
+
     Researcher isolatedBy
     Date isolatedWhen
 

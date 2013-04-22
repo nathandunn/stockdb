@@ -42,10 +42,24 @@ class HostGenotypeController {
             return
         }
 
-
-
+        /**
+         *  Not the most effecient, but will work for now
+         */
         Map<HostOrigin,List<Strain>> hostOriginListMap = new HashMap<HostOrigin,List<Strain>>()
-        List<HostOrigin> hostOrigins = HostOrigin.findAllByGenotype(hostGenotypeInstance)
+        List<HostOrigin> hostOrigins = []
+
+        HostOrigin.findAll().each { it ->
+            if(it.genotypes.contains(hostGenotypeInstance)){
+                hostOrigins << it
+            }
+        }
+
+
+
+//        List<HostOrigin> hostOrigins = HostOrigin.findAllByGenotypesInList([hostGenotypeInstance])
+        // find HostOriginal that have this genotype
+
+
         for(hostOrigin in hostOrigins){
             List<Strain> strains = Strain.findAllByHostOrigin(hostOrigin)
             hostOriginListMap.put(hostOrigin,strains)
