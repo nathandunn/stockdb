@@ -27,14 +27,14 @@
 				<li class="fieldcontain">
 					<span id="genus-label" class="property-label"><g:message code="species.genus.label" default="Genus" /></span>
 					
-						<span class="property-value" aria-labelledby="genus-label"><g:link controller="genus" action="show" id="${speciesInstance?.genus?.id}">${speciesInstance?.genus?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="genus-label"><g:link controller="genus" action="show" id="${speciesInstance?.genus?.id}">${speciesInstance?.genus?.name}</g:link></span>
 					
 				</li>
 				</g:if>
 			
 				<g:if test="${speciesInstance?.name}">
 				<li class="fieldcontain">
-					<span id="name-label" class="property-label"><g:message code="species.name.label" default="Name" /></span>
+					<span id="name-label" class="property-label"><g:message code="species.name.label" default="Species" /></span>
 					
 						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${speciesInstance}" field="name"/></span>
 					
@@ -49,7 +49,27 @@
 					
 				</li>
 				</g:if>
-			
+
+                <g:if test="${hostOriginsForSpecies}">
+                    <li class="fieldcontain">
+                        <span id="hostOrigins-label" class="property-label"><g:message code="species.commonName.label" default="Host Origins" /></span>
+
+                        <span class="property-value" aria-labelledby="commonName-label">
+                            <ul>
+                            <g:each var="hostOrigin" in="${hostOriginsForSpecies}">
+                                <li>
+                                    <g:link action="show" controller="hostOrigin" id="${hostOrigin.id}">
+                                        ${hostOrigin.display}
+                                    </g:link>
+                                </li>
+                            </g:each>
+                            </ul>
+                            %{--<g:fieldValue bean="${speciesInstance}" field="commonName"/>--}%
+                        </span>
+
+                    </li>
+                </g:if>
+
 			</ol>
 			<g:form>
 				<fieldset class="buttons">

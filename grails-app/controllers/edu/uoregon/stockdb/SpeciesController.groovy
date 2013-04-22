@@ -42,7 +42,8 @@ class SpeciesController {
             return
         }
 
-        [speciesInstance: speciesInstance]
+
+        [speciesInstance: speciesInstance , hostOriginsForSpecies:HostOrigin.findAllBySpecies(speciesInstance)]
     }
 
     def edit(Long id) {
