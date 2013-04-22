@@ -81,10 +81,11 @@ class HostOriginController {
             }
         }
 
-
-        hostOriginInstance.phenotypes = null
-
         hostOriginInstance.properties = params
+
+        if(!params.genotypes){
+            hostOriginInstance.genotypes = null
+        }
 
 
         if(params.addstrainid && params.addstrainid!='null'){
@@ -152,6 +153,32 @@ class HostOriginController {
         strainInstance.save(flush: true)
 
         flash.message = "Strain ${strainInstance.name} removed"
+        redirect(action: "show", id: hostOriginId, controller: "hostOrigin")
+    }
+
+    def removeGenotypeFromHostOrigin() {
+        def hostOriginId = params.hostOriginId
+        def hostGenotypeId = params.hostGenotypeId
+        def hostOriginInstance = HostOrigin.get(hostOriginId)
+        if (!hostOriginInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'hostOrigin.label', default: 'Host Origin'), hostOriginId])
+            redirect(action: "edit", id: hostGenotypeId, controller: "hostGenotype")
+            return
+        }
+
+        def hostGenotypeInstance = HostGenotype.get(hostGenotypeId)
+        if (!hostOriginInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'hostGenotype.label', default: 'Host Genotype'), hostGenotypeId])
+            redirect(action: "edit", id: hostGenotypeId, controller: "hostGenotype")
+            return
+        }
+
+        hostOriginInstance.removeFromStrains(hostGenotypeInstance)
+        hostGenotypeInstance.hostOrigin = null
+        hostOriginInstance.save(flush: true)
+        hostGenotypeInstance.save(flush: true)
+
+        flash.message = "Host Genotype ${hostGenotypeInstance.name} removed"
         redirect(action: "show", id: hostOriginId, controller: "hostOrigin")
     }
 }

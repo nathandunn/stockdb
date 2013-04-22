@@ -1,4 +1,4 @@
-<%@ page import="edu.uoregon.stockdb.HostOrigin" %>
+<%@ page import="edu.uoregon.stockdb.HostGenotype; edu.uoregon.stockdb.HostOrigin" %>
 
 
 
@@ -21,16 +21,15 @@
 <div class="fieldcontain ${hasErrors(bean: hostOriginInstance, field: 'anatomy', 'error')} ">
     <label for="anatomy">
         <g:message code="hostOrigin.anatomy.label" default="Anatomy"/>
-
     </label>
-    <g:textField name="anatomy" value="${hostOriginInstance?.anatomy}"/>
+    <g:textField name="anatomy" value="${hostOriginInstance?.anatomy}" size="60"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: hostOriginInstance, field: 'anatomyUrl', 'error')} ">
     <label for="anatomy">
         <g:message code="hostOrigin.anatomyUrl.label" default="Anatomy Url"/>
     </label>
-    <g:textField name="anatomyUrl" value="${hostOriginInstance?.anatomyUrl}"/>
+    <g:textField name="anatomyUrl" value="${hostOriginInstance?.anatomyUrl}" size="80"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: hostOriginInstance, field: 'hostFacility', 'error')} ">
@@ -44,16 +43,16 @@
     <g:link action="create" controller="hostFacility">Create Host Facility</g:link>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: hostOriginInstance, field: 'genotype', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: hostOriginInstance, field: 'genotypes', 'error')} ">
     <label for="genotype">
         <g:message code="hostOrigin.genotype.label" default="Genotype"/>
-
     </label>
-    <g:select id="genotype" name="genotype.id" from="${edu.uoregon.stockdb.HostGenotype.list()}" optionKey="id"
-              value="${hostOriginInstance?.genotype?.id}" class="many-to-one"
+    <g:select name="genotypes" from="${HostGenotype.listOrderByName()}" optionKey="id"
+              value="${hostOriginInstance?.genotypes?.id}" class="many-to-one" multiple="true"
               optionValue="name"
-              noSelection="['null': '- Choose Existing -']"/>
+    />
     <g:link action="create" controller="hostGenotype">Create Host Genotype</g:link>
+
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: hostOriginInstance, field: 'species', 'error')} ">
@@ -75,7 +74,7 @@
     <g:select id="strain" name="addstrainid" from="${edu.uoregon.stockdb.Strain.findAllByHostOriginIsNull()}" optionKey="id"
               class="many-to-one"
               optionValue="name"
-              noSelection="['null': '- Choose Existing -']"/>
+              noSelection="['null': '- Add Existing -']"/>
     <g:link action="create" controller="strain">Create Strain</g:link>
 
 </div>
@@ -97,12 +96,13 @@
     </ul>
 
 
-    <div class="fieldcontain ${hasErrors(bean: hostOriginInstance, field: 'notes', 'error')} ">
-        <label for="notes">
-            <g:message code="hostOrigin.notes.label" default="Notes"/>
+</div>
 
-        </label>
-        <g:textArea name="notes" value="${hostOriginInstance?.notes}" rows="3" cols="40"/>
-    </div>
 
+<div class="fieldcontain ${hasErrors(bean: hostOriginInstance, field: 'notes', 'error')} ">
+    <label for="notes">
+        <g:message code="hostOrigin.notes.label" default="Notes"/>
+
+    </label>
+    <g:textArea name="notes" value="${hostOriginInstance?.notes}" rows="3" cols="40"/>
 </div>

@@ -92,13 +92,24 @@ class StubData {
                         String anatomy = originString.substring(endParens + 1)?.trim()
 
                         HostGenotype hostGenotype = HostGenotype.findOrSaveByName(genotypeString)
-                        hostOrigin = HostOrigin.findOrSaveByGenotypeAndAnatomyAndStage(hostGenotype, anatomy, stage)
+                        Set<HostGenotype> genotypes = new HashSet<>()
+                        if(hostGenotype){
+                            genotypes.add(hostGenotype)
+                        }
+
+                        hostOrigin = HostOrigin.findOrSaveByAnatomyAndStage(anatomy,stage)
+                        if(hostOrigin?.genotypes != genotypes){
+                            hostOrigin.genotypes = genotypes
+                            hostOrigin.save(insert:true,failOnError: true,flush:true)
+                        }
+
+//                        hostOrigin = HostOrigin.findOrSaveByGenotypesAndAnatomyAndStage(genotypes, anatomy, stage)
                         hostOrigin.species= rerio
                         hostOrigin.anatomyUrl = "http://zfin.org/action/ontology/term-detail/ZDB-TERM-100331-1295"
                     }
                     // just age and species
                     else {
-                        hostOrigin = HostOrigin.findOrSaveByGenotypeAndAnatomyAndStage(null, null, stage)
+                        hostOrigin = HostOrigin.findOrSaveByAnatomyAndStage(null, stage)
                         hostOrigin.species = rerio
                     }
                 }

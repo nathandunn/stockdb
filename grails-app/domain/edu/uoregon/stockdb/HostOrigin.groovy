@@ -16,6 +16,7 @@ class HostOrigin {
 
     static hasMany = [
             strains: Strain
+            ,genotypes: HostGenotype
     ]
 
     static mapping = {
@@ -26,8 +27,6 @@ class HostOrigin {
 //    Phylum phylum
     HostFacility hostFacility
 
-    HostGenotype genotype
-
     String stage // stage . . . typically larval . . zfin correlate
     Integer daysPastFertilization//
     String anatomy  // zfin anatomy
@@ -37,7 +36,7 @@ class HostOrigin {
     String notes
 
     String getDisplay(){
-        String returnString = "${species?.commonName ?:''} (${genotype?.name ?: ''}) "
+        String returnString = "${species?.commonName ?:''} (${genotypes?.name ?: ''}) "
         if (daysPastFertilization>=0){
             returnString += daysPastFertilization + " DPF "
         }
