@@ -45,7 +45,7 @@
         <g:message code="experiment.whenPerformed.label" default="When Performed"/>
 
     </label>
-    <g:datePicker name="whenPerformed" precision="day" value="${experimentInstance?.whenPerformed}" default="none"
+    <g:datePicker name="whenPerformed" precision="day" value="${experimentInstance?.whenPerformed}" default="${new Date()}" relativeYears="[0..-8]"
                   noSelection="['': '']"/>
 </div>
 

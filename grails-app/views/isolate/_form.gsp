@@ -26,7 +26,7 @@
 		<g:message code="isolate.isolatedWhen.label" default="Isolated When" />
 		
 	</label>
-	<g:datePicker name="isolatedWhen" precision="day"  value="${isolateInstance?.isolatedWhen}" default="${new java.util.Date()}" noSelection="['': '']" />
+	<g:datePicker name="isolatedWhen" precision="day"  value="${isolateInstance?.isolatedWhen}" default="${new Date()}" relativeYears="[0..-8]" noSelection="['': '']" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: isolateInstance, field: 'media', 'error')} ">
