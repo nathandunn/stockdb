@@ -19,7 +19,7 @@ class Genus {
     Phylum phylum
 
     String name
-    Boolean host
+    Boolean host = false
 
     String getDisplayName(){
         return phylum.name + " " + name

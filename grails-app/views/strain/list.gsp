@@ -1,4 +1,4 @@
-<%@ page import="edu.uoregon.stockdb.Genus; edu.uoregon.stockdb.HostOrigin; edu.uoregon.stockdb.Strain" %>
+<%@ page import="edu.uoregon.stockdb.Phylum; edu.uoregon.stockdb.Genus; edu.uoregon.stockdb.HostOrigin; edu.uoregon.stockdb.Strain" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,10 +24,10 @@
         <table>
             <tr>
                 <td>
-                    <strong>Genus</strong>
+                    <strong>Strain Genus</strong>
                 </td>
                 <td>
-                    <g:select name="genus" from="${edu.uoregon.stockdb.Genus.listOrderByName()}"
+                    <g:select name="genus" from="${Genus.findAllByHost(false,[sort:'name',order:'asc'])}"
                               optionValue="name"
                               optionKey="id"
                               noSelection="[null: '- All -']"
@@ -45,10 +45,10 @@
             </tr>
             <tr>
                 <td>
-                    <strong>Phylum</strong>
+                    <strong>Strain Phylum</strong>
                 </td>
                 <td>
-                    <g:select name="phylum" from="${edu.uoregon.stockdb.Phylum.listOrderByName()}"
+                    <g:select name="phylum" from="${Phylum.findAllByHost(false,[sort:'name',order:'asc'])}"
                               optionValue="name"
                               optionKey="id"
                               noSelection="[null: '- All -']"

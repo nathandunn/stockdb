@@ -17,7 +17,11 @@ class StubData {
         if (Strain.count > 0) return 0
 
         Phylum chordata = Phylum.findOrSaveByName("Chordata")
+        chordata.host = true
+        chordata.save()
         Genus danio = Genus.findOrSaveByNameAndPhylum("Danio", chordata)
+        danio.host = true
+        danio.save()
         Species rerio = Species.findOrSaveByNameAndCommonNameAndGenus("Rerio","Zebrafish",danio)
 
         // stub crap for demo, not for use with a real database

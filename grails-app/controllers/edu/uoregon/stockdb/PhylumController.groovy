@@ -7,7 +7,7 @@ class PhylumController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     static navigation = [
-            title: 'Phylum', action: 'list', order: 5
+            title: 'Strain Phylum', action: 'list', order: 5
     ]
 
     def index() {
@@ -16,11 +16,11 @@ class PhylumController {
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        [phylumInstanceList: Phylum.list(params), phylumInstanceTotal: Phylum.count()]
+        [phylumInstanceList: Phylum.findAllByHost(false,params), phylumInstanceTotal: Phylum.countByHost(false)]
     }
 
     def create() {
-        [phylumInstance: new Phylum(params)]
+        [phylumInstance: new Phylum(host:true,params)]
     }
 
     def save() {

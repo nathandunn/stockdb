@@ -14,7 +14,7 @@
         <g:message code="strain.genus.label" default="Genus"/>
         <span class="required-indicator">*</span>
     </label>
-    <g:select id="genus" name="genus.id" from="${edu.uoregon.stockdb.Genus.list()}" optionKey="id"
+    <g:select id="genus" name="genus.id" from="${edu.uoregon.stockdb.Genus.findAllByHost(false,[sort:'name',order:'asc'])}" optionKey="id"
               value="${strainInstance?.genus?.id}" optionValue="displayName" class="many-to-one"
               noSelection="['null': '- Choose Existing -']"/>
     <g:link controller="genus" action="create">Create Genus</g:link>

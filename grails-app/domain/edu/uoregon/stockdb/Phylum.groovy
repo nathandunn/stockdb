@@ -11,4 +11,5 @@ class Phylum {
     ]
 
     String name
+    Boolean host = false
 }

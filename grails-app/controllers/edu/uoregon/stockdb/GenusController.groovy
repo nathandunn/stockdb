@@ -7,7 +7,7 @@ class GenusController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     static navigation = [
-            title:'Genus',action: 'list',order:8
+            title:'Strain Genus',action: 'list',order:8
     ]
 
     def index() {
@@ -16,7 +16,7 @@ class GenusController {
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        [genusInstanceList: Genus.list(params), genusInstanceTotal: Genus.count()]
+        [genusInstanceList: Genus.findAllByHost(false,params), genusInstanceTotal: Genus.countByHost(false)]
     }
 
     def create() {

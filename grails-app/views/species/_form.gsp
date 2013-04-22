@@ -7,7 +7,7 @@
 		<g:message code="species.genus.label" default="Genus" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="genus" name="genus.id" from="${edu.uoregon.stockdb.Genus.list()}" optionKey="id" required="" value="${speciesInstance?.genus?.id}" class="many-to-one"/>
+	<g:select id="genus" name="genus.id" from="${edu.uoregon.stockdb.Genus.findAllByHost(true)}" optionKey="id" optionValue="name" required="" value="${speciesInstance?.genus?.name}" class="many-to-one"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: speciesInstance, field: 'name', 'error')} ">

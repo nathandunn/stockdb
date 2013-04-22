@@ -190,8 +190,6 @@ class StrainController {
             }
         }
 
-        println "updating isolate ${params}"
-
         strainInstance.properties = params
 
         if (params.addstockid && params.addstockid != 'null') {
