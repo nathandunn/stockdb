@@ -75,17 +75,6 @@
             </li>
         </g:if>
 
-        <g:if test="${measuredValueInstance?.phenotype}">
-            <li class="fieldcontain">
-                <span id="phenotype-label" class="property-label"><g:message code="measuredValue.phenotype.label"
-                                                                             default="Phenotype"/></span>
-
-                <span class="property-value" aria-labelledby="phenotype-label"><g:link controller="phenotype"
-                                                                                       action="show"
-                                                                                       id="${measuredValueInstance?.phenotype?.id}">${measuredValueInstance?.phenotype?.name}</g:link></span>
-
-            </li>
-        </g:if>
 
         <g:if test="${measuredValueInstance?.type}">
             <li class="fieldcontain">

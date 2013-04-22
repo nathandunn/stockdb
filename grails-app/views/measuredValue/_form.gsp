@@ -27,14 +27,6 @@
     <g:link action="create" controller="experiment">Create Experiment</g:link>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: measuredValueInstance, field: 'phenotype', 'error')} ">
-	<label for="phenotype">
-		<g:message code="measuredValue.phenotype.label" default="Phenotype" />
-		
-	</label>
-	<g:select id="phenotype" name="phenotype.id" optionValue="name" from="${edu.uoregon.stockdb.Phenotype.list()}" optionKey="id" value="${measuredValueInstance?.phenotype?.id}" class="many-to-one" noSelection="['null': '']"/>
-    <g:link action="create" controller="phenotype">Create Phenotype</g:link>
-</div>
 
 <div class="fieldcontain ${hasErrors(bean: measuredValueInstance, field: 'type', 'error')} ">
 	<label for="type">

@@ -10,16 +10,16 @@ class Phenotype {
         url url: true,unique: true
     }
 
-    static hasMany = [
-            hostOrigins: HostOrigin
-            ,measuredValues:MeasuredValue
-    ]
-
-    static belongsTo = [
-            HostOrigin
-            ,MeasuredValue
-    ]
-
+//    static hasMany = [
+//            hostOrigins: HostOrigin
+//            ,measuredValues:MeasuredValue
+//    ]
+//
+//    static belongsTo = [
+//            HostOrigin
+//            ,MeasuredValue
+//    ]
+//
     String name
     String url // possible canonical url
 }

@@ -66,16 +66,6 @@
               noSelection="['null': '- Choose Existing -']"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: hostOriginInstance, field: 'phenotypes', 'error')} ">
-    <label for="phenotypes">
-        <g:message code="hostOrigin.phenotypes.label" default="Phenotypes"/>
-
-    </label>
-    <g:select name="phenotypes" optionValue="name" from="${edu.uoregon.stockdb.Phenotype.list()}" multiple="multiple" optionKey="id"
-              size="5" value="${hostOriginInstance?.phenotypes*.id}" class="many-to-many"/>
-</div>
-
-
 <div class="fieldcontain ${hasErrors(bean: hostOriginInstance, field: 'strains', 'error')} ">
     <label for="strains">
         <g:message code="hostOrigin.strains.label" default="Strains"/>

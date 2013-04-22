@@ -12,8 +12,7 @@ class MeasuredValue {
     String value
     String units
 
-    MeasuredValueTypeEnum type = MeasuredValueTypeEnum.STRING_TYPE // a possible phenotype or string / float
-    Phenotype phenotype // if exists
+    MeasuredValueTypeEnum type = MeasuredValueTypeEnum.STRING_TYPE // a possible string / float
 
     Experiment experiment
 

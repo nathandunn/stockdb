@@ -15,7 +15,6 @@ class HostOrigin {
     }
 
     static hasMany = [
-            phenotypes: Phenotype,
             strains: Strain
     ]
 

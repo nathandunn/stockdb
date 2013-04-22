@@ -56,12 +56,6 @@
                             id="${measuredValueInstance?.experiment?.id}">${measuredValueInstance?.experiment?.name}</g:link>
                 </td>
 
-                %{--<td>${fieldValue(bean: measuredValueInstance, field: "phenotype")}</td>--}%
-                <td>
-                    <g:link action="show" controller="phenotype"
-                            id="${measuredValueInstance?.phenotype?.id}">${measuredValueInstance?.phenotype?.name}</g:link>
-                </td>
-
                 <td>${fieldValue(bean: measuredValueInstance, field: "type")}</td>
 
                 <td>${fieldValue(bean: measuredValueInstance, field: "units")}</td>

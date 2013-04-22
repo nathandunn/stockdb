@@ -96,20 +96,6 @@
         </g:if>
 
 
-        <g:if test="${hostOriginInstance?.phenotypes}">
-            <li class="fieldcontain">
-                <span id="phenotypes-label" class="property-label"><g:message code="hostOrigin.phenotypes.label"
-                                                                              default="Phenotypes"/></span>
-
-                <g:each in="${hostOriginInstance.phenotypes}" var="p">
-                    <span class="property-value" aria-labelledby="phenotypes-label"><g:link controller="phenotype"
-                                                                                            action="show"
-                                                                                            id="${p.id}">${p?.name}</g:link></span>
-                </g:each>
-
-            </li>
-        </g:if>
-
         <g:if test="${hostOriginInstance?.strains}">
             <li class="fieldcontain">
                 <span id="strains-label" class="property-label"><g:message code="hostOrigin.strains.label"
