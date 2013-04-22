@@ -124,6 +124,9 @@ class HostOriginController {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'hostOrigin.label', default: 'HostOrigin'), id])
             redirect(action: "show", id: id)
         }
+        catch(Exception e){
+            println "failed for some reason ${e}"
+        }
     }
 
     def removeStrainFromHostOrigin() {

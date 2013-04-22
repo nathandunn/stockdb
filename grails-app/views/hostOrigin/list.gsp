@@ -23,7 +23,6 @@
 				<thead>
 					<tr>
 
-                        <g:sortableColumn property="id" title="${message(code: 'hostOrigin.stage.label', default: 'ID')}" />
 						<g:sortableColumn property="daysPastFertilization" title="${message(code: 'hostOrigin.stage.label', default: 'Stage')}" />
 
 
@@ -35,14 +34,15 @@
 						<th><g:message code="hostOrigin.genotype.label" default="Genotype" /></th>
 					
 						%{--<th><g:message code="hostOrigin.genus.label" default="Genus" /></th>--}%
-					
+                        %{--<g:sortableColumn property="id" title="${message(code: 'hostOrigin.details.label', default: 'Details')}" />--}%
+                        <th></th>
+
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${hostOriginInstanceList}" status="i" var="hostOriginInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
-                        <td><g:link action="show" id="${hostOriginInstance.id}">${fieldValue(bean: hostOriginInstance, field: "id")}</g:link></td>
 						<td>
                             %{--${hostOriginInstance.stage}--}%
                             <g:fieldValue bean="${hostOriginInstance}" field="stage"/>
@@ -73,7 +73,13 @@
                                 ${hostOriginInstance.genotype?.name}
                             </g:link>
                         </td>
-					
+
+                        <td>
+                            <g:link action="show" id="${hostOriginInstance.id}">
+                                Details
+                                %{--${fieldValue(bean: hostOriginInstance, field: "id")}--}%
+                            </g:link>
+                        </td>
 						%{--<td>${fieldValue(bean: hostOriginInstance, field: "genus")}</td>--}%
                         %{--<td>${fieldValue(bean: hostOriginInstance, field: "species")}</td>--}%
 

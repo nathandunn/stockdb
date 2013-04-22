@@ -28,7 +28,6 @@
         <thead>
         <tr>
 
-            <g:sortableColumn property="id" title="ID"/>
             <g:sortableColumn property="media" title="${message(code: 'isolate.media.label', default: 'Media')}"/>
 
             <g:sortableColumn property="oxygenCondition"
@@ -44,14 +43,17 @@
             <g:sortableColumn property="isolatedBy"
                               title="${message(code: 'isolate.isolatedBy.label', default: 'By')}"/>
 
+            %{--<g:sortableColumn property="id" title="ID"/>--}%
+            <th>
+
+            </th>
+
         </tr>
         </thead>
         <tbody>
         <g:each in="${isolateInstanceList}" status="i" var="isolateInstance">
             <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
-                <td><g:link action="show"
-                            id="${isolateInstance.id}">${fieldValue(bean: isolateInstance, field: "id")}</g:link></td>
 
                 <td>${fieldValue(bean: isolateInstance, field: "media")}</td>
 
@@ -62,6 +64,13 @@
                 <td>
                     <g:link action="show" id="${isolateInstance?.isolatedBy?.id}" controller="researcher">
                         ${isolateInstance?.isolatedBy?.fullName}
+                    </g:link>
+                </td>
+
+                <td>
+                    <g:link action="show" id="${isolateInstance.id}">
+                        %{--${fieldValue(bean: isolateInstance, field: "id")}--}%
+                        Details
                     </g:link>
                 </td>
 

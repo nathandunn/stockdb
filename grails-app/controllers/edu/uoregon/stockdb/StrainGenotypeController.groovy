@@ -7,7 +7,7 @@ class StrainGenotypeController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     static navigation = [
-            title:'StrainGenotype',action: 'list',order:5
+            title:'Strain Genotype',action: 'list',order:5
     ]
 
     def index() {
