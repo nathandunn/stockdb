@@ -8,6 +8,7 @@ class MeasuredValue {
         type nullable: false
     }
 
+
     String name
     String value
     String units
@@ -15,6 +16,8 @@ class MeasuredValue {
     MeasuredValueTypeEnum type = MeasuredValueTypeEnum.TEXT// a possible string / float
 
     Experiment experiment
+    Category category
+    Strain strain
 
     String checkValid() {
         switch (type){
