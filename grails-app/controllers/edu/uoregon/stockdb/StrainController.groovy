@@ -15,7 +15,7 @@ class StrainController {
     private static String PHYLUM_FILTER = "phylum"
 
     static navigation = [
-            title:'Strain',action: 'list',order:0
+            title: 'Strain', action: 'list', order: 0
     ]
 
     def index() {
@@ -136,7 +136,22 @@ class StrainController {
     }
 
     def create() {
+        params.name = createStrainName()
         [strainInstance: new Strain(params)]
+    }
+
+    private String createStrainName() {
+
+        Strain maxStrain = Strain.executeQuery("select s from Strain s where s.name like :strain order by s.name desc ", [strain: "ZOR%", max: 1]).get(0)
+        String maxStrainName = maxStrain?.name?.substring(3)
+        Integer maxInteger = Integer.parseInt(maxStrainName)
+        ++maxInteger
+
+//        String returnString = "ZOR" + String.pa(maxInteger+1).
+
+        String returnString = "ZOR" + maxInteger.toString().padLeft(4,"0")
+
+        return returnString
     }
 
     def save() {
