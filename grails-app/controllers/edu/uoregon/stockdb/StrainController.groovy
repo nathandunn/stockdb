@@ -163,15 +163,32 @@ class StrainController {
             params.genus = newGenus
         }
 
+
+
         def strainInstance = new Strain(params)
+
+        handleNewStock(strainInstance,params)
+
 
         if (!strainInstance.save(flush: true)) {
             render(view: "create", model: [strainInstance: strainInstance])
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'strain.label', default: 'Strain'), strainInstance.id])
+        flash.message = message(code: 'default.created.message', args: [message(code: 'strain.label', default: 'Strain'), strainInstance.name])
         redirect(action: "show", id: strainInstance.id)
+    }
+
+    def handleNewStock(Strain strainInstance,def params) {
+        if(params.newStockBox && params.newStockIndex && params.newStockLocation){
+            println "trying to create a new stockBox and Index "
+            Integer boxNumber = Integer.parseInt(params.newStockBox)
+            Integer boxIndex = Integer.parseInt(params.newStockIndex)
+            Location location = Location.findById(params.newStockLocation)
+            Stock stock = Stock.findOrSaveByBoxNumberAndBoxIndexAndGeneralLocation(boxNumber,boxIndex,location)
+            strainInstance.addToStocks(stock)
+            stock.strain = strainInstance
+        }
     }
 
     def show(Long id) {
@@ -199,13 +216,6 @@ class StrainController {
     def update(Long id, Long version) {
         def strainInstance = Strain.get(id)
 
-        if(params.newGenus){
-            String newGenusName = params.newGenus
-            Phylum phylum = Phylum.findById(params.phylum.id)
-            Genus newGenus = Genus.findOrSaveByNameAndPhylum(newGenusName,phylum)
-            params.genus = newGenus
-        }
-
 
         if (!strainInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'strain.label', default: 'Strain'), id])
@@ -223,6 +233,14 @@ class StrainController {
             }
         }
 
+        if(params.newGenus){
+            String newGenusName = params.newGenus
+            Phylum phylum = Phylum.findById(params.phylum.id)
+            Genus newGenus = Genus.findOrSaveByNameAndPhylum(newGenusName,phylum)
+            params.genus = newGenus
+        }
+
+
         strainInstance.properties = params
 
         if (params.addstockid && params.addstockid != 'null') {
@@ -233,6 +251,9 @@ class StrainController {
                 render(view: "edit", model: [strainInstance: strainInstance])
                 return
             }
+        }
+        else{
+            handleNewStock(strainInstance,params)
         }
 
         if (!strainInstance.save(flush: true)) {

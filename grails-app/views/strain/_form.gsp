@@ -44,7 +44,7 @@
               optionValue="display"
               class="many-to-one" noSelection="['null': '- Choose Existing -']"/>
     <g:link controller="genome" action="create">Create Genome</g:link>
-    <g:link controller="genome" action="list">Browse Genome</g:link>
+    <g:link controller="genome" action="list">Browse Genomes</g:link>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'hostOrigin', 'error')} ">
@@ -96,7 +96,6 @@
 <div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'stocks', 'error')} ">
     <label for="stocks">
         <g:message code="strain.stocks.label" default="Stocks"/>
-        %{--<span class="required-indicator">*</span>--}%
     </label>
 
     <g:select id="stock" name="addstockid" from="${edu.uoregon.stockdb.Stock.list()}" optionKey="id"
@@ -104,6 +103,18 @@
               noSelection="['null': '- Add Existing Stock -']"/>
     <g:link controller="stock" action="create"
             params="['strain.id': strainInstance?.id]">Create Stock</g:link>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'stocks', 'error')} ">
+    <label for="stocks">
+        <g:message code="strain.stocks.new.label" default="New Stock"/>
+    </label>
+
+    Box Number: <g:textField name="newStockBox" size="3"/> Box Index: <g:textField name="newStockIndex" size="4"/>
+    Location: <g:select name="newStockLocation" from="${edu.uoregon.stockdb.Location.listOrderByName()}" optionKey="id" optionValue="name"
+                        noSelection="['null': '- Choose Existing Location -']"
+    />
+
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'stocks', 'error')} ">

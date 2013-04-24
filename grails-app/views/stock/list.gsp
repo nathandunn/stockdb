@@ -29,8 +29,10 @@
         <tr>
 
             %{--<th><g:message code="stock.strain.label" default="Strain" /></th>--}%
-            <g:sortableColumn property="physicalLocation"
-                              title="${message(code: 'stock.physicalLocation.label', default: 'Physical Location')}"/>
+            <g:sortableColumn property="boxNumber"
+                              title="${message(code: 'stock.boxNumber.label', default: 'Box Number')}"/>
+            <g:sortableColumn property="boxIndex"
+                              title="${message(code: 'stock.boxIndex.label', default: 'Box Index')}"/>
 
             %{--<th><g:message code="stock.generalLocation.label" default="General Location" /></th>--}%
             <g:sortableColumn property="generalLocation.name"
@@ -47,7 +49,12 @@
                 %{--<td><g:link action="show" id="${stockInstance.id}">${fieldValue(bean: stockInstance, field: "strain")}</g:link></td>--}%
                 <td>
                     <g:link action="show" id="${stockInstance.id}">
-                        ${stockInstance.display}
+                        ${stockInstance.boxNumber}
+                    </g:link>
+                </td>
+                <td>
+                    <g:link action="show" id="${stockInstance.id}">
+                        ${stockInstance.boxIndex}
                     </g:link>
                 </td>
 

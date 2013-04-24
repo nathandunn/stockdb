@@ -186,8 +186,11 @@
 
                 <g:each in="${strainInstance.stocks}" var="s">
                     <span class="property-value" aria-labelledby="stocks-label">
-                        <g:link controller="stock" action="show" id="${s.id}">${s?.display}
-                        </g:link></span>
+                        <g:link controller="stock" action="show" id="${s.id}">${s?.display}</g:link>
+                        &nbsp;
+                        <g:link controller="location" action="show" id="${s?.generalLocation?.id}">${s?.generalLocation?.name}
+                        </g:link>
+                    </span>
                 </g:each>
 
             </li>

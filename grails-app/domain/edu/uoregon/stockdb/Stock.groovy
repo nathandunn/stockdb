@@ -27,7 +27,8 @@ class Stock {
     }
 
     def getDisplay() {
-        String returnString =  (generalLocation?.name ?:"") + " "
+//        String returnString =  (generalLocation?.name ?:"") + " "
+        String returnString =  ""
         if(boxNumber && boxIndex){
             returnString += "Box "+ boxNumber + " - " + boxIndex
         }
