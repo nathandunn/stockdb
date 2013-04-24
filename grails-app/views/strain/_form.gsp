@@ -20,6 +20,19 @@
     <g:link controller="genus" action="create">Create Genus</g:link>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'genusCreate', 'error')} required">
+    <label for="genus">
+        <g:message code="strain.genus.new.label" default="New Genus"/>
+        <span class="required-indicator">*</span>
+    </label>
+    <g:textField name="newGenus" />
+    <g:select id="phylum" name="phylum.id" from="${edu.uoregon.stockdb.Phylum.findAllByHost(false,[sort:'name',order:'asc'])}" optionKey="id"
+              value="${strainInstance?.genus?.id}" optionValue="name" class="many-to-one"
+              noSelection="['null': '- Choose Existing -']"
+    />
+    <g:link controller="phylum" action="create">Create Phylum</g:link>
+</div>
+
 
 <div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'genome', 'error')} ">
     <label for="genome">

@@ -155,7 +155,16 @@ class StrainController {
     }
 
     def save() {
+
+        if(params.newGenus){
+            String newGenusName = params.newGenus
+            Phylum phylum = Phylum.findById(params.phylum.id)
+            Genus newGenus = Genus.findOrSaveByNameAndPhylum(newGenusName,phylum)
+            params.genus = newGenus
+        }
+
         def strainInstance = new Strain(params)
+
         if (!strainInstance.save(flush: true)) {
             render(view: "create", model: [strainInstance: strainInstance])
             return
@@ -189,6 +198,15 @@ class StrainController {
 
     def update(Long id, Long version) {
         def strainInstance = Strain.get(id)
+
+        if(params.newGenus){
+            String newGenusName = params.newGenus
+            Phylum phylum = Phylum.findById(params.phylum.id)
+            Genus newGenus = Genus.findOrSaveByNameAndPhylum(newGenusName,phylum)
+            params.genus = newGenus
+        }
+
+
         if (!strainInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'strain.label', default: 'Strain'), id])
             redirect(action: "list")
