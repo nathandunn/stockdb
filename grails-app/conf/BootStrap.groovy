@@ -8,6 +8,7 @@ class BootStrap {
 
         stubData.stubUsers()
         stubData.stubData()
+        stubData.stubRawlsData()
 
     }
     def destroy = {
