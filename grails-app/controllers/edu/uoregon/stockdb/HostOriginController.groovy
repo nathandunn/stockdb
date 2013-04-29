@@ -60,7 +60,15 @@ class HostOriginController {
             return
         }
 
-        [hostOriginInstance: hostOriginInstance]
+        def strains = Strain.findAllByHostOriginIsNull()
+        println "strains not assiged ${strains.size()}"
+        strains.addAll(hostOriginInstance.strains)
+        println "current strains ${hostOriginInstance.strains.size()}"
+
+        println "strains delived ${strains.size()}"
+        println "strains all ${Strain.listOrderByName().size()}"
+
+        [hostOriginInstance: hostOriginInstance,strains:strains]
     }
 
     def update(Long id, Long version) {

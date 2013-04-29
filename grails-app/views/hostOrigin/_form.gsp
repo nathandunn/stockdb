@@ -77,10 +77,15 @@
         <g:message code="hostOrigin.strains.label" default="Strains"/>
     </label>
 
-    <g:select id="strain" name="addstrainid" from="${edu.uoregon.stockdb.Strain.findAllByHostOriginIsNull()}" optionKey="id"
+    %{--<g:select id="strain" name="addstrainid" from="${edu.uoregon.stockdb.Strain.listOrderByName()}" optionKey="id"--}%
+    %{--<g:select id="strain" name="addstrainid" from="${edu.uoregon.stockdb.Strain.findAllByHostOriginIsNull() + hostOriginInstance?.strains}" optionKey="id"--}%
+    <g:select id="strains" name="strains" from="${strains}" optionKey="id"
               class="many-to-one"
               optionValue="name"
-              noSelection="['null': '- Add Existing -']"/>
+        value="${hostOriginInstance?.strains?.id}"
+        multiple="true"
+    />
+    %{--noSelection="['null': '- Add Existing -']" --}%
     <g:link action="create" controller="strain">Create Strain</g:link>
 
 </div>
