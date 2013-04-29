@@ -20,16 +20,11 @@ class HostOriginController {
     }
 
     def create() {
-        [hostOriginInstance: new HostOrigin(params)]
+        [hostOriginInstance: new HostOrigin(params),strains: Strain.findAllByHostOriginIsNull([sort:'name',order:'asc'])]
     }
 
     def save() {
         def hostOriginInstance = new HostOrigin(params)
-
-        if(params.addstrainid && params.addstrainid!='null'){
-            Strain strain = Strain.findById(params.addstrainid)
-            hostOriginInstance.addToStrains(strain)
-        }
 
         if (!hostOriginInstance.save(flush: true)) {
             render(view: "create", model: [hostOriginInstance: hostOriginInstance])
@@ -61,12 +56,7 @@ class HostOriginController {
         }
 
         def strains = Strain.findAllByHostOriginIsNull()
-        println "strains not assiged ${strains.size()}"
         strains.addAll(hostOriginInstance.strains)
-        println "current strains ${hostOriginInstance.strains.size()}"
-
-        println "strains delived ${strains.size()}"
-        println "strains all ${Strain.listOrderByName().size()}"
 
         [hostOriginInstance: hostOriginInstance,strains:strains]
     }
@@ -89,6 +79,12 @@ class HostOriginController {
             }
         }
 
+        hostOriginInstance.strains?.each{ strain ->
+            strain.hostOrigin = null
+            strain.save(flush: true)
+        }
+        hostOriginInstance.strains = null
+
         hostOriginInstance.properties = params
 
         if(!params.genotypes){
@@ -96,10 +92,10 @@ class HostOriginController {
         }
 
 
-        if(params.addstrainid && params.addstrainid!='null'){
-            Strain strain = Strain.findById(params.addstrainid)
-            hostOriginInstance.addToStrains(strain)
-        }
+//        if(params.addstrainid && params.addstrainid!='null'){
+//            Strain strain = Strain.findById(params.addstrainid)
+//            hostOriginInstance.addToStrains(strain)
+//        }
 
         if (!hostOriginInstance.save(flush: true)) {
             render(view: "edit", model: [hostOriginInstance: hostOriginInstance])

@@ -90,24 +90,24 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: hostOriginInstance, field: 'strains', 'error')} ">
-    <label for="strains">
-        <g:message code="hostOrigin.strains.label" default="Existing Strains"/>
+%{--<div class="fieldcontain ${hasErrors(bean: hostOriginInstance, field: 'strains', 'error')} ">--}%
+    %{--<label for="strains">--}%
+        %{--<g:message code="hostOrigin.strains.label" default="Existing Strains"/>--}%
 
-    </label>
+    %{--</label>--}%
 
-    <ul class="one-to-many">
-        <g:each in="${hostOriginInstance?.strains ?}" var="s">
-            <li>
-                <g:link controller="strain" action="show" id="${s.id}">${s?.name}</g:link>
-                <g:link controller="hostOrigin" action="removeStrainFromHostOrigin" params="[strainId:s.id,hostOriginId:hostOriginInstance.id]">[remove]</g:link>
+    %{--<ul class="one-to-many">--}%
+        %{--<g:each in="${hostOriginInstance?.strains ?}" var="s">--}%
+            %{--<li>--}%
+                %{--<g:link controller="strain" action="show" id="${s.id}">${s?.name}</g:link>--}%
+                %{--<g:link controller="hostOrigin" action="removeStrainFromHostOrigin" params="[strainId:s.id,hostOriginId:hostOriginInstance.id]">[remove]</g:link>--}%
 
-            </li>
-        </g:each>
-    </ul>
+            %{--</li>--}%
+        %{--</g:each>--}%
+    %{--</ul>--}%
 
 
-</div>
+%{--</div>--}%
 
 
 <div class="fieldcontain ${hasErrors(bean: hostOriginInstance, field: 'notes', 'error')} ">

@@ -32,7 +32,8 @@
                                                                      default="Stage"/></span>
 
             <span class="property-value" aria-labelledby="stage-label">
-                <g:fieldValue bean="${hostOriginInstance}" field="stage"/>
+                ${hostOriginInstance.stage ?: ""}
+                %{--<g:fieldValue bean="${hostOriginInstance}" field="stage"/>--}%
                 <g:if test="${!hostOriginInstance?.stage?.contains("dpf") && hostOriginInstance.stage}">
                     (${hostOriginInstance.daysPastFertilization} DPF)
                 </g:if>
