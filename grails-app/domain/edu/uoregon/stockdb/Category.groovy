@@ -8,7 +8,13 @@ class Category {
 
     static hasMany = [
             measuredValues: MeasuredValue
+            ,experiments: Experiment
     ]
+
+    static belongsTo = [
+            Experiment
+    ]
+
 
     String name
 

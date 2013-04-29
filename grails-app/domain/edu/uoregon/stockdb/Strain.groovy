@@ -12,11 +12,7 @@ class Strain {
 
     static hasMany = [
             stocks: Stock
-            ,experiments: Experiment
-    ]
-
-    static belongsTo = [
-            Experiment
+            ,measuredValues: MeasuredValue
     ]
 
 

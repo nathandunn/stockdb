@@ -15,7 +15,7 @@ class MeasuredValue {
 
     MeasuredValueTypeEnum type = MeasuredValueTypeEnum.TEXT// a possible string / float
 
-    Experiment experiment
+//    Experiment experiment
     Category category
     Strain strain
 

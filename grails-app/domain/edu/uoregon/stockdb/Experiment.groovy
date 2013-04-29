@@ -7,9 +7,9 @@ class Experiment {
     }
 
     static hasMany = [
-            measuredValues: MeasuredValue
+//            measuredValues: MeasuredValue
 //            strains:Strain
-//            ,categories: Category
+            categories: Category
     ]
 
     String name
