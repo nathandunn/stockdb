@@ -45,6 +45,7 @@
 
                 <span class="property-value" aria-labelledby="measuredValues-label">
                     <table>
+
                         <g:each in="${measuredValues}" var="m">
                             <tr>
                                 <td>

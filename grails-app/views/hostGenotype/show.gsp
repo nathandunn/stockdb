@@ -58,21 +58,21 @@
                                                                           default="Origins"/></span>
 
                 <span class="property-value" aria-labelledby="zfinId-label">
-                    <ul>
-                        <g:each in="${hostOrigins}" var="hostOrigin">
-                            <li>
-                                <g:link controller="hostOrigin" action="show"
-                                        id="${hostOrigin.key.id}">${hostOrigin.key.display}</g:link>
-                            </li>
+                    <g:each in="${hostOrigins}" var="hostOrigin">
+                        <table >
+                            <g:link controller="hostOrigin" action="show"
+                                    id="${hostOrigin.key.id}">${hostOrigin.key.display}</g:link>
                             <g:each in="${hostOrigin.value}" var="strain">
-                                <g:link controller="strain" action="show" id="${strain.id}">
-                                    ${strain.name}
-                                </g:link>
-                                &nbsp;
+                                <tr class="small-table">
+                                    <td class="small-table">
+                                        <g:link controller="strain" action="show" id="${strain.id}">
+                                            ${strain.name}
+                                        </g:link>
+                                    </td>
+                                </tr>
                             </g:each>
-                        </g:each>
-                    </ul>
-                    %{--<g:fieldValue bean="${hostGenotypeInstance}" field="zfinId"/>--}%
+                        </table>
+                    </g:each>
                 </span>
 
             </li>
