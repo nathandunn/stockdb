@@ -425,6 +425,7 @@ class StubData {
             if (tokens[19]) {
                 MeasuredValue measuredValue = new MeasuredValue(
                         category: motilityCategory
+                        ,experiment: motilityExperiment
                         , strain: strain
                         , value: tokens[19].trim()
                 )
@@ -434,6 +435,7 @@ class StubData {
             if (tokens[21]) {
                 MeasuredValue measuredValue = new MeasuredValue(
                         category: hemolyticActivityCategory
+                        ,experiment: hemolyticActivityExperiment
                         , strain: strain
                         , value: tokens[21].trim()
                 )
@@ -443,6 +445,7 @@ class StubData {
             if (tokens[22]) {
                 MeasuredValue measuredValue = new MeasuredValue(
                         category: antibioticCategory
+                        ,experiment: antibioticExperiment
                         , strain: strain
                         , value: tokens[22].trim()
                 )
@@ -452,6 +455,7 @@ class StubData {
             if (tokens[23]) {
                 MeasuredValue measuredValue = new MeasuredValue(
                         category: doublingCategory
+                        ,experiment: doublingExperiment
                         , strain: strain
                         , value: tokens[23].trim()
                 )
@@ -461,6 +465,7 @@ class StubData {
             if (tokens[25]) {
                 MeasuredValue measuredValue = new MeasuredValue(
                         category: adherenceCategory
+                        ,experiment: adherenceExperiment
                         , strain: strain
                         , value: (tokens[25].trim().substring(1))
                 )

@@ -6,6 +6,7 @@ class MeasuredValue {
         value nullable: false
         category nullable: false
         strain nullable: false
+        experiment nullable: false
     }
 
 
@@ -14,6 +15,7 @@ class MeasuredValue {
 //    Experiment experiment
     Category category
     Strain strain
+    Experiment experiment
 
     String checkValid() {
         switch (type){
