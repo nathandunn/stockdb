@@ -6,7 +6,7 @@ class Strain {
 //        values nullable: true
         formerCloneAlias nullable: true
         name nullable: false, unique: true
-        genus nullable: false
+//        genus nullable: false
         genome nullable: true
     }
 

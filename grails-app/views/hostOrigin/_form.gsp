@@ -18,7 +18,7 @@
         <g:message code="hostOrigin.days.label" default="Days"/>
         <span class="required-indicator">*</span>
     </label>
-    <g:field name="days" type="number" value="${hostOriginInstance.daysPastFertilization}"/>
+    <g:field name="daysPastFertilization" type="number" value="${hostOriginInstance.daysPastFertilization}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: hostOriginInstance, field: 'anatomy', 'error')} ">

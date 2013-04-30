@@ -26,8 +26,12 @@ class HostOriginController {
     def save() {
         def hostOriginInstance = new HostOrigin(params)
 
-        if (!hostOriginInstance.save(flush: true)) {
-            render(view: "create", model: [hostOriginInstance: hostOriginInstance])
+        def strains = Strain.findAllByHostOriginIsNull()
+
+        validateHostOrigin(hostOriginInstance,strains)
+
+        if (hostOriginInstance.hasErrors() || !hostOriginInstance.save(flush: true)) {
+            render(view: "create", model: [hostOriginInstance: hostOriginInstance,strains: strains])
             return
         }
 
@@ -91,19 +95,57 @@ class HostOriginController {
             hostOriginInstance.genotypes = null
         }
 
+        def strains = Strain.findAllByHostOriginIsNull() ?: []
+        if(hostOriginInstance.strains){
+            strains.addAll(hostOriginInstance.strains)
+        }
 
-//        if(params.addstrainid && params.addstrainid!='null'){
-//            Strain strain = Strain.findById(params.addstrainid)
-//            hostOriginInstance.addToStrains(strain)
-//        }
+        validateHostOrigin(hostOriginInstance,strains)
 
-        if (!hostOriginInstance.save(flush: true)) {
-            render(view: "edit", model: [hostOriginInstance: hostOriginInstance])
+
+        if (hostOriginInstance.hasErrors() || !hostOriginInstance.save(flush: true)) {
+            render(view: "edit", model: [hostOriginInstance: hostOriginInstance,strains: strains])
             return
         }
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'hostOrigin.label', default: 'HostOrigin'), hostOriginInstance.display])
         redirect(action: "show", id: hostOriginInstance.id)
+    }
+
+    def validateHostOrigin(HostOrigin hostOriginInstance,def strains) {
+
+        if(hostOriginInstance.stage==null || hostOriginInstance.stage=="null" && hostOriginInstance.daysPastFertilization==null ){
+            hostOriginInstance.errors.rejectValue("stage", "define.stage","You must define either the stage or the days past fertilization")
+            flash.error =  "You must define either the stage of the days past fertilization"
+            render(view: "edit", model: [hostOriginInstance: hostOriginInstance,strains: strains])
+            return
+        }
+
+        if(!hostOriginInstance.anatomy && !hostOriginInstance.anatomyUrl){
+            hostOriginInstance.errors.rejectValue("anatomy", "define.anatomy","You must define anatomy")
+            flash.error =  "You must define an anatomy term or anatomy URL"
+            render(view: "edit", model: [hostOriginInstance: hostOriginInstance,strains: strains])
+            return
+        }
+
+        if(!hostOriginInstance.hostFacility){
+            hostOriginInstance.errors.rejectValue("hostFacility", "define.hostFacility","You must define the host facility")
+            render(view: "edit", model: [hostOriginInstance: hostOriginInstance,strains: strains])
+            return
+        }
+
+        if(hostOriginInstance.genotypes==null  || hostOriginInstance.genotypes.size()==0){
+            hostOriginInstance.errors.rejectValue("genotypes", "define.genotypes","You must define at least one genotype including Unknown")
+            flash.error =  "You must define at least one genotype including Unknown"
+            render(view: "edit", model: [hostOriginInstance: hostOriginInstance,strains: strains])
+            return
+        }
+
+        if(!hostOriginInstance.species){
+            hostOriginInstance.errors.rejectValue("species", "define.species","You must define the species")
+            render(view: "edit", model: [hostOriginInstance: hostOriginInstance,strains: strains])
+            return
+        }
     }
 
     def delete(Long id) {

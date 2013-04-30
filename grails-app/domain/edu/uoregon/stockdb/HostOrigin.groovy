@@ -11,16 +11,17 @@ class HostOrigin {
     static constraints = {
         stage nullable: true
         anatomy nullable: true
-        hostFacility nullable: true
+        hostFacility nullable: false
+        species nullable: false
     }
 
     static hasMany = [
             strains: Strain
-            ,genotypes: HostGenotype
+            , genotypes: HostGenotype
     ]
 
     static mapping = {
-        strains sort:"name",order: "asc"
+        strains sort: "name", order: "asc"
     }
 
     Species species
@@ -35,12 +36,11 @@ class HostOrigin {
 //    String name
     String notes
 
-    String getDisplay(){
-        String returnString = "${species?.commonName ?:''} (${genotypes?.name ?: ''}) "
-        if (daysPastFertilization>=0){
+    String getDisplay() {
+        String returnString = "${species?.commonName ?: ''} (${genotypes?.name ?: ''}) "
+        if (daysPastFertilization >= 0) {
             returnString += daysPastFertilization + " DPF "
-        }
-        else{
+        } else {
             returnString += (stage ?: '') + " "
         }
 
@@ -49,7 +49,7 @@ class HostOrigin {
 
     }
 
-    void setStage(String stage) {
+    void setStageAndDpf(String stage) {
         if (!stage || stage?.length() == 0) {
             this.stage = null
             return
@@ -58,17 +58,19 @@ class HostOrigin {
         this.stage = stage
 
         int index = stage?.indexOf("dpf")
-        if (index > 0) {
-            String stageSubString = stage.substring(0, index )
-            daysPastFertilization = Integer.parseInt(stageSubString)
-        } else if (stage == "Larval") {
-            daysPastFertilization = 0
-        } else if (stage.length() == 0) {
-            daysPastFertilization = UNKNOWN_STAGE
-        } else if (stage == "Adult") {
-            daysPastFertilization = 90
-        } else {
-            daysPastFertilization = 360
+        if (!daysPastFertilization) {
+            if (index > 0) {
+                String stageSubString = stage.substring(0, index)
+                daysPastFertilization = Integer.parseInt(stageSubString)
+            } else if (stage == "Larval") {
+                daysPastFertilization = 0
+            } else if (stage.length() == 0) {
+                daysPastFertilization = UNKNOWN_STAGE
+            } else if (stage == "Adult") {
+                daysPastFertilization = 90
+            } else {
+                daysPastFertilization = 360
+            }
         }
     }
 

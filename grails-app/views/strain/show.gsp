@@ -65,19 +65,19 @@
             </li>
         </g:if>
 
-        <g:if test="${strainInstance?.experiments}">
-            <li class="fieldcontain">
-                <span id="experiments-label" class="property-label"><g:message code="strain.experiments.label"
-                                                                               default="Experiments"/></span>
+        %{--<g:if test="${strainInstance?.experiments}">--}%
+            %{--<li class="fieldcontain">--}%
+                %{--<span id="experiments-label" class="property-label"><g:message code="strain.experiments.label"--}%
+                                                                               %{--default="Experiments"/></span>--}%
 
-                <g:each in="${strainInstance.experiments}" var="e">
-                    <span class="property-value" aria-labelledby="experiments-label"><g:link controller="experiment"
-                                                                                             action="show"
-                                                                                             id="${e.id}">${e?.name}</g:link></span>
-                </g:each>
+                %{--<g:each in="${strainInstance.experiments}" var="e">--}%
+                    %{--<span class="property-value" aria-labelledby="experiments-label"><g:link controller="experiment"--}%
+                                                                                             %{--action="show"--}%
+                                                                                             %{--id="${e.id}">${e?.name}</g:link></span>--}%
+                %{--</g:each>--}%
 
-            </li>
-        </g:if>
+            %{--</li>--}%
+        %{--</g:if>--}%
 
         <g:if test="${strainInstance?.genome}">
             <li class="fieldcontain">
