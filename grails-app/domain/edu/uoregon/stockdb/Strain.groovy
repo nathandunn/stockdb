@@ -15,6 +15,9 @@ class Strain {
             ,measuredValues: MeasuredValue
     ]
 
+//    static mapping = {
+//        measuredValues sort: 'value', order:'asc'
+//    }
 
     String name
 

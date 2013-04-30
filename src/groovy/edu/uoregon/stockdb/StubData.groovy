@@ -73,7 +73,7 @@ class StubData {
                             genotypes.add(hostGenotype)
                         }
 
-                        hostOrigin = HostOrigin.findOrSaveByAnatomyAndStageAndHostFacilityAndSpecies(anatomy, stage,hostFacility,rerio)
+                        hostOrigin = HostOrigin.findOrSaveByAnatomyAndStageAndHostFacilityAndSpecies(anatomy, stage, hostFacility, rerio)
                         hostOrigin.setStageAndDpf(stage)
                         if (hostOrigin?.genotypes != genotypes) {
                             hostOrigin.genotypes = genotypes
@@ -85,7 +85,7 @@ class StubData {
                     }
                     // just age and species
                     else {
-                        hostOrigin = HostOrigin.findOrSaveByAnatomyAndStageAndHostFacilityAndSpecies(null, stage,hostFacility,rerio)
+                        hostOrigin = HostOrigin.findOrSaveByAnatomyAndStageAndHostFacilityAndSpecies(null, stage, hostFacility, rerio)
                         hostOrigin.setStageAndDpf(stage)
                         hostOrigin.species = rerio
                     }
@@ -93,7 +93,6 @@ class StubData {
             }
 
 //            String hostFacility = tokens[8]
-
 
 
             String[] isolateData = tokens[10]?.split(";")
@@ -253,7 +252,7 @@ class StubData {
                     generalLocation.addToStocks(stock)
                     strain.addToStocks(stock)
                 }
-                stock.save(insert:true,flush:true)
+                stock.save(insert: true, flush: true)
 
             } else {
 
@@ -393,5 +392,84 @@ class StubData {
             }
             ++rowIndex
         }
+    }
+
+    def importExperiments() {
+
+        Category motilityCategory = new Category(name: "Motility").save()
+        Experiment motilityExperiment = new Experiment(name: "Motility 1", categories: [motilityCategory]).save()
+        Category hemolyticActivityCategory = new Category(name: "HemolyticActivity").save()
+        Experiment hemolyticActivityExperiment = new Experiment(name: "HemolyticActivity 1", categories: [hemolyticActivityCategory]).save()
+        Category antibioticCategory = new Category(name: "Antibiotic").save()
+        Experiment antibioticExperiment = new Experiment(name: "Antibiotic 1", categories: [antibioticCategory]).save()
+
+        Category doublingCategory = new Category(name: "Doubling Time", type: MeasuredValueTypeEnum.DECIMAL).save()
+        Experiment doublingExperiment = new Experiment(name: "Doubling Time 1", categories: [doublingCategory]).save()
+
+        Category adherenceCategory = new Category(name: "Adherence").save()
+        Experiment adherenceExperiment = new Experiment(name: "Adherence 1", categories: [adherenceCategory]).save()
+
+        def servletContext = org.codehaus.groovy.grails.web.context.ServletContextHolder.servletContext
+        def file = servletContext.getResourceAsStream("/WEB-INF/database1.csv")
+        if (!file) {
+            throw new RuntimeException("File does not exist: " + file)
+        }
+        CSVReader csvReader = file.toCsvReader(skipLines: 1, 'charset': 'UTF-8')
+
+        int rowIndex = 1
+        csvReader.eachLine { tokens ->
+
+            if (tokens[0].trim().size() == 0) return
+
+            Strain strain = Strain.findByName(tokens[0]?.trim())
+            if (tokens[19]) {
+                MeasuredValue measuredValue = new MeasuredValue(
+                        category: motilityCategory
+                        , strain: strain
+                        , value: tokens[19].trim()
+                )
+                        .save(insert: true)
+            }
+
+            if (tokens[21]) {
+                MeasuredValue measuredValue = new MeasuredValue(
+                        category: hemolyticActivityCategory
+                        , strain: strain
+                        , value: tokens[21].trim()
+                )
+                        .save(insert: true)
+            }
+
+            if (tokens[22]) {
+                MeasuredValue measuredValue = new MeasuredValue(
+                        category: antibioticCategory
+                        , strain: strain
+                        , value: tokens[22].trim()
+                )
+                        .save(insert: true)
+            }
+
+            if (tokens[23]) {
+                MeasuredValue measuredValue = new MeasuredValue(
+                        category: doublingCategory
+                        , strain: strain
+                        , value: tokens[23].trim()
+                )
+                        .save(insert: true)
+            }
+
+            if (tokens[25]) {
+                MeasuredValue measuredValue = new MeasuredValue(
+                        category: adherenceCategory
+                        , strain: strain
+                        , value: (tokens[25].trim().substring(1))
+                )
+                        .save(insert: true, flush: true)
+            }
+
+            ++rowIndex
+        }
+
+        println "${MeasuredValue.count} Measured Values imported"
     }
 }

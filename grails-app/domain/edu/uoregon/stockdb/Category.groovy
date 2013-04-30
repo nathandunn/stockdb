@@ -17,6 +17,8 @@ class Category {
 
 
     String name
+    MeasuredValueTypeEnum type = MeasuredValueTypeEnum.TEXT// a possible string / float
+    String units
 
 
 }

@@ -38,7 +38,9 @@ class CategoryController {
             return
         }
 
-        [categoryInstance: categoryInstance]
+        def measuredValues = MeasuredValue.executeQuery("from MeasuredValue mv where mv.category = :category order by mv.category.name asc ",[category: categoryInstance])
+
+        [categoryInstance: categoryInstance,measuredValues:measuredValues]
     }
 
     def edit(Long id) {

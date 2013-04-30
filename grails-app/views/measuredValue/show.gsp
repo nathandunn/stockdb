@@ -30,28 +30,6 @@
     </g:if>
     <ol class="property-list measuredValue">
 
-        <g:if test="${measuredValueInstance?.id}">
-            <li class="fieldcontain">
-                <span id="name-label" class="property-label"><g:message code="measuredValue.id.label"
-                                                                        default="ID"/></span>
-
-                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${measuredValueInstance}"
-                                                                                        field="id"/></span>
-
-            </li>
-        </g:if>
-
-        <g:if test="${measuredValueInstance?.name}">
-            <li class="fieldcontain">
-                <span id="name-label" class="property-label"><g:message code="measuredValue.name.label"
-                                                                        default="Name"/></span>
-
-                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${measuredValueInstance}"
-                                                                                        field="name"/></span>
-
-            </li>
-        </g:if>
-
         <g:if test="${measuredValueInstance?.value}">
             <li class="fieldcontain">
                 <span id="value-label" class="property-label"><g:message code="measuredValue.value.label"
@@ -63,37 +41,37 @@
             </li>
         </g:if>
 
-        <g:if test="${measuredValueInstance?.experiment}">
-            <li class="fieldcontain">
-                <span id="experiment-label" class="property-label"><g:message code="measuredValue.experiment.label"
-                                                                              default="Experiment"/></span>
+        <li class="fieldcontain">
+            <span id="experiment-label" class="property-label"><g:message code="measuredValue.experiment.label"
+                                                                          default="Category"/></span>
 
-                <span class="property-value" aria-labelledby="experiment-label"><g:link controller="experiment"
-                                                                                        action="show"
-                                                                                        id="${measuredValueInstance?.experiment?.id}">${measuredValueInstance?.experiment?.name}</g:link></span>
+            <span class="property-value" aria-labelledby="experiment-label">
+                <g:link controller="category" action="show" id="${measuredValueInstance?.category?.id}">
+                    ${measuredValueInstance?.category?.name}
+                </g:link></span>
 
-            </li>
-        </g:if>
+        </li>
 
 
-        <g:if test="${measuredValueInstance?.type}">
-            <li class="fieldcontain">
-                <span id="type-label" class="property-label"><g:message code="measuredValue.type.label"
-                                                                        default="Type"/></span>
+        <li class="fieldcontain">
+            <span id="type-label" class="property-label"><g:message code="measuredValue.type.label"
+                                                                    default="Strain"/></span>
 
-                <span class="property-value" aria-labelledby="type-label"><g:fieldValue bean="${measuredValueInstance}"
-                                                                                        field="type"/></span>
+            <span class="property-value" aria-labelledby="type-label">
+                <g:link controller="strain" action="show" id="${measuredValueInstance.strain.id}">
+                    ${measuredValueInstance.strain.name}
+                </g:link>
+            </span>
 
-            </li>
-        </g:if>
+        </li>
 
-        <g:if test="${measuredValueInstance?.units}">
+        <g:if test="${measuredValueInstance?.category?.units}">
             <li class="fieldcontain">
                 <span id="units-label" class="property-label"><g:message code="measuredValue.units.label"
                                                                          default="Units"/></span>
 
                 <span class="property-value" aria-labelledby="units-label"><g:fieldValue bean="${measuredValueInstance}"
-                                                                                         field="units"/></span>
+                                                                                         field="category.units"/></span>
 
             </li>
         </g:if>

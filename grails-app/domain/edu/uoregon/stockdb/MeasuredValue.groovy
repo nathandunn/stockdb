@@ -3,17 +3,13 @@ package edu.uoregon.stockdb
 class MeasuredValue {
 
     static constraints = {
-        name nullable: false
         value nullable: false
-        type nullable: false
+        category nullable: false
+        strain nullable: false
     }
 
 
-    String name
     String value
-    String units
-
-    MeasuredValueTypeEnum type = MeasuredValueTypeEnum.TEXT// a possible string / float
 
 //    Experiment experiment
     Category category
