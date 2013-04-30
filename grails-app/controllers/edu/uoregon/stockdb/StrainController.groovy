@@ -199,7 +199,10 @@ class StrainController {
             return
         }
 
-        [strainInstance: strainInstance]
+        def measuredValues = MeasuredValue.executeQuery("from MeasuredValue mv where mv.strain = :strain order by mv.category.name asc",[strain: strainInstance])
+
+
+        [strainInstance: strainInstance,measuredValues:measuredValues]
     }
 
     def edit(Long id) {

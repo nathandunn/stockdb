@@ -1,6 +1,6 @@
 package edu.uoregon.stockdb
 
-class Category {
+class Category implements Comparable{
 
     static constraints = {
         name unique: true , nullable:false
@@ -8,9 +8,19 @@ class Category {
 
     static hasMany = [
             measuredValues: MeasuredValue
+//            ,experiments: Experiment
     ]
+//
+//    static belongsTo = [
+//            Experiment
+//    ]
+
 
     String name
+    MeasuredValueTypeEnum type = MeasuredValueTypeEnum.TEXT// a possible string / float
+    String units
 
-
+    int compareTo(Object t) {
+        return name.compareTo(t.name)
+    }
 }

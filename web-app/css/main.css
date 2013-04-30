@@ -608,3 +608,10 @@ a.skip {
     margin: 10px;
 }
 
+.small-table{
+    padding-bottom: 0px;
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+

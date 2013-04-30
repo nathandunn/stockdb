@@ -45,28 +45,45 @@
                                                                                   default="Measured Values"/></span>
 
                 %{--<g:each in="${experimentInstance.measuredValues}" var="m">--}%
-                    %{--<span class="property-value" aria-labelledby="measuredValues-label">--}%
-                        %{--<g:link controller="measuredValue" action="show" id="${m.id}">${m?.name}</g:link>--}%
-                    %{--</span>--}%
+                %{--<span class="property-value" aria-labelledby="measuredValues-label">--}%
+                %{--<g:link controller="measuredValue" action="show" id="${m.id}">${m?.name}</g:link>--}%
+                %{--</span>--}%
                 %{--</g:each>--}%
 
-                <g:each in="${experimentInstance.createMeasuredValuesMap()}" var="m">
-                    <span class="property-value" aria-labelledby="measuredValues-label">
-                        ${m.key}:
-                        <g:each in="${m.value}" var="val">
-                            <g:link controller="measuredValue" action="show" id="${val.id}">${val?.value}</g:link>
-                        </g:each>
-                    </span>
-                </g:each>
+                <span class="property-value" aria-labelledby="measuredValues-label">
+                    <g:each in="${valuesMap}" var="m">
+                        <table class="TableHeadingColor">
+                            <thead>
+                            <g:link action="show" controller="category" id="${m.key.id}">
+                                <strong>Category: ${m.key.name}</strong>
+                            </g:link>
+                            </thead>
+                            <tbody>
+                            <g:each in="${m.value}" var="val">
+                                <tr>
+                                    <td>
+                                        <g:link controller="measuredValue" action="show"
+                                                id="${val.id}">${val?.value}</g:link>
+                                    </td>
+                                    <td>
+                                        <g:link controller="strain" action="show"
+                                                id="${val.strain.id}">${val?.strain.name}</g:link>
+                                    </td>
+                                </tr>
+                            </g:each>
+                            </tbody>
+                        </table>
+                    </g:each>
+                </span>
 
                 %{--<g:each in="${experimentInstance.createValuesMap()}" var="map">--}%
-                    %{--<span class="property-value" aria-labelledby="measuredValues-label">--}%
-                        %{--${map.key}--}%
-                        %{--<g:each in="${map.value}" var="value">--}%
-                            %{--${value}--}%
-                        %{--</g:each>--}%
-                        %{--<g:link controller="measuredValue" action="show" id="${m.id}">${m?.name}</g:link>--}%
-                    %{--</span>--}%
+                %{--<span class="property-value" aria-labelledby="measuredValues-label">--}%
+                %{--${map.key}--}%
+                %{--<g:each in="${map.value}" var="value">--}%
+                %{--${value}--}%
+                %{--</g:each>--}%
+                %{--<g:link controller="measuredValue" action="show" id="${m.id}">${m?.name}</g:link>--}%
+                %{--</span>--}%
                 %{--</g:each>--}%
 
             </li>
@@ -85,19 +102,19 @@
             </li>
         </g:if>
 
-        <g:if test="${experimentInstance?.strains}">
-            <li class="fieldcontain">
-                <span id="strains-label" class="property-label"><g:message code="experiment.strains.label"
-                                                                           default="Strains"/></span>
+    %{--<g:if test="${experimentInstance?.strains}">--}%
+    %{--<li class="fieldcontain">--}%
+    %{--<span id="strains-label" class="property-label"><g:message code="experiment.strains.label"--}%
+    %{--default="Strains"/></span>--}%
 
-                <g:each in="${experimentInstance.strains}" var="s">
-                    <span class="property-value" aria-labelledby="strains-label"><g:link controller="strain"
-                                                                                         action="show"
-                                                                                         id="${s.id}">${s?.name}</g:link></span>
-                </g:each>
+    %{--<g:each in="${experimentInstance.strains}" var="s">--}%
+    %{--<span class="property-value" aria-labelledby="strains-label"><g:link controller="strain"--}%
+    %{--action="show"--}%
+    %{--id="${s.id}">${s?.name}</g:link></span>--}%
+    %{--</g:each>--}%
 
-            </li>
-        </g:if>
+    %{--</li>--}%
+    %{--</g:if>--}%
 
         <g:if test="${experimentInstance?.whenPerformed}">
             <li class="fieldcontain">

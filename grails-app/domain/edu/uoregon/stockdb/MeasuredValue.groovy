@@ -3,21 +3,19 @@ package edu.uoregon.stockdb
 class MeasuredValue {
 
     static constraints = {
-        name nullable: false
         value nullable: false
-        type nullable: false
+        category nullable: false
+        strain nullable: false
+        experiment nullable: false
     }
 
 
-    String name
     String value
-    String units
 
-    MeasuredValueTypeEnum type = MeasuredValueTypeEnum.TEXT// a possible string / float
-
-    Experiment experiment
+//    Experiment experiment
     Category category
     Strain strain
+    Experiment experiment
 
     String checkValid() {
         switch (type){

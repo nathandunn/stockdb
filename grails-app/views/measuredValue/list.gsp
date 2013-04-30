@@ -28,17 +28,14 @@
         <thead>
         <tr>
 
-            <g:sortableColumn property="name" title="${message(code: 'measuredValue.name.label', default: 'Name')}"/>
 
             <g:sortableColumn property="value" title="${message(code: 'measuredValue.value.label', default: 'Value')}"/>
 
-            <th><g:message code="measuredValue.experiment.label" default="Experiment"/></th>
+            <g:sortableColumn property="category.name" title="${message(code: 'measuredValue.category.label', default: 'Name')}"/>
 
-            <th><g:message code="measuredValue.phenotype.label" default="Phenotype"/></th>
+            <g:sortableColumn property="category.type" title="${message(code: 'measuredValue.type.label', default: 'Type')}"/>
 
-            <g:sortableColumn property="type" title="${message(code: 'measuredValue.type.label', default: 'Type')}"/>
-
-            <g:sortableColumn property="units" title="${message(code: 'measuredValue.units.label', default: 'Units')}"/>
+            <g:sortableColumn property="strain.name" title="${message(code: 'measuredValue.units.label', default: 'Units')}"/>
 
         </tr>
         </thead>
@@ -47,18 +44,20 @@
             <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
                 <td><g:link action="show"
-                            id="${measuredValueInstance.id}">${fieldValue(bean: measuredValueInstance, field: "name")}</g:link></td>
+                            id="${measuredValueInstance.id}">${fieldValue(bean: measuredValueInstance, field: "value")}</g:link></td>
 
-                <td>${fieldValue(bean: measuredValueInstance, field: "value")}</td>
 
                 <td>
-                    <g:link action="show" controller="experiment"
-                            id="${measuredValueInstance?.experiment?.id}">${measuredValueInstance?.experiment?.name}</g:link>
+                    <g:link action="show" controller="category"
+                            id="${measuredValueInstance?.category?.id}">${measuredValueInstance?.category?.name}</g:link>
                 </td>
 
-                <td>${fieldValue(bean: measuredValueInstance, field: "type")}</td>
+                <td>${measuredValueInstance.category.type}</td>
 
-                <td>${fieldValue(bean: measuredValueInstance, field: "units")}</td>
+                <td>
+                    <g:link action="show" controller="strain"
+                            id="${measuredValueInstance?.strain?.id}">${measuredValueInstance?.strain?.name}</g:link>
+                </td>
 
             </tr>
         </g:each>

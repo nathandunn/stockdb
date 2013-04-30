@@ -6,6 +6,10 @@ class CategoryController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
+    static navigation = [
+            title: 'Category', action: 'list', order: 110
+    ]
+
     def index() {
         redirect(action: "list", params: params)
     }
@@ -38,7 +42,9 @@ class CategoryController {
             return
         }
 
-        [categoryInstance: categoryInstance]
+        def measuredValues = MeasuredValue.executeQuery("from MeasuredValue mv where mv.category = :category order by mv.category.name asc ",[category: categoryInstance])
+
+        [categoryInstance: categoryInstance,measuredValues:measuredValues]
     }
 
     def edit(Long id) {

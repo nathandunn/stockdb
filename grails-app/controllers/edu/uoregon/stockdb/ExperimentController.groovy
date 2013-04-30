@@ -6,6 +6,8 @@ class ExperimentController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
+    def experimentService
+
     static navigation = [
             title: 'Experiment', action: 'list', order: 100
     ]
@@ -20,6 +22,7 @@ class ExperimentController {
     }
 
     def create() {
+        TreeMap<Category,List<MeasuredValue>> measuredValues = new TreeMap<Category,List<MeasuredValue>>()
         [experimentInstance: new Experiment(params),availableMeasuredValues: MeasuredValue.findAllByExperimentIsNull()]
     }
 
@@ -43,7 +46,7 @@ class ExperimentController {
         }
 
 //        Map<String,List<String>> values = new TreeMap<String,List<String>>()
-        Map<String,List<String>> values  = experimentInstance.createValuesMap()
+        Map<Category,List<MeasuredValue>> values  = experimentService.createValuesMap(experimentInstance)
 
 
         [experimentInstance: experimentInstance,valuesMap:values]
@@ -133,4 +136,5 @@ class ExperimentController {
             redirect(action: "show", id: id)
         }
     }
+
 }

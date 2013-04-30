@@ -6,19 +6,18 @@ class Strain {
 //        values nullable: true
         formerCloneAlias nullable: true
         name nullable: false, unique: true
-        genus nullable: false
+//        genus nullable: false
         genome nullable: true
     }
 
     static hasMany = [
             stocks: Stock
-            ,experiments: Experiment
+            ,measuredValues: MeasuredValue
     ]
 
-    static belongsTo = [
-            Experiment
-    ]
-
+//    static mapping = {
+//        measuredValues sort: 'value', order:'asc'
+//    }
 
     String name
 
