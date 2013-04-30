@@ -48,11 +48,15 @@
                         <g:each in="${measuredValues}" var="m">
                             <tr>
                                 <td>
+                                    <g:link controller="measuredValue" action="show" id="${m.id}">${m?.value}</g:link>
+                                </td>
+                                <td>
                                     <g:link controller="strain" action="show"
                                             id="${m.strain.id}">${m?.strain.name}</g:link>
                                 </td>
                                 <td>
-                                    <g:link controller="measuredValue" action="show" id="${m.id}">${m?.value}</g:link>
+                                    <g:link controller="experiment" action="show"
+                                            id="${m.experiment.id}">${m?.experiment.name}</g:link>
                                 </td>
                             </tr>
                         </g:each>

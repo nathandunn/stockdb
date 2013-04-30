@@ -6,10 +6,10 @@ class Category implements Comparable{
         name unique: true , nullable:false
     }
 
-//    static hasMany = [
-//            measuredValues: MeasuredValue
+    static hasMany = [
+            measuredValues: MeasuredValue
 //            ,experiments: Experiment
-//    ]
+    ]
 //
 //    static belongsTo = [
 //            Experiment

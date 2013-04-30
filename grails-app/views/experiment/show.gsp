@@ -55,7 +55,7 @@
                         <table class="TableHeadingColor">
                             <thead>
                             <g:link action="show" controller="category" id="${m.key.id}">
-                                <strong>${m.key.name}</strong>
+                                <strong>Category: ${m.key.name}</strong>
                             </g:link>
                             </thead>
                             <tbody>

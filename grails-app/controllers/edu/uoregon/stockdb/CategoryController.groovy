@@ -6,6 +6,10 @@ class CategoryController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
+    static navigation = [
+            title: 'Category', action: 'list', order: 110
+    ]
+
     def index() {
         redirect(action: "list", params: params)
     }

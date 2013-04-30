@@ -25,6 +25,7 @@
 					<tr>
 					
 						<g:sortableColumn property="name" title="${message(code: 'category.name.label', default: 'Name')}" />
+                        <th>Number of Values</th>
 					
 					</tr>
 				</thead>
@@ -33,7 +34,10 @@
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
 						<td><g:link action="show" id="${categoryInstance.id}">${fieldValue(bean: categoryInstance, field: "name")}</g:link></td>
-					
+                        <td>
+                            ${categoryInstance?.measuredValues?.size()}
+                        </td>
+
 					</tr>
 				</g:each>
 				</tbody>

@@ -8,7 +8,6 @@ class Experiment {
 
     static hasMany = [
             measuredValues: MeasuredValue
-//            ,categories: Category
     ]
 
     String name
