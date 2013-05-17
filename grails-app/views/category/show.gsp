@@ -56,7 +56,7 @@
                                             id="${m.strain.id}">${m?.strain.name}</g:link>
                                 </td>
                                 <td>
-                                    <g:link controller="experiment" action="show"
+                                    <g:link controller="experimentEntry" action="show"
                                             id="${m.experiment.id}">${m?.experiment.name}</g:link>
                                 </td>
                             </tr>

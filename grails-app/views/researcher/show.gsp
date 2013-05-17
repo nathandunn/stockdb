@@ -83,7 +83,7 @@
                     <ul>
                         <g:each in="${researcherInstance?.experiments}" var="experiment">
                             <li>
-                                <g:link controller="experiment" action="show"
+                                <g:link controller="experimentEntry" action="show"
                                         id="${experiment.id}">${experiment.name}</g:link>
                             </li>
                         </g:each>

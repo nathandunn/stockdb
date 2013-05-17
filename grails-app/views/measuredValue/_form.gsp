@@ -24,7 +24,7 @@
 		
 	</label>
 	<g:select id="experiment" name="experiment.id" optionValue="name" from="${edu.uoregon.stockdb.Experiment.list()}" optionKey="id" value="${measuredValueInstance?.experiment?.id}" class="many-to-one" noSelection="['null': '']"/>
-    <g:link action="create" controller="experiment">Create Experiment</g:link>
+    <g:link action="create" controller="experimentEntry">Create Experiment</g:link>
 </div>
 
 
