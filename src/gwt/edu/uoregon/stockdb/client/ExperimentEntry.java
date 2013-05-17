@@ -2,17 +2,18 @@ package edu.uoregon.stockdb.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.RootPanel;
+//import org.codehaus.groovy.grails.plugins.gwt.client.GwtActionServiceAsync;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
 public class ExperimentEntry implements EntryPoint {
+
+
+
     /**
      * This is the entry point method.
      */
@@ -27,18 +28,39 @@ public class ExperimentEntry implements EntryPoint {
 
 //        RootPanel.get().add(b);
 
+        GwtActionServiceAsync experimentEntryGwtService = (GwtActionServiceAsync) GWT.create(edu.uoregon.stockdb.client.GwtActionService.class);
+        ServiceDefTarget endpoint = (ServiceDefTarget) experimentEntryGwtService;
+        String moduleRelativeUrl = GWT.getModuleBaseURL() + "rpc";
+        endpoint.setServiceEntryPoint(moduleRelativeUrl);
+//        experimentEntryGwtService.getMeasuredValues(
+//                1, new AsyncCallback() {
+//
+//            public void onFailure(Throwable arg0) {
+//
+//            }
+//
+//            public void onSuccess(Object author) {
+//                GWT.log("digiity");
+////                JSONValue value = JSONParser.parse((String)author);
+////                tree.removeItems();
+////                tree.setVisible(true);
+////                TreeItem item = tree.addItem("Response");
+////                addChildren(item, value);
+//
+//            }
+//        });
+
 
         FlexTable flexTable = new FlexTable();
-        flexTable.setHTML(0,0,"Strain");
-        flexTable.setHTML(0,1,"Value");
-        flexTable.setHTML(0,2,"Category");
-        flexTable.setHTML(0,3,"Action");
+        flexTable.setHTML(0, 0, "Strain");
+        flexTable.setHTML(0, 1, "Value");
+        flexTable.setHTML(0, 2, "Category");
+        flexTable.setHTML(0, 3, "Action");
 
-        flexTable.setHTML(1,0,"Z123");
-        flexTable.setHTML(1,1,"12");
-        flexTable.setHTML(1,2,"Motility");
-        flexTable.setHTML(1,3,"Remove");
-
+        flexTable.setHTML(1, 0, "Z123");
+        flexTable.setHTML(1, 1, "12");
+        flexTable.setHTML(1, 2, "Motility");
+        flexTable.setHTML(1, 3, "Remove");
 
 
         RootPanel.get().add(flexTable);
