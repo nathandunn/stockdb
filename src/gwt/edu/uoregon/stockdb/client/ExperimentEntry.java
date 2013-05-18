@@ -2,7 +2,9 @@ package edu.uoregon.stockdb.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.RootPanel;
 //import org.codehaus.groovy.grails.plugins.gwt.client.GwtActionServiceAsync;
@@ -27,23 +29,35 @@ public class ExperimentEntry implements EntryPoint {
 
 //        RootPanel.get().add(b);
 
-//        GwtActionServiceAsync experimentEntryGwtService = (GwtActionServiceAsync) GWT.create(edu.uoregon.stockdb.client.GwtActionService.class);
-//        ServiceDefTarget endpoint = (ServiceDefTarget) experimentEntryGwtService;
-//        String moduleRelativeUrl = GWT.getModuleBaseURL() + "rpc";
-//        endpoint.setServiceEntryPoint(moduleRelativeUrl);
+        GwtActionServiceAsync experimentEntryGwtService = (GwtActionServiceAsync) GWT.create(edu.uoregon.stockdb.client.GwtActionService.class);
+        ServiceDefTarget endpoint = (ServiceDefTarget) experimentEntryGwtService;
+        String moduleRelativeUrl = GWT.getModuleBaseURL() + "rpc";
+        endpoint.setServiceEntryPoint(moduleRelativeUrl);
 
-        GwtActionServiceAsync experimentEntryGwtService = GWT.create(GwtActionService.class);
-        experimentEntryGwtService.execute(new GetExperimentAction(), new AsyncCallback<GetExperimentResponse>() {
+//        GwtActionServiceAsync experimentEntryGwtService = GWT.create(GwtActionService.class);
+        experimentEntryGwtService.execute("abc", new AsyncCallback<String>() {
             @Override
             public void onFailure(Throwable caught) {
-                GWT.log("boo!" + caught);
+                Window.alert("boo: "+caught);
             }
 
             @Override
-            public void onSuccess(GetExperimentResponse result) {
-                GWT.log("yeah!" + result);
+            public void onSuccess(String result) {
+                Window.alert("yeah: "+result);
+                //To change body of implemented methods use File | Settings | File Templates.
             }
         });
+//        experimentEntryGwtService.execute(new GetExperimentAction(), new AsyncCallback<GetExperimentResponse>() {
+//            @Override
+//            public void onFailure(Throwable caught) {
+//                GWT.log("boo!" + caught);
+//            }
+//
+//            @Override
+//            public void onSuccess(GetExperimentResponse result) {
+//                GWT.log("yeah!" + result);
+//            }
+//        });
 //        experimentEntryGwtService.getMeasuredValues(
 //                1, new AsyncCallback() {
 //
