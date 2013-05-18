@@ -6,10 +6,11 @@ class ExperimentService {
 
     // TODO: get this service to work!
     String execute(String inputArg) {
+        println " trying to execute something "
 //        GetExperimentResponse getExperimentResponse = new GetExperimentResponse();
 
 //        return getExperimentResponse;
-        return "yes"
+        return "yes: " + inputArg
     }
 
     Map<Category, List<MeasuredValue>> createValuesMap(Experiment experiment) {

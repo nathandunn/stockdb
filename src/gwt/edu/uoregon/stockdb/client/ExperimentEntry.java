@@ -33,13 +33,16 @@ public class ExperimentEntry implements EntryPoint {
         ServiceDefTarget endpoint = (ServiceDefTarget) experimentEntryGwtService;
         String moduleRelativeUrl = GWT.getModuleBaseURL() + "rpc";
         GWT.log("url: "+moduleRelativeUrl);
+//        00:00:04.479  [INFO] url: http://localhost:8080/metagenomicsdb/static/gwt/edu.uoregon.stockdb.ExperimentEntry/rpc
+//        moduleRelativeUrl = "http://localhost:8080/metagenomicsdb/static/gwt/edu.uoregon.stockdb.ExperimentService/rpc" ;
+
         endpoint.setServiceEntryPoint(moduleRelativeUrl);
 
 //        GwtActionServiceAsync experimentEntryGwtService = GWT.create(GwtActionService.class);
         experimentEntryGwtService.execute("abc", new AsyncCallback<String>() {
             @Override
             public void onFailure(Throwable caught) {
-                GWT.log("boo: " + caught);
+                Window.alert("boo: " + caught);
             }
 
             @Override
