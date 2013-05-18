@@ -29,9 +29,9 @@ public class ExperimentEntry implements EntryPoint {
 //        RootPanel.get().add(b);
 
         GwtActionServiceAsync experimentEntryGwtService = (GwtActionServiceAsync) GWT.create(edu.uoregon.stockdb.client.GwtActionService.class);
-        ServiceDefTarget endpoint = (ServiceDefTarget) experimentEntryGwtService;
-        String moduleRelativeUrl = GWT.getModuleBaseURL() + "rpc";
-        endpoint.setServiceEntryPoint(moduleRelativeUrl);
+//        ServiceDefTarget endpoint = (ServiceDefTarget) experimentEntryGwtService;
+//        String moduleRelativeUrl = GWT.getModuleBaseURL() + "rpc";
+//        endpoint.setServiceEntryPoint(moduleRelativeUrl);
 //        experimentEntryGwtService.getMeasuredValues(
 //                1, new AsyncCallback() {
 //

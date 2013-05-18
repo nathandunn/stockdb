@@ -2,6 +2,8 @@ package edu.uoregon.stockdb
 
 class ExperimentService {
 
+    static expose = ['gwt:edu.uoregon.stockdb.client']
+
     Map<Category, List<MeasuredValue>> createValuesMap(Experiment experiment) {
         TreeMap<Category,List<MeasuredValue>> values = new TreeMap<Category,List<MeasuredValue>>()
 
