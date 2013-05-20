@@ -2,7 +2,7 @@ package edu.uoregon.stockdb.client;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-public interface GwtActionServiceAsync {
+public interface ExperimentEntryServiceAsync {
     //    Response execute(grails.plugins.gwt.shared.Action arg0);
 //        void execute(GetExperimentAction arg0, AsyncCallback<GetExperimentResponse> async);
 
