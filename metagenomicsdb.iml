@@ -47,6 +47,7 @@
       <sourceFolder url="file://$MODULE_DIR$/grails-app/realms" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/gwt" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target/classes" />
+      <excludeFolder url="file://$MODULE_DIR$/target/test-classes" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -74,9 +75,9 @@
         <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" />
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="metagenomicsdb-grailsPlugins" />
     <orderEntry type="library" name="grails-2.2.1" level="application" />
     <orderEntry type="library" name="gwt-user" level="project" />
+    <orderEntry type="module" module-name="metagenomicsdb-grailsPlugins" />
   </component>
 </module>
 
