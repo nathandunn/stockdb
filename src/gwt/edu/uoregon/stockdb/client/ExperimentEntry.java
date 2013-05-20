@@ -29,7 +29,7 @@ public class ExperimentEntry implements EntryPoint {
 
 //        RootPanel.get().add(b);
 
-        ExperimentEntryServiceAsync experimentEntryGwtService = (ExperimentEntryServiceAsync) GWT.create(ExperimentEntryService.class);
+        ExperimentEntryServiceAsync experimentEntryGwtService =  GWT.create(ExperimentEntryService.class);
         ServiceDefTarget endpoint = (ServiceDefTarget) experimentEntryGwtService;
         String moduleRelativeUrl = GWT.getModuleBaseURL() + "rpc";
         GWT.log("url: "+moduleRelativeUrl);
@@ -38,19 +38,32 @@ public class ExperimentEntry implements EntryPoint {
 
         endpoint.setServiceEntryPoint(moduleRelativeUrl);
 
-//        GwtActionServiceAsync experimentEntryGwtService = GWT.create(ExperimentEntryService.class);
-        experimentEntryGwtService.execute("abc", new AsyncCallback<String>() {
+        experimentEntryGwtService.helloWorld(new AsyncCallback() {
             @Override
             public void onFailure(Throwable caught) {
-                Window.alert("boo: " + caught);
+                Window.alert("boo: "+caught);
+                //To change body of implemented methods use File | Settings | File Templates.
             }
 
             @Override
-            public void onSuccess(String result) {
-                Window.alert("yeah: "+result);
+            public void onSuccess(Object result) {
+                Window.alert("YEAH: "+result);
                 //To change body of implemented methods use File | Settings | File Templates.
             }
         });
+//        GwtActionServiceAsync experimentEntryGwtService = GWT.create(ExperimentEntryService.class);
+//        experimentEntryGwtService.helloWorld(new AsyncCallback() {
+//            @Override
+//            public void onFailure(Throwable caught) {
+//                Window.alert("boo: " + caught);
+//            }
+//
+//            @Override
+//            public void onSuccess(String result) {
+//                Window.alert("yeah: "+result);
+//                //To change body of implemented methods use File | Settings | File Templates.
+//            }
+//        });
 //        experimentEntryGwtService.execute(new GetExperimentAction(), new AsyncCallback<GetExperimentResponse>() {
 //            @Override
 //            public void onFailure(Throwable caught) {

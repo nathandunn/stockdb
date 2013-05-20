@@ -7,12 +7,12 @@ class ExperimentEntryRpcServer {
     static expose = ['gwt:edu.uoregon.stockdb.client']
 
     // TODO: get this service to work!
-    String execute(String inputArg) {
-        println " trying to execute something "
-//        GetExperimentResponse getExperimentResponse = new GetExperimentResponse();
-
-//        return getExperimentResponse;
-        return "yes: " + inputArg
-    }
+//    String execute(String inputArg) {
+//        println " trying to execute something "
+////        GetExperimentResponse getExperimentResponse = new GetExperimentResponse();
+//
+////        return getExperimentResponse;
+//        return "yes: " + inputArg
+//    }
 
 }
