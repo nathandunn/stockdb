@@ -30,7 +30,7 @@ public class client implements EntryPoint {
         button.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
 //                myService.doit(new MyAsyncCallback(label));
-                Window.alert("clicked");
+//                Window.alert("clicked");
                 myService.doit(new AsyncCallback() {
                     public void onFailure(Throwable caught) {
                         Window.alert("fail:\n"+caught);
