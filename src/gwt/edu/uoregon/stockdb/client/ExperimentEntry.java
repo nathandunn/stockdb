@@ -13,7 +13,7 @@ import com.google.gwt.user.client.ui.RootPanel;
  */
 public class ExperimentEntry implements EntryPoint {
 
-    ExperimentEntryServiceAsync experimentEntryGwtService = GWT.create(ExperimentEntryService.class);
+    private static ExperimentEntryServiceAsync experimentEntryGwtService = GWT.create(ExperimentEntryService.class);
 
     /**
      * This is the entry point method.
