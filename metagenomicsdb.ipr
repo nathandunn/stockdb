@@ -206,6 +206,17 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="hg4idea" />
   </component>
+  <component name="libraryTable">
+    <library name="gwt-user">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/Downloads/gwt-2.5.1/gwt-user.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/Downloads/gwt-2.5.1/gwt-user.jar!/" />
+      </SOURCES>
+    </library>
+  </component>
   <component name="masterDetails">
     <states>
       <state key="ArtifactsStructureConfigurable.UI">
