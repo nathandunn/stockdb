@@ -137,4 +137,8 @@ class ExperimentController {
         }
     }
 
+    def quickentry(){
+
+    }
+
 }
