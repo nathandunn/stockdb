@@ -7,10 +7,10 @@ class BootStrap {
     def init = { servletContext ->
 
 
-        stubData.stubUsers()
-        stubData.stubData()
-        stubData.stubRawlsData()
-        stubData.importExperiments()
+//        stubData.stubUsers()
+//        stubData.stubData()
+//        stubData.stubRawlsData()
+//        stubData.importExperiments()
 
 
     }
