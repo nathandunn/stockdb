@@ -4,7 +4,6 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.RootPanel;
 //import org.codehaus.groovy.grails.plugins.gwt.client.GwtActionServiceAsync;
@@ -14,6 +13,7 @@ import com.google.gwt.user.client.ui.RootPanel;
  */
 public class ExperimentEntry implements EntryPoint {
 
+    ExperimentEntryServiceAsync experimentEntryGwtService = GWT.create(ExperimentEntryService.class);
 
     /**
      * This is the entry point method.
@@ -29,25 +29,17 @@ public class ExperimentEntry implements EntryPoint {
 
 //        RootPanel.get().add(b);
 
-        ExperimentEntryServiceAsync experimentEntryGwtService =  GWT.create(ExperimentEntryService.class);
-        ServiceDefTarget endpoint = (ServiceDefTarget) experimentEntryGwtService;
-        String moduleRelativeUrl = GWT.getModuleBaseURL() + "rpc";
-        GWT.log("url: "+moduleRelativeUrl);
-//        00:00:04.479  [INFO] url: http://localhost:8080/metagenomicsdb/static/gwt/edu.uoregon.stockdb.ExperimentEntry/rpc
-//        moduleRelativeUrl = "http://localhost:8080/metagenomicsdb/static/gwt/edu.uoregon.stockdb.ExperimentService/rpc" ;
-
-        endpoint.setServiceEntryPoint(moduleRelativeUrl);
 
         experimentEntryGwtService.helloWorld(new AsyncCallback() {
             @Override
             public void onFailure(Throwable caught) {
-                Window.alert("boo: "+caught);
+                Window.alert("boo: " + caught);
                 //To change body of implemented methods use File | Settings | File Templates.
             }
 
             @Override
             public void onSuccess(Object result) {
-                Window.alert("YEAH: "+result);
+                Window.alert("YEAH: " + result);
                 //To change body of implemented methods use File | Settings | File Templates.
             }
         });
