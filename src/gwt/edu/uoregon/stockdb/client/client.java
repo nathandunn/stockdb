@@ -5,10 +5,8 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.Dictionary;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONValue;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 
@@ -22,7 +20,7 @@ public class client implements EntryPoint {
     private Button button = new Button("click me!");
     private Label label = new Label("no call made yet");
     private Label experimentLabel = new Label("call made yet");
-    private FlexTable flexTable = new FlexTable();
+    private ExperimentTable experimentTable = new ExperimentTable();
 
     /**
      * This is the entry point method.
@@ -36,11 +34,7 @@ public class client implements EntryPoint {
 
         RootPanel.get().add(label);
         RootPanel.get().add(experimentLabel);
-        RootPanel.get().add(flexTable);
-        flexTable.setHTML(0,0,"<b>Strain</b>");
-        flexTable.setHTML(0,1,"<b>Value</b>");
-        flexTable.setHTML(0,2,"<b>Categry</b>");
-        flexTable.setHTML(0,3,"<b>Action</b>");
+        RootPanel.get().add(experimentTable);
 
 
         quickEntryServiceAsync.doit(new AsyncCallback() {
@@ -59,8 +53,9 @@ public class client implements EntryPoint {
             }
 
             public void onSuccess(Object strainResults) {
-                experimentLabel.setText("succeed - " + strainResults);
+                experimentLabel.setText("succeed - " + strainResults.toString().length());
                 JSONValue value = JSONParser.parseStrict((String) strainResults);
+                experimentTable.udpateTable(value) ;
                 GWT.log(value.toString());
             }
         });

@@ -13,6 +13,17 @@ class QuickEntryService {
 
     String getMeasuredValuesForExperiment(Integer experimentId){
         Experiment experiment = Experiment.findById(experimentId)
-        return experiment.measuredValues as JSON
+        List<ExperimentDTO> experimentDTOList = new ArrayList<ExperimentDTO>();
+
+        for(MeasuredValue measuredValue in experiment.measuredValues){
+            ExperimentDTO experimentDTO = new ExperimentDTO()
+            experimentDTO.category = measuredValue.category.name
+            experimentDTO.strain = measuredValue.strain.name
+            experimentDTO.value = measuredValue.value
+            experimentDTOList.add(experimentDTO)
+        }
+
+        return experimentDTOList as JSON
+//        return experiment.measuredValues as JSON
     }
 }
