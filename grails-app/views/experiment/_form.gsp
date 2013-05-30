@@ -29,16 +29,16 @@
               %{--optionKey="id" size="5" value="${experimentInstance?.strains*.id}" class="many-to-many"/>--}%
 %{--</div>--}%
 
-<div class="fieldcontain ${hasErrors(bean: experimentInstance, field: 'measuredValues', 'error')} ">
-    <label for="measuredValues">
-        <g:message code="experiment.measuredValues.label" default="Measured Values"/>
+%{--<div class="fieldcontain ${hasErrors(bean: experimentInstance, field: 'measuredValues', 'error')} ">--}%
+    %{--<label for="measuredValues">--}%
+        %{--<g:message code="experiment.measuredValues.label" default="Measured Values"/>--}%
 
-    </label>
-    <g:select name="measuredValues"
-              from="${availableMeasuredValues}"
-              optionValue="name" multiple="multiple"
-              optionKey="id" size="5" value="${experimentInstance?.measuredValues*.id}" class="many-to-many"/>
-</div>
+    %{--</label>--}%
+    %{--<g:select name="measuredValues"--}%
+              %{--from="${availableMeasuredValues}"--}%
+              %{--optionValue="name" multiple="multiple"--}%
+              %{--optionKey="id" size="5" value="${experimentInstance?.measuredValues*.id}" class="many-to-many"/>--}%
+%{--</div>--}%
 
 <div class="fieldcontain ${hasErrors(bean: experimentInstance, field: 'whenPerformed', 'error')} ">
     <label for="whenPerformed">

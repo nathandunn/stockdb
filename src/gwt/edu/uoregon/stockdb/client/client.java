@@ -6,6 +6,7 @@ import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 
@@ -19,6 +20,7 @@ public class client implements EntryPoint {
     private Button button = new Button("click me!");
     private Label label = new Label("no call made yet");
     private Label experimentLabel = new Label("call made yet");
+    private FlexTable flexTable = new FlexTable();
 
     /**
      * This is the entry point method.
@@ -27,6 +29,12 @@ public class client implements EntryPoint {
 
         RootPanel.get().add(label);
         RootPanel.get().add(experimentLabel);
+        RootPanel.get().add(flexTable);
+        flexTable.setHTML(0,0,"<b>Strain</b>");
+        flexTable.setHTML(0,1,"<b>Value</b>");
+        flexTable.setHTML(0,2,"<b>Categry</b>");
+        flexTable.setHTML(0,3,"<b>Action</b>");
+
 
         quickEntryServiceAsync.doit(new AsyncCallback() {
             public void onFailure(Throwable caught) {
