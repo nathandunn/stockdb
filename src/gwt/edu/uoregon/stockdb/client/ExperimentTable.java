@@ -54,22 +54,10 @@ public class ExperimentTable extends FlexTable {
         for (int i = 0; i < experiments.size(); i++) {
             JSONObject experiment = experiments.get(i).isObject();
 
-            TextBox strainBox = new TextBox();
-            strainBox.setText(experiment.get(STRAIN_KEY).isString().stringValue());
-            setWidget(numberRows, STRAIN_COLUMN, strainBox);
-
-
-            TextBox valueBox = new TextBox();
-            valueBox.setText(experiment.get(VALUE_KEY).isString().stringValue());
-            setWidget(numberRows, VALUE_COLUMN, valueBox);
-//
-            TextBox categoryBox = new TextBox();
-            categoryBox.setText(experiment.get(CATEGORY_KEY).isString().stringValue());
-            setWidget(numberRows, CATEGORY_COLUMN, categoryBox);
-
-            RemoveRowButton removeButton = new RemoveRowButton(numberRows,this) ;
-
-            setWidget(numberRows, ACTION_COLUMN, removeButton);
+            createRow(numberRows,experiment.get(STRAIN_KEY).isString().stringValue()
+                    ,experiment.get(VALUE_KEY).isString().stringValue()
+                    ,experiment.get(CATEGORY_KEY).isString().stringValue()
+            );
 
             ++numberRows;
         }
@@ -78,45 +66,47 @@ public class ExperimentTable extends FlexTable {
         createFooters();
     }
 
+    private void createRow(int numberRows, String strain, String value, String category) {
+        TextBox strainBox = new TextBox();
+        strainBox.setText(strain);
+        ListBox strainList = new ListBox();
+//        int selectedStrainIndex = 0 ;
+//        for(int i = 0 ; i < this.strainList.getItemCount() ; i++){
+//            strainList.addItem(this.strainList.getItemText(i));
+//            if(this.strainList.getItemText(i).equals(strain)){
+//                selectedStrainIndex=i ;
+//            }
+//        }
+//        strainList.setSelectedIndex(selectedStrainIndex);
+
+//        setWidget(numberRows, STRAIN_COLUMN, strainList);
+        setWidget(numberRows, STRAIN_COLUMN, strainBox);
+
+        TextBox valueBox = new TextBox();
+        valueBox.setText(value);
+        setWidget(numberRows, VALUE_COLUMN, valueBox);
+
+        TextBox categoryBox = new TextBox();
+        categoryBox.setText(category);
+        setWidget(numberRows, CATEGORY_COLUMN, categoryBox);
+
+        RemoveRowButton removeButton = new RemoveRowButton(numberRows,this) ;
+
+        setWidget(numberRows, ACTION_COLUMN, removeButton);
+    }
+
     private void addNewRow() {
 //        GWT.log("row count : " + getRowCount()) ;
         insertRow(getRowCount()-1);
 //        GWT.log("2 row count : " + getRowCount()) ;
         int insertRow = getRowCount()-2 ;
+
 //
-//        for(int i = 1 ; i < getRowCount() ; i++){
-//            Widget widget = null;
-//            try {
-//                widget = getWidget(i,0);
-//            } catch (Exception e) {
-//                GWT.log(i + ":  error getting widget");
-//            }
-//            if(widget!=null){
-//                GWT.log(i + ":  :"+getWidget(i, 0).toString());
-//            }
-//            else{
-//                GWT.log(i + ":  :"+"empty widget at "+i);
-//            }
-//        }
-
-        String strain = strainList.getItemText(strainList.getSelectedIndex());
-        TextBox strainBox = new TextBox();
-        strainBox.setText(strain);
-        setWidget(insertRow, STRAIN_COLUMN, strainBox);
-
-        String value = valueBox.getText();
-        TextBox valueBox = new TextBox();
-        valueBox.setText(value);
-        setWidget(insertRow, VALUE_COLUMN, valueBox);
-
-
-        String category = categoryList.getItemText(categoryList.getSelectedIndex());
-        TextBox categoryBox = new TextBox();
-        categoryBox.setText(category);
-        setWidget(insertRow, CATEGORY_COLUMN, categoryBox);
-
-        RemoveRowButton removeButton = new RemoveRowButton(numberRows,this) ;
-        setWidget(insertRow, ACTION_COLUMN, removeButton);
+        createRow(insertRow,
+strainList.getItemText(strainList.getSelectedIndex())
+                ,valueBox.getText()
+                ,categoryList.getItemText(categoryList.getSelectedIndex())
+        );
 
         ++numberRows;
     }
