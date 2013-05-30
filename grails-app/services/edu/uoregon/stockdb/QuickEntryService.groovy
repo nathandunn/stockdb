@@ -23,6 +23,7 @@ class QuickEntryService {
             experimentDTOList.add(experimentDTO)
         }
 
+
         return experimentDTOList as JSON
 //        return experiment.measuredValues as JSON
     }
