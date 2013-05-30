@@ -6,10 +6,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.FlexTable;
-import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.*;
 
 /**
  */
@@ -81,11 +78,70 @@ public class ExperimentTable extends FlexTable {
         createFooters();
     }
 
+    private void addNewRow() {
+//        GWT.log("row count : " + getRowCount()) ;
+        insertRow(getRowCount()-1);
+//        GWT.log("2 row count : " + getRowCount()) ;
+        int insertRow = getRowCount()-2 ;
+//
+//        for(int i = 1 ; i < getRowCount() ; i++){
+//            Widget widget = null;
+//            try {
+//                widget = getWidget(i,0);
+//            } catch (Exception e) {
+//                GWT.log(i + ":  error getting widget");
+//            }
+//            if(widget!=null){
+//                GWT.log(i + ":  :"+getWidget(i, 0).toString());
+//            }
+//            else{
+//                GWT.log(i + ":  :"+"empty widget at "+i);
+//            }
+//        }
+
+        String strain = strainList.getItemText(strainList.getSelectedIndex());
+        TextBox strainBox = new TextBox();
+        strainBox.setText(strain);
+        setWidget(insertRow, STRAIN_COLUMN, strainBox);
+
+        String value = valueBox.getText();
+        TextBox valueBox = new TextBox();
+        valueBox.setText(value);
+        setWidget(insertRow, VALUE_COLUMN, valueBox);
+
+
+        String category = categoryList.getItemText(categoryList.getSelectedIndex());
+        TextBox categoryBox = new TextBox();
+        categoryBox.setText(category);
+        setWidget(insertRow, CATEGORY_COLUMN, categoryBox);
+
+        RemoveRowButton removeButton = new RemoveRowButton(numberRows,this) ;
+        setWidget(insertRow, ACTION_COLUMN, removeButton);
+
+        ++numberRows;
+    }
+
+    private void clearNewEntry() {
+        strainList.setSelectedIndex(0);
+        categoryList.setSelectedIndex(0);
+        valueBox.setText("");
+    }
+
     private void createFooters() {
         setWidget(numberRows, STRAIN_COLUMN, strainList);
         setWidget(numberRows, VALUE_COLUMN, valueBox);
         setWidget(numberRows, CATEGORY_COLUMN, categoryList);
         setWidget(numberRows, ACTION_COLUMN, addButton);
+
+        addButton.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                addNewRow();
+                clearNewEntry();
+            }
+
+
+        });
+
         ++numberRows;
     }
 
