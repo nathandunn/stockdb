@@ -54,6 +54,7 @@ public class client implements EntryPoint {
 
             public void onSuccess(Object strainResults) {
                 experimentLabel.setText("succeed - " + strainResults.toString().length());
+//                experimentLabel.setText("succeed - " + strainResults.toString());
                 JSONValue value = JSONParser.parseStrict((String) strainResults);
                 experimentTable.udpateTable(value) ;
                 GWT.log(value.toString());

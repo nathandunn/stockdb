@@ -25,6 +25,9 @@ public class ExperimentTable extends FlexTable {
     private final String STRAIN_KEY = "strain";
     private final String VALUE_KEY = "value";
     private final String CATEGORY_KEY = "category";
+    private final String EXPERIMENTS_KEY = "experiments";
+    private final String CATEGORIES_KEY = "categories";
+    private final String STRAINS_KEY = "strains";
 
     private Button addButton = new Button("Add");
     private ListBox strainList = new ListBox();
@@ -35,7 +38,20 @@ public class ExperimentTable extends FlexTable {
         clear();
         createHeaders();
 
-        JSONArray experiments = value.isArray();
+        JSONObject measuredValueDto = value.isObject();
+
+        JSONArray strains = measuredValueDto.get(STRAINS_KEY).isArray();
+        for(int i = 0 ; i < strains.size() ; i++){
+            strainList.addItem(strains.get(i).isString().stringValue());
+        }
+
+        JSONArray categories = measuredValueDto.get(CATEGORIES_KEY).isArray();
+        for(int i = 0 ; i < categories.size() ; i++){
+            categoryList.addItem(categories.get(i).isString().stringValue());
+        }
+
+        JSONArray experiments = measuredValueDto.get(EXPERIMENTS_KEY).isArray();
+
         GWT.log("number of experiments: " + experiments.size());
 
         for (int i = 0; i < experiments.size(); i++) {
