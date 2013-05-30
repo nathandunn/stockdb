@@ -29,10 +29,10 @@
 
         <g:if test="${experimentInstance?.name}">
             <li class="fieldcontain">
-                <span id="note-label" class="property-label"><g:message code="experiment.name.label"
+                <span id="name-label" class="property-label"><g:message code="experiment.name.label"
                                                                         default="Name"/></span>
 
-                <span class="property-value" aria-labelledby="note-label">
+                <span class="property-value" aria-labelledby="name-label">
                     <g:fieldValue bean="${experimentInstance}" field="name"/>
                 </span>
 
@@ -142,6 +142,8 @@
     <g:form>
         <fieldset class="buttons">
             <g:hiddenField name="id" value="${experimentInstance?.id}"/>
+            <g:link class="edit" action="quickentry" id="${experimentInstance?.id}"><g:message
+                    code="default.button.addmeasuredvalues.label" default="Add Measured Values"/></g:link>
             <g:link class="edit" action="edit" id="${experimentInstance?.id}"><g:message
                     code="default.button.edit.label" default="Edit"/></g:link>
             <g:actionSubmit class="delete" action="delete"

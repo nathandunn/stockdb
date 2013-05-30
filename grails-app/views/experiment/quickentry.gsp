@@ -13,6 +13,13 @@
   <!-- If you add any GWT meta tags, they must   -->
   <!-- be added before this line.                -->
   <!--                                           -->
+    <script>
+     //var experimentId = ${experimentInstance.id} ;
+     var properties = {
+         experimentId: "${experimentInstance.id}"
+     } ;
+
+</script>
   <script type="text/javascript" src="${resource(dir: 'gwt/edu.uoregon.stockdb.client', file: 'edu.uoregon.stockdb.client.nocache.js')}"></script>
 </head>
 

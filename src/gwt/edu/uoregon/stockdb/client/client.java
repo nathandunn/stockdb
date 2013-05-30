@@ -2,8 +2,10 @@ package edu.uoregon.stockdb.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.i18n.client.Dictionary;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONValue;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
@@ -27,6 +29,11 @@ public class client implements EntryPoint {
      */
     public void onModuleLoad() {
 
+        Dictionary properties = Dictionary.getDictionary("properties");
+        Integer experimentId = Integer.parseInt(properties.get("experimentId"));
+//        Window.alert("experiment Id: "+experimentId);
+
+
         RootPanel.get().add(label);
         RootPanel.get().add(experimentLabel);
         RootPanel.get().add(flexTable);
@@ -46,15 +53,14 @@ public class client implements EntryPoint {
             }
         });
 
-        Integer experimentId = 1 ;
-        quickEntryServiceAsync.getMeasuredValuesForExperiment(experimentId,new AsyncCallback() {
+        quickEntryServiceAsync.getMeasuredValuesForExperiment(experimentId, new AsyncCallback() {
             public void onFailure(Throwable caught) {
                 experimentLabel.setText("failed - " + caught.getMessage());
             }
 
             public void onSuccess(Object strainResults) {
                 experimentLabel.setText("succeed - " + strainResults);
-                JSONValue value = JSONParser.parseStrict((String) strainResults) ;
+                JSONValue value = JSONParser.parseStrict((String) strainResults);
                 GWT.log(value.toString());
             }
         });

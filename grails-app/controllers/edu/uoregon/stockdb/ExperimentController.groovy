@@ -137,8 +137,15 @@ class ExperimentController {
         }
     }
 
-    def quickentry(){
+    def quickentry(Long id){
+        def experimentInstance = Experiment.get(id)
+        if (!experimentInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'experiment.label', default: 'Experiment'), id])
+            redirect(action: "list")
+            return
+        }
 
+        [experimentInstance: experimentInstance]
     }
 
 }
