@@ -1,6 +1,8 @@
 package edu.uoregon.stockdb.client;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
@@ -20,6 +22,10 @@ public class ExperimentTable extends FlexTable {
     private final int CATEGORY_COLUMN = 2;
     private final int ACTION_COLUMN = 3;
 
+    private final String STRAIN_KEY = "strain";
+    private final String VALUE_KEY = "value";
+    private final String CATEGORY_KEY = "category";
+
     private Button addButton = new Button("Add");
     private ListBox strainList = new ListBox();
     private TextBox valueBox = new TextBox();
@@ -30,25 +36,27 @@ public class ExperimentTable extends FlexTable {
         createHeaders();
 
         JSONArray experiments = value.isArray();
-        GWT.log("number of experiments: "+experiments.size());
+        GWT.log("number of experiments: " + experiments.size());
 
         for (int i = 0; i < experiments.size(); i++) {
             JSONObject experiment = experiments.get(i).isObject();
 
             TextBox strainBox = new TextBox();
-            strainBox.setText(experiment.get("strain").isString().stringValue());
+            strainBox.setText(experiment.get(STRAIN_KEY).isString().stringValue());
             setWidget(numberRows, STRAIN_COLUMN, strainBox);
 
 
             TextBox valueBox = new TextBox();
-            valueBox.setText(experiment.get("value").isString().stringValue());
+            valueBox.setText(experiment.get(VALUE_KEY).isString().stringValue());
             setWidget(numberRows, VALUE_COLUMN, valueBox);
 //
             TextBox categoryBox = new TextBox();
-            categoryBox.setText(experiment.get("category").isString().stringValue());
-            setWidget(numberRows, CATEGORY_COLUMN, categoryBox );
+            categoryBox.setText(experiment.get(CATEGORY_KEY).isString().stringValue());
+            setWidget(numberRows, CATEGORY_COLUMN, categoryBox);
 
-            setWidget(numberRows, ACTION_COLUMN, new Button("Remove"));
+            RemoveRowButton removeButton = new RemoveRowButton(numberRows,this) ;
+
+            setWidget(numberRows, ACTION_COLUMN, removeButton);
 
             ++numberRows;
         }
@@ -74,4 +82,12 @@ public class ExperimentTable extends FlexTable {
     }
 
 
+    public int findRowId(int rowId) {
+        for(int i = 1 ; i < getRowCount()-1; i++){
+            if(rowId==((RemoveRowButton) getWidget(i,ACTION_COLUMN)).getRowId()){
+                return i ;
+            }
+        }
+        return -1 ;
+    }
 }
