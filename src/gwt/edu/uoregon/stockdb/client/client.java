@@ -2,6 +2,8 @@ package edu.uoregon.stockdb.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.json.client.JSONParser;
+import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
@@ -12,10 +14,11 @@ import com.google.gwt.user.client.ui.RootPanel;
  */
 public class client implements EntryPoint {
 
-    private static QuickEntryServiceAsync myService = GWT.create(QuickEntryService.class);
+    private static QuickEntryServiceAsync quickEntryServiceAsync = GWT.create(QuickEntryService.class);
 
     private Button button = new Button("click me!");
     private Label label = new Label("no call made yet");
+    private Label experimentLabel = new Label("call made yet");
 
     /**
      * This is the entry point method.
@@ -23,14 +26,28 @@ public class client implements EntryPoint {
     public void onModuleLoad() {
 
         RootPanel.get().add(label);
+        RootPanel.get().add(experimentLabel);
 
-        myService.doit(new AsyncCallback() {
+        quickEntryServiceAsync.doit(new AsyncCallback() {
             public void onFailure(Throwable caught) {
                 label.setText("failed - " + caught.getMessage());
             }
 
             public void onSuccess(Object result) {
                 label.setText("succeed - " + result);
+            }
+        });
+
+        Integer experimentId = 1 ;
+        quickEntryServiceAsync.getMeasuredValuesForExperiment(experimentId,new AsyncCallback() {
+            public void onFailure(Throwable caught) {
+                experimentLabel.setText("failed - " + caught.getMessage());
+            }
+
+            public void onSuccess(Object strainResults) {
+                experimentLabel.setText("succeed - " + strainResults);
+                JSONValue value = JSONParser.parseStrict((String) strainResults) ;
+                GWT.log(value.toString());
             }
         });
 

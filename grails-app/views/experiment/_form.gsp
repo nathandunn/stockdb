@@ -20,14 +20,14 @@
               value="${experimentInstance?.researcher?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: experimentInstance, field: 'strains', 'error')} ">
-    <label for="strains">
-        <g:message code="experiment.strains.label" default="Strains"/>
+%{--<div class="fieldcontain ${hasErrors(bean: experimentInstance, field: 'strains', 'error')} ">--}%
+    %{--<label for="strains">--}%
+        %{--<g:message code="experiment.strains.label" default="Strains"/>--}%
 
-    </label>
-    <g:select name="strains" from="${edu.uoregon.stockdb.Strain.list()}" optionValue="name" multiple="multiple"
-              optionKey="id" size="5" value="${experimentInstance?.strains*.id}" class="many-to-many"/>
-</div>
+    %{--</label>--}%
+    %{--<g:select name="strains" from="${edu.uoregon.stockdb.Strain.list()}" optionValue="name" multiple="multiple"--}%
+              %{--optionKey="id" size="5" value="${experimentInstance?.strains*.id}" class="many-to-many"/>--}%
+%{--</div>--}%
 
 <div class="fieldcontain ${hasErrors(bean: experimentInstance, field: 'measuredValues', 'error')} ">
     <label for="measuredValues">
