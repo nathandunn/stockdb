@@ -53,5 +53,14 @@ grails.project.dependency.resolution = {
         runtime ":database-migration:1.1"
 
         compile ':cache:1.0.0'
+//        plugins.gwt=0.8
+        compile ':gwt:0.8'
+        compile ":csv:0.3.1"
+
+//        #plugins.navigation=1.3.2
+        compile ":navigation:1.3.2"
+
+
+        // plugins.shiro=1.1.4
     }
 }

@@ -18,7 +18,6 @@ public class client implements EntryPoint {
 
     private static QuickEntryServiceAsync quickEntryServiceAsync = GWT.create(QuickEntryService.class);
 
-    private Button button = new Button("click me!");
     private Label label = new Label("no call made yet");
     private Label experimentLabel = new Label("call made yet");
     private VerticalPanel verticalPanel = new VerticalPanel();
