@@ -59,7 +59,23 @@ class QuickEntryService {
 
     String saveMeasuredValue(Integer measuredValueId, String field, String oldValue, String newValue){
         MeasuredValue measuredValue = MeasuredValue.findById(measuredValueId)
-        measuredValue."$field" = newValue
+        if(field == "strain"){
+            Strain strain = Strain.findByName(newValue)
+            measuredValue.strain = strain
+        }
+        else
+        if(field == "value"){
+            measuredValue.value = newValue
+        }
+        else
+        if(field == "category"){
+            Category category = Category.findByName(newValue)
+            measuredValue.category = category
+        }
+
+        else{
+            println "nothing saved "
+        }
         measuredValue.save(insert: false,flush: true,failOnError: true)
         return measuredValue.id
     }

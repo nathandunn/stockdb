@@ -3,6 +3,10 @@ package edu.uoregon.stockdb.client;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.SelectionEvent;
+import com.google.gwt.event.logical.shared.SelectionHandler;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
@@ -37,7 +41,7 @@ public class ExperimentTable extends FlexTable {
 
     private Integer experimentId = 0 ;
 
-    private final String ROW_HEIGHT = "20px";
+    public final static String ROW_HEIGHT = "20px";
     MultiWordSuggestOracle strainOracle = new MultiWordSuggestOracle();
     MultiWordSuggestOracle categoryOracle = new MultiWordSuggestOracle();
 
@@ -121,12 +125,8 @@ public class ExperimentTable extends FlexTable {
 
     private void createRow(int numberRows, String strain, String value, String category, String measuredValueId) {
 //        TextBox strainBox = new TextBox();
-        SuggestBox strainBox = new SuggestBox(strainOracle);
-        strainBox.setLimit(10);
-        strainBox.setText(strain);
-        strainBox.setHeight(ROW_HEIGHT);
-        strainBox.setStyleName("quick-entry-table");
-        setWidget(numberRows, STRAIN_COLUMN, strainBox);
+        StrainEditBox strainEditBox = new StrainEditBox(strainOracle,Double.valueOf(measuredValueId).intValue(),strain) ;
+        setWidget(numberRows, STRAIN_COLUMN, strainEditBox);
 
         TextBox valueBox = new TextBox();
         valueBox.setText(value);
@@ -172,7 +172,7 @@ public class ExperimentTable extends FlexTable {
                 strainList.getItemText(strainList.getSelectedIndex())
                 , valueBox.getText()
                 , categoryList.getItemText(categoryList.getSelectedIndex()),
-               measuredValueId
+                measuredValueId
         );
 
         for(int col = 0 ; col < ACTION_COLUMN ; col++){
