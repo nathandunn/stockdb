@@ -2,11 +2,12 @@ package edu.uoregon.stockdb
 
 /**
  */
-class ExperimentDTO implements Serializable{
+class MeasuredValueDTO implements Serializable{
 
-    private String strain ;
-    private String value ;
-    private String category ;
+    String strain
+    String value
+    String category
+    Long id
 //    private String experiment ;
 
     String getStrain() {

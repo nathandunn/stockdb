@@ -1,6 +1,6 @@
 package edu.uoregon.stockdb
 
-class MeasuredValue {
+class MeasuredValue implements Serializable{
 
     static constraints = {
         value nullable: false

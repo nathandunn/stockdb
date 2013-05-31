@@ -6,6 +6,8 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 
 /**
@@ -25,15 +27,21 @@ public class ExperimentTable extends FlexTable {
     private final String EXPERIMENTS_KEY = "experiments";
     private final String CATEGORIES_KEY = "categories";
     private final String STRAINS_KEY = "strains";
+    private final String EXPERIMENT_KEY = "experimentId";
+    private final String MEASURED_VALUE_KEY = "id";
 
     private Button addButton = new Button("Add");
     private ListBox strainList = new ListBox();
     private TextBox valueBox = new TextBox();
     private ListBox categoryList = new ListBox();
 
+    private Integer experimentId = 0 ;
+
     private final String ROW_HEIGHT = "20px";
     MultiWordSuggestOracle strainOracle = new MultiWordSuggestOracle();
     MultiWordSuggestOracle categoryOracle = new MultiWordSuggestOracle();
+
+    private static QuickEntryServiceAsync quickEntryServiceAsync = GWT.create(QuickEntryService.class);
 
     public ExperimentTable() {
         setCellPadding(0);
@@ -51,6 +59,8 @@ public class ExperimentTable extends FlexTable {
         createHeaders();
 
         JSONObject measuredValueDto = value.isObject();
+
+        experimentId = (int) measuredValueDto.get(EXPERIMENT_KEY).isNumber().doubleValue();
 
         JSONArray strains = measuredValueDto.get(STRAINS_KEY).isArray();
         for (int i = 0; i < strains.size(); i++) {
@@ -70,11 +80,13 @@ public class ExperimentTable extends FlexTable {
         GWT.log("number of experiments: " + experiments.size());
 
         for (int i = 0; i < experiments.size(); i++) {
-            JSONObject experiment = experiments.get(i).isObject();
+            JSONObject measuredValue = experiments.get(i).isObject();
 
-            createRow(numberRows, experiment.get(STRAIN_KEY).isString().stringValue()
-                    , experiment.get(VALUE_KEY).isString().stringValue()
-                    , experiment.get(CATEGORY_KEY).isString().stringValue()
+            createRow(numberRows
+                    , measuredValue.get(STRAIN_KEY).isString().stringValue()
+                    , measuredValue.get(VALUE_KEY).isString().stringValue()
+                    , measuredValue.get(CATEGORY_KEY).isString().stringValue()
+                    , String.valueOf(measuredValue.get(MEASURED_VALUE_KEY).isNumber().doubleValue())
             );
 
             ++numberRows;
@@ -107,7 +119,7 @@ public class ExperimentTable extends FlexTable {
 //        setWidget(numberRows, STRAIN_COLUMN, strainList);
 
 
-    private void createRow(int numberRows, String strain, String value, String category) {
+    private void createRow(int numberRows, String strain, String value, String category, String measuredValueId) {
 //        TextBox strainBox = new TextBox();
         SuggestBox strainBox = new SuggestBox(strainOracle);
         strainBox.setLimit(10);
@@ -139,7 +151,7 @@ public class ExperimentTable extends FlexTable {
         newCategoryList.setSelectedIndex(selectedCategoryIndex);
         setWidget(numberRows, CATEGORY_COLUMN, newCategoryList);
 
-        RemoveRowButton removeButton = new RemoveRowButton(numberRows, this);
+        RemoveRowButton removeButton = new RemoveRowButton(numberRows, Double.valueOf(measuredValueId).intValue(),this);
         removeButton.setHeight(ROW_HEIGHT);
         removeButton.setStylePrimaryName("quick-entry-table");
 
@@ -149,7 +161,7 @@ public class ExperimentTable extends FlexTable {
 
     }
 
-    private void addNewRow() {
+    private void addNewRow(String measuredValueId) {
 //        GWT.log("row count : " + getRowCount()) ;
         insertRow(getRowCount() - 1);
 //        GWT.log("2 row count : " + getRowCount()) ;
@@ -159,7 +171,8 @@ public class ExperimentTable extends FlexTable {
         createRow(insertRow,
                 strainList.getItemText(strainList.getSelectedIndex())
                 , valueBox.getText()
-                , categoryList.getItemText(categoryList.getSelectedIndex())
+                , categoryList.getItemText(categoryList.getSelectedIndex()),
+               measuredValueId
         );
 
         for(int col = 0 ; col < ACTION_COLUMN ; col++){
@@ -191,8 +204,19 @@ public class ExperimentTable extends FlexTable {
 
         addButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                addNewRow();
-                clearNewEntry();
+                final String strain = strainList.getItemText(strainList.getSelectedIndex());
+                final String value = valueBox.getText();
+                final String category = categoryList.getItemText(categoryList.getSelectedIndex());
+                quickEntryServiceAsync.createMeasuredValue(experimentId,strain,value,category,new AsyncCallback(){
+                    public void onFailure(Throwable caught) {
+                        Window.alert("failed to create record  "+strain+" "+value+" "+category);
+                    }
+
+                    public void onSuccess(Object result) {
+                        addNewRow(result.toString());
+                        clearNewEntry();
+                    }
+                });
             }
 
 
