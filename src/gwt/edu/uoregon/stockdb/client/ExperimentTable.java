@@ -6,10 +6,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.FlexTable;
-import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.*;
 
 /**
  */
@@ -35,6 +32,8 @@ public class ExperimentTable extends FlexTable {
     private ListBox categoryList = new ListBox();
 
     private final String ROW_HEIGHT = "20px";
+    MultiWordSuggestOracle strainOracle = new MultiWordSuggestOracle();
+    MultiWordSuggestOracle categoryOracle = new MultiWordSuggestOracle();
 
     public ExperimentTable() {
         setCellPadding(0);
@@ -42,6 +41,8 @@ public class ExperimentTable extends FlexTable {
 //        addStyleName("quick-entry-table");
         setStylePrimaryName("quick-entry-table");
         setWidth("70%");
+
+
     }
 
     public void udpateTable(JSONValue value) {
@@ -54,11 +55,14 @@ public class ExperimentTable extends FlexTable {
         JSONArray strains = measuredValueDto.get(STRAINS_KEY).isArray();
         for (int i = 0; i < strains.size(); i++) {
             strainList.addItem(strains.get(i).isString().stringValue());
+            strainOracle.add(strains.get(i).isString().stringValue());
         }
+
 
         JSONArray categories = measuredValueDto.get(CATEGORIES_KEY).isArray();
         for (int i = 0; i < categories.size(); i++) {
             categoryList.addItem(categories.get(i).isString().stringValue());
+            categoryOracle.add(categories.get(i).isString().stringValue());
         }
 
         JSONArray experiments = measuredValueDto.get(EXPERIMENTS_KEY).isArray();
@@ -78,13 +82,6 @@ public class ExperimentTable extends FlexTable {
 
 
         createFooters();
-//
-//        setCellFormatter(new CellFormatter(){
-//            @Override
-//            public String getStyleName(int row, int column) {
-//                return "quick-entry-table" ;
-//            }
-//        });
 
         // for all cells set style name
         for(int col = 0 ; col < 4 ; col++){
@@ -111,7 +108,9 @@ public class ExperimentTable extends FlexTable {
 
 
     private void createRow(int numberRows, String strain, String value, String category) {
-        TextBox strainBox = new TextBox();
+//        TextBox strainBox = new TextBox();
+        SuggestBox strainBox = new SuggestBox(strainOracle);
+        strainBox.setLimit(10);
         strainBox.setText(strain);
         strainBox.setHeight(ROW_HEIGHT);
         strainBox.setStyleName("quick-entry-table");
@@ -123,11 +122,22 @@ public class ExperimentTable extends FlexTable {
         valueBox.setStylePrimaryName("quick-entry-table");
         setWidget(numberRows, VALUE_COLUMN, valueBox);
 
-        TextBox categoryBox = new TextBox();
-        categoryBox.setText(category);
-        categoryBox.setHeight(ROW_HEIGHT);
-        categoryBox.setStylePrimaryName("quick-entry-table");
-        setWidget(numberRows, CATEGORY_COLUMN, categoryBox);
+
+//        TextBox categoryBox = new TextBox();
+//        categoryBox.setText(category);
+//        categoryBox.setHeight(ROW_HEIGHT);
+//        categoryBox.setStylePrimaryName("quick-entry-table");
+//        setWidget(numberRows, CATEGORY_COLUMN, categoryBox);
+        ListBox newCategoryList = new ListBox();
+        int selectedCategoryIndex = 0 ;
+        for(int i = 0 ; i < this.categoryList.getItemCount() ; i++){
+            newCategoryList.addItem(this.categoryList.getItemText(i));
+            if(this.categoryList.getItemText(i).equals(category)){
+                selectedCategoryIndex=i ;
+            }
+        }
+        newCategoryList.setSelectedIndex(selectedCategoryIndex);
+        setWidget(numberRows, CATEGORY_COLUMN, newCategoryList);
 
         RemoveRowButton removeButton = new RemoveRowButton(numberRows, this);
         removeButton.setHeight(ROW_HEIGHT);
