@@ -32,6 +32,9 @@
   <!-- OPTIONAL: include this if you want history support -->
   <iframe id="__gwt_historyFrame" style="width:0;height:0;border:0"></iframe>
 
+<h3>Experiment</h3>
+${experimentInstance.name} <g:formatDate date="${experimentInstance.whenPerformed}"/> ${experimentInstance.researcher?.fullName}
+
 <div id="edit-table"></div>
 
 <fieldset class="buttons">
