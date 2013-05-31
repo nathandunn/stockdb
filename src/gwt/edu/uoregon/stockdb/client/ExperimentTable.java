@@ -162,6 +162,13 @@ public class ExperimentTable extends FlexTable {
                 , categoryList.getItemText(categoryList.getSelectedIndex())
         );
 
+        for(int col = 0 ; col < ACTION_COLUMN ; col++){
+//            for(int row = 0 ; row < getRowCount() ; ++row){
+//                getCellFormatter().setStyleName(row,col,"flexTable");
+            getCellFormatter().setStyleName(insertRow,col,"flexTable");
+//            }
+        }
+
         ++numberRows;
     }
 
@@ -176,6 +183,11 @@ public class ExperimentTable extends FlexTable {
         setWidget(numberRows, VALUE_COLUMN, valueBox);
         setWidget(numberRows, CATEGORY_COLUMN, categoryList);
         setWidget(numberRows, ACTION_COLUMN, addButton);
+
+        strainList.insertItem("- Choose Strain - ",0);
+        strainList.setSelectedIndex(0);
+        categoryList.insertItem("- Choose Category - ",0);
+        categoryList.setSelectedIndex(0);
 
         addButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
