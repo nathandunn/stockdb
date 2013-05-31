@@ -36,21 +36,10 @@ public class client implements EntryPoint {
 
 
 
-//        START DEBUG
-        RootPanel.get().add(label);
-        RootPanel.get().add(experimentLabel);
+        debug() ;
 
 
-        quickEntryServiceAsync.doit(new AsyncCallback() {
-            public void onFailure(Throwable caught) {
-                label.setText("failed - " + caught.getMessage());
-            }
 
-            public void onSuccess(Object result) {
-                label.setText("succeed - " + result);
-            }
-        });
-//        END DEBUG
         verticalPanel.add(messagePanel);
         verticalPanel.add(experimentTable);
 
@@ -92,5 +81,23 @@ public class client implements EntryPoint {
 //        } );
 
 
+    }
+
+    private void debug() {
+//        START DEBUG
+        RootPanel.get().add(label);
+        RootPanel.get().add(experimentLabel);
+
+
+        quickEntryServiceAsync.doit(new AsyncCallback() {
+            public void onFailure(Throwable caught) {
+                label.setText("failed - " + caught.getMessage());
+            }
+
+            public void onSuccess(Object result) {
+                label.setText("succeed - " + result);
+            }
+        });
+//        END DEBUG
     }
 }
