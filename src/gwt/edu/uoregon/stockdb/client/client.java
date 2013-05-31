@@ -9,6 +9,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -20,6 +21,8 @@ public class client implements EntryPoint {
     private Button button = new Button("click me!");
     private Label label = new Label("no call made yet");
     private Label experimentLabel = new Label("call made yet");
+    private VerticalPanel verticalPanel = new VerticalPanel();
+    private Label messagePanel = new Label();
     private ExperimentTable experimentTable = new ExperimentTable();
 
     /**
@@ -32,9 +35,10 @@ public class client implements EntryPoint {
 //        Window.alert("experiment Id: "+experimentId);
 
 
+
+//        START DEBUG
         RootPanel.get().add(label);
         RootPanel.get().add(experimentLabel);
-        RootPanel.get().add(experimentTable);
 
 
         quickEntryServiceAsync.doit(new AsyncCallback() {
@@ -46,7 +50,13 @@ public class client implements EntryPoint {
                 label.setText("succeed - " + result);
             }
         });
+//        END DEBUG
+        verticalPanel.add(messagePanel);
+        verticalPanel.add(experimentTable);
 
+        RootPanel.get("edit-table").add(verticalPanel);
+
+        messagePanel.setText("Loading Measured Values . . . ");
         quickEntryServiceAsync.getMeasuredValuesForExperiment(experimentId, new AsyncCallback() {
             public void onFailure(Throwable caught) {
                 experimentLabel.setText("failed - " + caught.getMessage());
@@ -55,9 +65,11 @@ public class client implements EntryPoint {
             public void onSuccess(Object strainResults) {
                 experimentLabel.setText("succeed - " + strainResults.toString().length());
 //                experimentLabel.setText("succeed - " + strainResults.toString());
+                messagePanel.setText("Updating Table");
                 JSONValue value = JSONParser.parseStrict((String) strainResults);
                 experimentTable.udpateTable(value) ;
                 GWT.log(value.toString());
+                messagePanel.setText("");
             }
         });
 
