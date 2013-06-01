@@ -128,11 +128,14 @@ public class ExperimentTable extends FlexTable {
         StrainEditBox strainEditBox = new StrainEditBox(strainOracle,Double.valueOf(measuredValueId).intValue(),strain) ;
         setWidget(numberRows, STRAIN_COLUMN, strainEditBox);
 
-        TextBox valueBox = new TextBox();
-        valueBox.setText(value);
-        valueBox.setHeight(ROW_HEIGHT);
-        valueBox.setStylePrimaryName("quick-entry-table");
-        setWidget(numberRows, VALUE_COLUMN, valueBox);
+//        TextBox valueBox = new TextBox();
+//        valueBox.setText(value);
+//        valueBox.setHeight(ROW_HEIGHT);
+//        valueBox.setStylePrimaryName("quick-entry-table");
+
+        ValueEditBox valueEditBox = new ValueEditBox(Double.valueOf(measuredValueId).intValue(),value);
+        setWidget(numberRows, VALUE_COLUMN, valueEditBox);
+
 
 
 //        TextBox categoryBox = new TextBox();
@@ -149,7 +152,9 @@ public class ExperimentTable extends FlexTable {
             }
         }
         newCategoryList.setSelectedIndex(selectedCategoryIndex);
+
         setWidget(numberRows, CATEGORY_COLUMN, newCategoryList);
+//        CategoryListBox categoryListBox = new CategoryListBox(Double.valueOf(measuredValueId).intValue(),this.categoryList,category);
 
         RemoveRowButton removeButton = new RemoveRowButton(numberRows, Double.valueOf(measuredValueId).intValue(),this);
         removeButton.setHeight(ROW_HEIGHT);
