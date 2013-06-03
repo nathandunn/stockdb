@@ -29,6 +29,10 @@ navigation = {
         labs(controller: 'lab',action:'list'){
             researcher(controller: 'researcher',action: 'list')
         }
+
+        access(controller: 'auth',action:'login'){
+            signOut(controller: 'auth',action:'signOut')
+        }
 //
 //        // Items pointing to ContentController, using the specific action
 //        about(controller:'content')
