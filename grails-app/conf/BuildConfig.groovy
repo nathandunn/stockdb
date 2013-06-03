@@ -63,6 +63,9 @@ grails.project.dependency.resolution = {
 
 
 
+
         // plugins.shiro=1.1.4
+        compile ":shiro:1.1.4"
+
     }
 }

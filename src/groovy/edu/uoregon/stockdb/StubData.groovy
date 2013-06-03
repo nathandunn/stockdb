@@ -2,6 +2,7 @@ package edu.uoregon.stockdb
 
 import au.com.bytecode.opencsv.CSVReader
 import org.apache.log4j.Logger
+import org.apache.shiro.crypto.hash.Sha256Hash
 
 /**
  */
@@ -203,23 +204,45 @@ class StubData {
     def stubUsers() {
         if (Researcher.count() > 0) return
 
+//        def user = new ShiroUser(username: "user123", passwordHash: new Sha256Hash("password").toHex())
+//        user.addToPermissions("*:*")
+//        user.save()
+        def adminRole = new Role(name: "Administrator")
+        adminRole.addToPermissions("*:*")
+        adminRole.save()
+
+        def userRole = new Role(name:"User")
+        userRole.addToPermissions("*:*")
+        userRole.save()
+
         new Researcher(
                 firstName: "Adam"
                 , lastName: "Burns"
-                , email: "aburns2@uoregon.edu"
-        ).save()
+                , username: "aburns2@uoregon.edu"
+                ,passwordHash: new Sha256Hash("ilikesr16").toHex()
+        ).addToRoles(adminRole).save()
+
 
         new Researcher(
                 firstName: "Travis"
                 , lastName: "Carney"
-                , email: "tcarney@uoregon.edu"
-        ).save()
+                , username: "tcarney@uoregon.edu"
+                ,passwordHash: new Sha256Hash("ilikesr16").toHex()
+        ).addToRoles(adminRole).save()
 
         new Researcher(
                 firstName: "Robert"
                 , lastName: "Steury"
-                , email: "steury@uoregon.edu"
-        ).save()
+                , username: "steury@uoregon.edu"
+                ,passwordHash: new Sha256Hash("ilikesr16").toHex()
+        ).addToRoles(adminRole).save()
+
+        new Researcher(
+                firstName: "Nathan"
+                , lastName: "Dunn"
+                , username: "ndunn@cas.uoregon.edu"
+                ,passwordHash: new Sha256Hash("ilikesr16").toHex()
+        ).addToRoles(adminRole).save()
     }
 
     def stubRawlsData() {
