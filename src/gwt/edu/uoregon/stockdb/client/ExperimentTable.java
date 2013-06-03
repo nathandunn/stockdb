@@ -3,16 +3,15 @@ package edu.uoregon.stockdb.client;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.logical.shared.SelectionEvent;
-import com.google.gwt.event.logical.shared.SelectionHandler;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  */
@@ -37,9 +36,10 @@ public class ExperimentTable extends FlexTable {
     private String lastCategory = null ;
 
     private Button addButton = new Button("Add");
-    private ListBox strainList = new ListBox();
-    private TextBox valueBox = new TextBox();
-    private ListBox categoryList = new ListBox();
+    private ListBox newStrainList = new ListBox();
+    private TextBox newValueBox = new TextBox();
+    private ListBox newCategoryListBox = new ListBox();
+    List<String> categoryList = new ArrayList<String>() ;
 
     private Integer experimentId = 0 ;
 
@@ -70,15 +70,17 @@ public class ExperimentTable extends FlexTable {
 
         JSONArray strains = measuredValueDto.get(STRAINS_KEY).isArray();
         for (int i = 0; i < strains.size(); i++) {
-            strainList.addItem(strains.get(i).isString().stringValue());
+            newStrainList.addItem(strains.get(i).isString().stringValue());
             strainOracle.add(strains.get(i).isString().stringValue());
         }
 
 
         JSONArray categories = measuredValueDto.get(CATEGORIES_KEY).isArray();
         for (int i = 0; i < categories.size(); i++) {
-            categoryList.addItem(categories.get(i).isString().stringValue());
-            categoryOracle.add(categories.get(i).isString().stringValue());
+            String category = categories.get(i).isString().stringValue() ;
+            newCategoryListBox.addItem(category);
+            categoryOracle.add(category);
+            categoryList.add(category);
         }
 
         JSONArray experiments = measuredValueDto.get(EXPERIMENTS_KEY).isArray();
@@ -135,18 +137,8 @@ public class ExperimentTable extends FlexTable {
         ValueEditBox valueEditBox = new ValueEditBox(Double.valueOf(measuredValueId).intValue(),value);
         setWidget(numberRows, VALUE_COLUMN, valueEditBox);
 
-        ListBox newCategoryList = new ListBox();
-        int selectedCategoryIndex = 0 ;
-        for(int i = 0 ; i < this.categoryList.getItemCount() ; i++){
-            newCategoryList.addItem(this.categoryList.getItemText(i));
-            if(this.categoryList.getItemText(i).equals(category)){
-                selectedCategoryIndex=i ;
-            }
-        }
-        newCategoryList.setSelectedIndex(selectedCategoryIndex);
-
-        setWidget(numberRows, CATEGORY_COLUMN, newCategoryList);
-//        CategoryListBox categoryListBox = new CategoryListBox(Double.valueOf(measuredValueId).intValue(),this.categoryList,category);
+        CategoryListBox categoryListBox = new CategoryListBox(Double.valueOf(measuredValueId).intValue(),category,this.categoryList);
+        setWidget(numberRows, CATEGORY_COLUMN, categoryListBox);
 
         RemoveRowButton removeButton = new RemoveRowButton(numberRows, Double.valueOf(measuredValueId).intValue(),this);
         removeButton.setHeight(ROW_HEIGHT);
@@ -166,9 +158,9 @@ public class ExperimentTable extends FlexTable {
 
 //
         createRow(insertRow,
-                strainList.getItemText(strainList.getSelectedIndex())
-                , valueBox.getText()
-                , categoryList.getItemText(categoryList.getSelectedIndex()),
+                newStrainList.getItemText(newStrainList.getSelectedIndex())
+                , newValueBox.getText()
+                , newCategoryListBox.getItemText(newCategoryListBox.getSelectedIndex()),
                 measuredValueId
         );
 
@@ -183,30 +175,30 @@ public class ExperimentTable extends FlexTable {
     }
 
     private void clearNewEntry() {
-        strainList.setSelectedIndex(0);
+        newStrainList.setSelectedIndex(0);
 
         selectLastCategory();
-        valueBox.setText("");
+        newValueBox.setText("");
     }
 
     private void createFooters() {
-        setWidget(numberRows, STRAIN_COLUMN, strainList);
-        setWidget(numberRows, VALUE_COLUMN, valueBox);
-        setWidget(numberRows, CATEGORY_COLUMN, categoryList);
+        setWidget(numberRows, STRAIN_COLUMN, newStrainList);
+        setWidget(numberRows, VALUE_COLUMN, newValueBox);
+        setWidget(numberRows, CATEGORY_COLUMN, newCategoryListBox);
         setWidget(numberRows, ACTION_COLUMN, addButton);
 
-        strainList.insertItem("- Choose Strain - ",0);
-        strainList.setSelectedIndex(0);
-        categoryList.insertItem("- Choose Category - ",0);
+        newStrainList.insertItem("- Choose Strain - ", 0);
+        newStrainList.setSelectedIndex(0);
+        newCategoryListBox.insertItem("- Choose Category - ", 0);
 
         selectLastCategory();
 //        categoryList.setSelectedIndex(0);
 
         addButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                final String strain = strainList.getItemText(strainList.getSelectedIndex());
-                final String value = valueBox.getText();
-                final String category = categoryList.getItemText(categoryList.getSelectedIndex());
+                final String strain = newStrainList.getItemText(newStrainList.getSelectedIndex());
+                final String value = newValueBox.getText();
+                final String category = newCategoryListBox.getItemText(newCategoryListBox.getSelectedIndex());
                 lastCategory = category ;
                 quickEntryServiceAsync.createMeasuredValue(experimentId,strain,value,category,new AsyncCallback(){
                     public void onFailure(Throwable caught) {
@@ -228,12 +220,12 @@ public class ExperimentTable extends FlexTable {
 
     private void selectLastCategory() {
         if(lastCategory==null){
-            categoryList.setSelectedIndex(0);
+            newCategoryListBox.setSelectedIndex(0);
         }
         if(lastCategory!=null){
-            for(int i = 0 ; i < categoryList.getItemCount() ; i++){
-                if(lastCategory.equals(categoryList.getItemText(i))){
-                    categoryList.setSelectedIndex(i);
+            for(int i = 0 ; i < newCategoryListBox.getItemCount() ; i++){
+                if(lastCategory.equals(newCategoryListBox.getItemText(i))){
+                    newCategoryListBox.setSelectedIndex(i);
                 }
             }
         }
