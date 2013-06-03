@@ -1,5 +1,6 @@
 package edu.uoregon.stockdb
 
+import org.apache.shiro.crypto.hash.Sha256Hash
 import org.springframework.dao.DataIntegrityViolationException
 
 class ResearcherController {
@@ -24,11 +25,26 @@ class ResearcherController {
     }
 
     def save() {
+        if (params.password1) {
+            if (params.password1.equals(params.password2)) {
+                params.passwordHash = new Sha256Hash(params.password1).toHex()
+            } else {
+                params.errors.rejectValue("password", "default.password.doesnotmatch", "Passwords do not match")
+                render(view: "create", model: [researcherInstance: params])
+                return
+            }
+        }
+
+        println "params: ${params}"
         def researcherInstance = new Researcher(params)
+        Role userRole = Role.findByName("User")
+        researcherInstance.addToRoles( userRole )
+
         if (!researcherInstance.save(flush: true)) {
             render(view: "create", model: [researcherInstance: researcherInstance])
             return
         }
+
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'researcher.label', default: 'Researcher'), researcherInstance.fullName])
         redirect(action: "show", id: researcherInstance.id)
@@ -67,11 +83,23 @@ class ResearcherController {
         if (version != null) {
             if (researcherInstance.version > version) {
                 researcherInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'researcher.label', default: 'Researcher')] as Object[],
-                          "Another user has updated this Researcher while you were editing")
+                        [message(code: 'researcher.label', default: 'Researcher')] as Object[],
+                        "Another user has updated this Researcher while you were editing")
                 render(view: "edit", model: [researcherInstance: researcherInstance])
                 return
             }
+        }
+
+        if (params.password1) {
+            if (params.password1.equals(params.password2)) {
+                researcherInstance.passwordHash = new Sha256Hash(params.password1).toHex()
+            } else {
+                researcherInstance.errors.rejectValue("password", "default.password.doesnotmatch", "Passwords do not match")
+                render(view: "edit", model: [userInstance: researcherInstance])
+                return
+            }
+        } else {
+            params.passwordHash = researcherInstance.passwordHash
         }
 
         researcherInstance.properties = params
@@ -95,13 +123,13 @@ class ResearcherController {
 
         try {
             println "researcher experiments ${researcherInstance.experiments.size()}"
-            if(researcherInstance.isolateConditions){
+            if (researcherInstance.isolateConditions) {
                 flash.error = "Must remove researcher from ${researcherInstance.isolateConditions.size()} isolate conditions before removing"
                 redirect(action: "show", id: id)
                 return
             }
 
-            if(researcherInstance.experiments){
+            if (researcherInstance.experiments) {
                 flash.error = "Must remove researcher from ${researcherInstance.experiments.size()} experiments before removing"
                 redirect(action: "show", id: id)
                 return

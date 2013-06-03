@@ -30,13 +30,13 @@
     </g:if>
     <ol class="property-list researcher">
 
-        <g:if test="${researcherInstance?.email}">
+        <g:if test="${researcherInstance?.username}">
             <li class="fieldcontain">
                 <span id="email-label" class="property-label"><g:message code="researcher.email.label"
                                                                          default="Email"/></span>
 
                 <span class="property-value" aria-labelledby="email-label"><g:fieldValue bean="${researcherInstance}"
-                                                                                         field="email"/></span>
+                                                                                         field="username"/></span>
 
             </li>
         </g:if>
@@ -62,6 +62,26 @@
 
             </li>
         </g:if>
+
+        <shiro:hasRole name="Administrator">
+
+            <li class="fieldcontain">
+                <span id="role-label" class="property-label"><g:message code="researcher.role.label"
+                                                                            default="Role"/></span>
+
+                <span class="property-value" aria-labelledby="role-label">
+                    %{--<g:fieldValue bean="${researcherInstance}" field="role"/>--}%
+                    <ul>
+                    <g:each in="${researcherInstance.roles}" var="role">
+                       <li>
+                           ${role.name}
+                       </li>
+                    </g:each>
+                    </ul>
+                </span>
+
+            </li>
+        </shiro:hasRole>
 
         <g:if test="${researcherInstance?.lab}">
             <li class="fieldcontain">
