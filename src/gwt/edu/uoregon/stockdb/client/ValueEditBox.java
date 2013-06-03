@@ -9,38 +9,45 @@ import com.google.gwt.user.client.ui.TextBox;
 
 /**
  */
-public class ValueEditBox extends TextBox{
+public class ValueEditBox extends TextBox {
 
-    private Integer measuredValueId ;
+    private Integer measuredValueId;
     private String value;
 
     private static QuickEntryServiceAsync quickEntryServiceAsync = GWT.create(QuickEntryService.class);
 
     public ValueEditBox(Integer measuredValueId, String strain) {
 
-        this.measuredValueId = measuredValueId ;
-        this.value = strain ;
+        this.measuredValueId = measuredValueId;
+        this.value = strain;
 
         setText(this.value);
         setHeight(ExperimentTable.ROW_HEIGHT);
         setStyleName("quick-entry-table");
-//        strainBox.addSelectionHandler(new SelectionHandler<SuggestOracle.Suggestion>() {
-//            public void onSelection(SelectionEvent<SuggestOracle.Suggestion> event) {
-//                Window.alert("selection changed: " + event.getSelectedItem().getDisplayString());
-//            }
-//        });
         addValueChangeHandler(new ValueChangeHandler<String>() {
             public void onValueChange(ValueChangeEvent<String> event) {
-                quickEntryServiceAsync.saveMeasuredValue(getMeasuredValueId(),"value", getValue(),event.getValue(),new AsyncCallback(){
+                setEnabled(false);
+                quickEntryServiceAsync.saveMeasuredValue(getMeasuredValueId(), "value", getValue(), getText(), new AsyncCallback() {
                     public void onFailure(Throwable caught) {
-                        Window.alert("error saving string: "+caught);
+                        Window.alert("error saving value: " + caught);
+                        getElement().getStyle().setProperty("color", "red");
+                        // must be camel-cased
+//                        getElement().getStyle().setProperty("backgroundColor", "red");
+                        setEnabled(true);
                     }
 
                     public void onSuccess(Object result) {
-                        Window.alert("save successful : "+result);
+                        if (result.toString().startsWith("error:")) {
+                            Window.alert("error saving value: " + result.toString().substring("error:".length()));
+                            getElement().getStyle().setProperty("color", "red");
+                        }
+                        else{
+//                            getElement().getStyle().setProperty("backgroundColor", "white");
+                            getElement().getStyle().setProperty("color", "black");
+                        }
+                        setEnabled(true);
                     }
                 });
-                Window.alert("value changed: " + event.getValue());
             }
         });
     }
