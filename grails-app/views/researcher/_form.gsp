@@ -26,6 +26,24 @@
 	<g:textField name="lastName" value="${researcherInstance?.lastName}"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: researcherInstance, field: 'password1', 'error')} ">
+    <label for="lastName">
+        <g:message code="researcher.password.label" default="Password" />
+
+    </label>
+    <g:passwordField name="password1"/>
+    %{--<g:textField name="lastName" value="${researcherInstance?.password1}"/>--}%
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: researcherInstance, field: 'password2', 'error')} ">
+    <label for="lastName">
+        <g:message code="researcher.password-repeat.label" default="Repeat Password" />
+
+    </label>
+    <g:passwordField name="password2"/>
+    %{--<g:textField name="lastName" value="${researcherInstance?.password1}"/>--}%
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: researcherInstance, field: 'lab', 'error')} ">
 	<label for="lab">
 		<g:message code="researcher.lab.label" default="Lab" />
