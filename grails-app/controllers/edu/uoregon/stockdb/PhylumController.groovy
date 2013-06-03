@@ -6,9 +6,9 @@ class PhylumController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
-    static navigation = [
-            title: 'Strain Phylum', action: 'list', order: 5
-    ]
+//    static navigation = [
+//            title: 'Strain Phylum', action: 'list', order: 5
+//    ]
 
     def index() {
         redirect(action: "list", params: params)

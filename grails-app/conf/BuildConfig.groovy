@@ -58,7 +58,9 @@ grails.project.dependency.resolution = {
         compile ":csv:0.3.1"
 
 //        #plugins.navigation=1.3.2
-        compile ":navigation:1.3.2"
+//        compile ":navigation:1.3.2"
+        compile ":platform-core:1.0.RC5"
+
 
 
         // plugins.shiro=1.1.4

@@ -6,9 +6,9 @@ class IsolateController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
-    static navigation = [
-            title:'Isolate Conditions',action: 'list',order:2
-    ]
+//    static navigation = [
+//            title:'Isolate Conditions',action: 'list',order:2
+//    ]
 
     def index() {
         redirect(action: "list", params: params)

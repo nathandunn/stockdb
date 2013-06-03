@@ -6,9 +6,9 @@ class GenomeController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
-    static navigation = [
-            title:'Genome',action: 'list',order:9
-    ]
+//    static navigation = [
+//            title:'Genome',action: 'list',order:9
+//    ]
 
     def index() {
         redirect(action: "list", params: params)

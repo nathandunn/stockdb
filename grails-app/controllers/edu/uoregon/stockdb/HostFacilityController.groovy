@@ -6,9 +6,9 @@ class HostFacilityController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
-    static navigation = [
-            title:'Host Facility',action: 'list',order:3
-    ]
+//    static navigation = [
+//            title:'Host Facility',action: 'list',order:3
+//    ]
 
     def index() {
         redirect(action: "list", params: params)

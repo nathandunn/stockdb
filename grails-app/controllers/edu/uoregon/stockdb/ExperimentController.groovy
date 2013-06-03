@@ -8,9 +8,9 @@ class ExperimentController {
 
     def experimentService
 
-    static navigation = [
-            title: 'Experiment', action: 'list', order: 100
-    ]
+//    static navigation = [
+//            title: 'Experiment', action: 'list', order: 100
+//    ]
 
     def index() {
         redirect(action: "list", params: params)

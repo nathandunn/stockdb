@@ -6,9 +6,9 @@ class HostOriginController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
-    static navigation = [
-            title:'Host Origin',action: 'list',order:5
-    ]
+//    static navigation = [
+//            title:'Host Origin',action: 'list',order:5
+//    ]
 
     def index() {
         redirect(action: "list", params: params)

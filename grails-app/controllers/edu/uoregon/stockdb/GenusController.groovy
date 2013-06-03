@@ -6,9 +6,9 @@ class GenusController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
-    static navigation = [
-            title:'Strain Genus',action: 'list',order:8
-    ]
+//    static navigation = [
+//            title:'Strain Genus',action: 'list',order:8
+//    ]
 
     def index() {
         redirect(action: "list", params: params)

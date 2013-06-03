@@ -14,9 +14,9 @@ class StrainController {
     private static String GENUS_FILTER = "genus"
     private static String PHYLUM_FILTER = "phylum"
 
-    static navigation = [
-            title: 'Strain', action: 'list', order: 0
-    ]
+//    static navigation = [
+//            title: 'Strain', action: 'list', order: 0
+//    ]
 
     def index() {
         redirect(action: "list", params: params)

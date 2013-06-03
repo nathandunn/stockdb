@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
     <g:layoutHead/>
     <r:layoutResources/>
-    <nav:resources/>
 </head>
 
 <body>
@@ -30,12 +29,8 @@
     </a>
 </div>
 
-<div id="menu">
-    <nav:render/>
-</div>
-<div id="menu2">
-    <nav:renderSubItems/>
-</div>
+<nav:primary/>
+<nav:secondary/>
 <g:layoutBody/>
 <div class="footer" role="contentinfo"></div>
 
