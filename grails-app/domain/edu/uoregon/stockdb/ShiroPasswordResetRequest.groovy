@@ -1,3 +1,5 @@
+package edu.uoregon.stockdb
+
 import java.security.SecureRandom
 
 class ShiroPasswordResetRequest {

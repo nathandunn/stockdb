@@ -1,3 +1,5 @@
+package edu.uoregon.stockdb
+
 class ShiroRole {
     String name
 	String description

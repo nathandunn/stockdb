@@ -1,3 +1,5 @@
+package edu.uoregon.stockdb
+
 class ShiroUser {
     String firstName
     String lastName
