@@ -52,7 +52,6 @@ class QuickEntryService {
 
     String removeMeasuredValue(Integer measuredValueId) {
         MeasuredValue measuredValue = MeasuredValue.findById(measuredValueId)
-//        MeasuredValue.deleteAll(measuredValue)
         measuredValue.delete(flush: true)
         return measuredValue.id
     }

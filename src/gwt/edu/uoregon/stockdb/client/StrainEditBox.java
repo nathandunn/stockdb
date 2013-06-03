@@ -15,7 +15,6 @@ import com.google.gwt.user.client.ui.SuggestOracle;
  */
 public class StrainEditBox extends SuggestBox {
 
-    private MultiWordSuggestOracle oracle ;
     private Integer measuredValueId ;
     private String strain ;
 
@@ -24,8 +23,6 @@ public class StrainEditBox extends SuggestBox {
     public StrainEditBox(MultiWordSuggestOracle strainOracle, Integer measuredValueId, String strain) {
 
         super(strainOracle);
-
-        this.oracle = strainOracle ;
         this.measuredValueId = measuredValueId ;
         this.strain = strain ;
 
@@ -34,16 +31,8 @@ public class StrainEditBox extends SuggestBox {
         setText(this.strain);
         setHeight(ExperimentTable.ROW_HEIGHT);
         setStyleName("quick-entry-table");
-//        strainBox.addSelectionHandler(new SelectionHandler<SuggestOracle.Suggestion>() {
-//            public void onSelection(SelectionEvent<SuggestOracle.Suggestion> event) {
-//                Window.alert("selection changed: " + event.getSelectedItem().getDisplayString());
-//            }
-//        });
         addSelectionHandler(new SelectionHandler<SuggestOracle.Suggestion>() {
             public void onSelection(SelectionEvent<SuggestOracle.Suggestion> event) {
-//                Window.alert("selection1: " + event.getSelectedItem().getDisplayString());
-//                Window.alert("selection2: " + event.getSelectedItem().getReplacementString());
-//                Window.alert("selection3: " + event.().());
                 saveNewStrainValue(event.getSelectedItem().getReplacementString());
             }
 
@@ -52,9 +41,6 @@ public class StrainEditBox extends SuggestBox {
         addValueChangeHandler(new ValueChangeHandler<String>() {
             public void onValueChange(ValueChangeEvent<String> event) {
                 setEnabled(false);
-//                Window.alert("value1: " + event.getValue());
-//                Window.alert("value2: " + event.getValue().toString());
-//                Window.alert("value3: " + event.toString());
                 saveNewStrainValue(getText());
             }
         });

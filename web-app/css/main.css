@@ -677,7 +677,7 @@ a.skip {
     background-color: white;
     overflow: auto;
     height: auto;
-    max-height: 400px;
+    max-height: 800px;
     min-width: 100px;
     font-size: 0.9em;
 }
