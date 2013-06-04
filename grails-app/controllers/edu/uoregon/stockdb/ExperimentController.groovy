@@ -89,11 +89,6 @@ class ExperimentController {
         }
         experimentInstance.measuredValues = null
 
-        experimentInstance.strains.each { strain ->
-            strain.experiments.remove(experimentInstance)
-        }
-        experimentInstance.strains = null
-
 
         experimentInstance.properties = params
 

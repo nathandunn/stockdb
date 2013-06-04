@@ -212,7 +212,10 @@ class StubData {
         adminRole.save()
 
         def userRole = new Role(name:"User")
-        userRole.addToPermissions("*:*")
+        userRole.addToPermissions("*:list")
+        userRole.addToPermissions("*:show")
+        userRole.addToPermissions("experiment:edit")
+        userRole.addToPermissions("experiment:update")
         userRole.save()
 
         new Researcher(
@@ -242,6 +245,13 @@ class StubData {
                 , lastName: "Dunn"
                 , username: "ndunn@cas.uoregon.edu"
                 ,passwordHash: new Sha256Hash("ilikesr16").toHex()
+        ).addToRoles(adminRole).save()
+
+        new Researcher(
+                firstName: "Test"
+                , lastName: "Me"
+                , username: "ndunn@me.com"
+                ,passwordHash: new Sha256Hash("test").toHex()
         ).addToRoles(adminRole).save()
     }
 
