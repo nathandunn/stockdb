@@ -89,7 +89,7 @@ log4j = {
         shortPatternLayout.setConversionPattern("%d %c{3} [%m]%n")
         console name: 'stdout', layout: shortPatternLayout
 //        console name: "stdout", layout: pattern(conversionPattern: "%d{yyyy-MMM-dd HH:mm:ss,SSS} [%t] %c %x%n %-5p %m%n")
-        rollingFile name: 'file', file: "${logDirectory}/nemo-output.log", maxFileSize: 2048
+        rollingFile name: 'file', file: "${logDirectory}/metagenomicsdb-output.log", maxFileSize: 2048
         if (grails.util.Environment.current == grails.util.Environment.PRODUCTION
                 ||
                 grails.util.Environment.current.name == "staging"
@@ -97,7 +97,7 @@ log4j = {
             def mailAppender = new org.apache.log4j.net.SMTPAppender()
             mailAppender.setFrom("ndunn@cas.uoregon.edu")
             mailAppender.setTo("ndunn@cas.uoregon.edu")
-            mailAppender.setSubject("NEMO - An log4j error has been generated in the ${Environment.current.name} environment")
+            mailAppender.setSubject("MetagenomicsDb - An log4j error has been generated in the ${Environment.current.name} environment")
             mailAppender.setSMTPHost("smtp.uoregon.edu")
             // using long as should only be executed in the case of an error
             mailAppender.setLayout(shortPatternLayout)
