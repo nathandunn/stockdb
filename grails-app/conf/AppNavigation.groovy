@@ -1,4 +1,5 @@
 import edu.uoregon.stockdb.Researcher
+import edu.uoregon.stockdb.StubData
 import org.apache.shiro.SecurityUtils
 
 def loggedIn = {->
@@ -23,7 +24,7 @@ def getProfileName() {
 
 def isAdmin = {->
     try {
-        SecurityUtils.subject.checkRole("Administrator")
+        SecurityUtils.subject.checkRole(StubData.ROLE_ADMINISTRATOR)
         return true
     } catch (e) {
         println "is not admin ${SecurityUtils.subject.principal}"

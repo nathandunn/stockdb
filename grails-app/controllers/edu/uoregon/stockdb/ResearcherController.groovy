@@ -1,5 +1,6 @@
 package edu.uoregon.stockdb
 
+import org.apache.shiro.SecurityUtils
 import org.apache.shiro.crypto.hash.Sha256Hash
 import org.springframework.dao.DataIntegrityViolationException
 
@@ -7,11 +8,6 @@ class ResearcherController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
-    static navigationScope = 'user'
-
-//    static navigation = [
-//            title: 'Researchers', action: 'list', order: 5
-//    ]
 
     def index() {
         redirect(action: "list", params: params)
@@ -54,7 +50,7 @@ class ResearcherController {
 
         println "params: ${params}"
         def researcherInstance = new Researcher(params)
-        Role userRole = Role.findByName("User")
+        Role userRole = Role.findByName(StubData.ROLE_USER)
         researcherInstance.addToRoles( userRole )
 
         if (!researcherInstance.save(flush: true)) {
@@ -86,7 +82,15 @@ class ResearcherController {
             return
         }
 
-        [researcherInstance: researcherInstance]
+        String principalUsername = SecurityUtils.subject.principal
+        if(researcherInstance.username==principalUsername || SecurityUtils.subject.hasRole(StubData.ROLE_ADMINISTRATOR)){
+            [researcherInstance: researcherInstance]
+        }
+        else{
+            render "You do not have permission to access this page."
+        }
+
+
     }
 
     def update(Long id, Long version) {

@@ -11,6 +11,9 @@ class StubData {
 
     private static final log = Logger.getLogger(this)
 
+    public static String ROLE_ADMINISTRATOR = "Administrator"
+    public static String ROLE_USER = "User"
+
     def stubData() {
 
         Lab lab = Lab.findOrSaveByName("Guillemin")
@@ -207,11 +210,11 @@ class StubData {
 //        def user = new ShiroUser(username: "user123", passwordHash: new Sha256Hash("password").toHex())
 //        user.addToPermissions("*:*")
 //        user.save()
-        def adminRole = new Role(name: "Administrator")
+        def adminRole = new Role(name: StubData.ROLE_ADMINISTRATOR)
         adminRole.addToPermissions("*:*")
         adminRole.save()
 
-        def userRole = new Role(name:"User")
+        def userRole = new Role(name:StubData.ROLE_USER)
         userRole.addToPermissions("*:list")
         userRole.addToPermissions("*:show")
         userRole.addToPermissions("experiment:edit")

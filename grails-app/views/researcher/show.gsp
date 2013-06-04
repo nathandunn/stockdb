@@ -63,7 +63,7 @@
             </li>
         </g:if>
 
-        <shiro:hasRole name="Administrator">
+        <shiro:hasRole name="${edu.uoregon.stockdb.StubData.ROLE_ADMINISTRATOR}">
 
             <li class="fieldcontain">
                 <span id="role-label" class="property-label"><g:message code="researcher.role.label"

@@ -44,7 +44,7 @@
     %{--<g:textField name="lastName" value="${researcherInstance?.password1}"/>--}%
 </div>
 
-<shiro:hasRole name="Administrator">
+<shiro:hasRole name="${edu.uoregon.stockdb.StubData.ROLE_ADMINISTRATOR}">
 
     <div class="fieldcontain ${hasErrors(bean: researcherInstance, field: 'role', 'error')} ">
         <label for="role">
