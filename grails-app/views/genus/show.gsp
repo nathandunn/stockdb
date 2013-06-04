@@ -50,6 +50,23 @@
             </li>
         </g:if>
 
+        <li class="fieldcontain">
+            <span id="strains-label" class="property-label"><g:message code="genus.strains.label"
+                                                                      default="Strains"/></span>
+
+            <span class="property-value" aria-labelledby="strains-label">
+                <g:each in="${strains}" var="strain">
+                    <g:link action="show" id="${strain.id}" controller="strain">
+                        ${strain.name}
+                    </g:link>
+                    &nbsp;
+                    &nbsp;
+
+                </g:each>
+                %{--<g:link controller="strains" action="show" id="${genusInstance?.strains?.id}">${genusInstance?.strains?.name}</g:link></span>--}%
+
+        </li>
+
     </ol>
     <g:form>
         <fieldset class="buttons">

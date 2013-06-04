@@ -42,7 +42,9 @@ class PhylumController {
             return
         }
 
-        [phylumInstance: phylumInstance]
+        def strains = Strain.findAllByGenusInList(phylumInstance.genuses,[sort:"genus.name",order:"asc"])
+
+        [phylumInstance: phylumInstance,genuses:Genus.findAllByPhylum(phylumInstance,[sort:"name",order:"asc"]),strains:strains]
     }
 
     def edit(Long id) {

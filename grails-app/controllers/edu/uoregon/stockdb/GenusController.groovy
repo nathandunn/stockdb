@@ -42,7 +42,9 @@ class GenusController {
             return
         }
 
-        [genusInstance: genusInstance]
+        def strains = Strain.findAllByGenus(genusInstance,[sort:"name",order:"asc"])
+
+        [genusInstance: genusInstance,strains:strains]
     }
 
     def edit(Long id) {
