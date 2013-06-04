@@ -763,3 +763,12 @@ a.skip {
     /* border-color: #e0e0e0; */
 }
 
+.user-menu{
+    float: right;
+    display: inline;
+    border-color: black;
+    border-width: 2px;
+    margin: 10px;
+    padding: 60px 20px 10px 10px ;
+}
+

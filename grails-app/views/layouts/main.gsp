@@ -1,3 +1,4 @@
+<%@ page import="edu.uoregon.stockdb.Researcher" %>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
@@ -26,11 +27,28 @@
              alt="Metagenomics Center for Systems Biology"/>
         <img src="${resource(dir: 'images', file: 'guillemin3sm_807.jpg')}" height="100px;" width="500px;"
              alt="Metagenomics Center for Systems Biology"/>
+
+        <div class="user-menu">
+            <shiro:isNotLoggedIn>
+                <g:link controller="auth" action="login">Login</g:link>
+            </shiro:isNotLoggedIn>
+
+            <shiro:isLoggedIn>
+                <g:set var="researcherId"
+                       value="${Researcher.findByUsername(org.apache.shiro.SecurityUtils.subject.principal).id}"/>
+                <g:link controller="researcher" action="edit" id="${researcherId}">Edit <shiro:principal/></g:link>
+                %{--&nbsp;&nbsp;--}%
+                <g:link controller="auth" action="signOut">Logout</g:link>
+            </shiro:isLoggedIn>
+        </div>
     </a>
 </div>
 
+
 <nav:primary/>
 <nav:secondary/>
+
+
 <g:layoutBody/>
 <div class="footer" role="contentinfo"></div>
 

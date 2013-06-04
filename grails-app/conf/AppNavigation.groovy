@@ -1,3 +1,4 @@
+import edu.uoregon.stockdb.Researcher
 import org.apache.shiro.SecurityUtils
 
 def loggedIn = {->
@@ -6,6 +7,20 @@ def loggedIn = {->
 def loggedOut = {->
     return !SecurityUtils.subject.authenticated
 }
+
+def username = {->
+//    if(loggedIn){
+        return ( (Researcher) SecurityUtils.subject.principal).fullName
+//    }
+//    else{
+//        return "N/A"
+//    }
+}
+
+def getProfileName() {
+    return ((Researcher) SecurityUtils.subject.principal).fullName
+}
+
 def isAdmin = {->
     try {
         SecurityUtils.subject.checkRole("Administrator")
@@ -48,13 +63,15 @@ navigation = {
             researcher(controller: 'researcher', action: 'list')
         }
 
+        auth(visible:false)
+
 //        access(controller: 'auth',action:'login'){
 //            signOut(controller: 'auth',action:'signOut')
 //        }
 
-        login(controller: 'auth', action: 'login', visible: loggedOut )
-        logout(controller: 'auth', action: 'signOut', visible: loggedIn)
-        profile(controller: 'researcher', action: 'edit', visible: loggedIn)
+//        login(controller: 'auth', action: 'login', visible: loggedOut)
+//        editProfile(controller: 'researcher', action: 'edit', visible: loggedIn)
+//        logout(controller: 'auth', action: 'signOut', visible: loggedIn)
 
 //        user {
 //            login controller: 'auth', action: 'login', visible: loggedOut

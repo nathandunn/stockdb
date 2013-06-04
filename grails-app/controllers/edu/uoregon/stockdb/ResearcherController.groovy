@@ -7,6 +7,8 @@ class ResearcherController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
+    static navigationScope = 'user'
+
 //    static navigation = [
 //            title: 'Researchers', action: 'list', order: 5
 //    ]
