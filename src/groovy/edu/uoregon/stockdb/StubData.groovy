@@ -262,7 +262,7 @@ class StubData {
                 , lastName: "Wreden"
                 , username: "cwreden@uoregon.edu"
                 ,passwordHash: new Sha256Hash("ilikesr16").toHex()
-        ).addToRoles(userRole).save()
+        ).addToRoles(adminRole).save()
     }
 
     def stubRawlsData() {
