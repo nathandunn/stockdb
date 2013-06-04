@@ -1,3 +1,21 @@
+import org.apache.shiro.SecurityUtils
+
+def loggedIn = {->
+    return SecurityUtils.subject.authenticated
+}
+def loggedOut = {->
+    return !SecurityUtils.subject.authenticated
+}
+def isAdmin = {->
+    try {
+        SecurityUtils.subject.checkRole("Administrator")
+        return true
+    } catch (e) {
+        println "is not admin ${SecurityUtils.subject.principal}"
+        return false
+    }
+}
+
 navigation = {
     // Declare the "app" scope, used by default in tags
     app {
@@ -7,9 +25,9 @@ navigation = {
             isolate(controller: 'isolate', action: 'list')
             location(controller: 'location', action: 'list')
             genotype(controller: 'strainGenotype', action: 'list')
-            genome(controller: 'genome',action:'list')
-            phylym(controller: 'phylum',action: 'list')
-            genus(controller: 'genus',action: 'list')
+            genome(controller: 'genome', action: 'list')
+            phylym(controller: 'phylum', action: 'list')
+            genus(controller: 'genus', action: 'list')
         }
 
 //        // A nav item pointing to HomeController, using the default action
@@ -21,18 +39,27 @@ navigation = {
         host(controller: 'hostOrigin', action: 'list') {
             genotype(controller: 'hostGenotype', action: 'list')
             species(controller: 'species', action: 'list')
-            origin(controller: 'hostOrigin',action: 'list')
-            facility(controller: 'hostFacility',action: 'list')
+            origin(controller: 'hostOrigin', action: 'list')
+            facility(controller: 'hostFacility', action: 'list')
 
         }
 
-        labs(controller: 'lab',action:'list'){
-            researcher(controller: 'researcher',action: 'list')
+        labs(controller: 'lab', action: 'list') {
+            researcher(controller: 'researcher', action: 'list')
         }
 
-        access(controller: 'auth',action:'login'){
-            signOut(controller: 'auth',action:'signOut')
-        }
+//        access(controller: 'auth',action:'login'){
+//            signOut(controller: 'auth',action:'signOut')
+//        }
+
+        login(controller: 'auth', action: 'login', visible: loggedOut )
+        logout(controller: 'auth', action: 'signOut', visible: loggedIn)
+        profile(controller: 'researcher', action: 'edit', visible: loggedIn)
+
+//        user {
+//            login controller: 'auth', action: 'login', visible: loggedOut
+////            signup controller: 'auth', action: 'signup', visible: notLoggedIn
+//        }
 //
 //        // Items pointing to ContentController, using the specific action
 //        about(controller:'content')
@@ -55,7 +82,7 @@ navigation = {
 //        }
     }
 
-    // Some back-end admin scaffolding stuff in a separate scope
+// Some back-end admin scaffolding stuff in a separate scope
 //    admin {
 //        // Use "list" action as default item, even if its not default action
 //        // and create automatic sub-items for the other actions
