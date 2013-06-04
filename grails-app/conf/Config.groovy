@@ -76,40 +76,86 @@ environments {
     }
 }
 
+String logDirectory = "${System.getProperty('catalina.base') ?: '.'}/logs"
+
 // log4j configuration
 log4j = {
-    // Example of changing the log pattern for the default console appender:
+    // Example of changing the log pattern for the default console
+    // appender:
     //
-    String logDirectory = "${System.getProperty('catalina.base') ?: '.'}/logs"
+
+    appenders {
+        def shortPatternLayout = new org.apache.log4j.PatternLayout()
+        shortPatternLayout.setConversionPattern("%d %c{3} [%m]%n")
+        console name: 'stdout', layout: shortPatternLayout
+//        console name: "stdout", layout: pattern(conversionPattern: "%d{yyyy-MMM-dd HH:mm:ss,SSS} [%t] %c %x%n %-5p %m%n")
+        rollingFile name: 'file', file: "${logDirectory}/nemo-output.log", maxFileSize: 2048
+        if (grails.util.Environment.current == grails.util.Environment.PRODUCTION
+                ||
+                grails.util.Environment.current.name == "staging"
+        ) {
+            def mailAppender = new org.apache.log4j.net.SMTPAppender()
+            mailAppender.setFrom("ndunn@cas.uoregon.edu")
+            mailAppender.setTo("ndunn@cas.uoregon.edu")
+            mailAppender.setSubject("NEMO - An log4j error has been generated in the ${Environment.current.name} environment")
+            mailAppender.setSMTPHost("smtp.uoregon.edu")
+            // using long as should only be executed in the case of an error
+            mailAppender.setLayout(shortPatternLayout)
+            appender name: 'mail', mailAppender
+        }
+    }
+
+    root {
+        warn 'stdout', 'file', 'mail'
+    }
 
 //    appenders {
 //        console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-//        rollingFile  name:'custom', file:'stockdb.log', maxFileSize:2048
 //    }
 
-    appenders {
-        console name: "stdout", layout: pattern(conversionPattern: "%d{yyyy-MMM-dd HH:mm:ss,SSS} [%t] %c %x%n %-5p %m%n")
-        rollingFile  name:'custom', file:"${logDirectory}/stockdb.log", maxFileSize:2048
-//        file name: "errors", file: "${logDirectory}/stockdb.log", layout: pattern(conversionPattern: "%d{yyyy-MMM-dd HH:mm:ss,SSS} [%t] %c %x%n %-5p %m%n")
-//        appender new org.apache.log4j.DailyRollingFileAppender(name:"roll", datePattern: "'.'yyyy-MM-dd", file:"pps-rolling.log", layout: pattern(conversionPattern: "%d{yyyy-MMM-dd HH:mm:ss,SSS} [%t] %c %x%n %-5p %m%n"))
+    error 'org.codehaus.groovy.grails.web.servlet',  //  controllers
+            'org.codehaus.groovy.grails.web.pages', //  GSP
+            'org.codehaus.groovy.grails.web.sitemesh', //  layouts
+            'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
+            'org.codehaus.groovy.grails.web.mapping', // URL mapping
+            'org.codehaus.groovy.grails.commons', // core / classloading
+            'org.codehaus.groovy.grails.plugins', // plugins
+            'org.codehaus.groovy.grails.orm.hibernate', // hibernate integration
+            'org.springframework',
+            'org.hibernate',
+            'net.sf.ehcache.hibernate'
 
-    }
-
-    error  'org.codehaus.groovy.grails.web.servlet',        // controllers
-           'org.codehaus.groovy.grails.web.pages',          // GSP
-           'org.codehaus.groovy.grails.web.sitemesh',       // layouts
-           'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
-           'org.codehaus.groovy.grails.web.mapping',        // URL mapping
-           'org.codehaus.groovy.grails.commons',            // core / classloading
-           'org.codehaus.groovy.grails.plugins',            // plugins
-           'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
-           'org.springframework',
-           'org.hibernate',
-           'net.sf.ehcache.hibernate'
+//    trace 'org.hibernate.type'
+//    debug 'org.hibernate.SQL'
 
     info 'grails.app'
-    // Logging infos and higher for all controllers
-    // Logging debug and higher for the BarService
-//    debug 'grails.app.service.BarService'
-
+//    debug 'grails.app.jobs'
+//    debug 'grails.app.taglib'
+//    debug 'grails.app.taglib.edu.uoregon.nic.nemo.portal'
+//    debug 'grails.app.controllers'
+    debug 'grails.app.services'
+//    debug 'grails.app.services.edu.uoregon.nic.nemo.portal.OntologyService'
+//    debug 'grails.app.services.edu.uoregon.nic.nemo.portal.DataStubService'
+//    debug 'grails.app.services.edu.uoregon.nic.nemo.portal.UserService'
+//    debug 'grails.app.controllers.edu.uoregon.nic.nemo.portal'
+//    debug 'grails.app.controllers.edu.uoregon.nic.nemo.portal.TermController'
 }
+
+
+grails {
+    mail {
+//        host = "smtp.gmail.com"
+        host = "smtp.uoregon.edu"
+//        port = 465
+//        username = "ndunn@uoregon.edu"
+//        password = "yourpassword"
+        props = [
+                "mail.smtp.auth": "false"
+//                "mail.smtp.socketFactory.port":"465",
+//                "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+                // "mail.smtp.socketFactory.fallback":"false"
+        ]
+
+    }
+}
+

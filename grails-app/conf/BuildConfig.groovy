@@ -30,6 +30,10 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
         //mavenRepo "http://repository.jboss.com/maven2/"
+
+        // added for mail
+        mavenRepo "http://download.java.net/maven/2/"
+
     }
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
@@ -62,10 +66,13 @@ grails.project.dependency.resolution = {
         compile ":platform-core:1.0.RC5"
 
 
+        compile ":mail:1.0.1"
 
 
         // plugins.shiro=1.1.4
         compile ":shiro:1.1.4"
+        compile ":crypto:2.0"
+
 
     }
 }

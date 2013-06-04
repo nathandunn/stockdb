@@ -24,6 +24,21 @@ class ResearcherController {
         [researcherInstance: new Researcher(params)]
     }
 
+    def resetPassword(){
+        String username = params.username
+        Researcher researcher = Researcher.findByUsername(username)
+        if(researcher){
+            flash.message = message(code: 'default.resetemailsent.message', args: [username])
+            redirect(view: "login",controllerName:"auth", model: [username: username])
+            return
+        }
+        else{
+            flash.message = message(code: 'default.couldnotfindemail.message', args: [username])
+            redirect(view: "forgotPassword",controllerName:"auth", model: [username: username])
+            return
+        }
+    }
+
     def save() {
         if (params.password1) {
             if (params.password1.equals(params.password2)) {

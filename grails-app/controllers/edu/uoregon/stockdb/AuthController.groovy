@@ -1,19 +1,53 @@
 package edu.uoregon.stockdb
 
+import cr.co.arquetipos.password.PasswordTools
 import org.apache.shiro.SecurityUtils
 import org.apache.shiro.authc.AuthenticationException
 import org.apache.shiro.authc.UsernamePasswordToken
+import org.apache.shiro.crypto.hash.Sha256Hash
 import org.apache.shiro.web.util.SavedRequest
 import org.apache.shiro.web.util.WebUtils
 import org.apache.shiro.grails.ConfigUtils
 
 class AuthController {
+
     def shiroSecurityManager
+
+    def stockMailService
 
     def index = { redirect(action: "login", params: params) }
 
     def login = {
         return [ username: params.username, rememberMe: (params.rememberMe != null), targetUri: params.targetUri ]
+    }
+
+    def forgotPassword = {
+        println "mapped forgotten password "
+    }
+
+    def resetPassword(String username) {
+        println "resetting forgotten password "
+        Researcher user = Researcher.findByUsername(username)
+        if(user){
+            // TODO: create a new password
+            // mail the password
+            String randomPassword = PasswordTools.generateRandomPassword()
+            user.passwordHash = new Sha256Hash(randomPassword).toHex()
+
+
+            stockMailService.sendPasswordReset(user,randomPassword)
+            flash.message = "Password email sent to ${user.username}"
+            params.username = username
+            redirect(action: "login",params:params)
+            return
+        }
+        else{
+            flash.message = "Could not find user with that email [${user}]"
+            params.username = username
+            redirect(action: "forgotPassword",params:params)
+            return
+        }
+
     }
 
     def signIn = {
