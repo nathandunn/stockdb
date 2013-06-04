@@ -1,4 +1,4 @@
-<%@ page import="edu.uoregon.stockdb.Phylum; edu.uoregon.stockdb.Genus; edu.uoregon.stockdb.HostOrigin; edu.uoregon.stockdb.Strain" %>
+<%@ page import="edu.uoregon.stockdb.ResearcherService; edu.uoregon.stockdb.Phylum; edu.uoregon.stockdb.Genus; edu.uoregon.stockdb.HostOrigin; edu.uoregon.stockdb.Strain" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +10,7 @@
 
 <body>
 
+<shiro:hasRole name="${ResearcherService.ROLE_ADMINISTRATOR}">
 <div class="nav" role="navigation">
     <ul>
 
@@ -17,6 +18,7 @@
                                                               args="[entityName]"/></g:link></li>
     </ul>
 </div>
+    </shiro:hasRole>
 
 <div class="list-filter">
     <h3>Filter</h3>

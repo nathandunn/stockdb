@@ -1,4 +1,4 @@
-<%@ page import="edu.uoregon.stockdb.Researcher" %>
+<%@ page import="edu.uoregon.stockdb.ResearcherService; edu.uoregon.stockdb.Researcher" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,8 +15,10 @@
     <ul>
 
         <li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]"/></g:link></li>
-        <li><g:link class="create" action="create"><g:message code="default.new.label"
-                                                              args="[entityName]"/></g:link></li>
+        <shiro:hasRole name="${ResearcherService.ROLE_ADMINISTRATOR}">
+            <li><g:link class="create" action="create"><g:message code="default.new.label"
+                                                                  args="[entityName]"/></g:link></li>
+        </shiro:hasRole>
     </ul>
 </div>
 
@@ -63,20 +65,20 @@
             </li>
         </g:if>
 
-        <shiro:hasRole name="${edu.uoregon.stockdb.StubData.ROLE_ADMINISTRATOR}">
+        <shiro:hasRole name="${ResearcherService.ROLE_ADMINISTRATOR}">
 
             <li class="fieldcontain">
                 <span id="role-label" class="property-label"><g:message code="researcher.role.label"
-                                                                            default="Role"/></span>
+                                                                        default="Role"/></span>
 
                 <span class="property-value" aria-labelledby="role-label">
                     %{--<g:fieldValue bean="${researcherInstance}" field="role"/>--}%
                     <ul>
-                    <g:each in="${researcherInstance.roles}" var="role">
-                       <li>
-                           ${role.name}
-                       </li>
-                    </g:each>
+                        <g:each in="${researcherInstance.roles}" var="role">
+                            <li>
+                                ${role.name}
+                            </li>
+                        </g:each>
                     </ul>
                 </span>
 

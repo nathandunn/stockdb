@@ -1,5 +1,5 @@
 
-<%@ page import="edu.uoregon.stockdb.Phylum" %>
+<%@ page import="edu.uoregon.stockdb.ResearcherService; edu.uoregon.stockdb.Phylum" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -13,7 +13,9 @@
 			<ul>
 
 				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+<shiro:hasRole name="${ResearcherService.ROLE_ADMINISTRATOR}">
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+    </shiro:hasRole>
 			</ul>
 		</div>
 		<div id="show-phylum" class="content scaffold-show" role="main">

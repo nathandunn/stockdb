@@ -1,4 +1,4 @@
-<%@ page import="edu.uoregon.stockdb.Researcher" %>
+<%@ page import="edu.uoregon.stockdb.ResearcherService; edu.uoregon.stockdb.Researcher" %>
 
 
 
@@ -44,7 +44,7 @@
     %{--<g:textField name="lastName" value="${researcherInstance?.password1}"/>--}%
 </div>
 
-<shiro:hasRole name="${edu.uoregon.stockdb.StubData.ROLE_ADMINISTRATOR}">
+<shiro:hasRole name="${ResearcherService.ROLE_ADMINISTRATOR}">
 
     <div class="fieldcontain ${hasErrors(bean: researcherInstance, field: 'role', 'error')} ">
         <label for="role">

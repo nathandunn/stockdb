@@ -50,7 +50,7 @@ class ResearcherController {
 
         println "params: ${params}"
         def researcherInstance = new Researcher(params)
-        Role userRole = Role.findByName(StubData.ROLE_USER)
+        Role userRole = Role.findByName(ResearcherService.ROLE_USER)
         researcherInstance.addToRoles( userRole )
 
         if (!researcherInstance.save(flush: true)) {
@@ -83,12 +83,12 @@ class ResearcherController {
         }
 
         String principalUsername = SecurityUtils.subject.principal
-        if(researcherInstance.username==principalUsername || SecurityUtils.subject.hasRole(StubData.ROLE_ADMINISTRATOR)){
+        if(researcherInstance.username==principalUsername || SecurityUtils.subject.hasRole(ResearcherService.ROLE_ADMINISTRATOR)){
             [researcherInstance: researcherInstance]
         }
         else{
 //            render "You do not have permission to access this page."
-            render(view:"/unauthorized")
+            render(view:"unauthorized")
         }
 
 

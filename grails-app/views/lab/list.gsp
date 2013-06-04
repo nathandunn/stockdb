@@ -1,4 +1,4 @@
-<%@ page import="edu.uoregon.stockdb.Lab" %>
+<%@ page import="edu.uoregon.stockdb.ResearcherService; edu.uoregon.stockdb.Lab" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +11,7 @@
 <a href="#list-lab" class="skip" tabindex="-1"><g:message code="default.link.skip.label"
                                                           default="Skip to content&hellip;"/></a>
 
+<shiro:hasRole name="${ResearcherService.ROLE_ADMINISTRATOR}">
 <div class="nav" role="navigation">
     <ul>
 
@@ -18,6 +19,7 @@
                                                               args="[entityName]"/></g:link></li>
     </ul>
 </div>
+    </shiro:hasRole>
 
 <div id="list-lab" class="content scaffold-list" role="main">
     <h1><g:message code="default.list.label" args="[entityName]"/></h1>

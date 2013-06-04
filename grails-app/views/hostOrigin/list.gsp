@@ -1,5 +1,5 @@
 
-<%@ page import="edu.uoregon.stockdb.HostOrigin" %>
+<%@ page import="edu.uoregon.stockdb.ResearcherService; edu.uoregon.stockdb.HostOrigin" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -8,12 +8,14 @@
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
+<shiro:hasRole name="${ResearcherService.ROLE_ADMINISTRATOR}">
 		<div class="nav" role="navigation">
 			<ul>
 
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
+    </shiro:hasRole>
 		<div id="list-hostOrigin" class="content scaffold-list" role="main">
 			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
