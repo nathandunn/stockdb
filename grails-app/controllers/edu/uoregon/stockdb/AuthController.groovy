@@ -113,6 +113,7 @@ class AuthController {
     }
 
     def unauthorized = {
-        render "You do not have permission to access this page."
+//        render "You do not have permission to access this page."
+        render(view:"/unauthorized")
     }
 }

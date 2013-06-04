@@ -87,7 +87,8 @@ class ResearcherController {
             [researcherInstance: researcherInstance]
         }
         else{
-            render "You do not have permission to access this page."
+//            render "You do not have permission to access this page."
+            render(view:"/unauthorized")
         }
 
 
@@ -126,7 +127,7 @@ class ResearcherController {
         researcherInstance.properties = params
 
         if (!researcherInstance.save(flush: true)) {
-            render(view: "edit", model: [researcherInstance: researcherInstance])
+            reutnder(view: "edit", model: [researcherInstance: researcherInstance])
             return
         }
 
