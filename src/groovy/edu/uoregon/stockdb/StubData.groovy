@@ -216,6 +216,8 @@ class StubData {
         userRole.addToPermissions("*:show")
         userRole.addToPermissions("experiment:edit")
         userRole.addToPermissions("experiment:update")
+        userRole.addToPermissions("researcher:edit")
+        userRole.addToPermissions("researcher:update")
         userRole.save()
 
         new Researcher(
@@ -252,7 +254,7 @@ class StubData {
                 , lastName: "Me"
                 , username: "ndunn@me.com"
                 ,passwordHash: new Sha256Hash("test").toHex()
-        ).addToRoles(adminRole).save()
+        ).addToRoles(userRole).save()
     }
 
     def stubRawlsData() {

@@ -14,11 +14,11 @@
       <tbody>
         <tr>
           <td>Username:</td>
-          <td><input type="text" name="username" value="${username}"  size="40"/></td>
+          <td><input type="text" name="username" value="${username}"  size="40" tabindex="1"/></td>
         </tr>
         <tr>
           <td>Password:</td>
-          <td><input type="password" name="password" value="" size="40"/></td>
+          <td><input type="password" name="password" value="" size="40"  tabindex="2"/></td>
         </tr>
         <tr>
           <td>Remember me?:</td>
