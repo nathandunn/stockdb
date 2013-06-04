@@ -1,6 +1,5 @@
 import edu.uoregon.stockdb.Researcher
 import edu.uoregon.stockdb.ResearcherService
-import edu.uoregon.stockdb.StubData
 import org.apache.shiro.SecurityUtils
 
 def loggedIn = {->
@@ -12,7 +11,7 @@ def loggedOut = {->
 
 def username = {->
 //    if(loggedIn){
-        return ( (Researcher) SecurityUtils.subject.principal).fullName
+    return ((Researcher) SecurityUtils.subject.principal).fullName
 //    }
 //    else{
 //        return "N/A"
@@ -65,40 +64,8 @@ navigation = {
             researcher(controller: 'researcher', action: 'list')
         }
 
-        auth(visible:false)
+        auth(visible: false)
 
-//        access(controller: 'auth',action:'login'){
-//            signOut(controller: 'auth',action:'signOut')
-//        }
-
-//        login(controller: 'auth', action: 'login', visible: loggedOut)
-//        editProfile(controller: 'researcher', action: 'edit', visible: loggedIn)
-//        logout(controller: 'auth', action: 'signOut', visible: loggedIn)
-
-//        user {
-//            login controller: 'auth', action: 'login', visible: loggedOut
-////            signup controller: 'auth', action: 'signup', visible: notLoggedIn
-//        }
-//
-//        // Items pointing to ContentController, using the specific action
-//        about(controller:'content')
-//        contact(controller:'content')
-//        help(controller:'content')
-//
-//        // Some user interface actions in second-level nav
-//        // All in BooksController
-//        books {
-//            // "list" action in "books" controller
-//            list()
-//            // "create" action in "books" controller
-//            create()
-//        }
-//
-//        // More convoluted stuff split across controllers/locations
-//        support(controller:'content', action:'support') {
-//            faq(url:'http://faqs.mysite.com') // point to CMS
-//            makeRequest(controller:'supportRequest', action:'create')
-//        }
     }
 
 // Some back-end admin scaffolding stuff in a separate scope
