@@ -29,6 +29,14 @@
 	%{--<g:textField name="units" value="${measuredValueInstance?.units}"/>--}%
 %{--</div>--}%
 
+<div class="fieldcontain ${hasErrors(bean: measuredValueInstance, field: 'category', 'error')} ">
+    <label for="category">
+        <g:message code="measuredValue.category.label" default="Category" />
+
+    </label>
+    <g:select id="category" name="category.id" optionValue="name" from="${edu.uoregon.stockdb.Category.listOrderByName()}" optionKey="id" value="${measuredValueInstance?.category?.id}" class="many-to-one" noSelection="['null': '- NONE -']"/>
+    <g:link action="create" controller="category">Create Category</g:link>
+</div>
 
 <div class="fieldcontain ${hasErrors(bean: measuredValueInstance, field: 'experiment', 'error')} ">
     <label for="experiment">
@@ -42,9 +50,9 @@
 
 <div class="fieldcontain ${hasErrors(bean: measuredValueInstance, field: 'strain', 'error')} ">
     <label for="strain">
-        <g:message code="measuredValue.strain.label" default="Experiment" />
+        <g:message code="measuredValue.strain.label" default="Strain" />
 
     </label>
     <g:select id="strain" name="strain.id" optionValue="name" from="${edu.uoregon.stockdb.Strain.listOrderByName()}" optionKey="id" value="${measuredValueInstance?.strain?.id}" class="many-to-one" noSelection="['null': '- NONE -']"/>
-    <g:link action="create" controller="strain">Create Experiment</g:link>
+    <g:link action="create" controller="strain">Create Strain</g:link>
 </div>

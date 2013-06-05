@@ -23,6 +23,19 @@
     </ul>
 </div>
 
+<g:form>
+    <fieldset class="buttons">
+        <g:hiddenField name="id" value="${experimentInstance?.id}"/>
+        <g:link class="edit" action="quickentry" id="${experimentInstance?.id}"><g:message
+                code="default.button.editmeasuredvalues.label" default="Edit Measured Values"/></g:link>
+        <g:link class="edit" action="edit" id="${experimentInstance?.id}"><g:message
+                code="default.button.edit.label" default="Edit"/></g:link>
+        <g:actionSubmit class="delete" action="delete"
+                        value="${message(code: 'default.button.delete.label', default: 'Delete')}"
+                        onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
+    </fieldset>
+</g:form>
+
 <div id="show-experiment" class="content scaffold-show" role="main">
     <h1><g:message code="default.show.label" args="[entityName]"/></h1>
     <g:if test="${flash.message}">
@@ -146,7 +159,7 @@
         <fieldset class="buttons">
             <g:hiddenField name="id" value="${experimentInstance?.id}"/>
             <g:link class="edit" action="quickentry" id="${experimentInstance?.id}"><g:message
-                    code="default.button.addmeasuredvalues.label" default="Add Measured Values"/></g:link>
+                    code="default.button.editmeasuredvalues.label" default="Edit Measured Values"/></g:link>
             <g:link class="edit" action="edit" id="${experimentInstance?.id}"><g:message
                     code="default.button.edit.label" default="Edit"/></g:link>
             <g:actionSubmit class="delete" action="delete"

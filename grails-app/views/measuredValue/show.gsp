@@ -43,18 +43,6 @@
             </li>
         </g:if>
 
-        <li class="fieldcontain">
-            <span id="experiment-label" class="property-label"><g:message code="measuredValue.experiment.label"
-                                                                          default="Category"/></span>
-
-            <span class="property-value" aria-labelledby="experiment-label">
-                <g:link controller="category" action="show" id="${measuredValueInstance?.category?.id}">
-                    ${measuredValueInstance?.category?.name}
-                </g:link></span>
-
-        </li>
-
-
 
         <li class="fieldcontain">
             <span id="type-label" class="property-label"><g:message code="measuredValue.type.label"
@@ -63,6 +51,29 @@
             <span class="property-value" aria-labelledby="type-label">
                 ${measuredValueInstance.type}
             </span>
+        </li>
+
+
+        <li class="fieldcontain">
+            <span id="category-label" class="property-label"><g:message code="measuredValue.category.label"
+                                                                          default="Category"/></span>
+
+            <span class="property-value" aria-labelledby="category-label">
+                <g:link controller="category" action="show" id="${measuredValueInstance?.category?.id}">
+                    ${measuredValueInstance?.category?.name}
+                </g:link></span>
+
+        </li>
+
+        <li class="fieldcontain">
+            <span id="experiment-label" class="property-label"><g:message code="measuredValue.experiment.label"
+                                                                        default="Experiment"/></span>
+
+            <span class="property-value" aria-labelledby="experiment-label">
+                <g:link controller="experiment" action="show" id="${measuredValueInstance?.experiment?.id}">
+                    ${measuredValueInstance?.experiment?.name}
+                </g:link></span>
+
         </li>
 
 
