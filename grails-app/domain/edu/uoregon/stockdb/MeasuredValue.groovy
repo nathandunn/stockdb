@@ -16,6 +16,7 @@ class MeasuredValue implements Serializable{
     Category category
     Strain strain
     Experiment experiment
+    String type = MeasuredValueTypeEnum.TEXT
 
     String checkValid() {
         switch (type){

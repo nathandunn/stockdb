@@ -37,7 +37,7 @@
 
             <g:sortableColumn property="category.type" title="${message(code: 'measuredValue.type.label', default: 'Type')}"/>
 
-            <g:sortableColumn property="strain.name" title="${message(code: 'measuredValue.units.label', default: 'Units')}"/>
+            <g:sortableColumn property="strain.name" title="${message(code: 'measuredValue.strain.label', default: 'Strain')}"/>
 
         </tr>
         </thead>

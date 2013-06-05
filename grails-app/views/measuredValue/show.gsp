@@ -55,11 +55,22 @@
         </li>
 
 
+
         <li class="fieldcontain">
             <span id="type-label" class="property-label"><g:message code="measuredValue.type.label"
-                                                                    default="Strain"/></span>
+                                                                    default="Type"/></span>
 
             <span class="property-value" aria-labelledby="type-label">
+                ${measuredValueInstance.type}
+            </span>
+        </li>
+
+
+        <li class="fieldcontain">
+            <span id="strain-label" class="property-label"><g:message code="measuredValue.strain.label"
+                                                                      default="Strain"/></span>
+
+            <span class="property-value" aria-labelledby="strain-label">
                 <g:link controller="strain" action="show" id="${measuredValueInstance.strain.id}">
                     ${measuredValueInstance.strain.name}
                 </g:link>
@@ -67,16 +78,17 @@
 
         </li>
 
-        <g:if test="${measuredValueInstance?.category?.units}">
-            <li class="fieldcontain">
-                <span id="units-label" class="property-label"><g:message code="measuredValue.units.label"
-                                                                         default="Units"/></span>
 
-                <span class="property-value" aria-labelledby="units-label"><g:fieldValue bean="${measuredValueInstance}"
-                                                                                         field="category.units"/></span>
+        %{--<g:if test="${measuredValueInstance?.category?.units}">--}%
+            %{--<li class="fieldcontain">--}%
+                %{--<span id="units-label" class="property-label"><g:message code="measuredValue.units.label"--}%
+                                                                         %{--default="Units"/></span>--}%
 
-            </li>
-        </g:if>
+                %{--<span class="property-value" aria-labelledby="units-label"><g:fieldValue bean="${measuredValueInstance}"--}%
+                                                                                         %{--field="category.units"/></span>--}%
+
+            %{--</li>--}%
+        %{--</g:if>--}%
 
     </ol>
     <g:form>
