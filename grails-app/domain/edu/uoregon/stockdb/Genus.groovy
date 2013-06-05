@@ -24,4 +24,8 @@ class Genus {
     String getDisplayName(){
         return phylum.name + " " + name
     }
+
+    String getGenusFirst(){
+        return name + "(${phylum.name})"
+    }
 }
