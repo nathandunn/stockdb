@@ -109,12 +109,6 @@ class ExperimentController {
             return
         }
 
-        if (experimentInstance.strains) {
-            flash.error = "Must remove ${experimentInstance.strains.size()} strains before removing"
-            redirect(action: "edit", id: id)
-            return
-        }
-
         if (experimentInstance.measuredValues) {
             flash.error = "Must remove ${experimentInstance.strains.size()} measured values before removing"
             redirect(action: "edit", id: id)

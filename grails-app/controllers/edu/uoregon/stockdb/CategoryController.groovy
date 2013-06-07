@@ -26,7 +26,7 @@ class CategoryController {
     def save() {
         def categoryInstance = new Category(params)
         if (!categoryInstance.save(flush: true)) {
-            render(view: "create", model: [categoryInstance: categoryInstance])
+            render(view: "create", model: [categoryInstance :categoryInstance])
             return
         }
 
