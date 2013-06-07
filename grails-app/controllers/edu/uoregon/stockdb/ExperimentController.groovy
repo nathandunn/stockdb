@@ -7,6 +7,7 @@ class ExperimentController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def experimentService
+    def researcherService
 
 //    static navigation = [
 //            title: 'Experiment', action: 'list', order: 100
@@ -22,8 +23,8 @@ class ExperimentController {
     }
 
     def create() {
-        TreeMap<Category,List<MeasuredValue>> measuredValues = new TreeMap<Category,List<MeasuredValue>>()
-        [experimentInstance: new Experiment(params),availableMeasuredValues: MeasuredValue.findAllByExperimentIsNull()]
+        Long currentUserId = researcherService.currentUser?.id
+        [experimentInstance: new Experiment(params), currentUserId: currentUserId]
     }
 
     def save() {
@@ -46,10 +47,10 @@ class ExperimentController {
         }
 
 //        Map<String,List<String>> values = new TreeMap<String,List<String>>()
-        Map<Category,List<MeasuredValue>> values  = experimentService.createValuesMap(experimentInstance)
+        Map<Category, List<MeasuredValue>> values = experimentService.createValuesMap(experimentInstance)
 
 
-        [experimentInstance: experimentInstance,valuesMap:values]
+        [experimentInstance: experimentInstance, valuesMap: values]
     }
 
     def edit(Long id) {
@@ -60,9 +61,7 @@ class ExperimentController {
             return
         }
 
-        def measuredValues = edu.uoregon.stockdb.MeasuredValue.findAllByExperimentIsNull() + experimentInstance?.measuredValues
-
-        [experimentInstance: experimentInstance,availableMeasuredValues:measuredValues]
+        [experimentInstance: experimentInstance, currentUserId:experimentInstance?.researcher?.id]
     }
 
     def update(Long id, Long version) {
@@ -126,7 +125,7 @@ class ExperimentController {
         }
     }
 
-    def quickentry(Long id){
+    def quickentry(Long id) {
         def experimentInstance = Experiment.get(id)
         if (!experimentInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'experiment.label', default: 'Experiment'), id])

@@ -17,7 +17,7 @@
     </label>
     <g:select id="researcher" name="researcher.id" optionValue="fullName"
               from="${edu.uoregon.stockdb.Researcher.list()}" optionKey="id"
-              value="${experimentInstance?.researcher?.id}" class="many-to-one" noSelection="['null': '']"/>
+              value="${currentUserId}" class="many-to-one" noSelection="['null': '']"/>
 </div>
 
 %{--<div class="fieldcontain ${hasErrors(bean: experimentInstance, field: 'strains', 'error')} ">--}%
