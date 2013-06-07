@@ -36,6 +36,10 @@ class HostOrigin {
 //    String name
     String notes
 
+    Boolean hasStage(){
+        return stage!=null && stage!="null"
+    }
+
     String getDisplay() {
         String returnString = "${species?.commonName ?: ''} (${genotypes?.name ?: ''}) "
         if (daysPastFertilization >= 0) {
@@ -74,4 +78,14 @@ class HostOrigin {
         }
     }
 
+    String getRenderStageAndDpf() {
+        String returnString = ""
+        if(hasStage()){
+            returnString += "${stage} (${daysPastFertilization} DPF)"
+        }
+        else{
+            returnString += "${daysPastFertilization} DPF"
+        }
+        return returnString
+    }
 }

@@ -46,11 +46,12 @@
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
 						<td>
-                            %{--${hostOriginInstance.stage}--}%
-                            <g:fieldValue bean="${hostOriginInstance}" field="stage"/>
-                            <g:if test="${!hostOriginInstance.stage.contains("dpf")}">
-                                (${hostOriginInstance.daysPastFertilization} DPF)
-                            </g:if>
+                            ${hostOriginInstance.renderStageAndDpf}
+                            %{--<g:fieldValue bean="${hostOriginInstance}" field="stage"/>--}%
+                            %{--${hostOriginInstance.stage!='null' ? hostOriginInstance.stage: ""}--}%
+                            %{--<g:if test="${!hostOriginInstance?.stage?.contains("dpf")}">--}%
+                                %{--(${hostOriginInstance.daysPastFertilization} DPF)--}%
+                            %{--</g:if>--}%
 						</td>
 					
 						%{--<td>${fieldValue(bean: hostOriginInstance, field: "daysPastFertilization")}</td>--}%
