@@ -29,16 +29,23 @@
     </g:if>
     <ol class="property-list category">
 
-        <g:if test="${categoryInstance?.name}">
-            <li class="fieldcontain">
-                <span id="name-label" class="property-label"><g:message code="category.name.label"
-                                                                        default="Name"/></span>
+        <li class="fieldcontain">
+            <span id="name-label" class="property-label"><g:message code="category.name.label"
+                                                                    default="Name"/></span>
 
-                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${categoryInstance}"
-                                                                                        field="name"/></span>
+            <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${categoryInstance}"
+                                                                                    field="name"/></span>
 
-            </li>
-        </g:if>
+        </li>
+
+        <li class="fieldcontain">
+            <span id="note-label" class="property-label"><g:message code="category.note.label"
+                                                                    default="Note"/></span>
+
+            <span class="property-value" aria-labelledby="note-label"><g:fieldValue bean="${categoryInstance}"
+                                                                                    field="note"/></span>
+
+        </li>
 
         <g:if test="${categoryInstance?.measuredValues}">
             <li class="fieldcontain">

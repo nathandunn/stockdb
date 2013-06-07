@@ -19,6 +19,7 @@ class Category implements Comparable{
     String name
     MeasuredValueTypeEnum type = MeasuredValueTypeEnum.TEXT// a possible string / float
     String units
+    String note
 
     int compareTo(Object t) {
         return name.compareTo(t.name)

@@ -30,7 +30,7 @@ class CategoryController {
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'category.label', default: 'Category'), categoryInstance.id])
+        flash.message = message(code: 'default.created.message', args: [message(code: 'category.label', default: 'Category'), categoryInstance.name])
         redirect(action: "show", id: categoryInstance.id)
     }
 
@@ -83,7 +83,7 @@ class CategoryController {
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'category.label', default: 'Category'), categoryInstance.id])
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'category.label', default: 'Category'), categoryInstance.name])
         redirect(action: "show", id: categoryInstance.id)
     }
 
