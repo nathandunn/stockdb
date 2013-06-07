@@ -217,15 +217,43 @@
                                                                          default="Measured Values"/></span>
 
         <span class="property-value" aria-labelledby="strainGenotype-label">
-            <ul>
+            <table>
+                <thead>
+                <tr>
+                    <th>Experiment</th>
+                    <th>Category</th>
+                    <th>Value</th>
+                </tr>
+                </thead>
                 <g:each in="${measuredValues}" var="measuredValue">
-                    <li>
-                        <g:link action="show" controller="category"
-                                id="${measuredValue.category.id}">${measuredValue.category.name}</g:link>
-                        - ${measuredValue.value}
-                    </li>
+                    <tr>
+                        <td>
+                            <g:link action="show" controller="experiment" id="${measuredValue.experiment.id}">
+                                ${measuredValue.experiment.name}
+                            </g:link>
+                        </td>
+                        <td>
+                            <g:link action="show" controller="category" id="${measuredValue.category.id}">
+                                ${measuredValue.category.name}
+                            </g:link>
+                        </td>
+                        <td>
+                            <g:link action="show" controller="measuredValue" id="${measuredValue.id}">
+                                ${measuredValue.value}
+                            </g:link>
+                        </td>
+                    </tr>
                 </g:each>
-            </ul>
+            </table>
+            %{--<ul>--}%
+            %{--<g:each in="${measuredValues}" var="measuredValue">--}%
+            %{--<li>--}%
+            %{--<g:link action="show" controller="category"--}%
+            %{--id="${measuredValue.category.id}">${measuredValue.category.name}</g:link>--}%
+            %{--- ${measuredValue.value}--}%
+            %{--</li>--}%
+            %{--</g:each>--}%
+            %{--</ul>--}%
             %{--<g:link controller="strainGenotype" action="show" id="${strainInstance?.strainGenotype?.id}">${strainInstance?.strainGenotype?.name}</g:link>--}%
         </span>
 
