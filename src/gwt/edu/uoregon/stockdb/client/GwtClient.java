@@ -14,7 +14,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
-public class client implements EntryPoint {
+public class GwtClient implements EntryPoint {
 
     private static QuickEntryServiceAsync quickEntryServiceAsync = GWT.create(QuickEntryService.class);
 

@@ -5,5 +5,5 @@
     <inherits name='com.google.gwt.json.JSON'/>
 
     <!-- Specify the module entry point class.                   -->
-    <entry-point class="edu.uoregon.stockdb.client.client"/>
+    <entry-point class="edu.uoregon.stockdb.client.GwtClient"/>
 </module>
