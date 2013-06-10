@@ -1,8 +1,7 @@
 package edu.uoregon.stockdb.client;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.*;
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
@@ -20,8 +19,8 @@ public class ExperimentTable extends FlexTable {
     int numberRows = 0;
 
     private final int STRAIN_COLUMN = 0;
-    private final int VALUE_COLUMN = 1;
-    private final int CATEGORY_COLUMN = 2;
+    private final int CATEGORY_COLUMN = 1;
+    private final int VALUE_COLUMN = 2;
     private final int ACTION_COLUMN = 3;
 
     private final String STRAIN_KEY = "strain";
@@ -198,29 +197,38 @@ public class ExperimentTable extends FlexTable {
         selectLastCategory();
 //        categoryList.setSelectedIndex(0);
 
+        newValueBox.addKeyDownHandler(new KeyDownHandler() {
+            public void onKeyDown(KeyDownEvent event) {
+                if(event.getNativeKeyCode()== KeyCodes.KEY_ENTER){
+                    addNewMeasuredValue();
+                }
+            }
+        });
+
         addButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-//                final String strain = newStrainList.getItemText(newStrainList.getSelectedIndex());
-                final String strain = newStrainSuggestBox.getText();
-                final String value = newValueBox.getText();
-                final String category = newCategoryListBox.getItemText(newCategoryListBox.getSelectedIndex());
-                lastCategory = category;
-                quickEntryServiceAsync.createMeasuredValue(experimentId, strain, value, category, new AsyncCallback() {
-                    public void onFailure(Throwable caught) {
-                        Window.alert("failed to create record  " + strain + " " + value + " " + category);
-                    }
-
-                    public void onSuccess(Object result) {
-                        addNewRow(result.toString());
-                        clearNewEntry();
-                    }
-                });
+                addNewMeasuredValue();
             }
-
-
         });
 
         ++numberRows;
+    }
+
+    private void addNewMeasuredValue(){
+        final String strain = newStrainSuggestBox.getText();
+        final String value = newValueBox.getText();
+        final String category = newCategoryListBox.getItemText(newCategoryListBox.getSelectedIndex());
+        lastCategory = category;
+        quickEntryServiceAsync.createMeasuredValue(experimentId, strain, value, category, new AsyncCallback() {
+            public void onFailure(Throwable caught) {
+                Window.alert("failed to create record  " + strain + " " + value + " " + category);
+            }
+
+            public void onSuccess(Object result) {
+                addNewRow(result.toString());
+                clearNewEntry();
+            }
+        });
     }
 
     private void selectLastCategory() {
