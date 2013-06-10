@@ -154,6 +154,16 @@ class StrainController {
         return returnString
     }
 
+    def showFilter(String strainName){
+        Strain strain = Strain.findByName(strainName)
+        if(strain?.id!=null){
+            redirect(action: "show",id:strain.id)
+        }
+        else{
+            render(view:"strainNotFound",model:[name:strainName])
+        }
+    }
+
     def save() {
 
         if(params.newGenus){

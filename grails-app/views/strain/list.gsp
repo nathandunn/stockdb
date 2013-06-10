@@ -11,17 +11,27 @@
 <body>
 
 <shiro:hasRole name="${ResearcherService.ROLE_ADMINISTRATOR}">
-<div class="nav" role="navigation">
-    <ul>
+    <div class="nav" role="navigation">
+        <ul>
 
-        <li><g:link class="create" action="create"><g:message code="default.new.label"
-                                                              args="[entityName]"/></g:link></li>
-    </ul>
-</div>
-    </shiro:hasRole>
+            <li><g:link class="create" action="create"><g:message code="default.new.label"
+                                                                  args="[entityName]"/></g:link></li>
+        </ul>
+    </div>
+</shiro:hasRole>
 
 <div class="list-filter">
     <h3>Filter</h3>
+    <g:form action="showFilter">
+        <table>
+            <tr><td>
+                <b>Go to Strain</b>
+                </td>
+                <td>
+                <g:textField name="strainName"/>
+            </td></tr>
+        </table>
+    </g:form>
     <g:form>
         <table>
             <tr>
@@ -29,11 +39,11 @@
                     <strong>Strain Genus</strong>
                 </td>
                 <td>
-                    <g:select name="genus" from="${Genus.findAllByHost(false,[sort:'name',order:'asc'])}"
+                    <g:select name="genus" from="${Genus.findAllByHost(false, [sort: 'name', order: 'asc'])}"
                               optionValue="name"
                               optionKey="id"
                               noSelection="[null: '- All -']"
-                        value="${strainFilters?.get('genus')}"
+                              value="${strainFilters?.get('genus')}"
                               onchange="
                               ${remoteFunction(
                                       action: 'addFilter'
@@ -50,7 +60,7 @@
                     <strong>Strain Phylum</strong>
                 </td>
                 <td>
-                    <g:select name="phylum" from="${Phylum.findAllByHost(false,[sort:'name',order:'asc'])}"
+                    <g:select name="phylum" from="${Phylum.findAllByHost(false, [sort: 'name', order: 'asc'])}"
                               optionValue="name"
                               optionKey="id"
                               noSelection="[null: '- All -']"
@@ -121,7 +131,8 @@
         <thead>
         <tr>
 
-            <g:sortableColumn property="name" defaultOrder="asc" title="${message(code: 'strain.name.label', default: 'Index')}"/>
+            <g:sortableColumn property="name" defaultOrder="asc"
+                              title="${message(code: 'strain.name.label', default: 'Index')}"/>
 
             %{--<th>Genus / Phylum</th>--}%
             <g:sortableColumn property="genus.name" title="${message(code: 'strain.genus.label', default: 'Genus')}"/>
