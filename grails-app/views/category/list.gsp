@@ -28,7 +28,7 @@
         <tr>
 
             <g:sortableColumn property="name" title="${message(code: 'category.name.label', default: 'Name')}"/>
-            <th>Number of Values</th>
+            <th>Number of Measured Values</th>
 
         </tr>
         </thead>

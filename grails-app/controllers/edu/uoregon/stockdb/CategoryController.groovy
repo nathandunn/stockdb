@@ -42,9 +42,23 @@ class CategoryController {
             return
         }
 
-        def measuredValues = MeasuredValue.executeQuery("from MeasuredValue mv where mv.category = :category order by mv.category.name asc ",[category: categoryInstance])
+        List<MeasuredValue> measuredValues = MeasuredValue.executeQuery("from MeasuredValue mv where mv.category = :category order by mv.category.name asc ",[category: categoryInstance])
 
-        [categoryInstance: categoryInstance,measuredValues:measuredValues]
+        // should be a list of 1 - category, 2 - grouped measured values, 3- strains
+//        HashMap<Category,List<GroupedMeasuredValues>> map = new LinkedHashMap<Category,ArrayList<GroupedMeasuredValues>>()
+
+        Map<String,CategoryView> map = new HashMap<String,CategoryView>()
+
+        for(MeasuredValue measuredValue in measuredValues){
+            CategoryView categoryView = map.get(measuredValue.category.name)
+            if(!categoryView){
+                categoryView = new CategoryView(category: measuredValue.category)
+            }
+            categoryView.addMeasuredValue(measuredValue)
+            map.put(measuredValue.category.name,categoryView)
+        }
+
+        [categoryInstance: categoryInstance,measuredValues:measuredValues,categories:map.values()]
     }
 
     def edit(Long id) {

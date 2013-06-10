@@ -53,8 +53,9 @@
                 <span id="notes-label" class="property-label"><g:message code="isolate.notes.label"
                                                                          default="Notes"/></span>
 
-                <span class="property-value" aria-labelledby="notes-label"><g:fieldValue bean="${isolateInstance}"
-                                                                                         field="notes"/></span>
+                <span class="property-value" aria-labelledby="notes-label">
+                    ${isolateInstance?.notes?.trim()!='null'?isolateInstance.notes:"None"}
+                </span>
 
             </li>
         </g:if>
