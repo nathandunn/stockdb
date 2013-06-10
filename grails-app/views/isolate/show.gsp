@@ -30,9 +30,9 @@
     <ol class="property-list isolate">
 
         <li class="fieldcontain">
-            <span id="media-label" class="property-label"><g:message code="isolate.id.label" default="ID"/></span>
+            <span id="id-label" class="property-label"><g:message code="isolate.id.label" default="ID"/></span>
 
-            <span class="property-value" aria-labelledby="media-label"><g:fieldValue bean="${isolateInstance}"
+            <span class="property-value" aria-labelledby="id-label"><g:fieldValue bean="${isolateInstance}"
                                                                                      field="id"/></span>
 
         </li>

@@ -38,7 +38,7 @@ navigation = {
 
         strain(controller: 'strain', action: 'list') {
             stock(controller: 'stock', action: 'list')
-            isolate(controller: 'isolate', action: 'list')
+            isolateConditions(controller: 'isolate', action: 'list')
             location(controller: 'location', action: 'list')
             genotype(controller: 'strainGenotype', action: 'list')
             genome(controller: 'genome', action: 'list')

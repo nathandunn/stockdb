@@ -38,7 +38,7 @@ class StubData {
         csvReader.eachLine { tokens ->
             if (!tokens[0]) return Strain.count
 
-            println "row ${rowIndex} - ${tokens[0]}"
+//            println "row ${rowIndex} - ${tokens[0]}"
 
             Strain strain = new Strain(name: tokens[0])
 
@@ -115,8 +115,15 @@ class StubData {
                 if (isolateData.length > 3) {
                     notes = isolateData[3..isolateData.length - 1]?.join("")
                 }
-                isolateCondition = IsolateCondition.findOrSaveByOxygenConditionAndTemperatureAndMediaAndNotes(oxygenCondition, temperature, media, notes)
-                strain.isolateCondition = isolateCondition
+//                isolateCondition = IsolateCondition.findOrSaveByOxygenConditionAndTemperatureAndMediaAndNotes(oxygenCondition, temperature, media, notes)
+                isolateCondition = IsolateCondition.findOrSaveByOxygenConditionAndTemperatureAndMedia(oxygenCondition, temperature, media)
+                if(isolateCondition.notes){
+                    isolateCondition.notes += "\n"
+                }
+                isolateCondition.notes += notes
+
+//                strain.isolateCondition = isolateCondition
+                isolateCondition.addToStrains(strain)
             }
 
 //            if (strain) {
@@ -165,10 +172,10 @@ class StubData {
             String physicalLocation = tokens[2]
 
             if (physicalLocation.contains("-") && physicalLocation.startsWith("Box")) {
-                println "parsing location ${physicalLocation}"
+//                println "parsing location ${physicalLocation}"
                 Integer boxNumber = physicalLocation.substring(3, physicalLocation.indexOf("-") - 1).trim() == "I" ? 1 : null
                 Integer boxIndex = Integer.parseInt(physicalLocation.substring(physicalLocation.indexOf("-") + 1).trim())
-                println "parsing location result ${boxNumber} - ${boxNumber}"
+//                println "parsing location result ${boxNumber} - ${boxNumber}"
 
                 stock.boxIndex = boxIndex
                 stock.boxNumber = boxNumber
@@ -279,7 +286,7 @@ class StubData {
         csvReader.eachLine { tokens ->
             if (!tokens[0]) return Strain.count
 
-            println "row ${rowIndex} - ${tokens[0]}"
+//            println "row ${rowIndex} - ${tokens[0]}"
 
             Strain strain
             // if Strain exists . . .
