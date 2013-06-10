@@ -18,7 +18,7 @@
               from="${edu.uoregon.stockdb.Genus.findAllByHost(false, [sort: 'name', order: 'asc'])}" optionKey="id"
               value="${strainInstance?.genus?.id}" optionValue="genusFirst" class="many-to-one"
               noSelection="['null': '- Choose Existing -']"/>
-    <g:link controller="genus" action="create">Create Genus</g:link>
+    %{--<g:link controller="genus" action="create">Create Genus</g:link>--}%
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'genusCreate', 'error')} required">
@@ -48,18 +48,68 @@
     <g:link controller="genome" action="list">Browse Genomes</g:link>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'hostOrigin', 'error')} ">
-    <label for="hostOrigin">
-        <g:message code="strain.hostOrigin.label" default="Host Origin"/>
+%{--<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'hostOrigin', 'error')} ">--}%
+    %{--<label for="hostOrigin">--}%
+        %{--<g:message code="strain.hostOrigin.label" default="Host Origin"/>--}%
+        %{--<span class="required-indicator">*</span>--}%
+
+    %{--</label>--}%
+    %{--<g:select id="hostOrigin" name="hostOrigin.id" from="${edu.uoregon.stockdb.HostOrigin.list()}" optionKey="id"--}%
+              %{--value="${strainInstance?.hostOrigin?.id}"--}%
+              %{--optionValue="display"--}%
+              %{--class="many-to-one" noSelection="['null': '- Choose Existing -']"/>--}%
+    %{--<g:link controller="hostOrigin" action="create">Create Host</g:link>--}%
+%{--</div>--}%
+
+<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'hostSpecies', 'error')} ">
+    <label for="hostSpecies">
+        <g:message code="strain.hostSpecies.label" default="Host Species"/>
         <span class="required-indicator">*</span>
 
     </label>
-    <g:select id="hostOrigin" name="hostOrigin.id" from="${edu.uoregon.stockdb.HostOrigin.list()}" optionKey="id"
-              value="${strainInstance?.hostOrigin?.id}"
-              optionValue="display"
-              class="many-to-one" noSelection="['null': '- Choose Existing -']"/>
-    <g:link controller="hostOrigin" action="create">Create Host</g:link>
+    <g:select id="hostSpecies" name="hostSpecies" from="${edu.uoregon.stockdb.Species.list()}" optionKey="id"
+              value="${strainInstance?.hostOrigin?.species?.id}"
+              optionValue="commonName"
+              class="many-to-one"/>
+    %{--<g:link controller="hostOrigin" action="create">Create Host</g:link>--}%
 </div>
+
+<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'hostGenotype', 'error')} ">
+    <label for="hostGenotype">
+        <g:message code="strain.hostGenotype.label" default="Host Genotype(s)"/>
+        <span class="required-indicator">*</span>
+
+    </label>
+    <g:select id="hostGenotype" name="hostGenotype" from="${edu.uoregon.stockdb.HostGenotype.list()}" optionKey="id"
+              value="${strainInstance?.hostOrigin?.genotypes?.id}"
+              optionValue="name"
+        multiple=""
+              class="many-to-many" />
+    %{--<g:link controller="hostOrigin" action="create">Create Host</g:link>--}%
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'hostAnatomy', 'error')} ">
+    <label for="hostAnatomy">
+        <g:message code="strain.hostAnatomy.label" default="Host Anatomy"/>
+    </label>
+    <g:field type="text" name="anatomy" value="${strainInstance?.hostOrigin?.anatomy}" placeholder="Intestine" />
+    URL:
+    <g:field type="url" size="50" name="anatomyUrl" value="${strainInstance?.hostOrigin?.anatomyUrl}" placeholder="http://zfin.org/action/ontology/term-detail/ZFA:0001338" />
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'hostAge', 'error')} ">
+    <label for="hostAge">
+        <g:message code="strain.hostAge.label" default="Host Age"/>
+    </label>
+    Stage:
+    <g:field type="text" name="stage" value="${strainInstance?.hostOrigin?.stage}" placeholder="Adult, Larval"/>
+
+    - or -
+    DPF:
+    <g:field type="number" name="dpf" value="${strainInstance?.hostOrigin?.daysPastFertilization}"/>
+
+</div>
+
 
 <div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'formerCloneAlias', 'error')} ">
     <label for="formerCloneAlias">
@@ -69,17 +119,43 @@
     <g:textField name="formerCloneAlias" value="${strainInstance?.formerCloneAlias}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'isolateCondition', 'error')} ">
+%{--<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'isolateCondition', 'error')} ">--}%
+    %{--<label for="isolate">--}%
+        %{--<g:message code="strain.isolate.label" default="Isolate Condition"/>--}%
+        %{--<span class="required-indicator">*</span>--}%
+
+    %{--</label>--}%
+    %{--<g:select id="isolateCondition" name="isolateCondition.id" from="${IsolateCondition.list()}" optionKey="id"--}%
+              %{--value="${strainInstance?.isolateCondition?.id}"--}%
+              %{--optionValue="display"--}%
+              %{--class="many-to-one" noSelection="['null': '- Choose Existing -']"/>--}%
+    %{--<g:link controller="isolate" action="create">Create Isolate Condition</g:link>--}%
+%{--</div>--}%
+
+<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'isolateConditionMedia', 'error')} ">
     <label for="isolate">
-        <g:message code="strain.isolate.label" default="Isolate Condition"/>
+        <g:message code="strain.isolate.media.label" default="Isolate Condition Media"/>
         <span class="required-indicator">*</span>
 
     </label>
-    <g:select id="isolateCondition" name="isolateCondition.id" from="${IsolateCondition.list()}" optionKey="id"
-              value="${strainInstance?.isolateCondition?.id}"
-              optionValue="display"
-              class="many-to-one" noSelection="['null': '- Choose Existing -']"/>
-    <g:link controller="isolate" action="create">Create Isolate Condition</g:link>
+    <g:field type="text" name="media" value="${strainInstance?.isolateCondition?.media}" />
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'isolateConditionOxygenCondition', 'error')} ">
+    <label for="isolate">
+        <g:message code="strain.isolate.oxygen.label" default="Isolate Condition Oxygen"/>
+        <span class="required-indicator">*</span>
+
+    </label>
+    <g:field type="text" name="oxygenCondition" value="${strainInstance?.isolateCondition?.oxygenCondition}" placeholder="Aerobic, Anaerobic"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'isolateConditionTemperature', 'error')} ">
+    <label for="isolate">
+        <g:message code="strain.isolate.temperature.label" default="Isolate Condition Temperature"/>
+        <span class="required-indicator">*</span>
+    </label>
+    <g:field type="number" name="temperature" value="${strainInstance?.isolateCondition?.temperature}" />
 </div>
 
 
