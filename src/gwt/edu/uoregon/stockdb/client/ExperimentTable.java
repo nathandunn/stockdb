@@ -33,19 +33,21 @@ public class ExperimentTable extends FlexTable {
     private final String EXPERIMENT_KEY = "experimentId";
     private final String MEASURED_VALUE_KEY = "id";
 
-    private String lastCategory = null ;
+    private String lastCategory = null;
+
+    private MultiWordSuggestOracle strainOracle = new MultiWordSuggestOracle();
 
     private Button addButton = new Button("Add");
-    private ListBox newStrainList = new ListBox();
+    //    private ListBox newStrainList = new ListBox();
+    private SuggestBox newStrainSuggestBox = new SuggestBox(strainOracle);
     private TextBox newValueBox = new TextBox();
     private ListBox newCategoryListBox = new ListBox();
-    List<String> categoryList = new ArrayList<String>() ;
+    List<String> categoryList = new ArrayList<String>();
 
-    private Integer experimentId = 0 ;
+    private Integer experimentId = 0;
 
     public final static String ROW_HEIGHT = "20px";
-    MultiWordSuggestOracle strainOracle = new MultiWordSuggestOracle();
-    MultiWordSuggestOracle categoryOracle = new MultiWordSuggestOracle();
+//    MultiWordSuggestOracle categoryOracle = new MultiWordSuggestOracle();
 
     private static QuickEntryServiceAsync quickEntryServiceAsync = GWT.create(QuickEntryService.class);
 
@@ -70,16 +72,16 @@ public class ExperimentTable extends FlexTable {
 
         JSONArray strains = measuredValueDto.get(STRAINS_KEY).isArray();
         for (int i = 0; i < strains.size(); i++) {
-            newStrainList.addItem(strains.get(i).isString().stringValue());
+//            newStrainList.addItem(strains.get(i).isString().stringValue());
             strainOracle.add(strains.get(i).isString().stringValue());
         }
 
 
         JSONArray categories = measuredValueDto.get(CATEGORIES_KEY).isArray();
         for (int i = 0; i < categories.size(); i++) {
-            String category = categories.get(i).isString().stringValue() ;
+            String category = categories.get(i).isString().stringValue();
             newCategoryListBox.addItem(category);
-            categoryOracle.add(category);
+//            categoryOracle.add(category);
             categoryList.add(category);
         }
 
@@ -106,14 +108,13 @@ public class ExperimentTable extends FlexTable {
         createFooters();
 
         // for all cells set style name
-        for(int col = 0 ; col < 4 ; col++){
-            for(int row = 0 ; row < getRowCount() ; ++row){
-                getCellFormatter().setStyleName(row,col,"flexTable");
+        for (int col = 0; col < 4; col++) {
+            for (int row = 0; row < getRowCount(); ++row) {
+                getCellFormatter().setStyleName(row, col, "flexTable");
             }
         }
 
     }
-
 
 
 //        ListBox strainList = new ListBox();
@@ -131,21 +132,21 @@ public class ExperimentTable extends FlexTable {
 
     private void createRow(int numberRows, String strain, String value, String category, String measuredValueId) {
 //        TextBox strainBox = new TextBox();
-        StrainEditBox strainEditBox = new StrainEditBox(strainOracle,Double.valueOf(measuredValueId).intValue(),strain) ;
+        StrainEditBox strainEditBox = new StrainEditBox(strainOracle, Double.valueOf(measuredValueId).intValue(), strain);
         setWidget(numberRows, STRAIN_COLUMN, strainEditBox);
 
-        ValueEditBox valueEditBox = new ValueEditBox(Double.valueOf(measuredValueId).intValue(),value);
+        ValueEditBox valueEditBox = new ValueEditBox(Double.valueOf(measuredValueId).intValue(), value);
         setWidget(numberRows, VALUE_COLUMN, valueEditBox);
 
-        CategoryListBox categoryListBox = new CategoryListBox(Double.valueOf(measuredValueId).intValue(),category,this.categoryList);
+        CategoryListBox categoryListBox = new CategoryListBox(Double.valueOf(measuredValueId).intValue(), category, this.categoryList);
         setWidget(numberRows, CATEGORY_COLUMN, categoryListBox);
 
-        RemoveRowButton removeButton = new RemoveRowButton(numberRows, Double.valueOf(measuredValueId).intValue(),this);
+        RemoveRowButton removeButton = new RemoveRowButton(numberRows, Double.valueOf(measuredValueId).intValue(), this);
         removeButton.setHeight(ROW_HEIGHT);
         removeButton.setStylePrimaryName("quick-entry-table");
 
         setWidget(numberRows, ACTION_COLUMN, removeButton);
-        getRowFormatter().setStylePrimaryName(numberRows,"quick-entry-table");
+        getRowFormatter().setStylePrimaryName(numberRows, "quick-entry-table");
 
 
     }
@@ -158,16 +159,17 @@ public class ExperimentTable extends FlexTable {
 
 //
         createRow(insertRow,
-                newStrainList.getItemText(newStrainList.getSelectedIndex())
+//                newStrainList.getItemText(newStrainList.getSelectedIndex())
+                newStrainSuggestBox.getText()
                 , newValueBox.getText()
                 , newCategoryListBox.getItemText(newCategoryListBox.getSelectedIndex()),
                 measuredValueId
         );
 
-        for(int col = 0 ; col < ACTION_COLUMN ; col++){
+        for (int col = 0; col < ACTION_COLUMN; col++) {
 //            for(int row = 0 ; row < getRowCount() ; ++row){
 //                getCellFormatter().setStyleName(row,col,"flexTable");
-            getCellFormatter().setStyleName(insertRow,col,"flexTable");
+            getCellFormatter().setStyleName(insertRow, col, "flexTable");
 //            }
         }
 
@@ -175,20 +177,22 @@ public class ExperimentTable extends FlexTable {
     }
 
     private void clearNewEntry() {
-        newStrainList.setSelectedIndex(0);
+//        newStrainList.setSelectedIndex(0);
 
+        newStrainSuggestBox.setText("");
         selectLastCategory();
         newValueBox.setText("");
     }
 
     private void createFooters() {
-        setWidget(numberRows, STRAIN_COLUMN, newStrainList);
+//        setWidget(numberRows, STRAIN_COLUMN, newStrainList);
+        setWidget(numberRows, STRAIN_COLUMN, newStrainSuggestBox);
         setWidget(numberRows, VALUE_COLUMN, newValueBox);
         setWidget(numberRows, CATEGORY_COLUMN, newCategoryListBox);
         setWidget(numberRows, ACTION_COLUMN, addButton);
 
-        newStrainList.insertItem("- Choose Strain - ", 0);
-        newStrainList.setSelectedIndex(0);
+//        newStrainList.insertItem("- Choose Strain - ", 0);
+//        newStrainList.setSelectedIndex(0);
         newCategoryListBox.insertItem("- Choose Category - ", 0);
 
         selectLastCategory();
@@ -196,13 +200,14 @@ public class ExperimentTable extends FlexTable {
 
         addButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                final String strain = newStrainList.getItemText(newStrainList.getSelectedIndex());
+//                final String strain = newStrainList.getItemText(newStrainList.getSelectedIndex());
+                final String strain = newStrainSuggestBox.getText();
                 final String value = newValueBox.getText();
                 final String category = newCategoryListBox.getItemText(newCategoryListBox.getSelectedIndex());
-                lastCategory = category ;
-                quickEntryServiceAsync.createMeasuredValue(experimentId,strain,value,category,new AsyncCallback(){
+                lastCategory = category;
+                quickEntryServiceAsync.createMeasuredValue(experimentId, strain, value, category, new AsyncCallback() {
                     public void onFailure(Throwable caught) {
-                        Window.alert("failed to create record  "+strain+" "+value+" "+category);
+                        Window.alert("failed to create record  " + strain + " " + value + " " + category);
                     }
 
                     public void onSuccess(Object result) {
@@ -219,12 +224,12 @@ public class ExperimentTable extends FlexTable {
     }
 
     private void selectLastCategory() {
-        if(lastCategory==null){
+        if (lastCategory == null) {
             newCategoryListBox.setSelectedIndex(0);
         }
-        if(lastCategory!=null){
-            for(int i = 0 ; i < newCategoryListBox.getItemCount() ; i++){
-                if(lastCategory.equals(newCategoryListBox.getItemText(i))){
+        if (lastCategory != null) {
+            for (int i = 0; i < newCategoryListBox.getItemCount(); i++) {
+                if (lastCategory.equals(newCategoryListBox.getItemText(i))) {
                     newCategoryListBox.setSelectedIndex(i);
                 }
             }
