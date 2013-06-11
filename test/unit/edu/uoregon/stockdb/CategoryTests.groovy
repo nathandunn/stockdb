@@ -1,9 +1,6 @@
 package edu.uoregon.stockdb
 
-
-
-import grails.test.mixin.*
-import org.junit.*
+import grails.test.mixin.TestFor
 
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
@@ -14,8 +11,16 @@ class CategoryTests {
     void testSomething() {
         Category c1 = new Category(
                 name: "c1"
-                ,type: MeasuredValueTypeEnum.INTEGER
-                ,units: "inches"
-        )  az
+                , type: MeasuredValueTypeEnum.INTEGER
+                , units: "inches"
+        ).save(failOnError: true)
+
+        Category c2 = new Category(
+                name: "c2"
+                , type: MeasuredValueTypeEnum.TEXT
+                , units: "thing"
+        ).save(failOnError: true)
+
+        assertTrue(c1.compareTo(c2)<0)
     }
 }
