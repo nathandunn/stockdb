@@ -3,13 +3,16 @@ package edu.uoregon.stockdb
 import grails.test.mixin.*
 
 @TestFor(IsolateController)
-@Mock(IsolateCondition)
+@Mock([IsolateCondition,Strain,Researcher])
 class IsolateControllerTests {
 
     def populateValidParams(params) {
         assert params != null
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["isolatedWhen"] = new Date()
+        params["oxygenCondition"] = "Lots of air"
+        params["temperature"] = 97.4
+        params["media"] = "Agar"
+        params["notes"] = "Some notes "
     }
 
     void testIndex() {
@@ -98,7 +101,7 @@ class IsolateControllerTests {
 
         // test invalid parameters in update
         params.id = isolate.id
-        //TODO: add invalid values to params object
+        params.isolatedWhen = null
 
         controller.update()
 

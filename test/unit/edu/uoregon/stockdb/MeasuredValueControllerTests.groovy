@@ -1,9 +1,7 @@
 package edu.uoregon.stockdb
 
-
-
-import org.junit.*
-import grails.test.mixin.*
+import grails.test.mixin.Mock
+import grails.test.mixin.TestFor
 
 @TestFor(MeasuredValueController)
 @Mock(MeasuredValue)
@@ -11,8 +9,25 @@ class MeasuredValueControllerTests {
 
     def populateValidParams(params) {
         assert params != null
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["value"] = 'someValidName'
+        params["category"] = new Category(
+                name: "A Category"
+        )
+        Phylum phylum = new Phylum(
+                name: "aPhylum"
+        )
+        params["strain"] = new Strain(
+                name: "Z1234"
+                , genus: new Genus(
+                name: "asdf"
+                , phylum: phylum
+        ))
+
+        params["experiment"] = new Experiment(
+                name: "An Experiment"
+                ,whenPerformed: new Date()
+        )
+
     }
 
     void testIndex() {
@@ -101,7 +116,7 @@ class MeasuredValueControllerTests {
 
         // test invalid parameters in update
         params.id = measuredValue.id
-        //TODO: add invalid values to params object
+        params.category = null
 
         controller.update()
 

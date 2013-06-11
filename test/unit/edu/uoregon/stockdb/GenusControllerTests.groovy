@@ -1,18 +1,17 @@
 package edu.uoregon.stockdb
-
-
-
-import org.junit.*
-import grails.test.mixin.*
+import grails.test.mixin.Mock
+import grails.test.mixin.TestFor
 
 @TestFor(GenusController)
-@Mock(Genus)
+@Mock([Genus,Phylum,Strain])
 class GenusControllerTests {
 
     def populateValidParams(params) {
         assert params != null
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["name"] = "Thingy"
+        params["phylum"] = new Phylum(
+                name: "Annelida"
+        )
     }
 
     void testIndex() {
@@ -101,7 +100,7 @@ class GenusControllerTests {
 
         // test invalid parameters in update
         params.id = genus.id
-        //TODO: add invalid values to params object
+        params.name = null
 
         controller.update()
 

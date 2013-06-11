@@ -20,7 +20,8 @@ class PhylumController {
     }
 
     def create() {
-        [phylumInstance: new Phylum(host:true,params)]
+        params.host = true
+        [phylumInstance: new Phylum(params)]
     }
 
     def save() {
@@ -42,7 +43,8 @@ class PhylumController {
             return
         }
 
-        def strains = Strain.findAllByGenusInList(phylumInstance.genuses,[sort:"genus.name",order:"asc"])
+//        def strains = Strain.findAllByGenusInList(phylumInstance.genuses,[sort:"genus.name",order:"asc"])
+        def strains = Strain.findAllByGenusInList([phylumInstance.genuses],[sort:"genus.name",order:"asc"])
 
         [phylumInstance: phylumInstance,genuses:Genus.findAllByPhylum(phylumInstance,[sort:"name",order:"asc"]),strains:strains]
     }

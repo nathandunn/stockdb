@@ -1,9 +1,6 @@
 package edu.uoregon.stockdb
-
-
-
-import org.junit.*
-import grails.test.mixin.*
+import grails.test.mixin.Mock
+import grails.test.mixin.TestFor
 
 @TestFor(LocationController)
 @Mock(Location)
@@ -11,8 +8,7 @@ class LocationControllerTests {
 
     def populateValidParams(params) {
         assert params != null
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["name"] = 'Here'
     }
 
     void testIndex() {
@@ -101,7 +97,7 @@ class LocationControllerTests {
 
         // test invalid parameters in update
         params.id = location.id
-        //TODO: add invalid values to params object
+        params.name = null
 
         controller.update()
 

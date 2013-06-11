@@ -1,10 +1,6 @@
 package edu.uoregon.stockdb
 
-
-
-import grails.test.mixin.*
-import org.junit.*
-
+import grails.test.mixin.TestFor
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
@@ -12,6 +8,9 @@ import org.junit.*
 class StrainTests {
 
     void testSomething() {
-       fail "Implement me"
+        Strain strain = new Strain(
+                name:"Z123"
+        )
+        .save(failOnError: true)
     }
 }

@@ -3,13 +3,12 @@ package edu.uoregon.stockdb
 import grails.test.mixin.*
 
 @TestFor(HostGenotypeController)
-@Mock(HostGenotype)
+@Mock([HostGenotype,HostOrigin,Strain])
 class HostGenotypeControllerTests {
 
     def populateValidParams(params) {
         assert params != null
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["name"] = 'WildType'
     }
 
     void testIndex() {
@@ -98,7 +97,7 @@ class HostGenotypeControllerTests {
 
         // test invalid parameters in update
         params.id = hostGenotype.id
-        //TODO: add invalid values to params object
+        params.name = null
 
         controller.update()
 

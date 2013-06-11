@@ -49,9 +49,12 @@ class ResearcherController {
         }
 
         println "params: ${params}"
-        def researcherInstance = new Researcher(params)
+        Researcher researcherInstance = new Researcher(params)
         Role userRole = Role.findByName(ResearcherService.ROLE_USER)
-        researcherInstance.addToRoles( userRole )
+        println "found role: ${userRole}"
+        if(researcherInstance){
+            researcherInstance?.addToRoles( userRole )
+        }
 
         if (!researcherInstance.save(flush: true)) {
             render(view: "create", model: [researcherInstance: researcherInstance])
@@ -127,7 +130,7 @@ class ResearcherController {
         researcherInstance.properties = params
 
         if (!researcherInstance.save(flush: true)) {
-            reutnder(view: "edit", model: [researcherInstance: researcherInstance])
+            render(view: "edit", model: [researcherInstance: researcherInstance])
             return
         }
 
@@ -144,7 +147,6 @@ class ResearcherController {
         }
 
         try {
-            println "researcher experiments ${researcherInstance.experiments.size()}"
             if (researcherInstance.isolateConditions) {
                 flash.error = "Must remove researcher from ${researcherInstance.isolateConditions.size()} isolate conditions before removing"
                 redirect(action: "show", id: id)

@@ -11,6 +11,8 @@ import grails.test.mixin.*
 class IsolateTests {
 
     void testSomething() {
-        fail "Implement me"
+        IsolateCondition isolateCondition = new IsolateCondition(
+                isolatedWhen: new Date()
+        ).save(failOnError: true)
     }
 }

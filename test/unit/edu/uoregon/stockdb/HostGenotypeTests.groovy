@@ -11,6 +11,8 @@ import grails.test.mixin.*
 class HostGenotypeTests {
 
     void testSomething() {
-        fail "Implement me"
+        HostGenotype hostGenotype = new HostGenotype(
+                name: "WildType"
+        ).save(failOnError: true)
     }
 }

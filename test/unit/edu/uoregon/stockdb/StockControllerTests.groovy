@@ -1,9 +1,6 @@
 package edu.uoregon.stockdb
-
-
-
-import org.junit.*
-import grails.test.mixin.*
+import grails.test.mixin.Mock
+import grails.test.mixin.TestFor
 
 @TestFor(StockController)
 @Mock(Stock)
@@ -11,8 +8,8 @@ class StockControllerTests {
 
     def populateValidParams(params) {
         assert params != null
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["boxNumber"] = 3
+        params["boxIndex"] = 12
     }
 
     void testIndex() {
@@ -101,7 +98,7 @@ class StockControllerTests {
 
         // test invalid parameters in update
         params.id = stock.id
-        //TODO: add invalid values to params object
+        params.boxNumber = null
 
         controller.update()
 

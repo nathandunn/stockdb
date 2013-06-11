@@ -26,6 +26,7 @@ class GenomeController {
     def save() {
         def genomeInstance = new Genome(params)
         if (!genomeInstance.save(flush: true)) {
+            println "failed to save "
             render(view: "create", model: [genomeInstance: genomeInstance])
             return
         }
@@ -35,13 +36,16 @@ class GenomeController {
             genomeInstance.addToStrains(strain)
             strain.genome = genomeInstance
             if (!strain.save(flush: true)) {
+                println "failed to save a strain "
                 render(view: "edit", model: [genomeInstance: genomeInstance])
                 return
             }
         }
 
+
         flash.message = message(code: 'default.created.message', args: [message(code: 'genome.label', default: 'Genome'), genomeInstance.display])
-        redirect(action: "show", id: genomeInstance.id)
+
+        redirect(action: "show", id: genomeInstance.id,model: [genomeInstance: genomeInstance])
     }
 
     def show(Long id) {

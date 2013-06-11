@@ -1,10 +1,6 @@
 package edu.uoregon.stockdb
 
-
-
-import grails.test.mixin.*
-import org.junit.*
-
+import grails.test.mixin.TestFor
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
@@ -12,6 +8,12 @@ import org.junit.*
 class GenomeTests {
 
     void testSomething() {
-        fail "Implement me"
+        Genome genome = new Genome(
+                url: "http://asdfasdf.com"
+                ,size:12.2
+                ,quality: 12.2
+                ,note:"yoyo"
+        )
+        .save(failOnError: true)
     }
 }

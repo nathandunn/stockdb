@@ -1,10 +1,6 @@
 package edu.uoregon.stockdb
 
-
-
-import grails.test.mixin.*
-import org.junit.*
-
+import grails.test.mixin.TestFor
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
@@ -12,6 +8,9 @@ import org.junit.*
 class HostFacilityTests {
 
     void testSomething() {
-       fail "Implement me"
+        HostFacility hostFacility = new HostFacility(
+                name: "Dow the Hall"
+        )
+        .save(failOnError: true)
     }
 }

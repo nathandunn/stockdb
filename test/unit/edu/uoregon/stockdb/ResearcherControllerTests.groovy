@@ -1,18 +1,18 @@
 package edu.uoregon.stockdb
-
-
-
-import org.junit.*
-import grails.test.mixin.*
+import grails.test.mixin.Mock
+import grails.test.mixin.TestFor
 
 @TestFor(ResearcherController)
-@Mock(Researcher)
+@Mock([Researcher,Role])
 class ResearcherControllerTests {
 
     def populateValidParams(params) {
         assert params != null
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["username"] = 'test@test.com'
+        params["firstName"] = 'MyFirst'
+        params["lastName"] = 'MyLast'
+
+        Role role = Role.findOrSaveByName(ResearcherService.ROLE_USER).save(failOnError: true)
     }
 
     void testIndex() {
@@ -101,7 +101,7 @@ class ResearcherControllerTests {
 
         // test invalid parameters in update
         params.id = researcher.id
-        //TODO: add invalid values to params object
+        params.username = "asdfadsf"
 
         controller.update()
 

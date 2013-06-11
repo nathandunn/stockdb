@@ -1,18 +1,29 @@
 package edu.uoregon.stockdb
-
-
-
-import org.junit.*
-import grails.test.mixin.*
+import grails.test.mixin.Mock
+import grails.test.mixin.TestFor
 
 @TestFor(HostOriginController)
-@Mock(HostOrigin)
+@Mock([HostOrigin,HostFacility,Phylum,Genus,Species,Strain])
 class HostOriginControllerTests {
 
     def populateValidParams(params) {
         assert params != null
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["stage"] = 'Adult'
+        params["anatomy"] = 'Liver'
+        params["hostFacility"] = new HostFacility(
+                name: "My basement"
+        )
+        Phylum phylum = new Phylum(
+                name:"aPhylum"
+        )
+        Genus genus = new Genus(
+                name: "aGenus"
+                ,phylum: phylum
+        )
+        params["species"] = new Species(
+                commonName: "Thingamajig"
+                ,genus: genus
+        )
     }
 
     void testIndex() {
@@ -101,7 +112,7 @@ class HostOriginControllerTests {
 
         // test invalid parameters in update
         params.id = hostOrigin.id
-        //TODO: add invalid values to params object
+        hostOrigin.species = null
 
         controller.update()
 

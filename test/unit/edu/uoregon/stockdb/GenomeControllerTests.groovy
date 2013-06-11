@@ -1,18 +1,19 @@
 package edu.uoregon.stockdb
-
-
-
-import org.junit.*
-import grails.test.mixin.*
+import grails.test.mixin.Mock
+import grails.test.mixin.TestFor
 
 @TestFor(GenomeController)
-@Mock(Genome)
+@Mock([Genome,Strain])
 class GenomeControllerTests {
 
     def populateValidParams(params) {
         assert params != null
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["url"] = 'http://rast.nmpdr.org/rast.cgi?page=JobDetails&job=40453'
+        params["size"] = 12.3
+        params["quality"] = 92.5
+        params["note"] = "a note about RAST genomes "
+
+
     }
 
     void testIndex() {
@@ -35,8 +36,11 @@ class GenomeControllerTests {
     }
 
     void testSave() {
+        // they can all be null, but no constraints
+        params.url ="asdfasf"
         controller.save()
 
+        // this is a fail for some reason
         assert model.genomeInstance != null
         assert view == '/genome/create'
 
@@ -101,7 +105,7 @@ class GenomeControllerTests {
 
         // test invalid parameters in update
         params.id = genome.id
-        //TODO: add invalid values to params object
+        params.url = "notaurl"
 
         controller.update()
 

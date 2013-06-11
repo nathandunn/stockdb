@@ -11,6 +11,10 @@ import grails.test.mixin.*
 class LabTests {
 
     void testSomething() {
-        fail "Implement me"
+        Lab lab = new Lab(
+                name: "Some Lab "
+        )
+        .save(failOnError: true)
+
     }
 }

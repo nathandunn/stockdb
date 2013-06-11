@@ -1,18 +1,29 @@
 package edu.uoregon.stockdb
-
-
-
-import org.junit.*
-import grails.test.mixin.*
+import grails.test.mixin.Mock
+import grails.test.mixin.TestFor
+import org.junit.After
+import org.junit.Before
 
 @TestFor(StrainController)
-@Mock(Strain)
+@Mock([Strain,MeasuredValue])
 class StrainControllerTests {
+
+
+    @Before
+    void setUp() {
+        Strain strain = Strain.findOrSaveByName("ZOR1234")
+    }
+
+    @After
+    void tearDown() {
+        Strain strain = Strain.findByName("ZOR1234")
+        Strain.deleteAll(strain)
+    }
+
 
     def populateValidParams(params) {
         assert params != null
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["name"] = 'Z1234'
     }
 
     void testIndex() {
@@ -24,8 +35,8 @@ class StrainControllerTests {
 
         def model = controller.list()
 
-        assert model.strainInstanceList.size() == 0
-        assert model.strainInstanceTotal == 0
+        assert model.strainInstanceList.size() == 1
+        assert model.strainInstanceTotal == 1
     }
 
     void testCreate() {
@@ -45,9 +56,9 @@ class StrainControllerTests {
         populateValidParams(params)
         controller.save()
 
-        assert response.redirectedUrl == '/strain/show/1'
+        assert response.redirectedUrl == '/strain/show/2'
         assert controller.flash.message != null
-        assert Strain.count() == 1
+        assert Strain.count() == 2
     }
 
     void testShow() {
@@ -101,7 +112,7 @@ class StrainControllerTests {
 
         // test invalid parameters in update
         params.id = strain.id
-        //TODO: add invalid values to params object
+        params.name = null
 
         controller.update()
 
@@ -142,13 +153,13 @@ class StrainControllerTests {
         def strain = new Strain(params)
 
         assert strain.save() != null
-        assert Strain.count() == 1
+        assert Strain.count() == 2
 
         params.id = strain.id
 
         controller.delete()
 
-        assert Strain.count() == 0
+        assert Strain.count() == 1
         assert Strain.get(strain.id) == null
         assert response.redirectedUrl == '/strain/list'
     }

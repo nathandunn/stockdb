@@ -118,7 +118,8 @@ class HostGenotypeController {
         }
 
         try {
-            List<HostOrigin> hostOrigins = HostOrigin.findAllByGenotype(hostGenotypeInstance)
+//            List<HostOrigin> hostOrigins = HostOrigin.findAllByGenotypes([hostGenotypeInstance])
+            List<HostOrigin> hostOrigins = hostGenotypeInstance.hostOrigins as List<HostOrigin>
             if (hostOrigins){
                 flash.error = "Must move / remove ${hostOrigins.size()} Host Origins before deleting"
                 redirect(action: "show",id: hostGenotypeInstance.id)

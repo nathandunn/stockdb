@@ -1,10 +1,6 @@
 package edu.uoregon.stockdb
 
-
-
-import grails.test.mixin.*
-import org.junit.*
-
+import grails.test.mixin.TestFor
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
@@ -12,6 +8,10 @@ import org.junit.*
 class StockTests {
 
     void testSomething() {
-       fail "Implement me"
+        Stock stock = new Stock(
+                boxIndex: 12
+                ,boxNumber: 19
+        )
+        .save(failOnError: true)
     }
 }

@@ -98,8 +98,10 @@ class IsolateController {
 
         try {
             Strain strain = Strain.findByIsolateCondition(isolateInstance)
-            strain.isolateCondition = null
-            strain.save(flush: true)
+            if(strain){
+                strain.isolateCondition = null
+                strain.save(flush: true)
+            }
 
             isolateInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'isolate.label', default: 'Isolate Condition'), id])
