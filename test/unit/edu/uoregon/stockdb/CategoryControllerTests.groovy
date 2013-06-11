@@ -1,18 +1,18 @@
 package edu.uoregon.stockdb
-
-
-
-import org.junit.*
-import grails.test.mixin.*
+import grails.test.mixin.Mock
+import grails.test.mixin.TestFor
 
 @TestFor(CategoryController)
-@Mock(Category)
+@Mock([Category,MeasuredValue])
 class CategoryControllerTests {
 
     def populateValidParams(params) {
         assert params != null
         // TODO: Populate valid properties like...
         //params["name"] = 'someValidName'
+        params["name"] = 'Motility'
+        params["type"] = MeasuredValueTypeEnum.TEXT
+        params["units"] = 'motility'
     }
 
     void testIndex() {
@@ -101,7 +101,7 @@ class CategoryControllerTests {
 
         // test invalid parameters in update
         params.id = category.id
-        //TODO: add invalid values to params object
+        params.type = "diggity"
 
         controller.update()
 

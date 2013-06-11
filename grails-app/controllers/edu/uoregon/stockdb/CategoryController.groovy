@@ -1,5 +1,6 @@
 package edu.uoregon.stockdb
 
+import org.grails.datastore.mapping.query.api.Criteria
 import org.springframework.dao.DataIntegrityViolationException
 
 class CategoryController {
@@ -26,7 +27,7 @@ class CategoryController {
     def save() {
         def categoryInstance = new Category(params)
         if (!categoryInstance.save(flush: true)) {
-            render(view: "create", model: [categoryInstance :categoryInstance])
+            render(view: "create", model: [categoryInstance: categoryInstance])
             return
         }
 
@@ -42,23 +43,24 @@ class CategoryController {
             return
         }
 
-        List<MeasuredValue> measuredValues = MeasuredValue.executeQuery("from MeasuredValue mv where mv.category = :category order by mv.category.name asc ",[category: categoryInstance])
+//        List<MeasuredValue> measuredValues = MeasuredValue.executeQuery("from MeasuredValue mv where mv.category = :category order by mv.category.name asc ",[category: categoryInstance])
+        def criteria = MeasuredValue.createCriteria()
+        List<MeasuredValue> measuredValues = criteria.list{
+            eq("category",categoryInstance)
+        }
 
-        // should be a list of 1 - category, 2 - grouped measured values, 3- strains
-//        HashMap<Category,List<GroupedMeasuredValues>> map = new LinkedHashMap<Category,ArrayList<GroupedMeasuredValues>>()
+        Map<String, CategoryView> map = new HashMap<String, CategoryView>()
 
-        Map<String,CategoryView> map = new HashMap<String,CategoryView>()
-
-        for(MeasuredValue measuredValue in measuredValues){
+        for (MeasuredValue measuredValue in measuredValues) {
             CategoryView categoryView = map.get(measuredValue.category.name)
-            if(!categoryView){
+            if (!categoryView) {
                 categoryView = new CategoryView(category: measuredValue.category)
             }
             categoryView.addMeasuredValue(measuredValue)
-            map.put(measuredValue.category.name,categoryView)
+            map.put(measuredValue.category.name, categoryView)
         }
 
-        [categoryInstance: categoryInstance,measuredValues:measuredValues,categories:map.values()]
+        [categoryInstance: categoryInstance, measuredValues: measuredValues, categories: map.values()]
     }
 
     def edit(Long id) {
@@ -83,8 +85,8 @@ class CategoryController {
         if (version != null) {
             if (categoryInstance.version > version) {
                 categoryInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'category.label', default: 'Category')] as Object[],
-                          "Another user has updated this Category while you were editing")
+                        [message(code: 'category.label', default: 'Category')] as Object[],
+                        "Another user has updated this Category while you were editing")
                 render(view: "edit", model: [categoryInstance: categoryInstance])
                 return
             }
