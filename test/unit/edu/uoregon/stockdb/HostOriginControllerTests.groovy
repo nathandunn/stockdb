@@ -1,9 +1,10 @@
 package edu.uoregon.stockdb
+
 import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
 
 @TestFor(HostOriginController)
-@Mock([HostOrigin,HostFacility,Phylum,Genus,Species,Strain])
+@Mock([HostOrigin, HostFacility, Phylum, Genus, Species, Strain,HostGenotype])
 class HostOriginControllerTests {
 
     def populateValidParams(params) {
@@ -14,16 +15,18 @@ class HostOriginControllerTests {
                 name: "My basement"
         )
         Phylum phylum = new Phylum(
-                name:"aPhylum"
+                name: "aPhylum"
         )
         Genus genus = new Genus(
                 name: "aGenus"
-                ,phylum: phylum
+                , phylum: phylum
         )
         params["species"] = new Species(
                 commonName: "Thingamajig"
-                ,genus: genus
+                , genus: genus
         )
+        HostGenotype hostGenotype = HostGenotype.findOrSaveByName("Very Wild Type")
+        params["genotypes"] = [hostGenotype]
     }
 
     void testIndex() {
@@ -112,7 +115,7 @@ class HostOriginControllerTests {
 
         // test invalid parameters in update
         params.id = hostOrigin.id
-        hostOrigin.species = null
+        params.species = null
 
         controller.update()
 

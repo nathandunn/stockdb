@@ -60,7 +60,10 @@ class HostOriginController {
         }
 
         def strains = Strain.findAllByHostOriginIsNull()
-        strains.addAll(hostOriginInstance.strains)
+        if(strains){
+            strains.addAll(hostOriginInstance.strains)
+        }
+
 
         [hostOriginInstance: hostOriginInstance,strains:strains]
     }
