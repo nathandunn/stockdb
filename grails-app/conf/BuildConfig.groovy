@@ -11,6 +11,8 @@ grails.project.dependency.resolution = {
     inherits("global") {
         // specify dependency exclusions here; for example, uncomment this to disable ehcache:
         // excludes 'ehcache'
+//        excludes "grails-spock", "spock"
+
     }
     log "error" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     checksums true // Whether to verify checksums on resolve
@@ -40,6 +42,8 @@ grails.project.dependency.resolution = {
 
         // runtime 'mysql:mysql-connector-java:5.1.20'
         runtime 'postgresql:postgresql:9.0-801.jdbc4'
+//        test "org.spockframework:spock-grails-support:0.7-groovy-2.0"
+
     }
 
     plugins {
@@ -58,7 +62,11 @@ grails.project.dependency.resolution = {
 
         compile ':cache:1.0.0'
 //        plugins.gwt=0.8
-        compile ':gwt:0.8'
+//        compile ':gwt:0.8'
+        compile(':gwt:0.8') {
+            exclude 'spock'
+//            exclude "org.spockframework:spock-grails-support:0.7-groovy-2.0"
+        }
         compile ":csv:0.3.1"
 
 //        #plugins.navigation=1.3.2
@@ -68,11 +76,14 @@ grails.project.dependency.resolution = {
 
         compile ":mail:1.0.1"
 
-
         // plugins.shiro=1.1.4
         compile ":shiro:1.1.4"
         compile ":crypto:2.0"
 
+//        exclude "spock-grails-support"
+//        test(":spock:0.7") {
+//            exclude "spock-grails-support"
+//        }
 
     }
 }
