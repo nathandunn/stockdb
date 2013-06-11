@@ -61,7 +61,7 @@ class ExperimentController {
             return
         }
 
-        [experimentInstance: experimentInstance, currentUserId:experimentInstance?.researcher?.id]
+        [experimentInstance: experimentInstance, currentUserId: experimentInstance?.researcher?.id]
     }
 
     def update(Long id, Long version) {

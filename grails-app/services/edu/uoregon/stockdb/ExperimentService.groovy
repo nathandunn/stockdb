@@ -5,7 +5,7 @@ class ExperimentService {
     Map<Category, List<MeasuredValue>> createValuesMap(Experiment experiment) {
         TreeMap<Category,List<MeasuredValue>> values = new TreeMap<Category,List<MeasuredValue>>()
 
-        List<MeasuredValue> sortedValues = experiment.measuredValues.sort(){
+        List<MeasuredValue> sortedValues = experiment?.measuredValues?.sort(){
             it.strain.name
         }
 

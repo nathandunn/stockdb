@@ -1,18 +1,32 @@
 package edu.uoregon.stockdb
 
-
-
-import org.junit.*
-import grails.test.mixin.*
+import grails.test.mixin.Mock
+import grails.test.mixin.TestFor
 
 @TestFor(ExperimentController)
-@Mock(Experiment)
+@Mock([Experiment,Researcher,MeasuredValue,ExperimentService])
 class ExperimentControllerTests {
+
+
+    Researcher injectSecurityUser(){
+        Researcher secUser = Researcher.get(1) ?: new Researcher(
+                username: RandomStringGenerator.getRandomEmail()
+                , passwordHash: "secret"
+                , firstName: "George"
+                , lastName: "TheMonkey"
+        ) .save(failOnError: true,flush: true)
+        controller.researcherService = new StubShiroSecurityService()
+        controller.researcherService.setCurrentUser(secUser)
+        return secUser
+    }
 
     def populateValidParams(params) {
         assert params != null
         // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["name"] = 'Motility Experiment'
+        params["researcher"] = injectSecurityUser()
+        params['whenPerformed'] = new Date()
+        params['note'] = 'a silly note'
     }
 
     void testIndex() {
@@ -29,6 +43,7 @@ class ExperimentControllerTests {
     }
 
     void testCreate() {
+        injectSecurityUser()
         def model = controller.create()
 
         assert model.experimentInstance != null
@@ -87,6 +102,7 @@ class ExperimentControllerTests {
     }
 
     void testUpdate() {
+        injectSecurityUser()
         controller.update()
 
         assert flash.message != null
@@ -101,6 +117,7 @@ class ExperimentControllerTests {
 
         // test invalid parameters in update
         params.id = experiment.id
+        params.name = null
         //TODO: add invalid values to params object
 
         controller.update()

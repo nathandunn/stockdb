@@ -1,6 +1,5 @@
 package edu.uoregon.stockdb
 
-import org.grails.datastore.mapping.query.api.Criteria
 import org.springframework.dao.DataIntegrityViolationException
 
 class CategoryController {
@@ -45,8 +44,8 @@ class CategoryController {
 
 //        List<MeasuredValue> measuredValues = MeasuredValue.executeQuery("from MeasuredValue mv where mv.category = :category order by mv.category.name asc ",[category: categoryInstance])
         def criteria = MeasuredValue.createCriteria()
-        List<MeasuredValue> measuredValues = criteria.list{
-            eq("category",categoryInstance)
+        List<MeasuredValue> measuredValues = criteria.list {
+            eq("category", categoryInstance)
         }
 
         Map<String, CategoryView> map = new HashMap<String, CategoryView>()
