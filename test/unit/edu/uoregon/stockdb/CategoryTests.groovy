@@ -12,6 +12,10 @@ import org.junit.*
 class CategoryTests {
 
     void testSomething() {
-       fail "Implement me"
+        Category c1 = new Category(
+                name: "c1"
+                ,type: MeasuredValueTypeEnum.INTEGER
+                ,units: "inches"
+        )  az
     }
 }
