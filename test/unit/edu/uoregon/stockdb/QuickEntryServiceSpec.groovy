@@ -1,4 +1,4 @@
-package metagenomicsdb
+package edu.uoregon.stockdb
 
 import static org.junit.Assert.*
 
