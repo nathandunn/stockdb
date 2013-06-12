@@ -51,10 +51,11 @@ class ResearcherController {
         println "params: ${params}"
         Researcher researcherInstance = new Researcher(params)
         Role userRole = Role.findByName(ResearcherService.ROLE_USER)
-        println "found role: ${userRole}"
+        println "found role: ${userRole} and instance ${researcherInstance}"
         if(researcherInstance){
-            researcherInstance?.addToRoles( userRole )
+            researcherInstance.addToRoles( userRole )
         }
+
 
         if (!researcherInstance.save(flush: true)) {
             render(view: "create", model: [researcherInstance: researcherInstance])

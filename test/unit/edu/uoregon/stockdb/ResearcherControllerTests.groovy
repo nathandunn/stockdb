@@ -1,10 +1,23 @@
 package edu.uoregon.stockdb
 import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
+import org.junit.After
+import org.junit.Before
 
 @TestFor(ResearcherController)
-@Mock([Researcher,Role])
+@Mock([Researcher,Role,ResearcherService])
 class ResearcherControllerTests {
+
+    @Before
+    public void before(){
+        Role role = Role.findOrSaveByName(ResearcherService.ROLE_USER).save(failOnError: true)
+    }
+
+    @After
+    public void after(){
+        Role role = Role.findByName(ResearcherService.ROLE_USER)
+        Role.deleteAll(role)
+    }
 
     def populateValidParams(params) {
         assert params != null
@@ -12,7 +25,6 @@ class ResearcherControllerTests {
         params["firstName"] = 'MyFirst'
         params["lastName"] = 'MyLast'
 
-        Role role = Role.findOrSaveByName(ResearcherService.ROLE_USER).save(failOnError: true)
     }
 
     void testIndex() {
@@ -35,15 +47,19 @@ class ResearcherControllerTests {
     }
 
     void testSave() {
+        assert Researcher.count() == 0
         controller.save()
+        assert Researcher.count() == 0
 
         assert model.researcherInstance != null
         assert view == '/researcher/create'
 
         response.reset()
 
+        assert Researcher.count() == 0
         populateValidParams(params)
         controller.save()
+        assert Researcher.count() == 1
 
         assert response.redirectedUrl == '/researcher/show/1'
         assert controller.flash.message != null
