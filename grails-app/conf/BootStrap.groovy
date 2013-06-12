@@ -1,4 +1,5 @@
 import edu.uoregon.stockdb.StubData
+import grails.util.Environment
 
 class BootStrap {
 
@@ -6,10 +7,12 @@ class BootStrap {
 
     def init = { servletContext ->
 
-        stubData.stubUsers()
-        stubData.stubData()
-        stubData.stubRawlsData()
-        stubData.importExperiments()
+        if (Environment.isDevelopmentMode()) {
+            stubData.stubUsers()
+            stubData.stubData()
+            stubData.stubRawlsData()
+            stubData.importExperiments()
+        }
 
     }
     def destroy = {

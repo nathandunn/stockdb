@@ -1,7 +1,8 @@
 package edu.uoregon.stockdb
 
-import static org.junit.Assert.*
-import org.junit.*
+import org.junit.After
+import org.junit.Before
+import org.junit.Test
 
 class StubDataTests {
 
@@ -19,7 +20,7 @@ class StubDataTests {
 
     @Test
     void testStubbing() {
-        stubData.stubUsers()
-        stubData.stubData()
+//        stubData.stubUsers()
+//        stubData.stubData()
     }
 }
