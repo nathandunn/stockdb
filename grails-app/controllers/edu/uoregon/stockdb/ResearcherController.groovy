@@ -50,20 +50,17 @@ class ResearcherController {
             }
         }
 
-        println "params: ${params}"
         Researcher researcherInstance = new Researcher(params)
-        Role userRole = Role.findByName(ResearcherService.ROLE_USER)
-        println "found role: ${userRole} and instance ${researcherInstance}"
-        if(researcherInstance){
-            researcherInstance.addToRoles( userRole )
-        }
 
 
         if (!researcherInstance.save(flush: true)) {
             render(view: "create", model: [researcherInstance: researcherInstance])
             return
         }
-
+        Role userRole = Role.findByName(ResearcherService.ROLE_USER)
+        if(researcherInstance){
+            researcherInstance.addToRoles( userRole )
+        }
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'researcher.label', default: 'Researcher'), researcherInstance.fullName])
         redirect(action: "show", id: researcherInstance.id)
