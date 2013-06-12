@@ -32,4 +32,12 @@ class Researcher {
     def getFullName() {
         return firstName + " " + lastName
     }
+
+    Boolean hasRole(String roleString) {
+        for(Role role in roles){
+            if(role.name==roleString) return true
+        }
+
+        return false
+    }
 }

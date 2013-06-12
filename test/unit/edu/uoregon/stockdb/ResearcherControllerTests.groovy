@@ -19,6 +19,23 @@ class ResearcherControllerTests {
         Role.deleteAll(role)
     }
 
+    void deleteSecurityUser() {
+        Researcher.deleteAll(Researcher.all)
+        Role.deleteAll(Role.all)
+    }
+
+    Researcher injectSecurityUser(){
+        Researcher secUser = Researcher.get(1) ?: new Researcher(
+                username: RandomStringGenerator.getRandomEmail()
+                , passwordHash: "secret"
+                , firstName: "George"
+                , lastName: "TheMonkey"
+        ) .save(failOnError: true,flush: true)
+        controller.researcherService = new StubShiroSecurityService()
+        controller.researcherService.setCurrentUser(secUser)
+        return secUser
+    }
+
     def populateValidParams(params) {
         assert params != null
         params["username"] = 'test@test.com'
@@ -97,6 +114,7 @@ class ResearcherControllerTests {
 
         params.id = researcher.id
 
+        injectSecurityUser()
         def model = controller.edit()
 
         assert model.researcherInstance == researcher

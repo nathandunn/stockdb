@@ -8,6 +8,8 @@ class ResearcherController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
+    def researcherService
+
 
     def index() {
         redirect(action: "list", params: params)
@@ -86,8 +88,9 @@ class ResearcherController {
             return
         }
 
-        String principalUsername = SecurityUtils.subject.principal
-        if(researcherInstance.username==principalUsername || SecurityUtils.subject.hasRole(ResearcherService.ROLE_ADMINISTRATOR)){
+        String principalUsername = researcherService.currentUser.username
+//        String principalUsername = SecurityUtils.subject.principal
+        if(researcherInstance.username==principalUsername || researcherService.currentUser.hasRole(ResearcherService.ROLE_ADMINISTRATOR)){
             [researcherInstance: researcherInstance]
         }
         else{
