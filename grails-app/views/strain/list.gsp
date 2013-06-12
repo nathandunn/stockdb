@@ -203,25 +203,7 @@
                 </td>
 
                 <td>
-                    <g:if test="${strainInstance.hostOrigin?.stage}">
-                        <g:if test="${!strainInstance.hostOrigin?.stage.contains('dpf')}">
-                            ${strainInstance.hostOrigin.stage}
-                            <g:if test="${strainInstance.hostOrigin.daysPastFertilization}">
-                                (${strainInstance.hostOrigin.daysPastFertilization} DPF)
-                            </g:if>
-                        </g:if>
-                        <g:else>
-                            ${strainInstance.hostOrigin.daysPastFertilization} DPF
-                        </g:else>
-                    </g:if>
-                    <g:elseif
-                            test="${strainInstance.hostOrigin?.daysPastFertilization >= 0 && strainInstance.hostOrigin?.daysPastFertilization < 360}">
-                        ${strainInstance.hostOrigin?.daysPastFertilization}
-                    </g:elseif>
-                    <g:else>
-                        %{--One Year--}%
-                        ??
-                    </g:else>
+                    ${strainInstance.hostOrigin?.renderStageAndDpf}
                 </td>
 
                 <td>

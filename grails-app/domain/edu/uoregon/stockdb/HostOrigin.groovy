@@ -78,13 +78,37 @@ class HostOrigin {
         }
     }
 
+//    String getRenderStageAndDpf() {
+//        String returnString = ""
+//        if(hasStage()){
+//            returnString += "${stage} (${daysPastFertilization} DPF)"
+//        }
+//        else{
+//            returnString += "${daysPastFertilization} DPF"
+//        }
+//        return returnString
+//    }
+
     String getRenderStageAndDpf() {
         String returnString = ""
         if(hasStage()){
-            returnString += "${stage} (${daysPastFertilization} DPF)"
+            if(!stage.contains("dpf")){
+                returnString += "${stage}"
+                if(daysPastFertilization){
+                    returnString += " (${daysPastFertilization} DPF)"
+                }
+            }
+            else{
+                returnString += " ${daysPastFertilization} DPF"
+            }
+        }
+        else
+        if(daysPastFertilization && daysPastFertilization >0 && daysPastFertilization<360)
+        {
+            returnString += "${daysPastFertilization} DPF"
         }
         else{
-            returnString += "${daysPastFertilization} DPF"
+            returnString += "??"
         }
         return returnString
     }
