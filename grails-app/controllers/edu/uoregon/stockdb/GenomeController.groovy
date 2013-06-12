@@ -19,6 +19,12 @@ class GenomeController {
         [genomeInstanceList: Genome.list(params), genomeInstanceTotal: Genome.count()]
     }
 
+    def listRast(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        def genomeList = Genome.findAllByUrlLike("http://rast%",params)
+        render(view:"list",model:[genomeInstanceList: genomeList, genomeInstanceTotal: Genome.count()])
+    }
+
     def create() {
         [genomeInstance: new Genome(params)]
     }

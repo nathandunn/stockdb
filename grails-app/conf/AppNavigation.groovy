@@ -41,7 +41,7 @@ navigation = {
             isolateConditions(controller: 'isolate', action: 'list')
             location(controller: 'location', action: 'list')
             genotype(controller: 'strainGenotype', action: 'list')
-            genome(controller: 'genome', action: 'list')
+            rastGenomes(controller: 'genome', action: 'listRast')
             phylum(controller: 'phylum', action: 'list')
             genus(controller: 'genus', action: 'list')
         }
