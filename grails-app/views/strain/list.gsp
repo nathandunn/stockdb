@@ -26,10 +26,10 @@
         <table>
             <tr><td>
                 <b>Go to Strain</b>
-                </td>
+            </td>
                 <td>
-                <g:textField name="strainName"/>
-            </td></tr>
+                    <g:textField name="strainName"/>
+                </td></tr>
         </table>
     </g:form>
     <g:form>
@@ -203,15 +203,24 @@
                 </td>
 
                 <td>
-                    <g:if test="${strainInstance.hostOrigin?.stage == 'Adult'}">
-                        Adult
+                    <g:if test="${strainInstance.hostOrigin?.stage}">
+                        <g:if test="${!strainInstance.hostOrigin?.stage.contains('dpf')}">
+                            ${strainInstance.hostOrigin.stage}
+                            <g:if test="${strainInstance.hostOrigin.daysPastFertilization}">
+                                (${strainInstance.hostOrigin.daysPastFertilization} DPF)
+                            </g:if>
+                        </g:if>
+                        <g:else>
+                            ${strainInstance.hostOrigin.daysPastFertilization} DPF
+                        </g:else>
                     </g:if>
                     <g:elseif
                             test="${strainInstance.hostOrigin?.daysPastFertilization >= 0 && strainInstance.hostOrigin?.daysPastFertilization < 360}">
                         ${strainInstance.hostOrigin?.daysPastFertilization}
                     </g:elseif>
                     <g:else>
-                        One Year
+                        %{--One Year--}%
+                        ??
                     </g:else>
                 </td>
 

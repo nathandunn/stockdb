@@ -28,7 +28,7 @@ class StrainController {
 
         Map<String, String> strainFilters = (Map<String, String>) request.session.getAttribute(STRAIN_FILTER)
 
-        println "filters ${strainFilters}"
+//        println "filters ${strainFilters}"
 
         // TODO: put this in in 2.3
         // http://jira.grails.org/browse/GRAILS-8257?page=com.atlassian.jira.plugin.system.issuetabpanels:all-tabpanel
