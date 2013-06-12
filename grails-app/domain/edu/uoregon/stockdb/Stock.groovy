@@ -10,8 +10,8 @@ class Stock {
 //        value nullable:  true
 //        physicalLocation nullable: false
 //        generalLocation nullable: false
-        boxNumber nullable: false
-        boxIndex nullable: false
+        boxNumber nullable: false, min: 0
+        boxIndex nullable: false, min: 0
     }
 
 //    String physicalLocation

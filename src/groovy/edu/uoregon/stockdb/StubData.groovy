@@ -51,7 +51,7 @@ class StubData {
                 genus = new Genus(name: tokens[1].trim(), phylum: phylum).save(flush: true)
             }
             strain.genus = genus
-            strain.save()
+            strain.save(flush:true,failOnError: true)
 
             // 4 ignore
             // 5 ignore
@@ -124,6 +124,8 @@ class StubData {
 
 //                strain.isolateCondition = isolateCondition
                 isolateCondition.addToStrains(strain)
+                isolateCondition.isolatedWhen = Date.parse("d/M/yyyy", "1/1/1901")
+                isolateCondition.save(failOnError: true)
             }
 
 //            if (strain) {
@@ -133,7 +135,7 @@ class StubData {
             genome.quality = tokens[13] ? Float.parseFloat(tokens[13]) : null
             genome.note = tokens[14] ?: null
             if (genome.hasValues()) {
-                genome.save(flush: true)
+                genome.save(flush: true,failOnError: true)
                 strain.genome = genome
             }
 
@@ -148,9 +150,9 @@ class StubData {
                         Researcher researcher = Researcher.findOrSaveByFirstNameAndLastName(isolatedByString[0], isolatedByString[1])
                         isolateCondition.isolatedBy = researcher
                         researcher.lab = lab
-                        researcher.save(flush: true)
+                        researcher.save(flush: true,failOnError: true)
                     }
-                    isolateCondition.save()
+                    isolateCondition.save(flush: true,failOnError: true)
                 }
             }
 
@@ -173,17 +175,19 @@ class StubData {
 
             if (physicalLocation.contains("-") && physicalLocation.startsWith("Box")) {
 //                println "parsing location ${physicalLocation}"
-                Integer boxNumber = physicalLocation.substring(3, physicalLocation.indexOf("-") - 1).trim() == "I" ? 1 : null
-                Integer boxIndex = Integer.parseInt(physicalLocation.substring(physicalLocation.indexOf("-") + 1).trim())
-//                println "parsing location result ${boxNumber} - ${boxNumber}"
+                Integer boxNumber = physicalLocation.substring(3, physicalLocation.indexOf("-") - 1).trim() == "I" ? 1 : Integer.MAX_VALUE
+                Integer boxIndex = Integer.parseInt(physicalLocation.substring(physicalLocation.indexOf("-") + 1).trim()) ?: Integer.MAX_VALUE
+//                println "parsing location result ${boxIndex} - ${boxNumber}"
 
                 stock.boxIndex = boxIndex
                 stock.boxNumber = boxNumber
             } else {
                 println "bad location ${physicalLocation}"
+                stock.boxIndex = Integer.MAX_VALUE
+                stock.boxNumber = Integer.MAX_VALUE
             }
 
-            stock.save()
+            stock.save(failOnError: true)
 
 //            Location generalLocation = tokens[9] ? Location.findOrSaveByName(tokens[9]) : null
             String guilleminLabFreezer = "Guillemin -80 C Freezer"
@@ -217,7 +221,7 @@ class StubData {
 //        user.save()
         def adminRole = new Role(name: ResearcherService.ROLE_ADMINISTRATOR)
         adminRole.addToPermissions("*:*")
-        adminRole.save()
+        adminRole.save(failOnError: true)
 
         def userRole = new Role(name: ResearcherService.ROLE_USER)
         userRole.addToPermissions("*:list")
@@ -227,7 +231,7 @@ class StubData {
         userRole.addToPermissions("researcher:edit")
         userRole.addToPermissions("researcher:update")
         userRole.addToPermissions("strain:addFilter")
-        userRole.save()
+        userRole.save(failOnError: true)
 
         new Researcher(
                 firstName: "Adam"
@@ -274,6 +278,7 @@ class StubData {
     }
 
     def stubRawlsData() {
+        println "start - RAWLS Data"
         def servletContext = org.codehaus.groovy.grails.web.context.ServletContextHolder.servletContext
         def file = servletContext.getResourceAsStream("/WEB-INF/RawlsLabIsolateDatabase.tsv")
         if (!file) {
@@ -303,6 +308,7 @@ class StubData {
                     generalLocation.addToStocks(stock)
                     strain.addToStocks(stock)
                 }
+                generalLocation.save(flush: true,failOnError: true)
                 stock.save(insert: true, flush: true)
 
             } else {
@@ -311,7 +317,7 @@ class StubData {
                 strain = new Strain(name: tokens[0])
 
                 Phylum phylum = tokens[3] ? Phylum.findOrSaveByName(tokens[3].trim()) : null
-                phylum?.save(flush: true)
+                phylum?.save(flush: true,failOnError: true)
 
                 Genus genus = tokens[1] ? Genus.findByName(tokens[1].trim()) : null
                 if (!genus && tokens[1]) {
@@ -371,6 +377,7 @@ class StubData {
                 HostFacility hostFacility = tokens[8] ? HostFacility.findOrSaveByName(tokens[8]?.trim()) : null
 
                 Location generalLocation = tokens[9] ? Location.findOrSaveByName(tokens[9]) : null
+                generalLocation.save(flush: true,failOnError: true)
 
                 String[] isolateData = tokens[10]?.split(";")
 
@@ -417,7 +424,7 @@ class StubData {
                             researcher.lab = lab
                             researcher.save(flush: true)
                         }
-                        isolateCondition.save()
+                        isolateCondition.save(failOnError: true)
                     }
                 }
 
@@ -480,7 +487,7 @@ class StubData {
                         , strain: strain
                         , value: tokens[19].trim()
                 )
-                        .save(insert: true)
+                        .save(insert: true,failOnError: true)
             }
 
             if (tokens[21]) {
@@ -490,7 +497,7 @@ class StubData {
                         , strain: strain
                         , value: tokens[21].trim()
                 )
-                        .save(insert: true)
+                        .save(insert: true,failOnError: true)
             }
 
             if (tokens[22]) {
@@ -500,7 +507,7 @@ class StubData {
                         , strain: strain
                         , value: tokens[22].trim()
                 )
-                        .save(insert: true)
+                        .save(insert: true,failOnError: true)
             }
 
             if (tokens[23]) {
@@ -510,7 +517,7 @@ class StubData {
                         , strain: strain
                         , value: tokens[23].trim()
                 )
-                        .save(insert: true)
+                        .save(insert: true,failOnError: true)
             }
 
             if (tokens[25]) {
@@ -520,7 +527,7 @@ class StubData {
                         , strain: strain
                         , value: (tokens[25].trim().substring(1))
                 )
-                        .save(insert: true, flush: true)
+                        .save(insert: true, flush: true,failOnError: true)
             }
 
             ++rowIndex
