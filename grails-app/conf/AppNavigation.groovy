@@ -42,7 +42,7 @@ navigation = {
             location(controller: 'location', action: 'list')
             genotype(controller: 'strainGenotype', action: 'list')
             genome(controller: 'genome', action: 'list')
-            phylym(controller: 'phylum', action: 'list')
+            phylum(controller: 'phylum', action: 'list')
             genus(controller: 'genus', action: 'list')
         }
 
