@@ -117,6 +117,23 @@
                               )}"/>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <strong>Genome Available</strong>
+                </td>
+                <td>
+                    <g:checkBox name="genome.available" checked="${strainFilters?.get('genome.available')}"
+                                onchange="
+                                ${remoteFunction(
+                                        action: 'addFilter'
+                                        , controller: 'strain'
+                                        , params: '\'strainFilter=genome.available:\' + this.checked'
+                                        , method: 'POST'
+                                        , onSuccess: 'window.location =\'' + request.contextPath + '/strain/list/\';'
+                                        , onError: 'alert(\'error\');'
+                                )}"/>
+                </td>
+            </tr>
         </table>
     </g:form>
 

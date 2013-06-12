@@ -13,6 +13,7 @@ class StrainController {
     private static String HOST_ANATOMY_FILTER = "host.anatomy"
     private static String GENUS_FILTER = "genus"
     private static String PHYLUM_FILTER = "phylum"
+    private static String GENOME_AVAILABLE_FILTER = "genome.available"
 
 //    static navigation = [
 //            title: 'Strain', action: 'list', order: 0
@@ -26,6 +27,8 @@ class StrainController {
         params.max = Math.min(max ?: 10, 100)
 
         Map<String, String> strainFilters = (Map<String, String>) request.session.getAttribute(STRAIN_FILTER)
+
+        println "filters ${strainFilters}"
 
         // TODO: put this in in 2.3
         // http://jira.grails.org/browse/GRAILS-8257?page=com.atlassian.jira.plugin.system.issuetabpanels:all-tabpanel
@@ -82,6 +85,9 @@ class StrainController {
                     List<HostOrigin> hostOriginList = HostOrigin.findAllByAnatomy(strainFilters.get(filter))
                     inList("hostOrigin", hostOriginList)
                 }
+                if (filter == GENOME_AVAILABLE_FILTER && strainFilters.get(filter)=="true") {
+                    isNotNull("genome")
+                }
             }
         }
 
@@ -109,6 +115,9 @@ class StrainController {
                 if (filter == HOST_ANATOMY_FILTER) {
                     List<HostOrigin> hostOriginList = HostOrigin.findAllByAnatomy(strainFilters.get(filter))
                     inList("hostOrigin", hostOriginList)
+                }
+                if (filter == GENOME_AVAILABLE_FILTER && strainFilters.get(filter)=="true") {
+                    isNotNull("genome")
                 }
             }
         }
