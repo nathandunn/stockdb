@@ -772,3 +772,17 @@ a.skip {
     padding: 60px 20px 10px 10px ;
 }
 
+.external{
+    background: url(../images/external.png) center right no-repeat;
+    padding-right: 13px;
+}
+
+a.external-link {
+    background: url(../images/external.png) center right no-repeat;
+    padding-right: 13px;
+}
+
+a.external {
+    background: url(../images/external.png) center right no-repeat;
+    padding-right: 23px;
+}

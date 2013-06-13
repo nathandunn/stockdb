@@ -35,7 +35,10 @@
                 <span id="url-label" class="property-label"><g:message code="genome.url.label" default="Url"/></span>
 
                 <span class="property-value" aria-labelledby="url-label">
-                    <g:link url="${genomeInstance.url}">Sequence</g:link>
+                    <g:link class="external-link" url="${genomeInstance.url}" target="_blank">
+                        ${genomeInstance?.url?.startsWith("http://rast")?"Rast":""}
+                        Sequence
+                    </g:link>
                     %{--<g:fieldValue bean="${genomeInstance}" field="url"/>--}%
                 </span>
 
