@@ -30,8 +30,6 @@
 
             %{--<g:sortableColumn property="url" title="${message(code: 'genome.url.label', default: 'Sequence')}" />--}%
 
-            <g:sortableColumn property="note" title="${message(code: 'genome.note.label', default: 'Note')}"/>
-
             <g:sortableColumn property="quality" title="${message(code: 'genome.quality.label', default: 'Quality')}"/>
 
             <g:sortableColumn property="size" title="${message(code: 'genome.size.label', default: 'Size')}"/>
@@ -45,8 +43,6 @@
         <tbody>
         <g:each in="${genomeInstanceList}" status="i" var="genomeInstance">
             <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-
-                <td>${fieldValue(bean: genomeInstance, field: "note")}</td>
 
                 <td>${fieldValue(bean: genomeInstance, field: "quality")}</td>
 

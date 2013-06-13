@@ -133,7 +133,7 @@ class StubData {
             genome.url = tokens[11]?.startsWith("http") ? tokens[11] : null
             genome.size = tokens[12] ? Float.parseFloat(tokens[12]) : null
             genome.quality = tokens[13] ? Float.parseFloat(tokens[13]) : null
-            genome.note = tokens[14] ?: null
+//            genome.note = tokens[14] ?: null
             if (genome.hasValues()) {
                 genome.save(flush: true,failOnError: true)
                 strain.genome = genome
@@ -405,7 +405,7 @@ class StubData {
                 genome.url = tokens[11]?.startsWith("http") ? tokens[11] : null
                 genome.size = tokens[12] ? Float.parseFloat(tokens[12]) : null
                 genome.quality = tokens[13] ? Float.parseFloat(tokens[13]) : null
-                genome.note = tokens[14] ?: null
+//                genome.note = tokens[14] ?: null
                 if (genome.hasValues()) {
                     genome.save(flush: true)
                     strain.genome = genome

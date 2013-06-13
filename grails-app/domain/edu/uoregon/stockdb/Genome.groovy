@@ -16,8 +16,8 @@ class Genome {
     String note
 
     String getDisplay() {
-        if(quality && size && note){
-            return "${quality} ${size} ${note.size()>20 ? note.subSequence(0,20) + ' ... ' : note }"
+        if(quality && size){
+            return "${quality} ${size}"
         }
         else{
             return id
@@ -25,6 +25,6 @@ class Genome {
     }
 
     boolean hasValues() {
-        return (url || size || quality ||  note)
+        return (url || size || quality)
     }
 }

@@ -10,14 +10,6 @@
     <g:field type="url" name="url" value="${genomeInstance?.url}" size="80"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: genomeInstance, field: 'note', 'error')} ">
-    <label for="note">
-        <g:message code="genome.note.label" default="Note"/>
-
-    </label>
-    <g:textField name="note" value="${genomeInstance?.note}" size="80"/>
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: genomeInstance, field: 'quality', 'error')} ">
     <label for="quality">
         <g:message code="genome.quality.label" default="Quality"/>

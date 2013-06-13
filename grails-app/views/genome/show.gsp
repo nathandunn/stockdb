@@ -45,15 +45,6 @@
             </li>
         </g:if>
 
-        <g:if test="${genomeInstance?.note}">
-            <li class="fieldcontain">
-                <span id="note-label" class="property-label"><g:message code="genome.note.label" default="Note"/></span>
-
-                <span class="property-value" aria-labelledby="note-label"><g:fieldValue bean="${genomeInstance}"
-                                                                                        field="note"/></span>
-
-            </li>
-        </g:if>
 
         <g:if test="${genomeInstance?.quality}">
             <li class="fieldcontain">

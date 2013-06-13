@@ -88,7 +88,7 @@
 
         <span class="property-value" aria-labelledby="genome-label">
             <g:link controller="genome" action="show" id="${strainInstance?.genome?.id}">
-                ${strainInstance?.genome?.note}
+                %{--${strainInstance?.genome?.note}--}%
                 ${strainInstance?.genome?.quality}
             </g:link>
 

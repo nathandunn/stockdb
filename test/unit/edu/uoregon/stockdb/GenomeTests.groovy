@@ -12,7 +12,6 @@ class GenomeTests {
                 url: "http://asdfasdf.com"
                 ,size:12.2
                 ,quality: 12.2
-                ,note:"yoyo"
         )
         .save(failOnError: true)
     }
