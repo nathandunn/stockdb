@@ -10,6 +10,7 @@
 // if (System.properties["${appName}.config.location"]) {
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
+security.shiro.cas.enable=false
 
 grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
@@ -90,9 +91,9 @@ log4j = {
         console name: 'stdout', layout: shortPatternLayout
 //        console name: "stdout", layout: pattern(conversionPattern: "%d{yyyy-MMM-dd HH:mm:ss,SSS} [%t] %c %x%n %-5p %m%n")
         rollingFile name: 'file', file: "${logDirectory}/metagenomicsdb-output.log", maxFileSize: 2048
-        if (grails.util.Environment.current == grails.util.Environment.PRODUCTION
+        if (Environment.current == grails.util.Environment.PRODUCTION
                 ||
-                grails.util.Environment.current.name == "staging"
+                Environment.current.name == "staging"
         ) {
             def mailAppender = new org.apache.log4j.net.SMTPAppender()
             mailAppender.setFrom("ndunn@cas.uoregon.edu")
