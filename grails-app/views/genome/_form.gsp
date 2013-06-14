@@ -9,9 +9,17 @@
     </label>
     %{--<g:field type="url" name="url" value="${genomeInstance?.url}" size="80"/>--}%
     <g:select id="genomeType" name="genomeType.id" from="${edu.uoregon.stockdb.GenomeType.list()}" optionKey="id"
-              value="${genomeInstance.genomeType.id}" optionValue="organizationName" class="many-to-one"
+              value="${genomeInstance?.genomeType?.id}" optionValue="organizationName" class="many-to-one"
               noSelection="['null': '- Choose Existing -']"/>
     <g:link controller="genomeType" action="create">Create Genome Type</g:link>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: genomeInstance, field: 'externalId', 'error')} ">
+    <label for="externalId">
+        <g:message code="genome.externalId.label" default="External Id"/>
+
+    </label>
+    <g:field type="text" name="externalId" value="${fieldValue(bean: genomeInstance, field: 'externalId')}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: genomeInstance, field: 'quality', 'error')} ">
@@ -19,7 +27,7 @@
         <g:message code="genome.quality.label" default="Quality"/>
 
     </label>
-    <g:field type="number" name="quality" value="${fieldValue(bean: genomeInstance, field: 'quality')}"/>
+    <g:field type="text" name="quality" value="${fieldValue(bean: genomeInstance, field: 'quality')}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: genomeInstance, field: 'size', 'error')} ">

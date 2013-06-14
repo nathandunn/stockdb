@@ -43,6 +43,16 @@
 
         </li>
 
+        <g:if test="${genomeInstance?.externalId}">
+            <li class="fieldcontain">
+                <span id="externalId-label" class="property-label"><g:message code="genome.externalId.label"
+                                                                           default="External Id"/></span>
+
+                <span class="property-value" aria-labelledby="externalId-label"><g:fieldValue bean="${genomeInstance}"
+                                                                                           field="externalId"/></span>
+
+            </li>
+        </g:if>
 
         <g:if test="${genomeInstance?.quality}">
             <li class="fieldcontain">
