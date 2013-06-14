@@ -3,31 +3,32 @@ package edu.uoregon.stockdb
 class Genome {
 
     static constraints = {
-        url nullable: true, url: true
-        version nullable: true
+        genomeVersion nullable: true
+        genomeType nullable: false
+        externalId nullable: false
+        strain nullable: true
     }
 
-    static hasMany = [
-            strains: Strain
-    ]
-
-    String url
+    // other URL
+//    String url
     Float size
     Float quality
     String note
     String externalId // can't re-use genome id
     Float genomeVersion // can't re-use genome  version
+    GenomeType genomeType
+    Strain strain
 
     String getDisplay() {
-        if(quality && size){
-            return "${quality} ${size}"
-        }
-        else{
-            return id
-        }
+//            return "${externalId} - ${genomeType.organizationName} ${quality}${size}"
+        return "${externalId} - ${genomeType.organizationName}"
     }
 
     boolean hasValues() {
-        return (url || size || quality)
+        return (genomeType || size || quality || externalId)
+    }
+
+    def renderUrl() {
+        return genomeType.baseUrl + externalId
     }
 }

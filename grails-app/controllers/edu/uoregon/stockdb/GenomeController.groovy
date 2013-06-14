@@ -21,21 +21,23 @@ class GenomeController {
 
     def listRast(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        def genomeList = Genome.findAllByUrlLike("http://rast%",params)
+        GenomeType genomeType = GenomeType.findByOrganizationName("Rast")
+        def genomeList = Genome.findAllByGenomeType(genomeType,params)
         render(view:"list",model:[genomeInstanceList: genomeList, genomeInstanceTotal: Genome.count()])
     }
 
     def listImage(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        def genomeList = Genome.findAllByUrlLike("http://image%",params)
+        GenomeType genomeType = GenomeType.findByOrganizationName("IMG")
+        def genomeList = Genome.findAllByGenomeType(genomeType,params)
         render(view:"list",model:[genomeInstanceList: genomeList, genomeInstanceTotal: Genome.count()])
     }
 
-    def listOther(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        def genomeList = Genome.findAllByUrlNotLikeAndUrlNotLike("http://rast%","http://image%",params)
-        render(view:"list",model:[genomeInstanceList: genomeList, genomeInstanceTotal: Genome.count()])
-    }
+//    def listOther(Integer max) {
+//        params.max = Math.min(max ?: 10, 100)
+//        def genomeList = Genome.findAllByUrlNotLikeAndUrlNotLike("http://rast%","http://image%",params)
+//        render(view:"list",model:[genomeInstanceList: genomeList, genomeInstanceTotal: Genome.count()])
+//    }
 
     def create() {
         [genomeInstance: new Genome(params)]

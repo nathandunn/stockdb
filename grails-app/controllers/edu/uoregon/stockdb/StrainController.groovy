@@ -86,7 +86,7 @@ class StrainController {
                     inList("hostOrigin", hostOriginList)
                 }
                 if (filter == GENOME_AVAILABLE_FILTER && strainFilters.get(filter)=="true") {
-                    isNotNull("genome")
+                    isNotEmpty("genomes")
                 }
             }
         }
@@ -117,7 +117,7 @@ class StrainController {
                     inList("hostOrigin", hostOriginList)
                 }
                 if (filter == GENOME_AVAILABLE_FILTER && strainFilters.get(filter)=="true") {
-                    isNotNull("genome")
+                    isNotEmpty("genomes")
                 }
             }
         }
@@ -273,8 +273,22 @@ class StrainController {
             params.genus = newGenus
         }
 
+        strainInstance.genomes?.each{ genome ->
+            genome.strain = null
+//            genome.save(flush:true)
+        }
+        strainInstance.genomes = null
+
+        println "init properties: ${params.genomes} from ${params}"
 
         strainInstance.properties = params
+
+        println "strainInstance properties: ${strainInstance.properties}"
+
+        def genomes = Genome.findAllByStrainIsNull() ?: []
+        if(strainInstance.genomes){
+            genomes.addAll(strainInstance.genomes)
+        }
 
         if (params.addstockid && params.addstockid != 'null') {
             Stock stock = Stock.get(params.addstockid)

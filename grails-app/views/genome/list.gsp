@@ -29,12 +29,13 @@
         <tr>
 
             %{--<g:sortableColumn property="url" title="${message(code: 'genome.url.label', default: 'Sequence')}" />--}%
+            %{--<th>Sequence</th>--}%
+            <g:sortableColumn property="externalId" title="${message(code: 'genome.externalID.label', default: 'ID')}"/>
 
             <g:sortableColumn property="quality" title="${message(code: 'genome.quality.label', default: 'Quality')}"/>
 
             <g:sortableColumn property="size" title="${message(code: 'genome.size.label', default: 'Size')}"/>
 
-            <th>Sequence</th>
 
             %{--<g:sortableColumn property="id" title="${message(code: 'genome.id.label', default: 'ID')}" />--}%
             <th></th>
@@ -44,11 +45,12 @@
         <g:each in="${genomeInstanceList}" status="i" var="genomeInstance">
             <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
+                <td><g:link url="${genomeInstance.renderUrl()}">${genomeInstance.externalId}:${genomeInstance.genomeType.organizationName}</g:link></td>
+
                 <td>${fieldValue(bean: genomeInstance, field: "quality")}</td>
 
                 <td>${fieldValue(bean: genomeInstance, field: "size")}</td>
 
-                <td><g:link url="${genomeInstance.url}">Sequence</g:link></td>
 
 
                 <td>

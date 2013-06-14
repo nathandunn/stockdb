@@ -207,10 +207,13 @@
                 </td>
 
                 <td>
-                    <g:if test="${strainInstance.genome}">
-                        <g:link action="show" id="${strainInstance.genome.id}" controller="genome">Detail</g:link>
-                        <a href="${strainInstance.genome.url}">Sequence</a>
-                    </g:if>
+                    <g:each var="genome" in="${strainInstance.genomes}">
+                        <g:link action="show" id="${genome.id}" controller="genome">${genome.display}</g:link>
+                    </g:each>
+                    %{--<g:if test="${strainInstance.genomes}">--}%
+                    %{--<g:link action="show" id="${strainInstance.genome.id}" controller="genome">Detail</g:link>--}%
+                    %{--<a href="${strainInstance.genome.url}">Sequence</a>--}%
+                    %{--</g:if>--}%
                 </td>
 
             </tr>

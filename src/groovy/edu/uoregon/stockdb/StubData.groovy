@@ -14,9 +14,19 @@ class StubData {
 
     def stubData() {
 
+        if (Strain.count > 0) return 0
+
         Lab lab = Lab.findOrSaveByName("Guillemin")
 
-        if (Strain.count > 0) return 0
+        GenomeType rastGenomeType = GenomeType.findOrSaveByBaseUrlAndOrganizationName(
+                "http://rast.nmpdr.org/rast.cgi?page=JobDetails&job="
+                , "Rast"
+        )
+        GenomeType ncbiBioProjectGenomeType = GenomeType.findOrSaveByBaseUrlAndOrganizationName(
+                "http://www.ncbi.nlm.nih.gov/bioproject/"
+                , "NCBI BioProject"
+        )
+
 
         Phylum chordata = Phylum.findOrSaveByName("Chordata")
         chordata.host = true
@@ -51,7 +61,7 @@ class StubData {
                 genus = new Genus(name: tokens[1].trim(), phylum: phylum).save(flush: true)
             }
             strain.genus = genus
-            strain.save(flush:true,failOnError: true)
+            strain.save(flush: true, failOnError: true)
 
             // 4 ignore
             // 5 ignore
@@ -117,7 +127,7 @@ class StubData {
                 }
 //                isolateCondition = IsolateCondition.findOrSaveByOxygenConditionAndTemperatureAndMediaAndNotes(oxygenCondition, temperature, media, notes)
                 isolateCondition = IsolateCondition.findOrSaveByOxygenConditionAndTemperatureAndMedia(oxygenCondition, temperature, media)
-                if(isolateCondition.notes){
+                if (isolateCondition.notes) {
                     isolateCondition.notes += "\n"
                 }
                 isolateCondition.notes += notes
@@ -129,16 +139,21 @@ class StubData {
             }
 
 //            if (strain) {
-            Genome genome = new Genome()
-            genome.url = tokens[11]?.startsWith("http") ? tokens[11] : null
-            genome.size = tokens[12] ? Float.parseFloat(tokens[12]) : null
-            genome.quality = tokens[13] ? Float.parseFloat(tokens[13]) : null
-//            genome.note = tokens[14] ?: null
-            if (genome.hasValues()) {
-                genome.save(flush: true,failOnError: true)
-                strain.genome = genome
-            }
+            if (tokens[11]?.startsWith(rastGenomeType.baseUrl)) {
 
+                Genome genome = new Genome(
+                        strain: strain
+                        , genomeType: rastGenomeType
+                )
+                genome.externalId = tokens[11]?.startsWith(rastGenomeType.baseUrl) ? tokens[11].substring(rastGenomeType.baseUrl.length()) : null
+                genome.size = tokens[12] ? Float.parseFloat(tokens[12]) : null
+                genome.quality = tokens[13] ? Float.parseFloat(tokens[13]) : null
+//            genome.note = tokens[14] ?: null
+                if (genome.hasValues()) {
+                    genome.save(flush: true, failOnError: true)
+                    strain.addToGenomes(genome)
+                }
+            }
 
             strain.dateEntered = tokens[15] ? Date.parse("d/M/yyyy", tokens[15]) : null
 
@@ -150,9 +165,9 @@ class StubData {
                         Researcher researcher = Researcher.findOrSaveByFirstNameAndLastName(isolatedByString[0], isolatedByString[1])
                         isolateCondition.isolatedBy = researcher
                         researcher.lab = lab
-                        researcher.save(flush: true,failOnError: true)
+                        researcher.save(flush: true, failOnError: true)
                     }
-                    isolateCondition.save(flush: true,failOnError: true)
+                    isolateCondition.save(flush: true, failOnError: true)
                 }
             }
 
@@ -237,7 +252,7 @@ class StubData {
                 firstName: "Adam"
                 , lastName: "Burns"
                 , username: "aburns2@uoregon.edu"
-                ,passwordHash: new Sha256Hash("ilikesr16").toHex()
+                , passwordHash: new Sha256Hash("ilikesr16").toHex()
         ).addToRoles(adminRole).save()
 
 
@@ -245,40 +260,46 @@ class StubData {
                 firstName: "Travis"
                 , lastName: "Carney"
                 , username: "tcarney@uoregon.edu"
-                ,passwordHash: new Sha256Hash("ilikesr16").toHex()
+                , passwordHash: new Sha256Hash("ilikesr16").toHex()
         ).addToRoles(adminRole).save()
 
         new Researcher(
                 firstName: "Robert"
                 , lastName: "Steury"
                 , username: "steury@uoregon.edu"
-                ,passwordHash: new Sha256Hash("ilikesr16").toHex()
+                , passwordHash: new Sha256Hash("ilikesr16").toHex()
         ).addToRoles(adminRole).save()
 
         new Researcher(
                 firstName: "Nathan"
                 , lastName: "Dunn"
                 , username: "ndunn@cas.uoregon.edu"
-                ,passwordHash: new Sha256Hash("ilikesr16").toHex()
+                , passwordHash: new Sha256Hash("ilikesr16").toHex()
         ).addToRoles(adminRole).save()
 
         new Researcher(
                 firstName: "Test"
                 , lastName: "Me"
                 , username: "ndunn@me.com"
-                ,passwordHash: new Sha256Hash("test").toHex()
+                , passwordHash: new Sha256Hash("test").toHex()
         ).addToRoles(userRole).save()
 
         new Researcher(
                 firstName: "Chris"
                 , lastName: "Wreden"
                 , username: "cwreden@uoregon.edu"
-                ,passwordHash: new Sha256Hash("ilikesr16").toHex()
+                , passwordHash: new Sha256Hash("ilikesr16").toHex()
         ).addToRoles(adminRole).save()
     }
 
     def stubRawlsData() {
         println "start - RAWLS Data"
+
+
+        GenomeType rastGenomeType = GenomeType.findOrSaveByBaseUrlAndOrganizationName(
+                "http://rast.nmpdr.org/rast.cgi?page=JobDetails&job="
+                , "Rast"
+        )
         def servletContext = org.codehaus.groovy.grails.web.context.ServletContextHolder.servletContext
         def file = servletContext.getResourceAsStream("/WEB-INF/RawlsLabIsolateDatabase.tsv")
         if (!file) {
@@ -308,7 +329,7 @@ class StubData {
                     generalLocation.addToStocks(stock)
                     strain.addToStocks(stock)
                 }
-                generalLocation.save(flush: true,failOnError: true)
+                generalLocation.save(flush: true, failOnError: true)
                 stock.save(insert: true, flush: true)
 
             } else {
@@ -317,7 +338,7 @@ class StubData {
                 strain = new Strain(name: tokens[0])
 
                 Phylum phylum = tokens[3] ? Phylum.findOrSaveByName(tokens[3].trim()) : null
-                phylum?.save(flush: true,failOnError: true)
+                phylum?.save(flush: true, failOnError: true)
 
                 Genus genus = tokens[1] ? Genus.findByName(tokens[1].trim()) : null
                 if (!genus && tokens[1]) {
@@ -377,7 +398,7 @@ class StubData {
                 HostFacility hostFacility = tokens[8] ? HostFacility.findOrSaveByName(tokens[8]?.trim()) : null
 
                 Location generalLocation = tokens[9] ? Location.findOrSaveByName(tokens[9]) : null
-                generalLocation.save(flush: true,failOnError: true)
+                generalLocation.save(flush: true, failOnError: true)
 
                 String[] isolateData = tokens[10]?.split(";")
 
@@ -401,14 +422,19 @@ class StubData {
                     strain.isolateCondition = isolateCondition
                 }
 
-                Genome genome = new Genome()
-                genome.url = tokens[11]?.startsWith("http") ? tokens[11] : null
-                genome.size = tokens[12] ? Float.parseFloat(tokens[12]) : null
-                genome.quality = tokens[13] ? Float.parseFloat(tokens[13]) : null
+                if (tokens[11]?.startsWith(rastGenomeType.baseUrl)) {
+                    Genome genome = new Genome(
+                            strain: strain
+                            , genomeType: rastGenomeType
+                    )
+                    genome.externalId = tokens[11]?.startsWith(rastGenomeType.baseUrl) ? tokens[11].substring(rastGenomeType.baseUrl.length()) : null
+                    genome.size = tokens[12] ? Float.parseFloat(tokens[12]) : null
+                    genome.quality = tokens[13] ? Float.parseFloat(tokens[13]) : null
 //                genome.note = tokens[14] ?: null
-                if (genome.hasValues()) {
-                    genome.save(flush: true)
-                    strain.genome = genome
+                    if (genome.hasValues()) {
+                        genome.save(flush: true)
+                        strain.addToGenomes(genome)
+                    }
                 }
 
 
@@ -483,51 +509,51 @@ class StubData {
             if (tokens[19]) {
                 MeasuredValue measuredValue = new MeasuredValue(
                         category: motilityCategory
-                        ,experiment: motilityExperiment
+                        , experiment: motilityExperiment
                         , strain: strain
                         , value: tokens[19].trim()
                 )
-                        .save(insert: true,failOnError: true)
+                        .save(insert: true, failOnError: true)
             }
 
             if (tokens[21]) {
                 MeasuredValue measuredValue = new MeasuredValue(
                         category: hemolyticActivityCategory
-                        ,experiment: hemolyticActivityExperiment
+                        , experiment: hemolyticActivityExperiment
                         , strain: strain
                         , value: tokens[21].trim()
                 )
-                        .save(insert: true,failOnError: true)
+                        .save(insert: true, failOnError: true)
             }
 
             if (tokens[22]) {
                 MeasuredValue measuredValue = new MeasuredValue(
                         category: antibioticCategory
-                        ,experiment: antibioticExperiment
+                        , experiment: antibioticExperiment
                         , strain: strain
                         , value: tokens[22].trim()
                 )
-                        .save(insert: true,failOnError: true)
+                        .save(insert: true, failOnError: true)
             }
 
             if (tokens[23]) {
                 MeasuredValue measuredValue = new MeasuredValue(
                         category: doublingCategory
-                        ,experiment: doublingExperiment
+                        , experiment: doublingExperiment
                         , strain: strain
                         , value: tokens[23].trim()
                 )
-                        .save(insert: true,failOnError: true)
+                        .save(insert: true, failOnError: true)
             }
 
             if (tokens[25]) {
                 MeasuredValue measuredValue = new MeasuredValue(
                         category: adherenceCategory
-                        ,experiment: adherenceExperiment
+                        , experiment: adherenceExperiment
                         , strain: strain
                         , value: (tokens[25].trim().substring(1))
                 )
-                        .save(insert: true, flush: true,failOnError: true)
+                        .save(insert: true, flush: true, failOnError: true)
             }
 
             ++rowIndex
