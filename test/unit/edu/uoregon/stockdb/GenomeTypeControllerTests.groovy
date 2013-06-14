@@ -1,9 +1,7 @@
 package edu.uoregon.stockdb
 
-
-
-import org.junit.*
-import grails.test.mixin.*
+import grails.test.mixin.Mock
+import grails.test.mixin.TestFor
 
 @TestFor(GenomeTypeController)
 @Mock(GenomeType)
@@ -11,8 +9,8 @@ class GenomeTypeControllerTests {
 
     def populateValidParams(params) {
         assert params != null
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["organizationName"] = 'someValidName'
+        params["baseUrl"] = 'http://rast.com'
     }
 
     void testIndex() {
@@ -101,7 +99,7 @@ class GenomeTypeControllerTests {
 
         // test invalid parameters in update
         params.id = genomeType.id
-        //TODO: add invalid values to params object
+        params.baseUrl = "notavalidurl"
 
         controller.update()
 

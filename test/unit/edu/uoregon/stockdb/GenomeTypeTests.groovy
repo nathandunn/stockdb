@@ -12,6 +12,10 @@ import org.junit.*
 class GenomeTypeTests {
 
     void testSomething() {
-        fail "Implement me"
+        GenomeType genomeType = new GenomeType(
+                organizationName: "Rast 123"
+                ,baseUrl: "http://asdfasf.com"
+        )
+        .save(flush: true,insert: true)
     }
 }

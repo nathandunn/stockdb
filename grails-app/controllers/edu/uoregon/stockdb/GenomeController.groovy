@@ -22,15 +22,15 @@ class GenomeController {
     def listRast(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         GenomeType genomeType = GenomeType.findByOrganizationName("Rast")
-        def genomeList = Genome.findAllByGenomeType(genomeType,params)
-        render(view:"list",model:[genomeInstanceList: genomeList, genomeInstanceTotal: Genome.count()])
+        def genomeList = Genome.findAllByGenomeType(genomeType, params)
+        render(view: "list", model: [genomeInstanceList: genomeList, genomeInstanceTotal: Genome.count()])
     }
 
     def listImage(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         GenomeType genomeType = GenomeType.findByOrganizationName("IMG")
-        def genomeList = Genome.findAllByGenomeType(genomeType,params)
-        render(view:"list",model:[genomeInstanceList: genomeList, genomeInstanceTotal: Genome.count()])
+        def genomeList = Genome.findAllByGenomeType(genomeType, params)
+        render(view: "list", model: [genomeInstanceList: genomeList, genomeInstanceTotal: Genome.count()])
     }
 
 //    def listOther(Integer max) {
@@ -65,7 +65,7 @@ class GenomeController {
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'genome.label', default: 'Genome'), genomeInstance.display])
 
-        redirect(action: "show", id: genomeInstance.id,model: [genomeInstance: genomeInstance])
+        redirect(action: "show", id: genomeInstance.id, model: [genomeInstance: genomeInstance])
     }
 
     def show(Long id) {
@@ -139,12 +139,13 @@ class GenomeController {
         }
 
         try {
-            genomeInstance.strains.each { it ->
-                it.genome = null
-                it.save(flush: true)
-            }
-            genomeInstance.strains = null
-            genomeInstance.save(flush: true)
+//            genomeInstance.strain = null
+//            genomeInstance.strain.each { it ->
+//                it.genome = null
+//                it.save(flush: true)
+//            }
+//            genomeInstance.strains = null
+//            genomeInstance.save(flush: true)
 
             genomeInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'genome.label', default: 'Genome'), genomeInstance.display])
@@ -173,7 +174,12 @@ class GenomeController {
             return
         }
 
-        strainInstance.genome = null
+        strainInstance.genomes.each { genome ->
+            genome.strain = null
+            genome.save()
+        }
+
+        strainInstance.genomes = null
 
 //        genomeInstance.strain = null
 //        strainInstance.removeFromGenomes(genomeInstance)

@@ -8,10 +8,13 @@ class GenomeControllerTests {
 
     def populateValidParams(params) {
         assert params != null
-        params["url"] = 'http://rast.nmpdr.org/rast.cgi?page=JobDetails&job=40453'
+        params["externalId"] = '40453'
         params["size"] = 12.3
         params["quality"] = 92.5
-        params["note"] = "a note about RAST genomes "
+        params["genomeType"] = new GenomeType(
+                baseUrl: 'http://rast.nmpdr.org/rast.cgi?page=JobDetails&job='
+                ,organizationName: "RAST"
+        )
 
 
     }
@@ -105,7 +108,7 @@ class GenomeControllerTests {
 
         // test invalid parameters in update
         params.id = genome.id
-        params.url = "notaurl"
+        params.externalId = null
 
         controller.update()
 
