@@ -275,20 +275,10 @@ class StrainController {
 
         strainInstance.genomes?.each{ genome ->
             genome.strain = null
-//            genome.save(flush:true)
         }
         strainInstance.genomes = null
 
-        println "init properties: ${params.genomes} from ${params}"
-
         strainInstance.properties = params
-
-        println "strainInstance properties: ${strainInstance.properties}"
-
-        def genomes = Genome.findAllByStrainIsNull() ?: []
-        if(strainInstance.genomes){
-            genomes.addAll(strainInstance.genomes)
-        }
 
         if (params.addstockid && params.addstockid != 'null') {
             Stock stock = Stock.get(params.addstockid)
@@ -326,6 +316,13 @@ class StrainController {
                 stock.save(flush: true)
             }
             strainInstance.stocks = null
+
+            strainInstance.genomes.each { genome ->
+                genome.strain = null
+                genome.save(flush: true)
+            }
+            strainInstance.genomes = null
+
             strainInstance.save(flush: true)
 
 
