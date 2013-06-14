@@ -290,6 +290,13 @@ class StubData {
                 , username: "cwreden@uoregon.edu"
                 , passwordHash: new Sha256Hash("ilikesr16").toHex()
         ).addToRoles(adminRole).save()
+
+        new Researcher(
+                firstName: "Zac"
+                , lastName: "Stephens"
+                , username: "wzacs1@gmail.com"
+                , passwordHash: new Sha256Hash("ilikesr16").toHex()
+        ).addToRoles(adminRole).save()
     }
 
     def stubRawlsData() {
