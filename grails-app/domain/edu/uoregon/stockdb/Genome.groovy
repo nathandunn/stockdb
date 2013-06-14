@@ -12,7 +12,7 @@ class Genome {
     // other URL
 //    String url
     Float size
-    Float quality
+    Integer quality // also known as contigs
     String note
     String externalId // can't re-use genome id
     Float genomeVersion // can't re-use genome  version

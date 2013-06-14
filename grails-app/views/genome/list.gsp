@@ -32,7 +32,7 @@
             %{--<th>Sequence</th>--}%
             <g:sortableColumn property="externalId" title="${message(code: 'genome.externalID.label', default: 'ID')}"/>
 
-            <g:sortableColumn property="quality" title="${message(code: 'genome.quality.label', default: 'Quality')}"/>
+            <g:sortableColumn property="quality" title="${message(code: 'genome.quality.label', default: 'Contigs')}"/>
 
             <g:sortableColumn property="size" title="${message(code: 'genome.size.label', default: 'Size')}"/>
 

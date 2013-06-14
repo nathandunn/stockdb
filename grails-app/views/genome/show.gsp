@@ -57,7 +57,7 @@
         <g:if test="${genomeInstance?.quality}">
             <li class="fieldcontain">
                 <span id="quality-label" class="property-label"><g:message code="genome.quality.label"
-                                                                           default="Quality"/></span>
+                                                                           default="Contigs"/></span>
 
                 <span class="property-value" aria-labelledby="quality-label"><g:fieldValue bean="${genomeInstance}"
                                                                                            field="quality"/></span>

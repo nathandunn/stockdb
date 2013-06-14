@@ -24,10 +24,10 @@
 
 <div class="fieldcontain ${hasErrors(bean: genomeInstance, field: 'quality', 'error')} ">
     <label for="quality">
-        <g:message code="genome.quality.label" default="Quality"/>
+        <g:message code="genome.quality.label" default="Contigs"/>
 
     </label>
-    <g:field type="text" name="quality" value="${fieldValue(bean: genomeInstance, field: 'quality')}"/>
+    <g:field type="number" name="quality" value="${fieldValue(bean: genomeInstance, field: 'quality')}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: genomeInstance, field: 'size', 'error')} ">
