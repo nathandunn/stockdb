@@ -23,15 +23,22 @@
         <g:message code="genome.size.label" default="Size"/>
 
     </label>
-    <g:field name="size" value="${fieldValue(bean: genomeInstance, field: 'size')}"/>
+    <g:field type="text" name="size" value="${fieldValue(bean: genomeInstance, field: 'size')}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: genomeInstance, field: 'strains', 'error')} ">
-    <label for="strains">
-        <g:message code="genome.strains.label" default="Strains"/>
+<div class="fieldcontain ${hasErrors(bean: genomeInstance, field: 'genomeVersion', 'error')} ">
+    <label for="genomeVersion">
+        <g:message code="genome.genomeVersion.label" default="Version"/>
 
     </label>
+    <g:field type="text" name="genomeVersion" value="${fieldValue(bean: genomeInstance, field: 'genomeVersion')}"/>
+</div>
 
+<div class="fieldcontain ${hasErrors(bean: genomeInstance, field: 'strain', 'error')} ">
+    <label for="strain">
+        <g:message code="genome.strain.label" default="Strain"/>
+
+    </label>
 
     <g:select id="strain" name="addstrainid" from="${edu.uoregon.stockdb.Strain.list()}" optionKey="id"
               value="${strainInstance?.genus?.id}" optionValue="name" class="many-to-one"

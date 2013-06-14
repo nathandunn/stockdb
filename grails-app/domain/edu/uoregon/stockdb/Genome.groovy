@@ -4,6 +4,7 @@ class Genome {
 
     static constraints = {
         url nullable: true, url: true
+        version nullable: true
     }
 
     static hasMany = [
@@ -14,6 +15,8 @@ class Genome {
     Float size
     Float quality
     String note
+    String externalId // can't re-use genome id
+    Float genomeVersion // can't re-use genome  version
 
     String getDisplay() {
         if(quality && size){

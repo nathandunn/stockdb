@@ -69,6 +69,19 @@
             </li>
         </g:if>
 
+        <g:if test="${genomeInstance?.genomeVersion}">
+            <li class="fieldcontain">
+                <span id="genomeVersion-label" class="property-label"><g:message code="genome.genomeVersion.label" default="Genome Version"/></span>
+
+                <span class="property-value" aria-labelledby="genomeVersion-label">
+                    %{--<g:fieldValue bean="${genomeInstance}" field="genomeVersion"/>--}%
+                    %{--<g:formatNumber number="${genomeInstance.genomeVersion}" />--}%
+                    ${genomeInstance.genomeVersion}
+                </span>
+
+            </li>
+        </g:if>
+
         <g:if test="${genomeInstance?.strains}">
             <li class="fieldcontain">
                 <span id="strains-label" class="property-label"><g:message code="genome.strains.label"
