@@ -20,6 +20,10 @@
     </div>
 </shiro:hasRole>
 
+<g:if test="${flash.message}">
+    <div class="message" role="status">${flash.message}</div>
+</g:if>
+
 <div class="list-filter">
     <h3>Filter</h3>
     <g:form action="showFilter">
@@ -141,9 +145,6 @@
 
 <div id="list-strain" class="content scaffold-list" role="main">
     <h1><g:message code="default.list.label" args="[entityName]"/></h1>
-    <g:if test="${flash.message}">
-        <div class="message" role="status">${flash.message}</div>
-    </g:if>
     <table>
         <thead>
         <tr>
@@ -207,10 +208,13 @@
                 </td>
 
                 <td>
-                    <g:if test="${strainInstance.genome}">
-                        <g:link action="show" id="${strainInstance.genome.id}" controller="genome">Detail</g:link>
-                        <a href="${strainInstance.genome.url}">Sequence</a>
-                    </g:if>
+                    <g:each var="genome" in="${strainInstance.genomes}">
+                        <g:link action="show" id="${genome.id}" controller="genome">${genome.display}</g:link>
+                    </g:each>
+                    %{--<g:if test="${strainInstance.genomes}">--}%
+                    %{--<g:link action="show" id="${strainInstance.genome.id}" controller="genome">Detail</g:link>--}%
+                    %{--<a href="${strainInstance.genome.url}">Sequence</a>--}%
+                    %{--</g:if>--}%
                 </td>
 
             </tr>

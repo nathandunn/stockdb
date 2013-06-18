@@ -81,24 +81,21 @@
 %{--</li>--}%
 %{--</g:if>--}%
 
-<g:if test="${strainInstance?.genome}">
-    <li class="fieldcontain">
-        <span id="genome-label" class="property-label"><g:message code="strain.genome.label"
-                                                                  default="Genome"/></span>
+<li class="fieldcontain">
+    <span id="genome-label" class="property-label"><g:message code="strain.genome.label"
+                                                              default="Genome"/></span>
 
-        <span class="property-value" aria-labelledby="genome-label">
-            <g:link controller="genome" action="show" id="${strainInstance?.genome?.id}">
-                ${strainInstance?.genome?.note}
-                ${strainInstance?.genome?.quality}
+    <span class="property-value" aria-labelledby="genome-label">
+        <g:each var="genome" in="${strainInstance.genomes}">
+            <g:link controller="genome" action="show" id="${genome.id}">
+            %{--${strainInstance?.genome?.note}--}%
+                ${genome.display}
             </g:link>
+            &nbsp;
+        </g:each>
+    </span>
 
-            <g:if test="${strainInstance?.genome?.url}">
-                <g:link url="${strainInstance.genome.url}">[Sequence]</g:link>
-            </g:if>
-        </span>
-
-    </li>
-</g:if>
+</li>
 
 
 <g:if test="${strainInstance?.hostOrigin}">

@@ -8,11 +8,15 @@ import grails.test.mixin.TestFor
 class GenomeTests {
 
     void testSomething() {
+        GenomeType genomeType = new GenomeType(
+                organizationName: "Rast 123"
+                ,baseUrl: "http://raststuff.com"
+        )
         Genome genome = new Genome(
-                url: "http://asdfasdf.com"
+                genomeType:genomeType
                 ,size:12.2
                 ,quality: 12.2
-                ,note:"yoyo"
+                ,externalId: "ABC123"
         )
         .save(failOnError: true)
     }

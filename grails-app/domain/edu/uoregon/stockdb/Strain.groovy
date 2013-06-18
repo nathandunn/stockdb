@@ -6,13 +6,12 @@ class Strain {
 //        values nullable: true
         formerCloneAlias nullable: true
         name nullable: false, unique: true
-//        genus nullable: false
-        genome nullable: true
     }
 
     static hasMany = [
             stocks: Stock
             ,measuredValues: MeasuredValue
+            ,genomes:Genome
     ]
 
 //    static mapping = {
@@ -32,8 +31,6 @@ class Strain {
 
 //    HostFacility hostFacility
     StrainGenotype strainGenotype
-
-    Genome genome
 
     String formerCloneAlias
 

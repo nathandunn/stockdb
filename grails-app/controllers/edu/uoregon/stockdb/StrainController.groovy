@@ -86,7 +86,7 @@ class StrainController {
                     inList("hostOrigin", hostOriginList)
                 }
                 if (filter == GENOME_AVAILABLE_FILTER && strainFilters.get(filter)=="true") {
-                    isNotNull("genome")
+                    isNotEmpty("genomes")
                 }
             }
         }
@@ -117,7 +117,7 @@ class StrainController {
                     inList("hostOrigin", hostOriginList)
                 }
                 if (filter == GENOME_AVAILABLE_FILTER && strainFilters.get(filter)=="true") {
-                    isNotNull("genome")
+                    isNotEmpty("genomes")
                 }
             }
         }
@@ -273,6 +273,10 @@ class StrainController {
             params.genus = newGenus
         }
 
+        strainInstance.genomes?.each{ genome ->
+            genome.strain = null
+        }
+        strainInstance.genomes = null
 
         strainInstance.properties = params
 
@@ -312,6 +316,13 @@ class StrainController {
                 stock.save(flush: true)
             }
             strainInstance.stocks = null
+
+            strainInstance.genomes.each { genome ->
+                genome.strain = null
+                genome.save(flush: true)
+            }
+            strainInstance.genomes = null
+
             strainInstance.save(flush: true)
 
 

@@ -30,27 +30,26 @@
     </g:if>
     <ol class="property-list genome">
 
-        <g:if test="${genomeInstance?.url}">
+        <li class="fieldcontain">
+            <span id="url-label" class="property-label"><g:message code="genome.url.label" default="Url"/></span>
+
+            <span class="property-value" aria-labelledby="url-label">
+                <g:link class="external-link" url="${genomeInstance.renderUrl()}" target="_blank">
+                    ${genomeInstance.display}
+                %{--Sequence--}%
+                </g:link>
+                %{--<g:fieldValue bean="${genomeInstance}" field="url"/>--}%
+            </span>
+
+        </li>
+
+        <g:if test="${genomeInstance?.externalId}">
             <li class="fieldcontain">
-                <span id="url-label" class="property-label"><g:message code="genome.url.label" default="Url"/></span>
+                <span id="externalId-label" class="property-label"><g:message code="genome.externalId.label"
+                                                                           default="External Id"/></span>
 
-                <span class="property-value" aria-labelledby="url-label">
-                    <g:link class="external-link" url="${genomeInstance.url}" target="_blank">
-                        ${genomeInstance?.url?.startsWith("http://rast")?"Rast":""}
-                        Sequence
-                    </g:link>
-                    %{--<g:fieldValue bean="${genomeInstance}" field="url"/>--}%
-                </span>
-
-            </li>
-        </g:if>
-
-        <g:if test="${genomeInstance?.note}">
-            <li class="fieldcontain">
-                <span id="note-label" class="property-label"><g:message code="genome.note.label" default="Note"/></span>
-
-                <span class="property-value" aria-labelledby="note-label"><g:fieldValue bean="${genomeInstance}"
-                                                                                        field="note"/></span>
+                <span class="property-value" aria-labelledby="externalId-label"><g:fieldValue bean="${genomeInstance}"
+                                                                                           field="externalId"/></span>
 
             </li>
         </g:if>
@@ -58,7 +57,7 @@
         <g:if test="${genomeInstance?.quality}">
             <li class="fieldcontain">
                 <span id="quality-label" class="property-label"><g:message code="genome.quality.label"
-                                                                           default="Quality"/></span>
+                                                                           default="Contigs"/></span>
 
                 <span class="property-value" aria-labelledby="quality-label"><g:fieldValue bean="${genomeInstance}"
                                                                                            field="quality"/></span>
@@ -78,19 +77,30 @@
             </li>
         </g:if>
 
-        <g:if test="${genomeInstance?.strains}">
+        <g:if test="${genomeInstance?.genomeVersion}">
             <li class="fieldcontain">
-                <span id="strains-label" class="property-label"><g:message code="genome.strains.label"
-                                                                           default="Strains"/></span>
+                <span id="genomeVersion-label" class="property-label"><g:message code="genome.genomeVersion.label"
+                                                                                 default="Genome Versin"/></span>
 
-                <g:each in="${genomeInstance.strains}" var="s">
-                    <span class="property-value" aria-labelledby="strains-label"><g:link controller="strain"
-                                                                                         action="show"
-                                                                                         id="${s.id}">${s?.name}</g:link></span>
-                </g:each>
+                <span class="property-value" aria-labelledby="genomeVersion-label">
+                    %{--<g:fieldValue bean="${genomeInstance}" field="genomeVersion"/>--}%
+                    %{--<g:formatNumber number="${genomeInstance.genomeVersion}" />--}%
+                    ${genomeInstance.genomeVersion}
+                </span>
 
             </li>
         </g:if>
+
+        <li class="fieldcontain">
+            <span id="strains-label" class="property-label"><g:message code="genome.strains.label"
+                                                                       default="Strains"/></span>
+
+                <span class="property-value" aria-labelledby="strains-label">
+                    <g:link controller="strain" action="show" id="${genomeInstance.strain.id}">${genomeInstance.strain.name}</g:link>
+                    %{--${genomeInstance.strain}--}%
+                </span>
+
+        </li>
 
     </ol>
     <g:form>
