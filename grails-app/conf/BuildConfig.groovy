@@ -62,11 +62,11 @@ grails.project.dependency.resolution = {
 
         compile ':cache:1.0.0'
 //        plugins.gwt=0.8
-//        compile ':gwt:0.8'
-        compile(':gwt:0.8') {
-            exclude 'spock'
-//            exclude "org.spockframework:spock-grails-support:0.7-groovy-2.0"
-        }
+        compile ':gwt:0.9'
+//        compile(':gwt:0.8') {
+//            exclude 'spock'
+////            exclude "org.spockframework:spock-grails-support:0.7-groovy-2.0"
+//        }
         compile ":csv:0.3.1"
 
 //        #plugins.navigation=1.3.2
