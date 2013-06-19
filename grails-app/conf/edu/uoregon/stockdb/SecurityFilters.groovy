@@ -12,7 +12,7 @@ class SecurityFilters {
                 if (!controllerName) return true
 
                 // Access control by convention.
-                accessControl(auth: false)
+                accessControl(auth: true)
             }
         }
     }
