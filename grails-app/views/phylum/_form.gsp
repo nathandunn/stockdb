@@ -1,6 +1,14 @@
 <%@ page import="edu.uoregon.stockdb.Phylum" %>
 
 
+<div class="fieldcontain ${hasErrors(bean: phylumInstance, field: 'name', 'error')} ">
+    <label for="name">
+        <g:message code="phylum.name.label" default="Name"/>
+
+    </label>
+    <g:textField name="name" value="${phylumInstance?.name}" size="60"/>
+</div>
+
 
 <div class="fieldcontain ${hasErrors(bean: phylumInstance, field: 'genuses', 'error')} ">
     <label for="genuses">
@@ -21,13 +29,5 @@
         %{--<g:link controller="strain" action="create">Create Genus</g:link>--}%
     </ul>
 
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: phylumInstance, field: 'name', 'error')} ">
-    <label for="name">
-        <g:message code="phylum.name.label" default="Name"/>
-
-    </label>
-    <g:textField name="name" value="${phylumInstance?.name}" size="60"/>
 </div>
 

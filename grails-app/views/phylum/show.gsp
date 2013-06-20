@@ -29,6 +29,13 @@
     </g:if>
     <ol class="property-list phylum">
 
+        <li class="fieldcontain">
+            <span id="name-label" class="property-label"><g:message code="phylum.name.label" default="Name"/></span>
+
+            <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${phylumInstance}"
+                                                                                    field="name"/></span>
+        </li>
+
         <g:if test="${genuses}">
             <li class="fieldcontain">
                 <span id="genuses-label" class="property-label"><g:message code="phylum.genuses.label"
@@ -43,15 +50,6 @@
             </li>
         </g:if>
 
-        <g:if test="${phylumInstance?.name}">
-            <li class="fieldcontain">
-                <span id="name-label" class="property-label"><g:message code="phylum.name.label" default="Name"/></span>
-
-                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${phylumInstance}"
-                                                                                        field="name"/></span>
-
-            </li>
-        </g:if>
 
         <li class="fieldcontain">
             <span id="strains-label" class="property-label"><g:message code="strains.name.label"
