@@ -80,6 +80,8 @@ grails.project.dependency.resolution = {
         compile ":shiro:1.1.4"
         compile ":crypto:2.0"
 
+
+
 //        exclude "spock-grails-support"
 //        test(":spock:0.7") {
 //            exclude "spock-grails-support"
@@ -87,3 +89,9 @@ grails.project.dependency.resolution = {
 
     }
 }
+
+gwt {
+    version = "2.5.1"
+//    home = "${grailsHome}/../gwt"
+}
+
