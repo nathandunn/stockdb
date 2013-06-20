@@ -43,8 +43,7 @@ class PhylumController {
             return
         }
 
-//        def strains = Strain.findAllByGenusInList(phylumInstance.genuses,[sort:"genus.name",order:"asc"])
-        def strains = Strain.findAllByGenusInList([phylumInstance.genuses],[sort:"genus.name",order:"asc"])
+        def strains = Strain.findAllByGenusInList(phylumInstance?.genuses as List<Genus>,[sort:"genus.name",order:"asc"])
 
         [phylumInstance: phylumInstance,genuses:Genus.findAllByPhylum(phylumInstance,[sort:"name",order:"asc"]),strains:strains]
     }
