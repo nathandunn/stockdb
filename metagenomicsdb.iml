@@ -70,6 +70,10 @@
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.httpcomponents/httpcore/jars/httpcore-4.0.1.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.httpcomponents/httpclient/jars/httpclient-4.0.3.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/com.google.gwt/gwt-dev/jars/gwt-dev-2.5.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.json/json/jars/json-20090211.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.google.gwt/gwt-codeserver/jars/gwt-codeserver-2.5.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.google.gwt/gwt-servlet/jars/gwt-servlet-2.5.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.google.gwt/gwt-user/jars/gwt-user-2.5.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

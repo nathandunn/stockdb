@@ -29,17 +29,17 @@
              alt="Metagenomics Center for Systems Biology"/>
 
         <div class="user-menu">
-            <shiro:isNotLoggedIn>
+            <shiro:notUser>
                 <g:link controller="auth" action="login">Login</g:link>
-            </shiro:isNotLoggedIn>
+            </shiro:notUser>
 
-            <shiro:isLoggedIn>
+            <shiro:user>
                 <g:set var="researcherId"
                        value="${Researcher.findByUsername(org.apache.shiro.SecurityUtils.subject.principal).id}"/>
                 <g:link controller="researcher" action="edit" id="${researcherId}">Edit <shiro:principal/></g:link>
-                %{--&nbsp;&nbsp;--}%
+            %{--&nbsp;&nbsp;--}%
                 <g:link controller="auth" action="signOut">Logout</g:link>
-            </shiro:isLoggedIn>
+            </shiro:user>
         </div>
     </a>
 </div>
