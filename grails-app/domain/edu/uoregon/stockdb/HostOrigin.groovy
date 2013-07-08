@@ -13,7 +13,7 @@ class HostOrigin {
         anatomy nullable: true
         hostFacility nullable: false
         species nullable: false
-        daysPastFertilization min: 1, max: 720
+        daysPastFertilization min: 0, max: 720
     }
 
     static hasMany = [
@@ -104,7 +104,7 @@ class HostOrigin {
             }
         }
         else
-        if(daysPastFertilization && daysPastFertilization >0 && daysPastFertilization<360)
+        if(daysPastFertilization!=null && daysPastFertilization >=0 && daysPastFertilization<720)
         {
             returnString += "${daysPastFertilization} DPF"
         }
