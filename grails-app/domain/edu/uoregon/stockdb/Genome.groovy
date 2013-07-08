@@ -4,7 +4,7 @@ class Genome {
 
     static constraints = {
         genomeVersion nullable: true
-        genomeType nullable: false
+        genomeType nullable: false, blank: false
         externalId nullable: false,blank: false
         strain nullable: true
     }
