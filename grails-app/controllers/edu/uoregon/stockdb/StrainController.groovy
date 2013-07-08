@@ -24,8 +24,10 @@ class StrainController {
     }
 
     def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
+        //params.max ?: Math.min(max ?: 10, 100)
 
+		params.max = params.max == "" || params.max == null ? 10 : params.max
+		
         Map<String, String> strainFilters = (Map<String, String>) request.session.getAttribute(STRAIN_FILTER)
 
 //        println "filters ${strainFilters}"

@@ -329,7 +329,7 @@ class StubData {
         new Researcher(
                 firstName: "Emily"
                 , lastName: "Schwarz"
-                , username: "eshwarz@cs.uoregon.edu"
+                , username: "eschwarz@cs.uoregon.edu"
                 , passwordHash: new Sha256Hash("ilikesr16").toHex()
         ).addToRoles(adminRole).save()
 
