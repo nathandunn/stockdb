@@ -5,7 +5,7 @@ class Strain {
     static constraints = {
 //        values nullable: true
         formerCloneAlias nullable: true
-        name nullable: false, unique: true
+        name nullable: false, unique: true,blank: false
     }
 
     static hasMany = [

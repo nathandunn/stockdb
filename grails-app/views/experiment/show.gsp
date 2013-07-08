@@ -78,8 +78,9 @@
                             <g:each in="${m.value}" var="val">
                                 <tr>
                                     <td>
+
                                         <g:link controller="measuredValue" action="show"
-                                                id="${val.id}">${val?.value}</g:link>
+                                                id="${val.id}">${val.value ?: "no value"}</g:link>
                                     </td>
                                     <td>
                                         <g:link controller="strain" action="show"

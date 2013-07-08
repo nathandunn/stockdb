@@ -13,6 +13,7 @@ class HostOrigin {
         anatomy nullable: true
         hostFacility nullable: false
         species nullable: false
+        daysPastFertilization min: 1, max: 720
     }
 
     static hasMany = [

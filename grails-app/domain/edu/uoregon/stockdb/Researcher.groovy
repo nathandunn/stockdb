@@ -4,7 +4,7 @@ class Researcher {
 
     static constraints = {
 //        email nullable:false,email: true
-        username email: true,unique: true
+        username email: true,unique: true,blank: false
         firstName nullable:false
         lastName nullable:false
     }

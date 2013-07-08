@@ -46,7 +46,10 @@
             <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
                 <td><g:link action="show"
-                            id="${measuredValueInstance.id}">${fieldValue(bean: measuredValueInstance, field: "value")}</g:link></td>
+                            id="${measuredValueInstance.id}">
+                    ${measuredValueInstance.value ?: "no value"}
+                    %{--${fieldValue(bean: measuredValueInstance, field: "value")}--}%
+                </g:link></td>
 
 
                 <td>

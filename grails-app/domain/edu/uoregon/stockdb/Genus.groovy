@@ -3,7 +3,7 @@ package edu.uoregon.stockdb
 class Genus {
 
     static constraints = {
-        name nullable: false,unique: true
+        name nullable: false,unique: true,blank: false
         phylum nullable: false
     }
 

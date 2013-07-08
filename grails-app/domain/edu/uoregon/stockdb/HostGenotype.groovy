@@ -6,7 +6,7 @@ package edu.uoregon.stockdb
 class HostGenotype {
 
     static constraints = {
-        name nullable: false, unique: true
+        name nullable: false, unique: true,blank: false
     }
 
     static hasMany = [
