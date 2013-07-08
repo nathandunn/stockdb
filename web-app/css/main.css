@@ -498,6 +498,7 @@ th:hover, tr:hover {
     -webkit-box-shadow: 0 0 3px 1px #AAAAAA;
     box-shadow: 0 0 3px 1px #AAAAAA;
     background-color: #EFEFEF;
+    overflow: hidden;
 }
 
 .pagination a,
@@ -529,6 +530,16 @@ th:hover, tr:hover {
 
 .pagination input[type=text] {
 	width:40px;
+}
+
+.pag_select {
+	float:left;
+	margin-left:30px;
+}
+
+.pag_input {
+	margin-right:30px;
+	float:right;
 }
 
 /* ACTION BUTTONS */
