@@ -94,12 +94,17 @@ class HostFacilityController {
         }
 
         try {
-            hostFacilityInstance.origins.each { it ->
-                it.hostFacility = null
-                it.save(flush: true)
+            if(hostFacilityInstance.origins){
+                flash.message = "You must re-assign ${hostFacilityInstance.origins.size()} Origins before deleting."
+                redirect(action: "show", id: hostFacilityInstance.id)
+                return
             }
-            hostFacilityInstance.origins = null
-            hostFacilityInstance.save(flush: true)
+//            hostFacilityInstance.origins.each { it ->
+//                it.hostFacility = null
+//                it.save(flush: true)
+//            }
+//            hostFacilityInstance.origins = null
+//            hostFacilityInstance.save(flush: true)
 
 
             hostFacilityInstance.delete(flush: true)
