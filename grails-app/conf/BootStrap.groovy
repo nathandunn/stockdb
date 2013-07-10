@@ -7,7 +7,7 @@ class BootStrap {
 
     def init = { servletContext ->
 
-        if(Environment.current!=Environment.TEST){
+        if(Environment.current==Environment.DEVELOPMENT){
             stubData.stubUsers()
             stubData.stubData()
             stubData.stubRawlsData()
