@@ -1,7 +1,8 @@
 #!/bin/sh
 #hg pull -u 
 
-if [ "$HOSTNAME" = ubuntu ]; then 
+THIS_HOST=`hostname`
+if [ "$THIS_HOST" = ubuntu ]; then 
 	grails clean
 	grails war 
 	sudo service tomcat7 stop
@@ -9,6 +10,6 @@ if [ "$HOSTNAME" = ubuntu ]; then
 	sudo cp target/metagenomicsdb-0.1.war /var/lib/tomcat7/webapps/metagenomicsdb.war
 	sudo service tomcat7 start 
 else
-   echo "$HOSTNAME is not the staging server" 
+   echo "$THIS_HOST is not the staging server" 
 fi 
 
