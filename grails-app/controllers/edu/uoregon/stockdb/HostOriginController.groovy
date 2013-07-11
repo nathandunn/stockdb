@@ -160,14 +160,17 @@ class HostOriginController {
         }
 
         try {
-            hostOriginInstance.strains.each { strain ->
+            Strain.findAllByHostOrigin(hostOriginInstance).each { strain ->
                 strain.hostOrigin = null
                 strain.save(flush: true)
             }
+            hostOriginInstance.strains = null
+            hostOriginInstance.save(flush: true)
 
 
             hostOriginInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'hostOrigin.label', default: 'HostOrigin'), hostOriginInstance.display])
+            // can not delete display as it needs the colleciton
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'hostOrigin.label', default: 'HostOrigin'), hostOriginInstance.id])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
@@ -175,7 +178,8 @@ class HostOriginController {
             redirect(action: "show", id: id)
         }
         catch(Exception e){
-            println "failed for some reason ${e}"
+            flash.message = "Failed for reason ${e}"
+            redirect(action: "show", id: id)
         }
     }
 
