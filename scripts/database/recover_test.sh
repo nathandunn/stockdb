@@ -8,10 +8,10 @@ DUMP_NAME=`ls -rtc dump*.zip | tail -1`
 echo "using dump_name $DUMP_NAME"
 fi
 
-dropdb metagenomics2_test
-createdb metagenomics2_test
+dropdb metagenomics_test
+createdb metagenomics_test
 rm -f dump.sql 
 unzip -p $DUMP_NAME> dump.sql 
-psql -U ndunn metagenomics2_test < dump.sql ; 
+psql -U ndunn metagenomics_test < dump.sql ; 
 
 

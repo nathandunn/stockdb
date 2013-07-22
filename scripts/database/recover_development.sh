@@ -9,10 +9,10 @@ echo "using dump_name $DUMP_NAME"
 fi
 
 
-dropdb metagenomics2_dev 
-createdb metagenomics2_dev 
+dropdb metagenomics_dev 
+createdb metagenomics_dev 
 rm -f dump.sql 
 unzip -p $DUMP_NAME> dump.sql 
-psql -U ndunn metagenomics2_dev < dump.sql ; 
+psql -U ndunn metagenomics_dev < dump.sql ; 
 
 

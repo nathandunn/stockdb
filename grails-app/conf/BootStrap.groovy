@@ -7,12 +7,12 @@ class BootStrap {
 
     def init = { servletContext ->
 
-        if(Environment.current==Environment.DEVELOPMENT){
-            stubData.stubUsers()
-            stubData.stubData()
-            stubData.stubRawlsData()
-            stubData.importExperiments()
-        }
+//        if(Environment.current==Environment.DEVELOPMENT){
+//            stubData.stubUsers()
+//            stubData.stubData()
+//            stubData.stubRawlsData()
+//            stubData.importExperiments()
+//        }
 
     }
     def destroy = {
