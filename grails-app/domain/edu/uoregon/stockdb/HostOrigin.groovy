@@ -42,7 +42,10 @@ class HostOrigin {
     }
 
     String getDisplay() {
-        String returnString = "${species?.commonName ?: ''} (${genotypes?.name ?: ''}) "
+        String returnString = "${species?.commonName ?: species.name + ' ' + species.genus } "
+        if(genotypes){
+            returnString += " (${genotypes?.name ?: ''}) "
+        }
         if (daysPastFertilization >= 0) {
             returnString += daysPastFertilization + " DPF "
         } else {
@@ -110,6 +113,9 @@ class HostOrigin {
         }
         else{
             returnString += "??"
+        }
+        if(returnString.isEmpty()){
+           returnString = "${id}"
         }
         return returnString
     }
