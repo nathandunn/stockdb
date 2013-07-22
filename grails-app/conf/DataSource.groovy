@@ -26,6 +26,13 @@ environments {
             url = "jdbc:postgresql://localhost:5432/metagenomics_test"
         }
     }
+    staging {
+        dataSource {
+            dbCreate = "update"
+//            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
+            url = "jdbc:postgresql://localhost:5432/metagenomics_staging"
+        }
+    }
     production {
         dataSource {
             dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
