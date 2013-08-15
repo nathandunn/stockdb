@@ -5,8 +5,8 @@ class Researcher {
     static constraints = {
 //        email nullable:false,email: true
         username email: true,unique: true,blank: false
-        firstName nullable:false,empty:false
-        lastName nullable:false,empty:false
+        firstName nullable:false,blank:false
+        lastName nullable:false,blank:false
     }
 
     static hasMany = [
