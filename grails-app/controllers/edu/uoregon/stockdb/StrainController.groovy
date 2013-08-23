@@ -170,12 +170,19 @@ class StrainController {
     }
 
     def showFilter(String strainName){
-        Strain strain = Strain.findByNameIlike("%"+strainName+"%")
-        if(strain?.id!=null){
-            redirect(action: "show",id:strain.id)
+        List<Strain> strainList = Strain.findAllByNameIlike("%"+strainName+"%")
+        if(strainList.empty){
+            flash.message = "No strains found for '${strainName}'"
+            render(view:"list",model:[strainInstanceList: strainList, strainInstanceTotal: strainList.size(),strainName:strainName])
         }
-        else{
-            render(view:"strainNotFound",model:[name:strainName])
+        else
+        if(strainList.size()==1){
+            redirect(action: "show",id:strainList.get(0).id)
+        }
+        if(strainList.size()>1){
+//            render(view:"strainNotFound",model:[name:strainName])
+//            render(view:"list",model:[name:strainName])
+            render(view:"list",model:[strainInstanceList: strainList, strainInstanceTotal: strainList.size(),strainName:strainName])
         }
     }
 
