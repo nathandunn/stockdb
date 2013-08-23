@@ -14,6 +14,10 @@ class Strain {
             ,genomes:Genome
     ]
 
+
+    static mapping = {
+        notes type: "text"
+    }
 //    static mapping = {
 //        measuredValues sort: 'value', order:'asc'
 //    }

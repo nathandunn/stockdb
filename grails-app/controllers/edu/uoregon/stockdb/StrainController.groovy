@@ -170,7 +170,7 @@ class StrainController {
     }
 
     def showFilter(String strainName){
-        Strain strain = Strain.findByName(strainName)
+        Strain strain = Strain.findByNameIlike("%"+strainName+"%")
         if(strain?.id!=null){
             redirect(action: "show",id:strain.id)
         }
