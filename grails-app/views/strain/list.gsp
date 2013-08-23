@@ -32,7 +32,7 @@
                 <b>Go to Strain</b>
             </td>
                 <td>
-                    <g:textField name="strainName"/>
+                    <g:textField name="strainName" value="${strainName}"/>
                 </td></tr>
         </table>
     </g:form>
