@@ -87,6 +87,7 @@ class DbRealm {
                 return true
             }
             else {
+				log.error "A - ${principal} does not have permission ${requiredPermission}"
                 return false
             }
         }
@@ -117,6 +118,7 @@ class DbRealm {
                 return true
             }
             else {
+				log.error "B - ${principal} does not have permission ${requiredPermission}"
                 return false
             }
         }
@@ -126,6 +128,7 @@ class DbRealm {
             return true
         }
         else {
+			log.error "C - ${principal} does not have permission ${requiredPermission}"
             return false
         }
     }

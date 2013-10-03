@@ -246,6 +246,7 @@ class StubData {
         userRole.addToPermissions("researcher:edit")
         userRole.addToPermissions("researcher:update")
         userRole.addToPermissions("strain:addFilter")
+        userRole.addToPermissions("strain:showFilter")
         userRole.save(failOnError: true)
 
         new Researcher(
