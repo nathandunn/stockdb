@@ -96,6 +96,7 @@
     <orderEntry type="library" scope="PROVIDED" name="grails-2.2.1" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="grails-2.2.1" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="gwt-user" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="grails-2.2.3" level="application" />
     <orderEntry type="module-library" exported="">
       <library name="Grails User Library (metagenomicsdb-grailsPlugins)">
         <CLASSES>

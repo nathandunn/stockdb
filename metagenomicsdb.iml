@@ -83,6 +83,7 @@
     <orderEntry type="library" name="grails-2.2.1" level="application" />
     <orderEntry type="library" name="gwt-user" level="project" />
     <orderEntry type="module" module-name="metagenomicsdb-grailsPlugins" />
+    <orderEntry type="library" name="grails-2.2.3" level="application" />
   </component>
 </module>
 
