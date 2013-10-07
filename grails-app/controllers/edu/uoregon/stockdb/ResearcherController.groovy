@@ -49,6 +49,7 @@ class ResearcherController {
         if (passwordErrorString==null) {
             if (params.password1.equals(params.password2)) {
                 params.passwordHash = new Sha256Hash(params.password1).toHex()
+                researcherInstance.passwordHash = params.passwordHash
             } else {
                 researcherInstance.errors.rejectValue("passwordHash", "default.password.doesnotmatch", "Passwords do not match")
                 render(view: "create", model: [researcherInstance: researcherInstance])
@@ -60,8 +61,6 @@ class ResearcherController {
             render(view: "create", model: [researcherInstance: researcherInstance])
             return
         }
-
-
 
         if (!researcherInstance.save(flush: true)) {
             render(view: "create", model: [researcherInstance: researcherInstance])
