@@ -30,7 +30,7 @@
         <thead>
         <tr>
 
-            <g:sortableColumn property="email" title="${message(code: 'researcher.email.label', default: 'Email')}"/>
+            <g:sortableColumn property="username" title="${message(code: 'researcher.email.label', default: 'Email')}"/>
 
             <g:sortableColumn property="firstName"
                               title="${message(code: 'researcher.firstName.label', default: 'First Name')}"/>

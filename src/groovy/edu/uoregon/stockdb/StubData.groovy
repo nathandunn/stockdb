@@ -605,4 +605,31 @@ class StubData {
 
         println "${MeasuredValue.count} Measured Values imported"
     }
+
+    def stubPhylogeny() {
+
+        def servletContext = org.codehaus.groovy.grails.web.context.ServletContextHolder.servletContext
+        def file = servletContext.getResourceAsStream("/WEB-INF/phylogenymap.csv")
+        if (!file) {
+            throw new RuntimeException("File does not exist: " + file)
+        }
+
+        CSVReader csvReader = file.toCsvReader(skipLines: 1, 'charset': 'UTF-8')
+        int rowIndex = 1
+        csvReader.eachLine { tokens ->
+            if (tokens[0].trim().size() == 0) return
+
+            // column 0 = Phylum
+            // column 4 = Genus
+            Phylum phylum = Phylum.findOrSaveByName(tokens[0]?.trim())
+            Genus genus = Genus.findOrSaveByName(tokens[4]?.trim())
+
+            if(genus.phylum!=phylum){
+                genus.phylum = phylum
+                genus.save(flush:true)
+            }
+
+
+        }
+    }
 }

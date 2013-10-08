@@ -1,3 +1,4 @@
+import edu.uoregon.stockdb.Population
 import edu.uoregon.stockdb.StubData
 import grails.util.Environment
 
@@ -13,6 +14,10 @@ class BootStrap {
 //            stubData.stubRawlsData()
 //            stubData.importExperiments()
 //        }
+
+        if(Population.count()==0){
+            stubData.stubPhylogeny()
+        }
 
     }
     def destroy = {
