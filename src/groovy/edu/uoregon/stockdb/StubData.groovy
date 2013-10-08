@@ -624,10 +624,171 @@ class StubData {
             Phylum phylum = Phylum.findOrSaveByName(tokens[0]?.trim())
             Genus genus = Genus.findOrSaveByName(tokens[4]?.trim())
 
-            if(genus.phylum!=phylum){
+            if (genus.phylum != phylum) {
                 genus.phylum = phylum
-                genus.save(flush:true)
+                genus.save(flush: true)
             }
+
+
+        }
+    }
+
+    def stubStickleback1() {
+        // Strain[0],Box[1],Position[2],Genus[3],Species[4-unused],
+        // Ana/ aerobic[5],Expt date[6],fish age[7],Med[8],
+        // FishOrigin[9],Origin[10],Anatomy of Origin[11],Size[12],
+        // Color[13],Edge[14],Raised?[15],Shape[16],Notes?[17]
+
+        //To change body of created methods use File | Settings | File Templates.
+        def servletContext = org.codehaus.groovy.grails.web.context.ServletContextHolder.servletContext
+        def file = servletContext.getResourceAsStream("/WEB-INF/stickleback-data.csv")
+        if (!file) {
+            throw new RuntimeException("File does not exist: " + file)
+        }
+
+        Genus sticklebackGenus = Genus.findByName("Gasterosteus")
+        Location guilleminLabFreezer = Location.findByName("Guillemin -80 C Freezer")
+
+        Category categorySize = Category.findOrSaveByName("Size")
+        Category categoryColor = Category.findOrSaveByName("Color")
+        Category categoryEdge = Category.findOrSaveByName("Edge")
+        Category categoryRaised = Category.findOrSaveByName("Raised")
+        Category categoryShape= Category.findOrSaveByName("Shape")
+
+        Researcher kat = Researcher.findByUsername("kmilliga@uoregon.edu")
+
+
+        CSVReader csvReader = file.toCsvReader(skipLines: 1, 'charset': 'UTF-8')
+        int rowIndex = 1
+        csvReader.eachLine { tokens ->
+            if (tokens[0].trim().size() == 0) return
+
+            Strain strain = new Strain(name: tokens[0])
+
+            if (tokens[3]?.trim()) {
+                Genus genus = Genus.findByName(tokens[3]?.trim())
+                strain.genus = genus
+            }
+
+            strain.save(flush: true, failOnError: true)
+
+
+            Stock stock = new Stock()
+            stock.strain = strain
+
+            Integer boxIndex = tokens[1]?.trim() ? tokens[1]?.trim() as Integer : Integer.MAX_VALUE
+            Integer boxNumber = tokens[2]?.trim() ? tokens[2]?.trim() as Integer : Integer.MAX_VALUE
+            stock.boxIndex = boxIndex
+            stock.boxNumber = boxNumber
+            stock.generalLocation = guilleminLabFreezer
+
+            strain.addToStocks(stock)
+            stock.save(failOnError: true)
+
+
+            // 4 ignore
+            // 5 ignore
+            // 6 ignore
+
+            // isolate stuff
+            String oxygenCondition = tokens[5]?.trim()
+            String media = tokens[8]?.trim()
+            IsolateCondition isolateCondition = IsolateCondition.findOrSaveByMediaAndOxygenConditionAndIsolatedBy(media,oxygenCondition,kat)
+            strain.isolateCondition = isolateCondition
+            isolateCondition.addToStrains(strain)
+            isolateCondition.save(flush: true,failOnError: true)
+
+
+
+            // experiment stuff
+            String experimentDateString = tokens[6]?.trim()
+            Experiment experiment = Experiment.findOrSaveByName(experimentDateString)
+
+            String sizeValue = tokens[12]?.trim()
+            MeasuredValue measuredValueSize = new MeasuredValue(
+                    experiment: experiment
+                    ,value: sizeValue
+                    ,category: categorySize
+                    ,strain: strain
+            ).save(flush: true, failOnError: true,insert:true)
+
+            String colorValue = tokens[13]?.trim()
+            MeasuredValue measuredValueColor = new MeasuredValue(
+                    experiment: experiment
+                    ,value: colorValue
+                    ,category: categoryColor
+                    ,strain: strain
+            ).save(flush: true, failOnError: true,insert:true)
+            String edgeValue = tokens[14]?.trim()
+            MeasuredValue measuredValueEdge = new MeasuredValue(
+                    experiment: experiment
+                    ,value: edgeValue
+                    ,category: categoryEdge
+                    ,strain: strain
+            ).save(flush: true, failOnError: true,insert:true)
+            String raisedValue = tokens[15]?.trim()
+            MeasuredValue measuredValueRaised = new MeasuredValue(
+                    experiment: experiment
+                    ,value: raisedValue
+                    ,category: categoryRaised
+                    ,strain: strain
+            ).save(flush: true, failOnError: true,insert:true)
+
+            String shapeValue = tokens[16]?.trim()
+            MeasuredValue measuredValueShape = new MeasuredValue(
+                    experiment: experiment
+                    ,value: shapeValue
+                    ,category: categoryShape
+                    ,strain: strain
+            ).save(flush: true, failOnError: true,insert:true)
+            String note = tokens[17]?.trim()
+            experiment.note = note
+
+
+            // host origin
+            String fishAgeString = tokens[7]?.trim()
+            String populationString = tokens[9]?.trim()
+            String hostOriginString = tokens[10]?.trim()
+            String anatomy = tokens[11]?.trim()
+
+
+//            String originString = tokens[7]
+//            HostOrigin hostOrigin
+//            HostFacility hostFacility = tokens[8] ? HostFacility.findOrSaveByName(tokens[8]?.trim()) : null
+//            if (originString) {
+//                if (originString.indexOf(rerio.commonName) > 0) {
+//                    String stage = originString.substring(0, originString?.indexOf(rerio.commonName))?.trim()
+//                    Integer startParens = originString.indexOf("(")
+//                    Integer endParens = originString.indexOf(")")
+//                    if (startParens > 0 && endParens > 0) {
+////                        println "startParens ${startParens} endParens ${endParens}"
+//                        String genotypeString = originString.substring(startParens + 1, endParens)
+//                        String anatomy = originString.substring(endParens + 1)?.trim()
+//
+//                        HostGenotype hostGenotype = HostGenotype.findOrSaveByName(genotypeString)
+//                        Set<HostGenotype> genotypes = new HashSet<>()
+//                        if (hostGenotype) {
+//                            genotypes.add(hostGenotype)
+//                        }
+//
+//                        hostOrigin = HostOrigin.findOrSaveByAnatomyAndStageAndHostFacilityAndSpecies(anatomy, stage, hostFacility, rerio)
+//                        hostOrigin.setStageAndDpf(stage)
+//                        if (hostOrigin?.genotypes != genotypes) {
+//                            hostOrigin.genotypes = genotypes
+//                            hostOrigin.save(insert: true, failOnError: true, flush: true)
+//                        }
+//
+//                        hostOrigin.species = rerio
+//                        hostOrigin.anatomyUrl = "http://zfin.org/action/ontology/term-detail/ZDB-TERM-100331-1295"
+//                    }
+//                    // just age and species
+//                    else {
+//                        hostOrigin = HostOrigin.findOrSaveByAnatomyAndStageAndHostFacilityAndSpecies(null, stage, hostFacility, rerio)
+//                        hostOrigin.setStageAndDpf(stage)
+//                        hostOrigin.species = rerio
+//                    }
+//                }
+//            }
 
 
         }

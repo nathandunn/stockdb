@@ -17,7 +17,7 @@ class BootStrap {
 
         if(Population.count()==0){
             stubData.stubPhylogeny()
-//            stubData.stubStickleback1()
+            stubData.stubStickleback1()
         }
 
     }

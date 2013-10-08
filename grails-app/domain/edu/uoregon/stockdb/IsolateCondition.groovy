@@ -3,7 +3,7 @@ package edu.uoregon.stockdb
 class IsolateCondition {
 
     static constraints = {
-        isolatedWhen nullable: false
+        isolatedWhen nullable: true
     }
 
     static hasMany = [
