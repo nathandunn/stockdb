@@ -1,4 +1,4 @@
-<%@ page import="edu.uoregon.stockdb.StagesEnum; edu.uoregon.stockdb.HostGenotype; edu.uoregon.stockdb.HostOrigin" %>
+<%@ page import="edu.uoregon.stockdb.Population; edu.uoregon.stockdb.StagesEnum; edu.uoregon.stockdb.HostGenotype; edu.uoregon.stockdb.HostOrigin" %>
 
 
 
@@ -54,6 +54,18 @@
               optionValue="name"
     />
     <g:link action="create" controller="hostGenotype">Create Host Genotype</g:link>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: hostOriginInstance, field: 'popuation', 'error')} ">
+    <label for="poulation">
+        <g:message code="hostOrigin.population.label" default="Population"/>
+    </label>
+    <g:select id="population" name="population.id" from="${Population.listOrderByName()}" optionKey="id"
+              value="${hostOriginInstance?.population?.id}" class="many-to-one"
+              optionValue="name" noSelection="['null': 'None']"
+    />
+    <g:link action="create" controller="population">Create Population</g:link>
 
 </div>
 

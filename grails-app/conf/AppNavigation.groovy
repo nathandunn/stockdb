@@ -59,7 +59,7 @@ navigation = {
             species(controller: 'species', action: 'list')
             origin(controller: 'hostOrigin', action: 'list')
             facility(controller: 'hostFacility', action: 'list')
-
+            population(controller: 'population', action: 'list')
         }
 
         labs(controller: 'lab', action: 'list') {
