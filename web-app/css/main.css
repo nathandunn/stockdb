@@ -786,3 +786,9 @@ a.external {
     background: url(../images/external.png) center right no-repeat;
     padding-right: 23px;
 }
+
+.host-type{
+    display: inline;
+    color: blue;
+    font-size: small;
+}
