@@ -27,6 +27,8 @@ class StubData {
                 , "NCBI BioProject"
         )
 
+        Population riverBend = Population.findOrSaveByNameAndLatitudeAndLongitude("Riber Bend",44.0958354,-123.1253738)
+
 
         Phylum chordata = Phylum.findOrSaveByName("Chordata")
         chordata.host = true
@@ -647,6 +649,7 @@ class StubData {
         }
 
         Genus sticklebackGenus = Genus.findByName("Gasterosteus")
+        Species sticklebackSpecies = Species.findByName("Stickleback")
         Location guilleminLabFreezer = Location.findByName("Guillemin -80 C Freezer")
 
         Category categorySize = Category.findOrSaveByName("Size")
@@ -663,7 +666,10 @@ class StubData {
         csvReader.eachLine { tokens ->
             if (tokens[0].trim().size() == 0) return
 
-            Strain strain = new Strain(name: tokens[0])
+            String strainName = generateStrainName()
+
+            Strain strain = new Strain(name:strainName)
+            strain.notes = tokens[0]? "Old Strain Index: ${tokens[0]?.trim()}": ""
 
             if (tokens[3]?.trim()) {
                 Genus genus = Genus.findByName(tokens[3]?.trim())
@@ -703,6 +709,8 @@ class StubData {
             // experiment stuff
             String experimentDateString = tokens[6]?.trim()
             Experiment experiment = Experiment.findOrSaveByName(experimentDateString)
+            experiment.save(flush: true)
+            strain.save()
 
             String sizeValue = tokens[12]?.trim()
             MeasuredValue measuredValueSize = new MeasuredValue(
@@ -745,11 +753,33 @@ class StubData {
             experiment.note = note
 
 
-            // host origin
-            String fishAgeString = tokens[7]?.trim()
-            String populationString = tokens[9]?.trim()
-            String hostOriginString = tokens[10]?.trim()
+//            String anatomy = "Intenstine"
             String anatomy = tokens[11]?.trim()
+            // host origin
+
+            String fishAgeString = tokens[7]?.trim()
+            HostOrigin hostOrigin
+            HostFacility hostFacility = tokens[10] ? HostFacility.findOrSaveByName(tokens[10]?.trim()) : null
+            hostOrigin = HostOrigin.findOrSaveByAnatomyAndStageAndHostFacilityAndSpecies(anatomy, fishAgeString, hostFacility,sticklebackSpecies)
+            String populationString = tokens[9]?.trim()
+            if(populationString){
+                if(populationString.startsWith("R")){
+                    populationString = "Rabbit Slough"
+                }
+                else
+                if(populationString.startsWith("B")){
+                    populationString = "Boot Lake"
+                }
+                else
+                if(populationString.startsWith("R")){
+                    populationString = "River Bend"
+                }
+                Population population = Population.findByName(populationString)
+                if(!population){
+                    population = new Population(name:populationString).save()
+                }
+                hostOrigin.population = population
+            }
 
 
 //            String originString = tokens[7]
@@ -792,5 +822,9 @@ class StubData {
 
 
         }
+    }
+
+    String generateStrainName() {
+        return new StrainService().createStrainName()
     }
 }
