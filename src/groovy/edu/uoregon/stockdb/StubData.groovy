@@ -825,6 +825,20 @@ class StubData {
     }
 
     String generateStrainName() {
-        return new StrainService().createStrainName()
+        List<Strain> strainList = Strain.createCriteria().list{
+            like("name","SBOR%")
+            order("name","desc")
+            maxResults(1)
+        }
+        Strain maxStrain = strainList ? strainList.get(0) : null
+        String maxStrainName = maxStrain?.name?.substring(3)
+        Integer maxInteger = Integer.parseInt(maxStrainName)
+        ++maxInteger
+
+//        String returnString = "ZOR" + String.pa(maxInteger+1).
+
+        String returnString = "SBOR" + maxInteger.toString().padLeft(4,"0")
+
+        return returnString
     }
 }
