@@ -1,0 +1,3 @@
+# Module edu.uoregon.stockdb.client
+# RPC service class, partial path of RPC policy file
+edu.uoregon.stockdb.client.QuickEntryService, 6024B468764BED3879EC84E8B80E3768.gwt.rpc

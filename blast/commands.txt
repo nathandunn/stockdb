@@ -1,0 +1,11 @@
+//get the files ready
+// -p F is for amino acids
+formatdb -i bacteria.fasta -p F
+
+//blast
+blastall -p blastn -d bacteria.fasta -i search.fasta -o result.blast
+
+//blast output xml
+blastall -p blastn -d 091313_Full_16S_seqs_Zfish_isolates.fasta -i query.fasta -m 7 -o result_xml.blast
+
+
