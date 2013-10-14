@@ -15,10 +15,11 @@ class BootStrap {
 //            stubData.importExperiments()
 //        }
 
-        if(Population.count()==0){
-            stubData.stubPhylogeny()
-            stubData.stubStickleback1()
-        }
+        // TODO: run this once
+//        if(Population.count()==0){
+//            stubData.stubPhylogeny()
+//            stubData.stubStickleback1()
+//        }
 
     }
     def destroy = {
