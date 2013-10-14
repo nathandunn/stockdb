@@ -669,7 +669,7 @@ class StubData {
             String strainName = generateStrainName()
 
             Strain strain = new Strain(name:strainName)
-            strain.notes = tokens[0]? "Old Strain Index: ${tokens[0]?.trim()}": ""
+            strain.notes += tokens[0]? "Old Strain Index: ${tokens[0]?.trim()}": ""
 
             if (tokens[3]?.trim()) {
                 Genus genus = Genus.findByName(tokens[3]?.trim())
@@ -750,7 +750,7 @@ class StubData {
                     ,strain: strain
             ).save(flush: true, failOnError: true,insert:true)
             String note = tokens[17]?.trim()
-            experiment.note = note
+            experiment.note += note
 
 
 //            String anatomy = "Intenstine"
@@ -832,6 +832,9 @@ class StubData {
         }
         Strain maxStrain = strainList ? strainList.get(0) : null
         String maxStrainName = maxStrain?.name?.substring(3)
+        if(!maxStrainName){
+            maxStrainName = "0000"
+        }
         Integer maxInteger = Integer.parseInt(maxStrainName)
         ++maxInteger
 

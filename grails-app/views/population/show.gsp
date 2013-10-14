@@ -96,6 +96,19 @@
             </li>
         </g:if>
 
+        <g:if test="${populationInstance?.wildtype}">
+            <li class="fieldcontain">
+                <span id="wildtype-label" class="property-label"><g:message code="population.wildtype.label"
+                                                                              default="Is Wildtype"/></span>
+
+                <span class="property-value" aria-labelledby="wildtype-label">
+                    <g:fieldValue bean="${populationInstance}" field="wildtype"/>
+                    ${populationInstance.wildtype ? "Wildtype":"Lab Raised"}
+                </span>
+
+            </li>
+        </g:if>
+
         <g:if test="${populationInstance?.notes}">
             <li class="fieldcontain">
                 <span id="notes-label" class="property-label"><g:message code="population.notes.label"

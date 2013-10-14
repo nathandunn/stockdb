@@ -26,6 +26,14 @@
 	<g:textField name="externalId" value="${populationInstance?.externalId}"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: populationInstance, field: 'wildtype', 'error')} ">
+    <label for="wildtype">
+        <g:message code="population.wildtype.label" default="Wildtype Population" />
+
+    </label>
+    <g:checkBox name="wildtype" value="${populationInstance?.wildtype}"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: populationInstance, field: 'hostOrigins', 'error')} ">
 	<label for="hostOrigins">
 		<g:message code="population.hostOrigins.label" default="Host Origins" />
