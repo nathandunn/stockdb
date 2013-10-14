@@ -32,7 +32,7 @@
                 <b>Go to Strain</b>
             </td>
                 <td>
-                    <g:textField name="strainName"/>
+                    <g:textField name="strainName" value="${strainName}"/>
                 </td></tr>
         </table>
     </g:form>
@@ -139,6 +139,7 @@
                 </td>
             </tr>
         </table>
+        </g:form>
     
 
 </div>
@@ -223,9 +224,9 @@
     </table>
 
     <div class="pagination">
-        <g:paginateCustom total="${strainInstanceTotal}"/>
+        %{--<g:paginateCustom total="${strainInstanceTotal}"/>--}%
+        <g:paginate total="${strainInstanceTotal}"/>
     </div>
-    </g:form>
 </div>
 </body>
 </html>

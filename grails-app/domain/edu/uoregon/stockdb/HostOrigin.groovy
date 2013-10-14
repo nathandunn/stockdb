@@ -13,6 +13,8 @@ class HostOrigin {
         anatomy nullable: true
         hostFacility nullable: false
         species nullable: false
+        population nullable: true
+        daysPastFertilization min: 0, max: 720
     }
 
     static hasMany = [
@@ -27,6 +29,7 @@ class HostOrigin {
     Species species
 //    Phylum phylum
     HostFacility hostFacility
+    Population population
 
     String stage // stage . . . typically larval . . zfin correlate
     Integer daysPastFertilization//
@@ -41,7 +44,10 @@ class HostOrigin {
     }
 
     String getDisplay() {
-        String returnString = "${species?.commonName ?: ''} (${genotypes?.name ?: ''}) "
+        String returnString = "${species?.commonName ?: species.name + ' ' + species.genus } "
+        if(genotypes){
+            returnString += " (${genotypes?.name ?: ''}) "
+        }
         if (daysPastFertilization >= 0) {
             returnString += daysPastFertilization + " DPF "
         } else {
@@ -103,12 +109,15 @@ class HostOrigin {
             }
         }
         else
-        if(daysPastFertilization && daysPastFertilization >0 && daysPastFertilization<360)
+        if(daysPastFertilization!=null && daysPastFertilization >=0 && daysPastFertilization<720)
         {
             returnString += "${daysPastFertilization} DPF"
         }
         else{
             returnString += "??"
+        }
+        if(returnString.isEmpty()){
+           returnString = "${id}"
         }
         return returnString
     }

@@ -43,7 +43,7 @@ navigation = {
             genotype(controller: 'strainGenotype', action: 'list')
             rastGenomes(controller: 'genome', action: 'listRast')
             allGenomes(controller: 'genome', action: 'list')
-			blast16sSequences(controller: 'blastQuery', action: 'blast')
+//			blast16sSequences(controller: 'blastQuery', action: 'blast')
             genomeTypes(controller: 'genomeType', action: 'list')
             phylum(controller: 'phylum', action: 'list')
             genus(controller: 'genus', action: 'list')
@@ -60,7 +60,7 @@ navigation = {
             species(controller: 'species', action: 'list')
             origin(controller: 'hostOrigin', action: 'list')
             facility(controller: 'hostFacility', action: 'list')
-
+            population(controller: 'population', action: 'list')
         }
 
         labs(controller: 'lab', action: 'list') {

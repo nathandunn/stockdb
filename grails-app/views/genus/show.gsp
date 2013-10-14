@@ -34,7 +34,16 @@
                 <span id="name-label" class="property-label"><g:message code="genus.name.label" default="Name"/></span>
 
                 <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${genusInstance}"
-                                                                                        field="name"/></span>
+                                                                                        field="name"/>
+                    <div class="host-type">
+                        <g:if test="${genusInstance.host}">
+                            Host Genus
+                        </g:if>
+                        <g:else>
+                            Strain Genus
+                        </g:else>
+                    </div>
+                </span>
 
             </li>
         </g:if>
@@ -52,7 +61,7 @@
 
         <li class="fieldcontain">
             <span id="strains-label" class="property-label"><g:message code="genus.strains.label"
-                                                                      default="Strains"/></span>
+                                                                       default="Strains"/></span>
 
             <span class="property-value" aria-labelledby="strains-label">
                 <g:each in="${strains}" var="strain">

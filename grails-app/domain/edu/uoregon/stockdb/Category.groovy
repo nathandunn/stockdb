@@ -3,7 +3,7 @@ package edu.uoregon.stockdb
 class Category implements Comparable{
 
     static constraints = {
-        name unique: true , nullable:false
+        name unique: true , nullable:false,blank: false
     }
 
     static hasMany = [

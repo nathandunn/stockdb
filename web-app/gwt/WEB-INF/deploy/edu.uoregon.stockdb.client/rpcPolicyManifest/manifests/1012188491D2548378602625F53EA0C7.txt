@@ -1,2 +1,0 @@
-serviceClass: edu.uoregon.stockdb.client.QuickEntryService
-path: 6024B468764BED3879EC84E8B80E3768.gwt.rpc

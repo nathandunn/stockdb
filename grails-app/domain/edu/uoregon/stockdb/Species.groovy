@@ -4,7 +4,7 @@ class Species {
 
     static constraints = {
         genus nullable: false
-        name nullable: false
+        name nullable: false,blank: false
     }
 
     static hasMany = [

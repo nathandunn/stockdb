@@ -2,7 +2,7 @@ dataSource {
     pooled = true
     driverClassName = "org.postgresql.Driver"
     username = "ndunn"
-    password = "test"
+    password = ""
     dialect = "org.hibernate.dialect.PostgreSQLDialect"
 }
 hibernate {
@@ -14,8 +14,8 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-//            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
+//            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
+            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:postgresql://localhost:5432/metagenomics_dev"
         }
     }
@@ -26,9 +26,16 @@ environments {
             url = "jdbc:postgresql://localhost:5432/metagenomics_test"
         }
     }
+    staging {
+        dataSource {
+            dbCreate = "update"
+//            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
+            url = "jdbc:postgresql://localhost:5432/metagenomics_staging"
+        }
+    }
     production {
         dataSource {
-            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
+            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
 //            dbCreate = "update"
 //            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
             url = "jdbc:postgresql://localhost:5432/metagenomics_production"

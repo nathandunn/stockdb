@@ -117,32 +117,32 @@ class HostOriginController {
 
     def validateHostOrigin(HostOrigin hostOriginInstance,def strains) {
 
-        if(hostOriginInstance.stage==null || hostOriginInstance.stage=="null" && hostOriginInstance.daysPastFertilization==null ){
-            hostOriginInstance.errors.rejectValue("stage", "define.stage","You must define either the stage or the days past fertilization")
-            flash.error =  "You must define either the stage of the days past fertilization"
-            render(view: "edit", model: [hostOriginInstance: hostOriginInstance,strains: strains])
-            return
-        }
-
-        if(!hostOriginInstance.anatomy && !hostOriginInstance.anatomyUrl){
-            hostOriginInstance.errors.rejectValue("anatomy", "define.anatomy","You must define anatomy")
-            flash.error =  "You must define an anatomy term or anatomy URL"
-            render(view: "edit", model: [hostOriginInstance: hostOriginInstance,strains: strains])
-            return
-        }
+//        if(hostOriginInstance.stage==null || hostOriginInstance.stage=="null" && hostOriginInstance.daysPastFertilization==null ){
+//            hostOriginInstance.errors.rejectValue("stage", "define.stage","You must define either the stage or the days past fertilization")
+//            flash.error =  "You must define either the stage of the days past fertilization"
+//            render(view: "edit", model: [hostOriginInstance: hostOriginInstance,strains: strains])
+//            return
+//        }
+//
+//        if(!hostOriginInstance.anatomy && !hostOriginInstance.anatomyUrl){
+//            hostOriginInstance.errors.rejectValue("anatomy", "define.anatomy","You must define anatomy")
+//            flash.error =  "You must define an anatomy term or anatomy URL"
+//            render(view: "edit", model: [hostOriginInstance: hostOriginInstance,strains: strains])
+//            return
+//        }
 
         if(!hostOriginInstance.hostFacility){
             hostOriginInstance.errors.rejectValue("hostFacility", "define.hostFacility","You must define the host facility")
             render(view: "edit", model: [hostOriginInstance: hostOriginInstance,strains: strains])
             return
         }
-
-        if(hostOriginInstance.genotypes==null  || hostOriginInstance.genotypes.size()==0){
-            hostOriginInstance.errors.rejectValue("genotypes", "define.genotypes","You must define at least one genotype including Unknown")
-            flash.error =  "You must define at least one genotype including Unknown"
-            render(view: "edit", model: [hostOriginInstance: hostOriginInstance,strains: strains])
-            return
-        }
+//
+//        if(hostOriginInstance.genotypes==null  || hostOriginInstance.genotypes.size()==0){
+//            hostOriginInstance.errors.rejectValue("genotypes", "define.genotypes","You must define at least one genotype including Unknown")
+//            flash.error =  "You must define at least one genotype including Unknown"
+//            render(view: "edit", model: [hostOriginInstance: hostOriginInstance,strains: strains])
+//            return
+//        }
 
         if(!hostOriginInstance.species){
             hostOriginInstance.errors.rejectValue("species", "define.species","You must define the species")
@@ -160,14 +160,17 @@ class HostOriginController {
         }
 
         try {
-            hostOriginInstance.strains.each { strain ->
+            Strain.findAllByHostOrigin(hostOriginInstance).each { strain ->
                 strain.hostOrigin = null
                 strain.save(flush: true)
             }
+            hostOriginInstance.strains = null
+            hostOriginInstance.save(flush: true)
 
 
             hostOriginInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'hostOrigin.label', default: 'HostOrigin'), hostOriginInstance.display])
+            // can not delete display as it needs the colleciton
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'hostOrigin.label', default: 'HostOrigin'), hostOriginInstance.id])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
@@ -175,7 +178,8 @@ class HostOriginController {
             redirect(action: "show", id: id)
         }
         catch(Exception e){
-            println "failed for some reason ${e}"
+            flash.message = "Failed for reason ${e}"
+            redirect(action: "show", id: id)
         }
     }
 

@@ -6,7 +6,7 @@ package edu.uoregon.stockdb
 class StrainGenotype {
 
     static constraints = {
-        name nullable: false,unique: true
+        name nullable: false,unique: true, blank:false, minSize: 3
     }
 
     static hasMany = [

@@ -90,6 +90,18 @@
             </li>
         </g:if>
 
+        <g:if test="${hostOriginInstance?.population}">
+            <li class="fieldcontain">
+                <span id="population-label" class="property-label"><g:message code="hostOrigin.population.label"
+                                                                                default="Population"/></span>
+
+                <span class="property-value" aria-labelledby="population-label"><g:link controller="population"
+                                                                                          action="show"
+                                                                                          id="${hostOriginInstance?.population?.id}">${hostOriginInstance?.population?.name}</g:link></span>
+
+            </li>
+        </g:if>
+
         <g:if test="${hostOriginInstance?.species}">
             <li class="fieldcontain">
                 <span id="species-label" class="property-label"><g:message code="hostOrigin.species.label"

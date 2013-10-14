@@ -1,11 +1,10 @@
-<%@ page import="edu.uoregon.stockdb.StagesEnum; edu.uoregon.stockdb.HostGenotype; edu.uoregon.stockdb.HostOrigin" %>
+<%@ page import="edu.uoregon.stockdb.Population; edu.uoregon.stockdb.StagesEnum; edu.uoregon.stockdb.HostGenotype; edu.uoregon.stockdb.HostOrigin" %>
 
 
 
 <div class="fieldcontain ${hasErrors(bean: hostOriginInstance, field: 'stage', 'error')} ">
     <label for="stage">
         <g:message code="hostOrigin.stage.label" default="Stage"/>
-        <span class="required-indicator">*</span>
     </label>
     %{--<g:textField name="stage" value="${hostOriginInstance?.stage}"/>--}%
     <g:select name="stage" from="${StagesEnum.values()}" value="${hostOriginInstance?.stage}"
@@ -16,7 +15,6 @@
 <div class="fieldcontain ${hasErrors(bean: hostOriginInstance, field: 'daysPastFertilization', 'error')} ">
     <label for="days">
         <g:message code="hostOrigin.days.label" default="Days"/>
-        <span class="required-indicator">*</span>
     </label>
     <g:field name="daysPastFertilization" type="number" value="${hostOriginInstance.daysPastFertilization}"/>
 </div>
@@ -24,7 +22,6 @@
 <div class="fieldcontain ${hasErrors(bean: hostOriginInstance, field: 'anatomy', 'error')} ">
     <label for="anatomy">
         <g:message code="hostOrigin.anatomy.label" default="Anatomy"/>
-        <span class="required-indicator">*</span>
     </label>
     <g:textField name="anatomy" value="${hostOriginInstance?.anatomy}" size="60"/>
 </div>
@@ -51,13 +48,24 @@
 <div class="fieldcontain ${hasErrors(bean: hostOriginInstance, field: 'genotypes', 'error')} ">
     <label for="genotype">
         <g:message code="hostOrigin.genotype.label" default="Genotype"/>
-        <span class="required-indicator">*</span>
     </label>
     <g:select name="genotypes" from="${HostGenotype.listOrderByName()}" optionKey="id"
               value="${hostOriginInstance?.genotypes?.id}" class="many-to-one" multiple="true"
               optionValue="name"
     />
     <g:link action="create" controller="hostGenotype">Create Host Genotype</g:link>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: hostOriginInstance, field: 'popuation', 'error')} ">
+    <label for="poulation">
+        <g:message code="hostOrigin.population.label" default="Population"/>
+    </label>
+    <g:select id="population" name="population.id" from="${Population.listOrderByName()}" optionKey="id"
+              value="${hostOriginInstance?.population?.id}" class="many-to-one"
+              optionValue="name" noSelection="['null': 'None']"
+    />
+    <g:link action="create" controller="population">Create Population</g:link>
 
 </div>
 

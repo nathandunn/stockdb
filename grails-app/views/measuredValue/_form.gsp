@@ -17,8 +17,9 @@
 		
 	</label>
 	%{--<g:select name="type" from="${edu.uoregon.stockdb.MeasuredValueTypeEnum?.values()}" keys="${edu.uoregon.stockdb.MeasuredValueTypeEnum.values()*.name()}" value="${measuredValueInstance?.type?.name()}" noSelection="['': '']"/>--}%
-    <g:select name="type" from="${edu.uoregon.stockdb.MeasuredValueTypeEnum?.values()}"
-              noSelection="['':'- no selection -']"/>
+    <g:select name="type" value="${measuredValueInstance.type}" from="${edu.uoregon.stockdb.MeasuredValueTypeEnum?.values()}"
+    />
+    %{--noSelection="['':'- no selection -']"--}%
 </div>
 
 %{--<div class="fieldcontain ${hasErrors(bean: measuredValueInstance, field: 'units', 'error')} ">--}%

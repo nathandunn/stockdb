@@ -45,7 +45,7 @@
         <g:each in="${genomeInstanceList}" status="i" var="genomeInstance">
             <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
-                <td><g:link url="${genomeInstance.renderUrl()}">${genomeInstance.externalId}:${genomeInstance.genomeType.organizationName}</g:link></td>
+                <td><g:link class="external-link" url="${genomeInstance.renderUrl()}" target="_blank">${genomeInstance.externalId}:${genomeInstance.genomeType.organizationName}</g:link></td>
 
                 <td>${fieldValue(bean: genomeInstance, field: "quality")}</td>
 

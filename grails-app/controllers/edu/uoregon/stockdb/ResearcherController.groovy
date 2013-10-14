@@ -39,19 +39,28 @@ class ResearcherController {
         }
     }
 
+
+
     def save() {
-        if (params.password1) {
-            if (params.password1.equals(params.password2)) {
-                params.passwordHash = new Sha256Hash(params.password1).toHex()
-            } else {
-                params.errors.rejectValue("password", "default.password.doesnotmatch", "Passwords do not match")
-                render(view: "create", model: [researcherInstance: params])
-                return
-            }
-        }
 
         Researcher researcherInstance = new Researcher(params)
 
+        String passwordErrorString = isValidPassword(params.password1)
+        if (passwordErrorString==null) {
+            if (params.password1.equals(params.password2)) {
+                params.passwordHash = new Sha256Hash(params.password1).toHex()
+                researcherInstance.passwordHash = params.passwordHash
+            } else {
+                researcherInstance.errors.rejectValue("passwordHash", "default.password.doesnotmatch", "Passwords do not match")
+                render(view: "create", model: [researcherInstance: researcherInstance])
+                return
+            }
+        }
+        else{
+            researcherInstance.errors.rejectValue("passwordHash", "", passwordErrorString)
+            render(view: "create", model: [researcherInstance: researcherInstance])
+            return
+        }
 
         if (!researcherInstance.save(flush: true)) {
             render(view: "create", model: [researcherInstance: researcherInstance])
@@ -64,6 +73,13 @@ class ResearcherController {
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'researcher.label', default: 'Researcher'), researcherInstance.fullName])
         redirect(action: "show", id: researcherInstance.id)
+    }
+
+    String isValidPassword(String password) {
+        if(!password || password.length()<6){
+            return "Password length must be greater than 6"
+        }
+        return null;
     }
 
     def show(Long id) {
@@ -117,13 +133,23 @@ class ResearcherController {
         }
 
         if (params.password1) {
-            if (params.password1.equals(params.password2)) {
-                researcherInstance.passwordHash = new Sha256Hash(params.password1).toHex()
-            } else {
-                researcherInstance.errors.rejectValue("password", "default.password.doesnotmatch", "Passwords do not match")
-                render(view: "edit", model: [userInstance: researcherInstance])
+
+            String passwordErrorString = isValidPassword(params.password1)
+            if (passwordErrorString==null) {
+                if (params.password1.equals(params.password2)) {
+                    researcherInstance.passwordHash = new Sha256Hash(params.password1).toHex()
+                } else {
+                    researcherInstance.errors.rejectValue("passwordHash", "default.password.doesnotmatch", "Passwords do not match")
+                    render(view: "edit", model: [researcherInstance: researcherInstance])
+                    return
+                }
+            }
+            else{
+                researcherInstance.errors.rejectValue("passwordHash", "", passwordErrorString)
+                render(view: "edit", model: [researcherInstance: researcherInstance])
                 return
             }
+
         } else {
             params.passwordHash = researcherInstance.passwordHash
         }

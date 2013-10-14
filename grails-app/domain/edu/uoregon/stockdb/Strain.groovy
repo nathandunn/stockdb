@@ -5,7 +5,7 @@ class Strain {
     static constraints = {
 //        values nullable: true
         formerCloneAlias nullable: true
-        name nullable: false, unique: true
+        name nullable: false, unique: true,blank: false
     }
 
     static hasMany = [
@@ -14,6 +14,10 @@ class Strain {
             ,genomes:Genome
     ]
 
+
+    static mapping = {
+        notes type: "text"
+    }
 //    static mapping = {
 //        measuredValues sort: 'value', order:'asc'
 //    }

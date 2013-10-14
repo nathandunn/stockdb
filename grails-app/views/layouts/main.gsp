@@ -22,9 +22,11 @@
 <body>
 %{--<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a></div>--}%
 <div id="mastLogo" role="banner">
-    <a href="">
+    <a href="http://meta.uoregon.edu/">
         <img src="${resource(dir: 'images', file: 'logo9.png')}" height="100px;"
              alt="Metagenomics Center for Systems Biology"/>
+        </a>
+    <a href="/">
         <img src="${resource(dir: 'images', file: 'guillemin3sm_807.jpg')}" height="100px;" width="500px;"
              alt="Metagenomics Center for Systems Biology"/>
 
