@@ -15,7 +15,7 @@
 		<g:message code="population.captureDate.label" default="Capture Date" />
 		
 	</label>
-	<g:datePicker name="captureDate" precision="day"  value="${populationInstance?.captureDate}" default="none" noSelection="['': '']" />
+	<g:datePicker name="captureDate" precision="day"  value="${populationInstance?.captureDate}" default="none" noSelection="['': '']" years="${(new Date().year+1900)..1990}" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: populationInstance, field: 'externalId', 'error')} ">
