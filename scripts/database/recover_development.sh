@@ -13,6 +13,6 @@ dropdb metagenomics_dev
 createdb metagenomics_dev 
 rm -f dump.sql 
 unzip -p $DUMP_NAME> dump.sql 
-psql -U ndunn metagenomics_dev < dump.sql ; 
+psql -U $USER metagenomics_dev < dump.sql ; 
 
 

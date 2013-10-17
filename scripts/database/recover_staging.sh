@@ -12,6 +12,6 @@ dropdb metagenomics_staging
 createdb metagenomics_staging 
 rm -f dump.sql 
 unzip -p $DUMP_NAME> dump.sql 
-psql -U ndunn metagenomics_staging < dump.sql ; 
+psql -U ubuntu metagenomics_staging < dump.sql ; 
 
 

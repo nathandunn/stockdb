@@ -1,7 +1,7 @@
 #!/bin/sh
 #hg pull -u 
 
-THIS_HOST=`hostname`
+THIS_HOST=$USER
 if [ "$THIS_HOST" = ubuntu ]; then 
 	grails clean
 	grails -Dgrails.env=staging war 
