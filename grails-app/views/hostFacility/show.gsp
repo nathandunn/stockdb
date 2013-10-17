@@ -33,7 +33,16 @@
 					
 				</li>
 				</g:if>
-			
+
+                <g:if test="${hostFacilityInstance?.prefix}">
+                    <li class="fieldcontain">
+                        <span id="prefix-label" class="property-label"><g:message code="hostFacility.prefix.label" default="Name" /></span>
+
+                        <span class="property-value" aria-labelledby="prefix-label"><g:fieldValue bean="${hostFacilityInstance}" field="prefix"/></span>
+
+                    </li>
+                </g:if>
+
 				<g:if test="${hostFacilityInstance?.origins}">
 				<li class="fieldcontain">
 					<span id="origins-label" class="property-label"><g:message code="hostFacility.origins.label" default="Origins" /></span>

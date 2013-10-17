@@ -26,3 +26,10 @@
 	<g:textField name="commonName" value="${speciesInstance?.commonName}"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: speciesInstance, field: 'prefix', 'error')} ">
+    <label for="prefix">
+        <g:message code="species.prefix.label" default="Strain Prefix" />
+
+    </label>
+    <g:textField name="prefix" value="${speciesInstance?.prefix}"/>
+</div>
