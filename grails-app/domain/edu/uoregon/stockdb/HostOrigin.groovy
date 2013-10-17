@@ -13,6 +13,7 @@ class HostOrigin {
         anatomy nullable: true
         hostFacility nullable: false
         species nullable: false
+        population nullable: true
         daysPastFertilization min: 0, max: 720
     }
 
@@ -28,6 +29,7 @@ class HostOrigin {
     Species species
 //    Phylum phylum
     HostFacility hostFacility
+    Population population
 
     String stage // stage . . . typically larval . . zfin correlate
     Integer daysPastFertilization//

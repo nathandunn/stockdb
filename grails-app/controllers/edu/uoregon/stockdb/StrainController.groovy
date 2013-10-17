@@ -5,6 +5,8 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class StrainController {
 
+    def strainService
+
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     private static String STRAIN_FILTER = "strainFilter"
@@ -24,8 +26,10 @@ class StrainController {
     }
 
     def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
+        params.max ?: Math.min(max ?: 10, 100)
 
+//		params.max = params.max == "" || params.max == null ? 10 : params.max
+		
         Map<String, String> strainFilters = (Map<String, String>) request.session.getAttribute(STRAIN_FILTER)
 
 //        println "filters ${strainFilters}"
@@ -145,29 +149,10 @@ class StrainController {
     }
 
     def create() {
-        params.name = createStrainName()
+        params.name = strainService.createStrainName()
         [strainInstance: new Strain(params)]
     }
 
-    private String createStrainName() {
-
-//        Strain maxStrain = Strain.executeQuery("select s from Strain s where s.name like :strain order by s.name desc ", [strain: "ZOR%", max: 1]).get(0)
-       List<Strain> strainList = Strain.createCriteria().list{
-           like("name","ZOR%")
-           order("name","desc")
-           maxResults(1)
-       }
-        Strain maxStrain = strainList ? strainList.get(0) : null
-        String maxStrainName = maxStrain?.name?.substring(3)
-        Integer maxInteger = Integer.parseInt(maxStrainName)
-        ++maxInteger
-
-//        String returnString = "ZOR" + String.pa(maxInteger+1).
-
-        String returnString = "ZOR" + maxInteger.toString().padLeft(4,"0")
-
-        return returnString
-    }
 
     def showFilter(String strainName){
         List<Strain> strainList = Strain.findAllByNameIlike("%"+strainName+"%")

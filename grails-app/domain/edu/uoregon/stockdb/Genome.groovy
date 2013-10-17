@@ -18,6 +18,7 @@ class Genome {
     Float genomeVersion // can't re-use genome  version
     GenomeType genomeType
     Strain strain
+	String fastA16sSequence
 
     String getDisplay() {
 //            return "${externalId} - ${genomeType.organizationName} ${quality}${size}"

@@ -1,3 +1,4 @@
+import edu.uoregon.stockdb.Population
 import edu.uoregon.stockdb.StubData
 import grails.util.Environment
 
@@ -12,6 +13,12 @@ class BootStrap {
 //            stubData.stubData()
 //            stubData.stubRawlsData()
 //            stubData.importExperiments()
+//        }
+
+        // TODO: run this once
+//        if(Population.count()==0){
+//            stubData.stubPhylogeny()
+//            stubData.stubStickleback1()
 //        }
 
     }

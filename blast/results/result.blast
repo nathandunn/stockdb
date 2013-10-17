@@ -1,0 +1,434 @@
+BLASTN 2.2.25 [Feb-01-2011]
+
+
+Reference: Altschul, Stephen F., Thomas L. Madden, Alejandro A. Schaffer, 
+Jinghui Zhang, Zheng Zhang, Webb Miller, and David J. Lipman (1997), 
+"Gapped BLAST and PSI-BLAST: a new generation of protein database search
+programs",  Nucleic Acids Res. 25:3389-3402.
+
+Query= test1
+         (39 letters)
+
+Database: 091313_Full_16S_seqs_Zfish_isolates.fasta 
+           28 sequences; 35,739 total letters
+
+Searching..................................................done
+
+
+
+                                                                 Score    E
+Sequences producing significant alignments:                      (bits) Value
+
+ZNC0006                                                                78   4e-18
+ZNC0007                                                                60   9e-13
+ZOR0008                                                                58   4e-12
+ZOR0017                                                                42   2e-07
+ZOR0020                                                                34   5e-05
+ZOR0019                                                                28   0.003
+ZOR0006                                                                28   0.003
+ZWU0020                                                                26   0.013
+ZWU0006                                                                26   0.013
+ZOR0047                                                                26   0.013
+ZOR0035                                                                26   0.013
+ZOR0018_f                                                              26   0.013
+ZOR0014                                                                26   0.013
+ZOR0012_f                                                              26   0.013
+ZOR0011                                                                26   0.013
+ZOR0002                                                                26   0.013
+ZOR0001                                                                26   0.013
+ZNC0037                                                                26   0.013
+ZNC0008                                                                26   0.013
+ZWU0022_f                                                              24   0.050
+ZWU0021_f                                                              24   0.050
+ZWU0011                                                                24   0.050
+ZWU0009                                                                24   0.050
+ZOR0034_f                                                              24   0.050
+ZOR0005                                                                24   0.050
+ZNC0028                                                                24   0.050
+ZNC0032                                                                24   0.050
+
+>ZNC0006
+          Length = 1394
+
+ Score = 77.8 bits (39), Expect = 4e-18
+ Identities = 39/39 (100%)
+ Strand = Plus / Plus
+
+                                                 
+Query: 1  gaacgggtgagtaatacatcggaacgtgcccaatcgtgg 39
+          |||||||||||||||||||||||||||||||||||||||
+Sbjct: 39 gaacgggtgagtaatacatcggaacgtgcccaatcgtgg 77
+
+
+>ZNC0007
+          Length = 1380
+
+ Score = 60.0 bits (30), Expect = 9e-13
+ Identities = 30/30 (100%)
+ Strand = Plus / Plus
+
+                                        
+Query: 1  gaacgggtgagtaatacatcggaacgtgcc 30
+          ||||||||||||||||||||||||||||||
+Sbjct: 32 gaacgggtgagtaatacatcggaacgtgcc 61
+
+
+>ZOR0008
+          Length = 1378
+
+ Score = 58.0 bits (29), Expect = 4e-12
+ Identities = 36/39 (92%)
+ Strand = Plus / Plus
+
+                                                 
+Query: 1  gaacgggtgagtaatacatcggaacgtgcccaatcgtgg 39
+          ||||||||||  |||||||||||||||||||| ||||||
+Sbjct: 25 gaacgggtgannaatacatcggaacgtgcccagtcgtgg 63
+
+
+>ZOR0017
+          Length = 1390
+
+ Score = 42.1 bits (21), Expect = 2e-07
+ Identities = 31/33 (93%), Gaps = 1/33 (3%)
+ Strand = Plus / Plus
+
+                                           
+Query: 1  gaacgggtgag-taatacatcggaacgtgccca 32
+          ||||||||||| |||||||||||||||| ||||
+Sbjct: 35 gaacgggtgagntaatacatcggaacgtaccca 67
+
+
+>ZOR0020
+          Length = 1393
+
+ Score = 34.2 bits (17), Expect = 5e-05
+ Identities = 17/17 (100%)
+ Strand = Plus / Plus
+
+                           
+Query: 1  gaacgggtgagtaatac 17
+          |||||||||||||||||
+Sbjct: 47 gaacgggtgagtaatac 63
+
+
+>ZOR0019
+          Length = 1374
+
+ Score = 28.2 bits (14), Expect = 0.003
+ Identities = 14/14 (100%)
+ Strand = Plus / Plus
+
+                        
+Query: 1  gaacgggtgagtaa 14
+          ||||||||||||||
+Sbjct: 47 gaacgggtgagtaa 60
+
+
+>ZOR0006
+          Length = 1414
+
+ Score = 28.2 bits (14), Expect = 0.003
+ Identities = 14/14 (100%)
+ Strand = Plus / Plus
+
+                        
+Query: 1  gaacgggtgagtaa 14
+          ||||||||||||||
+Sbjct: 53 gaacgggtgagtaa 66
+
+
+>ZWU0020
+          Length = 1408
+
+ Score = 26.3 bits (13), Expect = 0.013
+ Identities = 13/13 (100%)
+ Strand = Plus / Plus
+
+                       
+Query: 3  acgggtgagtaat 15
+          |||||||||||||
+Sbjct: 53 acgggtgagtaat 65
+
+
+>ZWU0006
+          Length = 1384
+
+ Score = 26.3 bits (13), Expect = 0.013
+ Identities = 13/13 (100%)
+ Strand = Plus / Plus
+
+                       
+Query: 3  acgggtgagtaat 15
+          |||||||||||||
+Sbjct: 47 acgggtgagtaat 59
+
+
+>ZOR0047
+          Length = 1367
+
+ Score = 26.3 bits (13), Expect = 0.013
+ Identities = 13/13 (100%)
+ Strand = Plus / Plus
+
+                       
+Query: 3  acgggtgagtaat 15
+          |||||||||||||
+Sbjct: 47 acgggtgagtaat 59
+
+
+>ZOR0035
+          Length = 1415
+
+ Score = 26.3 bits (13), Expect = 0.013
+ Identities = 13/13 (100%)
+ Strand = Plus / Plus
+
+                       
+Query: 3  acgggtgagtaat 15
+          |||||||||||||
+Sbjct: 63 acgggtgagtaat 75
+
+
+>ZOR0018_f
+          Length = 785
+
+ Score = 26.3 bits (13), Expect = 0.013
+ Identities = 13/13 (100%)
+ Strand = Plus / Plus
+
+                       
+Query: 3  acgggtgagtaat 15
+          |||||||||||||
+Sbjct: 54 acgggtgagtaat 66
+
+
+>ZOR0014
+          Length = 1405
+
+ Score = 26.3 bits (13), Expect = 0.013
+ Identities = 13/13 (100%)
+ Strand = Plus / Plus
+
+                       
+Query: 3  acgggtgagtaat 15
+          |||||||||||||
+Sbjct: 51 acgggtgagtaat 63
+
+
+>ZOR0012_f
+          Length = 727
+
+ Score = 26.3 bits (13), Expect = 0.013
+ Identities = 13/13 (100%)
+ Strand = Plus / Plus
+
+                       
+Query: 3  acgggtgagtaat 15
+          |||||||||||||
+Sbjct: 53 acgggtgagtaat 65
+
+
+>ZOR0011
+          Length = 1394
+
+ Score = 26.3 bits (13), Expect = 0.013
+ Identities = 13/13 (100%)
+ Strand = Plus / Plus
+
+                       
+Query: 3  acgggtgagtaat 15
+          |||||||||||||
+Sbjct: 53 acgggtgagtaat 65
+
+
+>ZOR0002
+          Length = 1403
+
+ Score = 26.3 bits (13), Expect = 0.013
+ Identities = 13/13 (100%)
+ Strand = Plus / Plus
+
+                       
+Query: 3  acgggtgagtaat 15
+          |||||||||||||
+Sbjct: 51 acgggtgagtaat 63
+
+
+>ZOR0001
+          Length = 1408
+
+ Score = 26.3 bits (13), Expect = 0.013
+ Identities = 13/13 (100%)
+ Strand = Plus / Plus
+
+                       
+Query: 3  acgggtgagtaat 15
+          |||||||||||||
+Sbjct: 55 acgggtgagtaat 67
+
+
+>ZNC0037
+          Length = 1406
+
+ Score = 26.3 bits (13), Expect = 0.013
+ Identities = 13/13 (100%)
+ Strand = Plus / Plus
+
+                       
+Query: 3  acgggtgagtaat 15
+          |||||||||||||
+Sbjct: 53 acgggtgagtaat 65
+
+
+>ZNC0008
+          Length = 1401
+
+ Score = 26.3 bits (13), Expect = 0.013
+ Identities = 13/13 (100%)
+ Strand = Plus / Plus
+
+                       
+Query: 3  acgggtgagtaat 15
+          |||||||||||||
+Sbjct: 47 acgggtgagtaat 59
+
+
+>ZWU0022_f
+          Length = 693
+
+ Score = 24.3 bits (12), Expect = 0.050
+ Identities = 12/12 (100%)
+ Strand = Plus / Plus
+
+                      
+Query: 3  acgggtgagtaa 14
+          ||||||||||||
+Sbjct: 38 acgggtgagtaa 49
+
+
+>ZWU0021_f
+          Length = 675
+
+ Score = 24.3 bits (12), Expect = 0.050
+ Identities = 12/12 (100%)
+ Strand = Plus / Plus
+
+                      
+Query: 3  acgggtgagtaa 14
+          ||||||||||||
+Sbjct: 52 acgggtgagtaa 63
+
+
+>ZWU0011
+          Length = 1402
+
+ Score = 24.3 bits (12), Expect = 0.050
+ Identities = 12/12 (100%)
+ Strand = Plus / Plus
+
+                      
+Query: 3  acgggtgagtaa 14
+          ||||||||||||
+Sbjct: 52 acgggtgagtaa 63
+
+
+>ZWU0009
+          Length = 1422
+
+ Score = 24.3 bits (12), Expect = 0.050
+ Identities = 12/12 (100%)
+ Strand = Plus / Plus
+
+                      
+Query: 3  acgggtgagtaa 14
+          ||||||||||||
+Sbjct: 58 acgggtgagtaa 69
+
+
+>ZOR0034_f
+          Length = 822
+
+ Score = 24.3 bits (12), Expect = 0.050
+ Identities = 12/12 (100%)
+ Strand = Plus / Plus
+
+                      
+Query: 3  acgggtgagtaa 14
+          ||||||||||||
+Sbjct: 38 acgggtgagtaa 49
+
+
+>ZOR0005
+          Length = 1424
+
+ Score = 24.3 bits (12), Expect = 0.050
+ Identities = 12/12 (100%)
+ Strand = Plus / Plus
+
+                      
+Query: 3  acgggtgagtaa 14
+          ||||||||||||
+Sbjct: 63 acgggtgagtaa 74
+
+
+>ZNC0028
+          Length = 1349
+
+ Score = 24.3 bits (12), Expect = 0.050
+ Identities = 12/12 (100%)
+ Strand = Plus / Plus
+
+                      
+Query: 3  acgggtgagtaa 14
+          ||||||||||||
+Sbjct: 33 acgggtgagtaa 44
+
+
+>ZNC0032
+          Length = 1352
+
+ Score = 24.3 bits (12), Expect = 0.050
+ Identities = 12/12 (100%)
+ Strand = Plus / Plus
+
+                      
+Query: 3  acgggtgagtaa 14
+          ||||||||||||
+Sbjct: 34 acgggtgagtaa 45
+
+
+  Database: 091313_Full_16S_seqs_Zfish_isolates.fasta
+    Posted date:  Oct 4, 2013  6:00 AM
+  Number of letters in database: 35,739
+  Number of sequences in database:  28
+  
+Lambda     K      H
+    1.37    0.711     1.31 
+
+Gapped
+Lambda     K      H
+    1.37    0.711     1.31 
+
+
+Matrix: blastn matrix:1 -3
+Gap Penalties: Existence: 5, Extension: 2
+Number of Sequences: 28
+Number of Hits to DB: 59
+Number of extensions: 28
+Number of successful extensions: 28
+Number of sequences better than 10.0: 27
+Number of HSP's gapped: 27
+Number of HSP's successfully gapped: 27
+Length of query: 39
+Length of database: 35,739
+Length adjustment: 10
+Effective length of query: 29
+Effective length of database: 35,459
+Effective search space:  1028311
+Effective search space used:  1028311
+X1: 11 (21.8 bits)
+X2: 15 (29.7 bits)
+X3: 50 (99.1 bits)
+S1: 9 (18.3 bits)
+S2: 9 (18.3 bits)

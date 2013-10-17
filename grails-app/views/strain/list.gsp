@@ -139,7 +139,8 @@
                 </td>
             </tr>
         </table>
-    </g:form>
+        </g:form>
+    
 
 </div>
 
@@ -223,6 +224,7 @@
     </table>
 
     <div class="pagination">
+        %{--<g:paginateCustom total="${strainInstanceTotal}"/>--}%
         <g:paginate total="${strainInstanceTotal}"/>
     </div>
 </div>

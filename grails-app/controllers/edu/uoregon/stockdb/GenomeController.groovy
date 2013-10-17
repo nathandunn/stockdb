@@ -32,6 +32,8 @@ class GenomeController {
         def genomeList = Genome.findAllByGenomeType(genomeType, params)
         render(view: "list", model: [genomeInstanceList: genomeList, genomeInstanceTotal: Genome.count()])
     }
+	
+
 
 //    def listOther(Integer max) {
 //        params.max = Math.min(max ?: 10, 100)

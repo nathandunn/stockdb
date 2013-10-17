@@ -10,6 +10,15 @@
 	<g:textField name="name" value="${genusInstance?.name}"/>
 </div>
 
+
+<div class="fieldcontain ${hasErrors(bean: genusInstance, field: 'host', 'error')} ">
+    <label for="host">
+        <g:message code="genus.host.label" default="Host" />
+
+    </label>
+    <g:checkBox name="host" value="${genusInstance?.host}"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: genusInstance, field: 'phylum', 'error')} ">
 	<label for="phylum">
 		<g:message code="genus.phylum.label" default="Phylum" />
