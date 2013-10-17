@@ -149,7 +149,9 @@ class StrainController {
     }
 
     def create() {
-        params.name = strainService.createStrainName()
+        HostFacility hostFacility = HostFacility.findByName("University of Oregon")
+        Species species = Species.findByCommonName("Zebrafish")
+        params.name = strainService.createStrainName(species,hostFacility)
         [strainInstance: new Strain(params)]
     }
 

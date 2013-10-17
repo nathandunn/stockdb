@@ -7,6 +7,7 @@ class HostFacility {
 
     static constraints = {
         name nullable: false,unique: true,blank: false
+//        prefix nullable: false,unique: true,blank: false
     }
 
     static hasMany = [
@@ -14,5 +15,6 @@ class HostFacility {
     ]
 
     String name
+    String prefix
 //    String location
 }

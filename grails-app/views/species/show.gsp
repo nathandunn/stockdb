@@ -52,6 +52,15 @@
 				</li>
 				</g:if>
 
+                <g:if test="${speciesInstance?.prefix}">
+                    <li class="fieldcontain">
+                        <span id="prefix-label" class="property-label"><g:message code="species.prefix.label" default="Strain Prefix" /></span>
+
+                        <span class="property-value" aria-labelledby="prefix-label"><g:fieldValue bean="${speciesInstance}" field="prefix"/></span>
+
+                    </li>
+                </g:if>
+
                 <g:if test="${hostOriginsForSpecies}">
                     <li class="fieldcontain">
                         <span id="hostOrigins-label" class="property-label"><g:message code="species.commonName.label" default="Host Origins" /></span>

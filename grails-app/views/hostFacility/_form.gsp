@@ -10,6 +10,14 @@
     <g:textField name="name" value="${hostFacilityInstance?.name}" size="40"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: hostFacilityInstance, field: 'prefix', 'error')} ">
+    <label for="prefix">
+        <g:message code="hostFacility.prefix.label" default="Name"/>
+
+    </label>
+    <g:textField prefix="prefix" value="${hostFacilityInstance?.prefix}" size="5"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: hostFacilityInstance, field: 'origins', 'error')} ">
     <label for="origins">
         <g:message code="hostFacility.origins.label" default="Origins"/>
