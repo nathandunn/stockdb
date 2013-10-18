@@ -653,8 +653,13 @@ class StubData {
 
 
         Researcher kat = Researcher.findByUsername("kmilliga@uoregon.edu")
-        Species sticklebackSpecies = Species.findByName("Stickleback")
+        Species sticklebackSpecies = Species.findByCommonName("Stickleback")
+        println "sticklebackSpecies ${sticklebackSpecies}"
+        if(!sticklebackSpecies){
+            System.exit(1)
+        }
         Location guilleminLabFreezer = Location.findByName("Guillemin -80 C Freezer")
+        HostFacility hostFacility = HostFacility.findByName("University of Oregon")
 
         int rowIndex = 1
         csvReader.eachLine { tokens ->
@@ -721,9 +726,26 @@ class StubData {
             String anatomy = tokens[12]?.trim()
             // host origin
             String fishAgeString = tokens[8]?.trim()
-            HostOrigin hostOrigin
-            HostFacility hostFacility = HostFacility.findOrSaveByName(tokens[10]?.trim())
-            hostOrigin = HostOrigin.findOrSaveByAnatomyAndStageAndHostFacilityAndSpecies(anatomy, fishAgeString, hostFacility, sticklebackSpecies)
+            // TODO: calculate dpf vs mpf
+
+//            HostOrigin hostOrigin = HostOrigin.findOrSaveByAnatomyAndStageAndHostFacilityAndSpecies(anatomy, fishAgeString, hostFacility, sticklebackSpecies)
+            HostOrigin hostOrigin = HostOrigin.findByAnatomyAndStageAndHostFacilityAndSpecies(anatomy, fishAgeString, hostFacility, sticklebackSpecies)
+            if(!hostOrigin){
+                hostOrigin = new HostOrigin(
+                        anatomy: anatomy
+                        ,stage: fishAgeString
+                        ,hostFacility: hostFacility
+                        ,species: sticklebackSpecies
+                )
+                hostOrigin.setStageAndDpf(fishAgeString)
+                hostOrigin.save(insert:true,flush:true,failOnError: true)
+            }
+            else{
+                hostOrigin.setStageAndDpf(fishAgeString)
+                hostOrigin.save(insert:false,flush:true,failOnError: true)
+            }
+
+
             String populationString = tokens[10]?.trim()
             println "population ${populationString}"
             if (populationString) {
@@ -748,6 +770,7 @@ class StubData {
                 hostOrigin.population = population
             }
             strain.hostOrigin
+            hostOrigin.addToStrains(strain)
             hostOrigin.save(flush: true)
             strain.save(flush: true)
 

@@ -39,13 +39,13 @@ class HostOrigin {
 //    String name
     String notes
 
-    Boolean hasStage(){
-        return stage!=null && stage!="null"
+    Boolean hasStage() {
+        return stage != null && stage != "null"
     }
 
     String getDisplay() {
         String returnString = "${species?.commonName ?: species.name + ' ' + species.genus } "
-        if(genotypes){
+        if (genotypes) {
             returnString += " (${genotypes?.name ?: ''}) "
         }
         if (daysPastFertilization >= 0) {
@@ -78,6 +78,9 @@ class HostOrigin {
                 daysPastFertilization = UNKNOWN_STAGE
             } else if (stage == "Adult") {
                 daysPastFertilization = 90
+            } else if (stage?.indexOf("mpf") > 0) {
+                String stageSubString = stage.substring(0, stage.indexOf("mpf"))
+                daysPastFertilization = Integer.parseInt(stageSubString)*30
             } else {
                 daysPastFertilization = 360
             }
@@ -97,27 +100,22 @@ class HostOrigin {
 
     String getRenderStageAndDpf() {
         String returnString = ""
-        if(hasStage()){
-            if(!stage.contains("dpf")){
+        if (hasStage()) {
+            if (!stage.contains("dpf")) {
                 returnString += "${stage}"
-                if(daysPastFertilization){
+                if (daysPastFertilization) {
                     returnString += " (${daysPastFertilization} DPF)"
                 }
-            }
-            else{
+            } else {
                 returnString += " ${daysPastFertilization} DPF"
             }
-        }
-        else
-        if(daysPastFertilization!=null && daysPastFertilization >=0 && daysPastFertilization<720)
-        {
+        } else if (daysPastFertilization != null && daysPastFertilization >= 0 && daysPastFertilization < 720) {
             returnString += "${daysPastFertilization} DPF"
-        }
-        else{
+        } else {
             returnString += "??"
         }
-        if(returnString.isEmpty()){
-           returnString = "${id}"
+        if (returnString.isEmpty()) {
+            returnString = "${id}"
         }
         return returnString
     }

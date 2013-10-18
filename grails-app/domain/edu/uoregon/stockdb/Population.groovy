@@ -1,9 +1,11 @@
 package edu.uoregon.stockdb
 
+// we can have a wildtype and a non-wild-type for the same location
 class Population {
 
     static constraints = {
-        name nullable: false, unique: true, blank: false
+//        name nullable: false, unique: true, blank: false
+        name nullable: false, unique: false, blank: false
     }
 
     static hasMany = [
