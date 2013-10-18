@@ -5,6 +5,7 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'strain.label', default: 'Strain')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
+        <r:require module="jquery"/>
 	</head>
 	<body>
 		<a href="#create-strain" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>

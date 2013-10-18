@@ -149,9 +149,9 @@ class StrainController {
     }
 
     def create() {
-        HostFacility hostFacility = HostFacility.findByName("University of Oregon")
-        Species species = Species.findByCommonName("Zebrafish")
-        params.name = strainService.createStrainName(species,hostFacility)
+//        HostFacility hostFacility = HostFacility.findByName("University of Oregon")
+//        Species species = Species.findByCommonName("Zebrafish")
+//        params.name = strainService.createStrainName(species,hostFacility)
         [strainInstance: new Strain(params)]
     }
 
@@ -170,6 +170,17 @@ class StrainController {
 //            render(view:"strainNotFound",model:[name:strainName])
 //            render(view:"list",model:[name:strainName])
             render(view:"list",model:[strainInstanceList: strainList, strainInstanceTotal: strainList.size(),strainName:strainName])
+        }
+    }
+
+    def findNextStrainId(Long hostOriginId){
+        HostOrigin hostOrigin = HostOrigin.findById(hostOriginId)
+        if(hostOrigin){
+            String strainName = strainService.createStrainName(hostOrigin)
+            render strainName
+        }
+        else{
+            render ""
         }
     }
 

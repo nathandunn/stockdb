@@ -2,6 +2,9 @@ package edu.uoregon.stockdb
 
 class StrainService {
 
+    String createStrainName(HostOrigin hostOrigin) {
+        return createStrainName(hostOrigin.species,hostOrigin.hostFacility)
+    }
 
 
 
@@ -14,7 +17,7 @@ class StrainService {
             maxResults(1)
         }
         Strain maxStrain = strainList ? strainList.get(0) : null
-        String maxStrainName = maxStrain?.name?.substring(3)
+        String maxStrainName = maxStrain?.name?.substring(prefix.length())
         Integer maxInteger = Integer.parseInt(maxStrainName)
         ++maxInteger
 

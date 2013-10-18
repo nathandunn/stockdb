@@ -6,7 +6,7 @@
         <g:message code="strain.name.label" default="Name"/>
         <span class="required-indicator">*</span>
     </label>
-    <g:textField name="name" value="${strainInstance?.name}"/>
+    <g:textField id="name" name="name" value="${strainInstance?.name}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'genus', 'error')} required">
@@ -56,10 +56,30 @@
         <span class="required-indicator">*</span>
 
     </label>
-    <g:select id="hostOrigin" name="hostOrigin.id" from="${edu.uoregon.stockdb.HostOrigin.list()}" optionKey="id"
-              value="${strainInstance?.hostOrigin?.id}"
-              optionValue="display"
-              class="many-to-one" noSelection="['null': '- Choose Existing -']"/>
+    %{--if editing--}%
+    <g:if test="${strainInstance.id}">
+        <g:select id="hostOrigin" name="hostOrigin.id" from="${edu.uoregon.stockdb.HostOrigin.list()}" optionKey="id"
+                  value="${strainInstance?.hostOrigin?.id}"
+                  optionValue="display"
+                  class="many-to-one" noSelection="['null': '- Choose Existing -']"/>
+    </g:if>
+    <g:else>
+
+        <g:select id="hostOrigin" name="hostOrigin.id" from="${edu.uoregon.stockdb.HostOrigin.list()}" optionKey="id"
+                  value="${strainInstance?.hostOrigin?.id}"
+                  optionValue="display"
+                  class="many-to-one" noSelection="['null': '- Choose Existing -']"
+            onchange="
+        ${remoteFunction(
+                  action: 'findNextStrainId'
+                  , controller: 'strain'
+                  , params: '\'hostOriginId=\' + this.value '
+                  , method: 'POST'
+                  , onSuccess: '$(\"#name\").val(data);'
+//                    , onSuccess: 'alert(data);'
+                  , onError: 'alert(\'error\');'
+                  )}"/>
+    </g:else>
     <g:link controller="hostOrigin" action="create">Create Host</g:link>
 </div>
 
