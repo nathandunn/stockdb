@@ -41,7 +41,14 @@
 				<g:each in="${populationInstanceList}" status="i" var="populationInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${populationInstance.id}">${fieldValue(bean: populationInstance, field: "name")}</g:link></td>
+						<td><g:link action="show" id="${populationInstance.id}">${fieldValue(bean: populationInstance, field: "name")}</g:link>
+                        <g:if test="${populationInstance.wildtype}">
+                            <div class="wildtype-note">
+                                wildtype
+                            </div>
+
+                        </g:if>
+                        </td>
 					
 						<td><g:formatDate date="${populationInstance.captureDate}" /></td>
 					

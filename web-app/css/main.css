@@ -529,17 +529,17 @@ th:hover, tr:hover {
 }
 
 .pagination input[type=text] {
-	width:40px;
+    width: 40px;
 }
 
 .pag_select {
-	float:left;
-	margin-left:30px;
+    float: left;
+    margin-left: 30px;
 }
 
 .pag_input {
-	margin-right:30px;
-	float:right;
+    margin-right: 30px;
+    float: right;
 }
 
 /* ACTION BUTTONS */
@@ -722,9 +722,8 @@ a.skip {
     /* border-left-color: #bbb; */
 }
 
-
 .nav li a {
-/*    padding: 0.5em 1em;*/
+    /*    padding: 0.5em 1em;*/
     display: block;
     text-decoration: none;
     /* background-color: #aaa; */
@@ -732,18 +731,20 @@ a.skip {
 }
 
 .nav li.active a {
-     background-color: #555;
+    background-color: #555;
     color: #fff;
     cursor: default;
 }
 
-.nav li a{
- background-color: #aaa ;
+.nav li a {
+    background-color: #aaa;
 }
 
 .nav li a:hover {
-	background-color: #999; 
-}                  /* Background-color of hovered item */
+    background-color: #999;
+}
+
+/* Background-color of hovered item */
 
 .secondary {
     list-style-type: none;
@@ -756,38 +757,41 @@ a.skip {
 .secondary li {
     float: left;
     /* background-color: #555; */
-/*    padding: 0.35em 1.5em;*/
-/*    border-width: 1px 0;*/
+    /*    padding: 0.35em 1.5em;*/
+    /*    border-width: 1px 0;*/
 }
+
 .secondary li a {
     display: block;
     /* color: #fff; */
-/*    padding: 2px 0;*/
+    /*    padding: 2px 0;*/
     /* border-color: #555; */
-/*    border-style: solid;*/
+    /*    border-style: solid;*/
     border-width: 1px 0;
     text-decoration: none;
 }
+
 .secondary li a:hover {
     /* border-color: #fff; */
     border-width: 1px 0;
 }
+
 .secondary li.active a {
     /* color: #e0e0e0; */
     cursor: default;
     /* border-color: #e0e0e0; */
 }
 
-.user-menu{
+.user-menu {
     float: right;
     display: inline;
     border-color: black;
     border-width: 2px;
     margin: 10px;
-    padding: 60px 20px 10px 10px ;
+    padding: 60px 20px 10px 10px;
 }
 
-.external{
+.external {
     background: url(../images/external.png) center right no-repeat;
     padding-right: 13px;
 }
@@ -802,8 +806,15 @@ a.external {
     padding-right: 23px;
 }
 
-.host-type{
+.host-type {
     display: inline;
     color: blue;
     font-size: small;
 }
+
+.wildtype-note {
+    display: inline-block;
+    color: gray;
+    font-size: small;
+}
+

@@ -55,6 +55,11 @@ class HostOrigin {
         }
 
         returnString += anatomy ?: ""
+        if(population) returnString += " "
+        if(population){
+            returnString += population.name
+            returnString += population.wildtype ? " wildtype ": ""
+        }
         return returnString
 
     }

@@ -13,7 +13,6 @@
 
 <div class="nav" role="navigation">
     <ul>
-        <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
         <li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]"/></g:link></li>
         <li><g:link class="create" action="create"><g:message code="default.new.label"
                                                               args="[entityName]"/></g:link></li>
@@ -60,19 +59,17 @@
             </li>
         </g:if>
 
-        <g:if test="${populationInstance?.hostOrigins}">
-            <li class="fieldcontain">
-                <span id="hostOrigins-label" class="property-label"><g:message code="population.hostOrigins.label"
-                                                                               default="Host Origins"/></span>
+        <li class="fieldcontain">
+            <span id="hostOrigins-label" class="property-label"><g:message code="population.hostOrigins.label"
+                                                                           default="Host Origins"/></span>
 
-                <g:each in="${populationInstance.hostOrigins}" var="h">
-                    <span class="property-value" aria-labelledby="hostOrigins-label"><g:link controller="hostOrigin"
-                                                                                             action="show"
-                                                                                             id="${h.id}">${h?.display}</g:link></span>
-                </g:each>
+            <g:each in="${populationInstance.hostOrigins}" var="h">
+                <span class="property-value" aria-labelledby="hostOrigins-label">
+                    <g:link controller="hostOrigin" action="show" id="${h.id}">${h?.display}</g:link>
+                </span>
+            </g:each>
 
-            </li>
-        </g:if>
+        </li>
 
         <g:if test="${populationInstance?.latitude}">
             <li class="fieldcontain">
@@ -96,18 +93,18 @@
             </li>
         </g:if>
 
-        <g:if test="${populationInstance?.wildtype}">
-            <li class="fieldcontain">
-                <span id="wildtype-label" class="property-label"><g:message code="population.wildtype.label"
-                                                                              default="Is Wildtype"/></span>
+        %{--<g:if test="${populationInstance?.wildtype}">--}%
+            %{--<li class="fieldcontain">--}%
+                %{--<span id="wildtype-label" class="property-label"><g:message code="population.wildtype.label"--}%
+                                                                            %{--default="Wildtype"/></span>--}%
 
-                <span class="property-value" aria-labelledby="wildtype-label">
-                    <g:fieldValue bean="${populationInstance}" field="wildtype"/>
-                    ${populationInstance.wildtype ? "Wildtype":"Lab Raised"}
-                </span>
+                %{--<span class="property-value" aria-labelledby="wildtype-label">--}%
+                    %{--<g:fieldValue bean="${populationInstance}" field="wildtype"/>--}%
+                    %{--${populationInstance.wildtype ? "Wildtype" : "Lab Raised"}--}%
+                %{--</span>--}%
 
-            </li>
-        </g:if>
+            %{--</li>--}%
+        %{--</g:if>--}%
 
         <g:if test="${populationInstance?.notes}">
             <li class="fieldcontain">

@@ -34,7 +34,9 @@
                         <g:sortableColumn property="hostFacility" title="${message(code: 'hostOrigin.hostFacility.label', default: 'Host Facility')}" />
 
 						<th><g:message code="hostOrigin.genotypes.label" default="Genotypes" /></th>
-					
+
+                        <g:sortableColumn property="population" title="${message(code: 'hostOrigin.population.label', default: 'Population')}" />
+
 						%{--<th><g:message code="hostOrigin.genus.label" default="Genus" /></th>--}%
                         %{--<g:sortableColumn property="id" title="${message(code: 'hostOrigin.details.label', default: 'Details')}" />--}%
                         <th></th>
@@ -77,6 +79,16 @@
                                     ${genotype?.name}
                                 </g:link>
                             </g:each>
+                        </td>
+
+                        <td>
+                                <g:link controller="population" action="show" id="${hostOriginInstance.population?.id}">
+                                    ${hostOriginInstance.population?.name}</g:link>
+                            <g:if test="${hostOriginInstance.population?.wildtype}">
+                                <div class="wildtype-note">
+                                    wildtype
+                                </div>
+                            </g:if>
                         </td>
 
                         <td>

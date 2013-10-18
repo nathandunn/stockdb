@@ -728,8 +728,37 @@ class StubData {
             String fishAgeString = tokens[8]?.trim()
             // TODO: calculate dpf vs mpf
 
+
+
+            String populationString = tokens[10]?.trim()
+            Population population
+            println "population ${populationString}"
+            if (populationString) {
+                Boolean wildtype = populationString.startsWith("W")
+                String notes = populationString
+                if (populationString.startsWith("R") || populationString.startsWith("WER")) {
+                    populationString = "Rabbit Slough"
+                } else if (populationString.startsWith("B")) {
+                    populationString = "Boot Lake"
+                } else if (populationString.startsWith("WOR")) {
+                    populationString = "Millport Slough - Ocean"
+                }
+                 population = Population.findOrSaveByNameAndWildtype(populationString,wildtype)
+                if(!population.notes){
+                    population.notes = ""
+                }
+                if(notes && notes!=null && notes?.trim()?.indexOf("null")<0 && population?.notes?.indexOf("[${notes}]")<0){
+                    population.notes += " [${notes}] "
+                }
+//                if (!population) {
+//                    population = new Population(name: populationString, wildtype: wildtype).save(insert: true,flush: true)
+//
+//                }
+                population.save(flush: true)
+            }
+
 //            HostOrigin hostOrigin = HostOrigin.findOrSaveByAnatomyAndStageAndHostFacilityAndSpecies(anatomy, fishAgeString, hostFacility, sticklebackSpecies)
-            HostOrigin hostOrigin = HostOrigin.findByAnatomyAndStageAndHostFacilityAndSpecies(anatomy, fishAgeString, hostFacility, sticklebackSpecies)
+            HostOrigin hostOrigin = HostOrigin.findByAnatomyAndStageAndHostFacilityAndSpeciesAndPopulation(anatomy, fishAgeString, hostFacility, sticklebackSpecies,population)
             if(!hostOrigin){
                 hostOrigin = new HostOrigin(
                         anatomy: anatomy
@@ -746,33 +775,15 @@ class StubData {
             }
 
 
-            String populationString = tokens[10]?.trim()
-            println "population ${populationString}"
-            if (populationString) {
-                Boolean wildtype = populationString.startsWith("W")
-                String notes = populationString
-                if (populationString.startsWith("R") || populationString.startsWith("WER")) {
-                    populationString = "Rabbit Slough"
-                } else if (populationString.startsWith("B")) {
-                    populationString = "Boot Lake"
-                } else if (populationString.startsWith("WOR")) {
-                    populationString = "Millport Slough - Ocean"
-                }
-                Population population = Population.findOrSaveByNameAndWildtype(populationString,wildtype)
-                if(notes){
-                    population.notes += "Population String ${notes}\n"
-                }
-                population.save(flush: true)
-//                if (!population) {
-//                    population = new Population(name: populationString, wildtype: wildtype).save(insert: true,flush: true)
-//
-//                }
-                hostOrigin.population = population
-            }
+            hostOrigin.population = population
             strain.hostOrigin
             hostOrigin.addToStrains(strain)
             hostOrigin.save(flush: true)
             strain.save(flush: true)
+            if(population!=null){
+                population.addToHostOrigins(hostOrigin)
+                population.save()
+            }
 
 //            String originString = tokens[7]
 //            HostOrigin hostOrigin
