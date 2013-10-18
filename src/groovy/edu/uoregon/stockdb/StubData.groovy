@@ -722,10 +722,13 @@ class StubData {
             // host origin
             String fishAgeString = tokens[8]?.trim()
             HostOrigin hostOrigin
-            HostFacility hostFacility = tokens[11] ? HostFacility.findOrSaveByName(tokens[10]?.trim()) : null
+            HostFacility hostFacility = HostFacility.findOrSaveByName(tokens[10]?.trim())
             hostOrigin = HostOrigin.findOrSaveByAnatomyAndStageAndHostFacilityAndSpecies(anatomy, fishAgeString, hostFacility, sticklebackSpecies)
             String populationString = tokens[10]?.trim()
+            println "population ${populationString}"
             if (populationString) {
+                Boolean wildtype = populationString.startsWith("W")
+                String notes = populationString
                 if (populationString.startsWith("R") || populationString.startsWith("WER")) {
                     populationString = "Rabbit Slough"
                 } else if (populationString.startsWith("B")) {
@@ -733,13 +736,20 @@ class StubData {
                 } else if (populationString.startsWith("WOR")) {
                     populationString = "Millport Slough - Ocean"
                 }
-                Population population = Population.findByName(populationString)
-                Boolean wildtype = populationString.startsWith("W")
-                if (!population) {
-                    population = new Population(name: populationString, wildtype: wildtype).save()
+                Population population = Population.findOrSaveByNameAndWildtype(populationString,wildtype)
+                if(notes){
+                    population.notes += "Population String ${notes}\n"
                 }
+                population.save(flush: true)
+//                if (!population) {
+//                    population = new Population(name: populationString, wildtype: wildtype).save(insert: true,flush: true)
+//
+//                }
                 hostOrigin.population = population
             }
+            strain.hostOrigin
+            hostOrigin.save(flush: true)
+            strain.save(flush: true)
 
 //            String originString = tokens[7]
 //            HostOrigin hostOrigin

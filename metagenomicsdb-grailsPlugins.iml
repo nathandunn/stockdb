@@ -22,6 +22,74 @@
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
+    <content url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/cache-1.0.0">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/cache-1.0.0/src/java" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/cache-1.0.0/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/cache-1.0.0/grails-app/services" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/cache-1.0.0/grails-app/taglib" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/crypto-2.0">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/crypto-2.0/grails-app/utils" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/crypto-2.0/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/crypto-2.0/grails-app/i18n" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/crypto-2.0/grails-app/domain" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/crypto-2.0/grails-app/services" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/csv-0.3.1">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/csv-0.3.1/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/csv-0.3.1/grails-app/i18n" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/database-migration-1.1">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/database-migration-1.1/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/database-migration-1.1/grails-app/controllers" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/gwt-0.9.1">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/gwt-0.9.1/src/java" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/gwt-0.9.1/src/gwt" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/gwt-0.9.1/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/gwt-0.9.1/grails-app/i18n" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/gwt-0.9.1/grails-app/controllers" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/gwt-0.9.1/grails-app/services" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/hibernate-2.2.1">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/hibernate-2.2.1/grails-app/i18n" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/jquery-1.8.0">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/jquery-1.8.0/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/jquery-1.8.0/grails-app/i18n" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/jquery-1.8.0/grails-app/services" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/jquery-1.8.0/grails-app/taglib" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/mail-1.0.1">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/mail-1.0.1/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/mail-1.0.1/grails-app/i18n" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/mail-1.0.1/grails-app/services" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/mail-1.0.1/grails-app/taglib" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/platform-core-1.0.RC5">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/platform-core-1.0.RC5/src/java" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/platform-core-1.0.RC5/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/platform-core-1.0.RC5/grails-app/i18n" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/platform-core-1.0.RC5/grails-app/controllers" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/platform-core-1.0.RC5/grails-app/taglib" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/resources-1.2.RC2">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/resources-1.2.RC2/src/java" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/resources-1.2.RC2/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/resources-1.2.RC2/grails-app/i18n" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/resources-1.2.RC2/grails-app/taglib" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/shiro-1.1.4">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/shiro-1.1.4/src/java" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/shiro-1.1.4/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/shiro-1.1.4/grails-app/i18n" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/shiro-1.1.4/grails-app/services" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/shiro-1.1.4/grails-app/taglib" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/tomcat-2.2.1" />
+    <content url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/webxml-1.4.1">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.2.1/projects/metagenomicsdb/plugins/webxml-1.4.1/src/groovy" isTestSource="false" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="gwt-user" level="project" />
