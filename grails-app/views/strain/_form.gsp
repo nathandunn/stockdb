@@ -261,3 +261,12 @@
     <g:textArea name="notes" value="${strainInstance?.notes}" rows="3" cols="100"/>
 </div>
 
+
+<div class="fieldcontain ${hasErrors(bean: strainInstance, field: 'sequence16s', 'error')} ">
+    <label for="sequence">
+        <g:message code="strain.sequence.label" default="16s Sequence"/>
+
+    </label>
+    <g:textArea name="sequence16s" value="${strainInstance?.sequence16s}" rows="3" cols="100"/>
+</div>
+

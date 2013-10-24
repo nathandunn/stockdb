@@ -247,6 +247,13 @@ fieldset,
     margin-left: 27%;
 }
 
+.fieldcontain .sequence {
+    display: block;
+    margin-left: 27%;
+    font: monospace;
+    font-size: small;
+}
+
 label {
     cursor: pointer;
     display: inline-block;

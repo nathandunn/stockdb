@@ -154,6 +154,7 @@
     </li>
 </g:if>
 
+
 <g:if test="${strainInstance?.notes}">
     <li class="fieldcontain">
         <span id="notes-label" class="property-label"><g:message code="strain.notes.label"
@@ -256,6 +257,23 @@
 
     </li>
 </g:if>
+
+<li class="fieldcontain">
+    <span id="sequence16s-label" class="property-label"><g:message code="strain.sequence.label"
+                                                                   default="16s Sequence"/></span>
+
+    <g:if test="${strainInstance.sequence16s}">
+        <span class="sequence" aria-labelledby="notes-label">
+            <g:fieldValue bean="${strainInstance}" field="sequence16s"/>
+        </span>
+    </g:if>
+    <g:else>
+        <span class="property-value" aria-labelledby="strainGenotype-label">
+        No sequence
+        </span>
+    </g:else>
+
+</li>
 
 </ol>
 <g:form>

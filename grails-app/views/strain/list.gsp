@@ -185,8 +185,8 @@
                     <g:showId instance="${strainInstance}" label="${strainInstance.name}"/>
                 </td>
 
-                <td><i>${strainInstance?.genus?.name}</i></td>
-                <td><i>${strainInstance?.genus?.phylum?.name}</i></td>
+                <td><g:link action="show" controller="genus" id="${strainInstance?.genus?.id}"><i>${strainInstance?.genus?.name}</i></g:link></td>
+                <td><g:link action="show" controller="phylum" id="${strainInstance?.genus?.phylum?.id}"><i>${strainInstance?.genus?.phylum?.name}</i></g:link></td>
 
                 <td>
                     <g:link action="show" id="${strainInstance?.hostOrigin?.id}" controller="hostOrigin">

@@ -17,6 +17,7 @@ class Strain {
 
     static mapping = {
         notes type: "text"
+        sequence16s type: "text"
     }
 //    static mapping = {
 //        measuredValues sort: 'value', order:'asc'
@@ -39,6 +40,8 @@ class Strain {
     String formerCloneAlias
 
     IsolateCondition isolateCondition
+
+    String sequence16s
 
     String notes
 
