@@ -122,7 +122,7 @@ class DbRealm {
                 return true
             }
             else {
-				log.warn"B - ${principal} does not have permission ${requiredPermission}"
+//				log.warn"B - ${principal} does not have permission ${requiredPermission}"
                 return false
             }
         }
