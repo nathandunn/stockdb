@@ -121,9 +121,9 @@
                                                                            default="Strains"/></span>
 
                 <g:each in="${hostOriginInstance.strains}" var="s">
-                    <span class="property-value" aria-labelledby="strains-label"><g:link controller="strain"
-                                                                                         action="show"
-                                                                                         id="${s.id}">${s?.name}</g:link></span>
+                    <span class="property-value" aria-labelledby="strains-label">
+                        <g:link controller="strain" action="show" id="${s.id}">${s?.name}</g:link>
+                    </span>
                 </g:each>
 
             </li>

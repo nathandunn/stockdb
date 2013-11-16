@@ -19,7 +19,10 @@
     </facet>
     <facet type="hibernate" name="Hibernate">
       <configuration>
-        <datasource-map />
+        <datasource-map>
+          <unit-entry name="Gorm" />
+        </datasource-map>
+        <naming-strategy-map />
       </configuration>
     </facet>
     <facet type="gwt" name="GWT">
@@ -53,26 +56,17 @@
         <CLASSES>
           <root url="file://$MODULE_DIR$/lib" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/postgresql/postgresql/jars/postgresql-9.0-801.jdbc4.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/net.sf.opencsv/opencsv/jars/opencsv-2.3.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.shiro/shiro-core/bundles/shiro-core-1.2.0.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.shiro/shiro-spring/bundles/shiro-spring-1.2.0.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.opensymphony.quartz/quartz/jars/quartz-1.6.1.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.shiro/shiro-quartz/bundles/shiro-quartz-1.2.0.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.jasig.cas.client/cas-client-core/jars/cas-client-core-3.2.1.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.shiro/shiro-web/bundles/shiro-web-1.2.0.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.shiro/shiro-cas/bundles/shiro-cas-1.2.0.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.shiro/shiro-ehcache/bundles/shiro-ehcache-1.2.0.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.springframework/spring-test/jars/spring-test-3.1.0.RELEASE.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/javax.activation/activation/jars/activation-1.1.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/javax.mail/mail/jars/mail-1.4.3.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.json/json/jars/json-20090211.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.google.gwt/gwt-codeserver/jars/gwt-codeserver-2.5.1.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.google.gwt/gwt-servlet/jars/gwt-servlet-2.5.1.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/commons-logging/commons-logging/jars/commons-logging-1.1.1.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.httpcomponents/httpcore/jars/httpcore-4.0.1.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.httpcomponents/httpclient/jars/httpclient-4.0.3.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.google.gwt/gwt-user/jars/gwt-user-2.5.1.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.google.gwt/gwt-dev/jars/gwt-dev-2.5.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/javax.servlet/servlet-api/jars/servlet-api-2.5.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/commons-logging/commons-logging/jars/commons-logging-1.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/junit/junit/jars/junit-4.8.2.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.ant/ant-launcher/jars/ant-launcher-1.7.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.ant/ant/jars/ant-1.7.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.gmetrics/GMetrics/jars/GMetrics-0.5.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.codenarc/CodeNarc/jars/CodeNarc-0.19.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.eclipse.jdt.core.compiler/ecj/jars/ecj-3.7.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -80,7 +74,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="gwt-user" level="project" />
-    <orderEntry type="module" module-name="metagenomicsdb-grailsPlugins" />
     <orderEntry type="library" name="grails-2.2.3" level="application" />
   </component>
 </module>
