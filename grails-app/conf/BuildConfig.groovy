@@ -79,7 +79,7 @@ grails.project.dependency.resolution = {
         compile ":mail:1.0.1"
 
         // plugins.shiro=1.1.4
-        compile ":shiro:1.1.4"
+        compile ":shiro:1.2.0"
         compile ":crypto:2.0"
 
 

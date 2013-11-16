@@ -110,6 +110,10 @@ class DbRealm {
             // Create a real permission instance from the database
             // permission.
             def perm = shiroPermissionResolver.resolvePermission(permString)
+            log.debug "Resolving permString ${permString}"
+            log.debug "Perm ${perm}"
+            log.debug "Required permisison ${requiredPermission}"
+            log.debug "implies ${perm.implies(requiredPermission)} for ${principal}"
 
             // Now check whether this permission implies the required
             // one.
@@ -118,7 +122,7 @@ class DbRealm {
                 return true
             }
             else {
-				log.error "B - ${principal} does not have permission ${requiredPermission}"
+				log.warn"B - ${principal} does not have permission ${requiredPermission}"
                 return false
             }
         }
