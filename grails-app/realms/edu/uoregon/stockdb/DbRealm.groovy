@@ -116,7 +116,7 @@ class DbRealm {
             log.debug "implies ${perm.implies(requiredPermission)} for ${principal}"
 
             // Now check whether this permission implies the required
-            // one.
+            // one once for each permission.
             if (perm.implies(requiredPermission)) {
                 // User has the permission!
                 return true
