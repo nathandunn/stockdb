@@ -6,6 +6,9 @@ grails.project.test.reports.dir = "target/test-reports"
 grails.project.target.level = 1.6
 grails.project.source.level = 1.6
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
+gwt.version = "2.5.1"
+
+grails.project.dependency.resolver = "maven"
 
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
@@ -28,6 +31,8 @@ grails.project.dependency.resolution = {
         mavenLocal()
         mavenCentral()
 
+	//grailsRepo "https://grails.org/plugins" 
+
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
         //mavenRepo "http://snapshots.repository.codehaus.org"
         //mavenRepo "http://repository.codehaus.org"
@@ -36,6 +41,10 @@ grails.project.dependency.resolution = {
 
         // added for mail
         mavenRepo "http://download.java.net/maven/2/"
+
+	mavenRepo "http://repo.grails.org/grails/core"
+	mavenRepo "http://repo.grails.org/grails/plugins"
+ 	//mavenRepo "repo.grails.org/grails/repo/"
 
     }
     dependencies {
@@ -48,8 +57,12 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
-        runtime ":hibernate:$grailsVersion"
-        runtime ":jquery:1.8.0"
+        //runtime ":hibernate:$grailsVersion"
+	//runtime ':hibernate:3.6.10.2'
+	runtime ':hibernate:3.6.10.19'
+        //runtime ":jquery:1.8.0"
+        runtime ":jquery:1.10.2.2"
+        compile ":jquery-ui:1.10.3"
         runtime ":resources:1.1.6"
 
         // Uncomment these (or add new ones) to enable additional resources capabilities
@@ -57,14 +70,30 @@ grails.project.dependency.resolution = {
         //runtime ":cached-resources:1.0"
         //runtime ":yui-minify-resources:0.1.4"
 
-        build ":tomcat:$grailsVersion"
+        //build ":tomcat:$grailsVersion"
+	build ':tomcat:7.0.42'
 		
 
         runtime ":database-migration:1.1"
 
-        compile ':cache:1.0.0'
+        //compile ':cache:1.0.0'
+        //compile ':cache:1.1.8'
 //        plugins.gwt=0.8
-        compile ':gwt:0.9.1'
+
+
+
+
+        //compile ':gwt:0.9.1'
+
+        // GWT Plugin
+        runtime ":extended-dependency-manager:0.5.5"
+        compile ":gwt:1.0.3", {
+            transitive=false
+        }
+
+
+
+
 //        compile(':gwt:0.8') {
 //            exclude 'spock'
 ////            exclude "org.spockframework:spock-grails-support:0.7-groovy-2.0"
@@ -92,8 +121,8 @@ grails.project.dependency.resolution = {
     }
 }
 
-gwt {
-    version = "2.5.1"
-//    home = "${grailsHome}/../gwt"
-}
+//gwt {
+//    version = "2.5.1"
+////    home = "${grailsHome}/../gwt"
+//}
 
