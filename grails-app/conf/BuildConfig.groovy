@@ -31,7 +31,7 @@ grails.project.dependency.resolution = {
         mavenLocal()
         mavenCentral()
 
-	//grailsRepo "https://grails.org/plugins" 
+        //grailsRepo "https://grails.org/plugins"
 
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
         //mavenRepo "http://snapshots.repository.codehaus.org"
@@ -42,9 +42,9 @@ grails.project.dependency.resolution = {
         // added for mail
         mavenRepo "http://download.java.net/maven/2/"
 
-	mavenRepo "http://repo.grails.org/grails/core"
-	mavenRepo "http://repo.grails.org/grails/plugins"
- 	//mavenRepo "repo.grails.org/grails/repo/"
+        mavenRepo "http://repo.grails.org/grails/core"
+        mavenRepo "http://repo.grails.org/grails/plugins"
+        //mavenRepo "repo.grails.org/grails/repo/"
 
     }
     dependencies {
@@ -58,12 +58,15 @@ grails.project.dependency.resolution = {
 
     plugins {
         //runtime ":hibernate:$grailsVersion"
-	//runtime ':hibernate:3.6.10.2'
-	runtime ':hibernate:3.6.10.19'
+        runtime ':hibernate:3.6.10.2'
+//        runtime ':hibernate4:4.3.8.1' // or ':hibernate:3.6.10.19'
+        runtime ":database-migration:1.4.1"
         //runtime ":jquery:1.8.0"
         runtime ":jquery:1.10.2.2"
         compile ":jquery-ui:1.10.3"
-        runtime ":resources:1.1.6"
+        compile ":resources:1.2.1"
+        compile ':cache:1.1.8'
+        compile ':cache-ehcache:1.0.5'
 
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0"
@@ -71,28 +74,21 @@ grails.project.dependency.resolution = {
         //runtime ":yui-minify-resources:0.1.4"
 
         //build ":tomcat:$grailsVersion"
-	build ':tomcat:7.0.42'
-		
+        build ':tomcat:7.0.55.2'
 
-        runtime ":database-migration:1.1"
+//        runtime ":database-migration:1.1"
 
         //compile ':cache:1.0.0'
         //compile ':cache:1.1.8'
 //        plugins.gwt=0.8
-
-
-
 
         //compile ':gwt:0.9.1'
 
         // GWT Plugin
         runtime ":extended-dependency-manager:0.5.5"
         compile ":gwt:1.0.3", {
-            transitive=false
+            transitive = false
         }
-
-
-
 
 //        compile(':gwt:0.8') {
 //            exclude 'spock'
@@ -102,16 +98,16 @@ grails.project.dependency.resolution = {
 
 //        #plugins.navigation=1.3.2
 //        compile ":navigation:1.3.2"
-        compile ":platform-core:1.0.RC5"
+//        compile ":platform-core:1.0.RC5"
 
-
-        compile ":mail:1.0.1"
+//        compile ":mail:1.0.1"
+        compile ":mail:1.0.7"
 
         // plugins.shiro=1.1.4
-        compile ":shiro:1.2.0"
+        compile(":shiro:1.2.1") {
+            excludes([name: 'quartz', group: 'org.opensymphony.quartz'])
+        }
         compile ":crypto:2.0"
-
-
 
 //        exclude "spock-grails-support"
 //        test(":spock:0.7") {
